@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>vue-grid-layout</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="example/app.css">
+</head>
+<body>
+    <h1>Vue Grid</h1>
+    <div id="app">
+        <pre>{{ $data | json }}</pre>
+        <div>
+            <div class="layoutJSON">
+                Displayed as <code>[x, y, w, h]</code>:
+                <div class="columns">
+                    <div class="layoutItem" v-for="item in initialLayout">
+                        <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+                    </div>
+                </div>
+            </div>
+            <div class="layoutJSON">
+                <b>COMPACTED: </b>Displayed as <code>[x, y, w, h]</code>:
+                <div class="columns">
+                    <div class="layoutItem" v-for="item in layout">
+                        <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+                    </div>
+                </div>
+            </div>
+        </div>
+        <grid-layout :layouts="layout" :cols="12" :row-height="30" :is-draggable="true"></grid-layout>
+
+    </div>
+    <!--<script src="node_modules/vue/dist/vue.js"></script>-->
+    <script src="build/bundle.js"></script>
+    <!--<script src="dist/vue-spinner.js"></script>
+    <script src="example/app.js"></script>-->
+</body>
+</html>
