@@ -1,22 +1,21 @@
 <template>
-    <div id="content">
-        <div class="vue-grid-layout container" style="{{mergedStyle}}">
-            <grid-item v-for="layout in layouts"
-                       :cols="cols"
-                       :container-width="width"
-                       :margin="margin"
-                       :max-rows="maxRows"
-                       :row-height="rowHeight"
-                       :is-draggable="isDraggable"
-                       :is-resizable="isResizable"
-                       :use-css-transforms="useCssTransforms"
-                       :x="layout.x"
-                       :y="layout.y"
-                       :w="layout.w"
-                       :h="layout.h"
-                       :i="layout.i"
-            ></grid-item>
-        </div>
+    <div class="vue-grid-layout container" :style="mergedStyle">
+        <grid-item v-for="item in layout"
+                   :cols="cols"
+                   :container-width="width"
+                   :margin="margin"
+                   :max-rows="maxRows"
+                   :row-height="rowHeight"
+                   :is-draggable="isDraggable"
+                   :is-resizable="isResizable"
+                   :use-css-transforms="useCssTransforms"
+                   :x.sync="item.x"
+                   :y.sync="item.y"
+                   :w.sync="item.w"
+                   :h.sync="item.h"
+                   :i="item.i"
+        >
+        </grid-item>
     </div>
 </template>
 <style>
@@ -27,11 +26,8 @@
 </style>
 <script>
     var Vue = require('vue');
-//    var VueDragula = require('vue-dragula');
 
-//    Vue.use(VueDragula);
-
-    import {bottom, compact, getLayoutItem} from './utils';
+    import {bottom, compact, getLayoutItem, moveElement} from './utils';
     import GridItem from './GridItem.vue'
 
     export default {
@@ -76,75 +72,88 @@
                 type: Boolean,
                 default: true
             },
+            width: {
+                type: Number,
+                required: false,
+                default: null
+            },
 
-            layouts: [],
+            layout: [],
         },
         data: function() {
             return {
-                width: 100,
-                activeDrag: null,
-                dragging: false,
+                mergedStyle: {
+                }
             };
         },
         ready() {
-            var self = this;
-            console.log("##### READYYYY!");
+            if (this.width === null) {
+                this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
+                window.addEventListener('resize', this.onWindowResize);
+            }
+            this.layout = compact(this.layout, this.verticalCompact);
 
-            this.width = this.$el.offsetWidth;
-            this.layout = compact(this.layouts, true);
-            /*this.$nextTick(function() {
-            });*/
-            /*Vue.vueDragula.eventBus.$on('drag', function (args) {
-                console.log('drag: ' + args[0]);
-                //if (!self.dragging) {
-                    self.dragging = true;
-                    var dragEl = args[1];
-                    var obj = getLayoutItem(self.layouts, dragEl.getAttribute("data-id"));
-                    //if (obj === null || obj === undefined) return;
-                    self.activeDrag = obj;
-                    console.log("activeDrag: " + JSON.stringify(self.activeDrag));
-                    console.log("activeDrag: " + JSON.stringify(self.activeDrag));
-
-                /!*} else {
-                    //other stuf
-                }*!/
-            });
-            Vue.vueDragula.eventBus.$on('drop', function (args) {
-                console.log('drop: ' + args[0]);
-                self.dragging = false;
-                self.activeDrag = null;
-                self.layout = compact(self.layouts, true);
-            });
-            Vue.vueDragula.eventBus.$on('cancel', function (args) {
-                console.log('cancel: ' + args[0]);
-                self.dragging = false;
-                self.activeDrag = null;
-            });
-            Vue.vueDragula.eventBus.$on('dropModel', function (args) {
-                console.log('dropModel: ' + args[0])
-            });*/
+            this.updateHeight();
         },
-        computed: {
-            mergedStyle: function() {
-                return "height: " + this.containerHeight() + ";";
+        watch: {
+            width: function() {
+                this.$nextTick(function() {
+                    this.updateHeight();
+                });
             }
         },
         methods: {
+            updateHeight: function() {
+                this.mergedStyle = {
+                    height: this.containerHeight()
+                };
+            },
+            onWindowResize: function() {
+                if (this.$parent.$el.offsetWidth !== undefined) {
+                    this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
+                }
+            },
             containerHeight: function() {
                 if (!this.autoSize) return;
-                return bottom(this.layouts) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
+                return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
             }
         },
         events: {
-            dragStart: function(elem) {
-                console.log("dragStart=" + elem.getAttribute("data-id"));
+            dragEvent: function(eventName, i, x, y) {
+                if (eventName === "drag" && x == 0 && y == 0) {
+                    return;
+                }
+//                console.log(eventName + " i=" + i + ", x=" + x + ", y=" + y);
+                var l = getLayoutItem(this.layout, i);
+
+                /*
+                 // Create placeholder (display only)
+                 var placeholder = {
+                     w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, i: i
+                 };
+                 */
+
+                // Move the element to the dragged location.
+                this.layout = moveElement(this.layout, l, x, y, true);
+                this.layout = compact(this.layout, this.verticalCompact);
             },
-            dragEnd: function(elem) {
-                console.log("dragEnd=" + elem.getAttribute("data-id"));
+            resizeEvent: function(eventName, i, h, w) {
+                if (eventName === "drag" && h < -40 && w < -40) {
+                    return;
+                }
+//                console.log(eventName + " i=" + i);
+
+                /*
+                 // Create placeholder (display only)
+                 var placeholder = {
+                     w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, i: i
+                 };
+                 */
+
+                // Move the element to the dragged location.
+                this.layout = compact(this.layout, this.verticalCompact);
+                this.updateHeight();
             },
-            handleDrop: function(elem1, elem2) {
-                console.log("handleDrop 1=" + elem1 + " \n2="+ elem2);
-            }
         }
     }
 </script>

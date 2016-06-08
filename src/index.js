@@ -1,10 +1,5 @@
-/*
-import MoonLoader from './GridLayout.vue'
+import GridLayout from './GridLayout.vue';
+import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
 
-const VueGridLayout = {
-  MoonLoader,
-}
-
-module.exports = VueGridLayout
-
-*/
+module.exports.GridLayout = GridLayout;
+module.exports.ResponsiveGridLayout = ResponsiveGridLayout;

@@ -1,30 +1,3 @@
-/*
-import MoonLoader from './MoonLoader.vue'
-
-
-Vue.config.debug = true
-
-new Vue({
-    el: '#app',
-    components: {
-        MoonLoader,
-    },
-    data () {
-        return {
-            color: '#5dc596',
-            size: '15px',
-            margin: '2px',
-            radius: '100%'
-        }
-    },
-    ready: function() {
-        console.log("############# APPPPPPPPPPPP");
-    }
-
-})
-
-*/
-
 var testLayout = [
     {"x":0,"y":0,"w":2,"h":2,"i":"0"},
     {"x":2,"y":0,"w":2,"h":4,"i":"1"},
@@ -53,19 +26,24 @@ var Vue = require('vue');
 Vue.config.debug = true;
 Vue.config.devtools = true;
 
+import TextItem from './TextItem.vue';
 import GridLayout from './GridLayout.vue';
+import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
 
 // import {compact} from './utils';
 
 new Vue({
     el: '#app',
     components: {
+        ResponsiveGridLayout,
         GridLayout,
+        TextItem,
     },
     data: {
         // initialLayout: generateLayout()
-        initialLayout: JSON.parse(JSON.stringify(testLayout)),
-        layout: JSON.parse(JSON.stringify(testLayout))
+        // initialLayout: JSON.parse(JSON.stringify(testLayout)),
+        layout: JSON.parse(JSON.stringify(testLayout)),
+        layouts: {lg: testLayout}
     },
     ready: function () {
     },

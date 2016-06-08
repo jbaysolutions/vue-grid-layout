@@ -9,16 +9,16 @@
 <body>
     <h1>Vue Grid</h1>
     <div id="app">
-        <pre>{{ $data | json }}</pre>
+        <!--<pre>{{ $data | json }}</pre>-->
         <div>
-            <div class="layoutJSON">
+            <!--<div class="layoutJSON">
                 Displayed as <code>[x, y, w, h]</code>:
                 <div class="columns">
                     <div class="layoutItem" v-for="item in initialLayout">
                         <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="layoutJSON">
                 <b>COMPACTED: </b>Displayed as <code>[x, y, w, h]</code>:
                 <div class="columns">
@@ -28,12 +28,16 @@
                 </div>
             </div>
         </div>
-        <grid-layout :layouts="layout" :cols="12" :row-height="30" :is-draggable="true"></grid-layout>
+        <div id="content">
+            <!--<responsive-grid-layout :layout.sync="layout" :layouts="layouts" :row-height="30" :is-draggable="true" :vertical-compact="true">
+                <text-item v-for="item in layout" :text="item.i" :slot="item.i"></text-item>
+            </responsive-grid-layout>-->
+            <grid-layout :layout.sync="layout" :cols="12" :row-height="30" :is-draggable="true" :vertical-compact="true">
+                <!--<text-item v-for="item in layout" :text="item.i" name="{{item.id}}"></text-item>-->
+            </grid-layout>
+        </div>
 
     </div>
-    <!--<script src="node_modules/vue/dist/vue.js"></script>-->
     <script src="build/bundle.js"></script>
-    <!--<script src="dist/vue-spinner.js"></script>
-    <script src="example/app.js"></script>-->
 </body>
 </html>

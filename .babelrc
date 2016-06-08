@@ -4,5 +4,6 @@
     "stage-1"
   ],
   "plugins": [
+    "transform-flow-comments"
   ]
 }
