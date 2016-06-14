@@ -98,6 +98,7 @@
                 this.el.removeEventListener('dragenter', this.handleDragEnter);
                 this.el.removeEventListener('dragover', this.handleDragOver);
                 this.el.removeEventListener('dragleave', this.handleDragLeave);
+                this.el.removeEventListener('drag', this.handleDrag);
             }
         });
     }

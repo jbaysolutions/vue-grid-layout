@@ -4,7 +4,8 @@
              :class="{ 'vue-resizable' : isResizable, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
              style="{{createStyle}}"
         >
-        <!--<component :is="comp" :text="i"></component>-->
+        <!--<slot name="{{i}}">X</slot>
+        <component :is="textItem" :text="i"></component>-->
         <span class="text">{{i}}</span>
             <!--<span class="text">{{i}}</span>-->
             <!--<pre>
@@ -431,36 +432,6 @@
                 h = Math.max(Math.min(h, this.maxRows - this.y), 0);
                 return {w, h};
             }
-
-    /*
-                handleDragStart: function(elem) {
-                     console.log('handleDragStart', elem);
-    //                this.loggedEvent = 'handleDragStart';
-                },
-                handleDragOver: function(elem) {
-    //                 console.log('handleDragOver', elem);
-    //                this.loggedEvent = 'handleDragOver';
-                },
-                handleDragEnter: function(elem) {
-                     console.log('handleDragEnter', elem);
-    //                this.loggedEvent = 'handleDragEnter';
-                },
-                handleDragLeave: function(elem) {
-                    console.log('handleDragLeave', elem);
-    //                this.loggedEvent = 'handleDragLeave';
-                },
-                handleDragEnd: function(elem) {
-                     console.log('handleDragEnd', elem);
-                    console.log("LEFT: " + this.$el.offsetLeft);
-                    console.log("TOP: " + this.$el.offsetTop);
-    //                this.loggedEvent = 'handleDragEnd';
-                },
-                handleDrop: function(itemOne, itemTwo) {
-                    console.log('handleDrop', itemOne, itemTwo);
-                    this.$dispatch("handleDrop", itemOne, itemTwo);
-    //                this.loggedEvent = 'handleDrop';
-                }
-    */
         }
     }
 </script>
