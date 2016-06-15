@@ -2,7 +2,7 @@
     <div v-el:item
              class="vue-grid-item"
              :class="{ 'vue-resizable' : isResizable, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
-             style="{{{createStyle}}}"
+             :style="style"
         >
         <slot></slot>
         <!--span class="text">{{id}}</span-->
@@ -205,7 +205,7 @@
             this.isDraggable = this.$parent.isDraggable;
             this.isResizable = this.$parent.isResizable;
             this.useCssTransforms = this.$parent.useCssTransforms;
-//            this.createStyle();
+            this.createStyle();
 //            var self = this;
             if (this.isDraggable) {
                 var element = this.$els.item;
@@ -223,13 +223,28 @@
             }
             //this.pos = this.calcPosition();
         },
-        /*watch: {
+        watch: {
             cols: function() {
                 this.createStyle();
+            },
+            containerWidth: function() {
+                this.createStyle();
+            },
+            x: function() {
+                this.createStyle();
+            },
+            y: function() {
+                this.createStyle();
+            },
+            h: function() {
+                this.createStyle();
+            },
+            w: function() {
+                this.createStyle();
             }
-        },*/
+        },
         computed: {
-            createStyle: function() {
+            /*createStyle: function() {
                 var pos = this.calcPosition(this.x, this.y, this.w, this.h);
                 //const {usePercentages, containerWidth, useCssTransforms} = this.props;
 
@@ -244,7 +259,7 @@
                 }
 
                 return createMarkup(style);
-            },
+            },*/
         },
         methods: {
             createStyle: function() {
@@ -308,11 +323,15 @@
 */
                 // Get new WH
                 var pos = this.calcWH(newSize.height, newSize.width);
-                this.w = pos.w;
                 if (pos.h >= 1) {
                     this.h = pos.h;
                 } else {
                     this.h = 1;
+                }
+                if (pos.w >= 1) {
+                    this.w = pos.w;
+                } else {
+                    this.w = 1;
                 }
 
                 var shouldUpdate = false;
@@ -370,7 +389,7 @@
                         clientRect = event.target.getBoundingClientRect();
                         newPosition.left = clientRect.left - parentRect.left;
                         newPosition.top = clientRect.top - parentRect.top;
-                        console.log("### drag end => " + JSON.stringify(newPosition));
+//                        console.log("### drag end => " + JSON.stringify(newPosition));
 //                        console.log("### DROP: " + JSON.stringify(newPosition));
                         this.dragging = null;
                         this.isDragging = false;

@@ -1,23 +1,6 @@
 <template>
     <div class="vue-grid-layout container" :style="mergedStyle">
         <slot></slot>
-        <!--grid-item v-for="item in layout"
-                   :cols="cols"
-                   :container-width="width"
-                   :margin="margin"
-                   :max-rows="maxRows"
-                   :row-height="rowHeight"
-                   :is-draggable="isDraggable"
-                   :is-resizable="isResizable"
-                   :use-css-transforms="useCssTransforms"
-                   :x.sync="item.x"
-                   :y.sync="item.y"
-                   :w.sync="item.w"
-                   :h.sync="item.h"
-                   :id="item.i"
-                   :component="item.component"
-        >
-        </grid-item-->
     </div>
 </template>
 <style>
@@ -90,8 +73,11 @@
         },
         ready() {
             if (this.width === null) {
-                this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
-                window.addEventListener('resize', this.onWindowResize);
+                this.$nextTick(function() {
+//                    this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
+                    this.width = this.$parent.$el.offsetWidth;
+                    window.addEventListener('resize', this.onWindowResize);
+                });
             }
             this.layout = compact(this.layout, this.verticalCompact);
 
@@ -112,8 +98,8 @@
                 };
             },
             onWindowResize: function() {
-                if (this.$parent.$el.offsetWidth !== undefined) {
-                    this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
+                if (this.$parent !== null && this.$parent.$el.offsetWidth !== undefined) {
+                    this.width = this.$parent.$el.offsetWidth;
                 }
             },
             containerHeight: function() {
