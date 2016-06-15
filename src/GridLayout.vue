@@ -1,6 +1,7 @@
 <template>
     <div class="vue-grid-layout container" :style="mergedStyle">
-        <grid-item v-for="item in layout"
+        <slot></slot>
+        <!--grid-item v-for="item in layout"
                    :cols="cols"
                    :container-width="width"
                    :margin="margin"
@@ -13,9 +14,10 @@
                    :y.sync="item.y"
                    :w.sync="item.w"
                    :h.sync="item.h"
-                   :i="item.i"
+                   :id="item.i"
+                   :component="item.component"
         >
-        </grid-item>
+        </grid-item-->
     </div>
 </template>
 <style>
@@ -40,7 +42,7 @@
                 type: Boolean,
                 default: true
             },
-            cols: {
+            colNum: {
                 type: Number,
                 default: 12
             },
@@ -98,9 +100,10 @@
         watch: {
             width: function() {
                 this.$nextTick(function() {
+                    this.$broadcast("updateWidth", this.width);
                     this.updateHeight();
                 });
-            }
+            },
         },
         methods: {
             updateHeight: function() {
@@ -119,17 +122,17 @@
             }
         },
         events: {
-            dragEvent: function(eventName, i, x, y) {
+            dragEvent: function(eventName, id, x, y) {
                 if (eventName === "drag" && x == 0 && y == 0) {
                     return;
                 }
-//                console.log(eventName + " i=" + i + ", x=" + x + ", y=" + y);
-                var l = getLayoutItem(this.layout, i);
+//                console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                var l = getLayoutItem(this.layout, id);
 
                 /*
                  // Create placeholder (display only)
                  var placeholder = {
-                     w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, i: i
+                     w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, id: id
                  };
                  */
 
@@ -137,16 +140,16 @@
                 this.layout = moveElement(this.layout, l, x, y, true);
                 this.layout = compact(this.layout, this.verticalCompact);
             },
-            resizeEvent: function(eventName, i, h, w) {
+            resizeEvent: function(eventName, id, h, w) {
                 if (eventName === "drag" && h < -40 && w < -40) {
                     return;
                 }
-//                console.log(eventName + " i=" + i);
+//                console.log(eventName + " id=" + id);
 
                 /*
                  // Create placeholder (display only)
                  var placeholder = {
-                     w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, i: i
+                     w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, id: id
                  };
                  */
 

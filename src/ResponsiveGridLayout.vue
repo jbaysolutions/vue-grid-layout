@@ -140,6 +140,11 @@
 
                 this.layout = layout;
                 this.colNum = newColNum;
+
+                console.log("#### COLS => " + this.colNum);
+                this.$children.forEach(function(item) {
+                    item.cols = newColNum;
+                });
 //                this.lastBreakpoint = this.breakpoint;
                 compact(this.layout, this.verticalCompact);
             }

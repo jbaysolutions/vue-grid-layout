@@ -1,5 +1,5 @@
 <template>
-    <span class="text">=> {{text}}</span>
+    <span class="text">{{text}}</span>
 </template>
 <style>
 </style>

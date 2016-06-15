@@ -15,12 +15,12 @@
   "main": "src/app.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot ",
-    "build": "NODE_ENV=production webpack --progress --hide-modules",
-    "dist": "webpack --progress --hide-modules --config  webpack.build.js && NODE_ENV=production webpack --progress --hide-modules --config  webpack.build.min.js"                              
+    "build": "set NODE_ENV=production && webpack --progress --hide-modules",
+    "dist": "webpack --progress --hide-modules --config  webpack.build.js && set NODE_ENV=production && webpack --progress --hide-modules --config  webpack.build.min.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gmsa/vue-grid-layout.git"
+    "url": "https://github.com/jbaysolutions/vue-grid-layout.git"
   },
   "author": "Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com)",
   "devDependencies": {

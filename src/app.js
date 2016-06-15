@@ -27,17 +27,18 @@ Vue.config.debug = true;
 Vue.config.devtools = true;
 
 import TextItem from './TextItem.vue';
+import GridItem from './GridItem.vue';
 import GridLayout from './GridLayout.vue';
 import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
 
-// import {compact} from './utils';
+Vue.component('text-item', TextItem)
 
 new Vue({
     el: '#app',
     components: {
         ResponsiveGridLayout,
         GridLayout,
-        TextItem,
+        GridItem,
     },
     data: {
         // initialLayout: generateLayout()

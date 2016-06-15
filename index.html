@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="example/app.css">
 </head>
 <body>
-    <h1>Vue Grid</h1>
+    <h1>Vue Grid Layout</h1>
     <div id="app">
         <!--<pre>{{ $data | json }}</pre>-->
         <div>
@@ -24,8 +24,27 @@
             <!--<responsive-grid-layout :layout.sync="layout" :layouts="layouts" :row-height="30" :is-draggable="true" :vertical-compact="true">
                 <text-item v-for="item in layout" :text="item.i"></text-item>
             </responsive-grid-layout>-->
-            <grid-layout :layout.sync="layout" :cols="12" :row-height="30" :is-draggable="true" :vertical-compact="true">
-                <text-item v-for="item in layout" :text="item.i" slot="{{item.i}}"></text-item>
+            <!--<responsive-grid-layout :layout.sync="layout" :layouts="layouts" :row-height="30" :is-draggable="true" :vertical-compact="true">
+                <grid-item v-for="item in layout"
+                           :x.sync="item.x"
+                           :y.sync="item.y"
+                           :w.sync="item.w"
+                           :h.sync="item.h"
+                           :id="item.i"
+                        >
+                    <span class="text">{{item.i}}</span>
+                </grid-item>
+            </responsive-grid-layout>-->
+            <grid-layout :layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :vertical-compact="true">
+                <grid-item v-for="item in layout"
+                           :x.sync="item.x"
+                           :y.sync="item.y"
+                           :w.sync="item.w"
+                           :h.sync="item.h"
+                           :id="item.i"
+                >
+                    <span class="text">{{item.i}}</span>
+                </grid-item>
             </grid-layout>
         </div>
 

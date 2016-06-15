@@ -2,17 +2,17 @@
     <div v-el:item
              class="vue-grid-item"
              :class="{ 'vue-resizable' : isResizable, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
-             style="{{createStyle}}"
+             style="{{{createStyle}}}"
         >
-        <!--<slot name="{{i}}">X</slot>
-        <component :is="textItem" :text="i"></component>-->
-        <span class="text">{{i}}</span>
+        <slot></slot>
+        <!--span class="text">{{id}}</span-->
             <!--<span class="text">{{i}}</span>-->
             <!--<pre>
                 x: {{ x | json}}
                 y: {{ y | json}}
                 w: {{ w | json}}
                 h: {{ h | json}}
+                containerWidth: {{ containerWidth | json}}
             </pre>-->
             <span v-if="isResizable" v-el:handle class="vue-resizable-handle"></span>
         </div>
@@ -93,11 +93,11 @@
     export default {
         name: "GridItem",
         props: {
-            cols: {
+            /*cols: {
                 type: Number,
                 required: true
-            },
-            containerWidth: {
+            },*/
+            /*containerWidth: {
                 type: Number,
                 required: true
 
@@ -145,7 +145,7 @@
             useCssTransforms: {
                 type: Boolean,
                 required: true
-            },
+            },*/
             x: {
                 type: Number,
                 required: true
@@ -162,18 +162,25 @@
                 type: Number,
                 required: true
             },
-            i: {
-                default: ""
+            id: {
+                required: true
             },
-            /*comp: {
-                type: String,
-                default: "textItem"
-            }*/
-        },
-        watch: {
         },
         data: function() {
             return {
+                cols: 1,
+                containerWidth: 100,
+                rowHeight: 30,
+                margin: [10, 10],
+                maxRows: Infinity,
+                minH: 1,
+                minW: 1,
+                maxH: Infinity,
+                maxW: Infinity,
+                isDraggable: true,
+                isResizable: true,
+                useCssTransforms: true,
+
                 isDragging: false,
                 dragging: null,
                 isResizing: false,
@@ -182,10 +189,23 @@
                 lastY: NaN,
                 lastW: NaN,
                 lastH: NaN,
-                className: ""
+                className: "",
+                style: ""
             }
         },
         ready: function() {
+            this.cols = this.$parent.colNum;
+            this.rowHeight = this.$parent.rowHeight;
+            this.margin = this.$parent.margin;
+            this.maxRows = this.$parent.maxRows;
+            this.minH = this.$parent.minH;
+            this.minW = this.$parent.minW;
+            this.maxH = this.$parent.maxH;
+            this.maxW = this.$parent.maxW;
+            this.isDraggable = this.$parent.isDraggable;
+            this.isResizable = this.$parent.isResizable;
+            this.useCssTransforms = this.$parent.useCssTransforms;
+//            this.createStyle();
 //            var self = this;
             if (this.isDraggable) {
                 var element = this.$els.item;
@@ -203,6 +223,11 @@
             }
             //this.pos = this.calcPosition();
         },
+        /*watch: {
+            cols: function() {
+                this.createStyle();
+            }
+        },*/
         computed: {
             createStyle: function() {
                 var pos = this.calcPosition(this.x, this.y, this.w, this.h);
@@ -213,7 +238,7 @@
                 if (this.useCssTransforms) {
                     style = setTransform(pos.top, pos.left, pos.width, pos.height);
                 }
-                 // top,left (slow)
+                // top,left (slow)
                 else {
                     style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
                 }
@@ -222,13 +247,30 @@
             },
         },
         methods: {
+            createStyle: function() {
+                var pos = this.calcPosition(this.x, this.y, this.w, this.h);
+                //const {usePercentages, containerWidth, useCssTransforms} = this.props;
+
+                let style;
+                // CSS Transforms support (default)
+                if (this.useCssTransforms) {
+                    style = setTransform(pos.top, pos.left, pos.width, pos.height);
+                }
+                // top,left (slow)
+                else {
+                    style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
+                }
+
+                this.style = createMarkup(style);
+            },
             handleResize: function(event) {
                 const position = getControlPosition(event);
                 // Get the current drag point from the event. This is used as the offset.
                 if (position == null) return; // not possible but satisfies flow
                 const {x, y} = position;
 
-                if (x < 100 || y < 100) {
+                if (x < 100 && y < 100) {
+//                    console.log("### NO => x=" + x + ", y=" + y);
                     return;
                 }
                 const newSize = {width: 0, height: 0};
@@ -267,7 +309,11 @@
                 // Get new WH
                 var pos = this.calcWH(newSize.height, newSize.width);
                 this.w = pos.w;
-                this.h = pos.h;
+                if (pos.h >= 1) {
+                    this.h = pos.h;
+                } else {
+                    this.h = 1;
+                }
 
                 var shouldUpdate = false;
                 if (this.lastW !== x && this.lastH !== y) {
@@ -278,7 +324,7 @@
                 this.lastH = y;
 
                 if (shouldUpdate) {
-                    this.$dispatch("resizeEvent", event.type, this.i, this.h, this.w);
+                    this.$dispatch("resizeEvent", event.type, this.id, this.h, this.w);
                 }
 
             },
@@ -351,11 +397,8 @@
                 this.lastY = y;
 
                 if (shouldUpdate) {
-                    this.$dispatch("dragEvent", eventName, this.i, this.x, this.y);
+                    this.$dispatch("dragEvent", eventName, this.id, this.x, this.y);
                 }
-            },
-            calcColWidth: function() {
-                return (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
             },
             calcPosition: function(x, y, w, h) {
                 const colWidth = this.calcColWidth();
@@ -409,7 +452,9 @@
             },
             // Helper for generating column width
             calcColWidth() {
-                return (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
+                var colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
+//                console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth);
+                return colWidth;
             },
 
             /**
@@ -432,6 +477,11 @@
                 h = Math.max(Math.min(h, this.maxRows - this.y), 0);
                 return {w, h};
             }
+        },
+        events: {
+            updateWidth: function(width) {
+                this.containerWidth = width;
+            },
         }
     }
 </script>
