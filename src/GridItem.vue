@@ -7,13 +7,12 @@
         <slot></slot>
         <!--span class="text">{{id}}</span-->
             <!--<span class="text">{{i}}</span>-->
-            <!--<pre>
+            <pre>
                 x: {{ x | json}}
                 y: {{ y | json}}
                 w: {{ w | json}}
                 h: {{ h | json}}
-                containerWidth: {{ containerWidth | json}}
-            </pre>-->
+            </pre>
             <span v-if="isResizable" v-el:handle class="vue-resizable-handle"></span>
         </div>
     </div>
@@ -28,6 +27,7 @@
     }
     .vue-grid-item.resizing {
         z-index: 1;
+        opacity: 0.9;
     }
 
     .vue-grid-item.vue-draggable-dragging {
@@ -81,6 +81,33 @@
         box-sizing: border-box;
         cursor: se-resize;
     }
+
+    .vue-grid-item:not(.vue-grid-placeholder) {
+        background: #ccc;
+        border: 1px solid black;
+    }
+
+    .vue-grid-item.static {
+        background: #cce;
+    }
+    .vue-grid-item .text {
+        font-size: 24px;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 24px;
+    }
+    .vue-grid-item .minMax {
+        font-size: 12px;
+    }
+    .vue-grid-item .add {
+        cursor: pointer;
+    }
+
 </style>
 <script>
     import {setTopLeft, setTransform, createMarkup} from './utils';
@@ -234,6 +261,7 @@
                 this.createStyle();
             },
             y: function() {
+                console.log("### Y => " + this.y);
                 this.createStyle();
             },
             h: function() {
@@ -373,6 +401,8 @@
                 if (position == null) return; // not possible but satisfies flow
                 const {x, y} = position;
 
+                var shouldUpdate = false;
+
                 const newPosition = {top: 0, left: 0};
                 switch (eventName) {
                     case "dragstart":
@@ -393,6 +423,7 @@
 //                        console.log("### DROP: " + JSON.stringify(newPosition));
                         this.dragging = null;
                         this.isDragging = false;
+                        shouldUpdate = true;
                         break;
                     case "drag":
                         const coreEvent = createCoreData(this.lastX, this.lastY, x, y);
@@ -407,7 +438,6 @@
                 this.x = pos.x;
                 this.y = pos.y;
 
-                var shouldUpdate = false;
                 if (this.lastX !== x && this.lastY !== y) {
                     shouldUpdate = true;
                 }

@@ -1,5 +1,11 @@
+import GridItem from './GridItem.vue';
 import GridLayout from './GridLayout.vue';
 import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
 
-module.exports.GridLayout = GridLayout;
-module.exports.ResponsiveGridLayout = ResponsiveGridLayout;
+const VueGridLayout = {
+    ResponsiveGridLayout,
+    GridLayout,
+    GridItem
+}
+
+module.exports = VueGridLayout;

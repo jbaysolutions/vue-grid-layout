@@ -14,7 +14,7 @@
   ],
   "main": "src/app.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot ",
+    "dev": "webpack-dev-server --host 0.0.0.0 --inline --hot ",
     "build": "set NODE_ENV=production && webpack --progress --hide-modules",
     "dist": "webpack --progress --hide-modules --config  webpack.build.js && set NODE_ENV=production && webpack --progress --hide-modules --config  webpack.build.min.js"
   },

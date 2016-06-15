@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>vue-grid-layout</title>
+    <title>Vue Grid Layout Example 1 - Basic Responsive</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="examples/app.css">
+    <link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <h1>Vue Grid Layout</h1>
+    <h1>Vue Grid Layout Example 1 - Basic Responsive</h1>
     <div id="app" style="width: 100%;">
         <!--<pre>{{ $data | json }}</pre>-->
         <div>
@@ -32,20 +32,11 @@
                     <span class="text">{{item.i}}</span>
                 </grid-item>
             </responsive-grid-layout>
-            <!--<grid-layout :layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :vertical-compact="true">
-                <grid-item v-for="item in layout"
-                           :x.sync="item.x"
-                           :y.sync="item.y"
-                           :w.sync="item.w"
-                           :h.sync="item.h"
-                           :id="item.i"
-                >
-                    <span class="text">{{item.i}}</span>
-                </grid-item>
-            </grid-layout>-->
         </div>
 
     </div>
-    <script src="build/bundle.js"></script>
+    <script src="vue.js"></script>
+    <script src="../dist/vue-grid-layout.js"></script>
+    <script src="01-basic-responsive.js"></script>
 </body>
 </html>

@@ -1,23 +1,27 @@
 <template>
     <!--<pre>{{layout | json}}</pre>-->
     Current Breakpoint: {{breakpoint}} ({{colNum}} columns)
-    <grid-layout :width="width" :layout="layout" :cols="colNum" :row-height="rowHeight" :is-draggable="isDraggable" :vertical-compact="verticalCompact">
+    <div class="vue-grid-layout container" :style="mergedStyle">
         <slot></slot>
-    </grid-layout>
+    </div>
 </template>
 <style>
+    .vue-grid-layout {
+        position: relative;
+        transition: height 200ms ease;
+    }
 </style>
 <script>
     var Vue = require('vue');
 
-    import {compact, validateLayout} from './utils';
+    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
     import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout} from './responsiveUtils';
-    import GridLayout from './GridLayout.vue'
+    import GridItem from './GridItem.vue'
 
     export default {
         name: "ResponsiveGridLayout",
         components: {
-            GridLayout,
+            GridItem,
         },
         props: {
             autoSize: {
@@ -86,24 +90,30 @@
         },
         data: function() {
             return {
-                width: 100,
+                width: null,
                 colNum: 0,
                 breakpoint: "lg",
                 lastBreakpoint: null,
+                mergedStyle: {}
             };
         },
         ready() {
             //Object.keys(this.layouts).forEach((key) => validateLayout(self.layouts[key], 'layouts.' + key));
-            this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
-            this.breakpoint = getBreakpointFromWidth(this.breakpoints, this.width);
+//            this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
+            if (this.width === null) {
+                this.onWindowResize();
 
-            this.colNum = getColsFromBreakpoint(this.breakpoint, this.cols);
-            // Get the initial layout. This can tricky; we try to generate one however possible if one doesn't exist
-            // for this layout.
-            this.layout = findOrGenerateResponsiveLayout(this.layouts, this.breakpoints, this.breakpoint,
-                    this.breakpoint, this.colNum, this.verticalCompact);
-            this.lastBreakpoint = this.breakpoint;
-            compact(this.layout, this.verticalCompact);
+                this.breakpoint = getBreakpointFromWidth(this.breakpoints, this.width);
+
+                this.colNum = getColsFromBreakpoint(this.breakpoint, this.cols);
+                // Get the initial layout. This can tricky; we try to generate one however possible if one doesn't exist
+                // for this layout.
+                this.layout = findOrGenerateResponsiveLayout(this.layouts, this.breakpoints, this.breakpoint,
+                        this.breakpoint, this.colNum, this.verticalCompact);
+                this.lastBreakpoint = this.breakpoint;
+                compact(this.layout, this.verticalCompact);
+            }
+
             window.addEventListener('resize', this.onWindowResize);
         },
         watch: {
@@ -125,7 +135,11 @@
         },
         methods: {
             onWindowResize: function() {
-                this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
+                this.$nextTick(function() {
+                    if (this.$parent !== null && this.$parent.$el.offsetWidth !== undefined) {
+                        this.width = this.$parent.$el.offsetWidth;
+                    }
+                });
             },
             onWidthChange: function() {
                 this.lastBreakpoint = this.breakpoint;
@@ -141,13 +155,65 @@
                 this.layout = layout;
                 this.colNum = newColNum;
 
-                console.log("#### COLS => " + this.colNum);
+//                console.log("#### COLS => " + this.colNum);
                 this.$children.forEach(function(item) {
                     item.cols = newColNum;
                 });
 //                this.lastBreakpoint = this.breakpoint;
                 compact(this.layout, this.verticalCompact);
-            }
+
+                this.$nextTick(function() {
+                    this.$broadcast("updateWidth", this.width);
+                    this.updateHeight();
+                });
+
+            },
+            updateHeight: function() {
+                this.mergedStyle = {
+                    height: this.containerHeight()
+                };
+            },
+            containerHeight: function() {
+                if (!this.autoSize) return;
+                return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
+            },
         },
+        events: {
+            dragEvent: function(eventName, id, x, y) {
+                if (eventName === "drag" && x == 0 && y == 0) {
+                    return;
+                }
+                console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                var l = getLayoutItem(this.layout, id);
+
+                /*
+                 // Create placeholder (display only)
+                 var placeholder = {
+                 w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, id: id
+                 };
+                 */
+
+                // Move the element to the dragged location.
+                this.layout = moveElement(this.layout, l, x, y, true);
+                this.layout = compact(this.layout, this.verticalCompact);
+            },
+            resizeEvent: function(eventName, id, h, w) {
+                if (eventName === "drag" && h < -40 && w < -40) {
+                    return;
+                }
+//                console.log(eventName + " id=" + id);
+
+                /*
+                 // Create placeholder (display only)
+                 var placeholder = {
+                 w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, id: id
+                 };
+                 */
+
+                // Move the element to the dragged location.
+                this.layout = compact(this.layout, this.verticalCompact);
+                this.updateHeight();
+            },
+        }
     }
 </script>
