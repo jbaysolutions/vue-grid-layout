@@ -183,7 +183,7 @@
                 if (eventName === "drag" && x == 0 && y == 0) {
                     return;
                 }
-                console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
+//                console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
 
                 /*
@@ -196,12 +196,15 @@
                 // Move the element to the dragged location.
                 this.layout = moveElement(this.layout, l, x, y, true);
                 this.layout = compact(this.layout, this.verticalCompact);
+
+                // needed because vue can't detect changes on array element properties
+                this.$broadcast("compact", this.layout);
+                this.updateHeight();
             },
             resizeEvent: function(eventName, id, h, w) {
                 if (eventName === "drag" && h < -40 && w < -40) {
                     return;
                 }
-//                console.log(eventName + " id=" + id);
 
                 /*
                  // Create placeholder (display only)

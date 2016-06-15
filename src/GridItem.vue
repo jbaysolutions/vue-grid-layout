@@ -7,12 +7,12 @@
         <slot></slot>
         <!--span class="text">{{id}}</span-->
             <!--<span class="text">{{i}}</span>-->
-            <pre>
+            <!--<pre>
                 x: {{ x | json}}
                 y: {{ y | json}}
                 w: {{ w | json}}
                 h: {{ h | json}}
-            </pre>
+            </pre>-->
             <span v-if="isResizable" v-el:handle class="vue-resizable-handle"></span>
         </div>
     </div>
@@ -110,7 +110,7 @@
 
 </style>
 <script>
-    import {setTopLeft, setTransform, createMarkup} from './utils';
+    import {setTopLeft, setTransform, createMarkup, getLayoutItem} from './utils';
 
     import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
     var VueDragDrop = require('vue-drag-and-drop');
@@ -261,7 +261,6 @@
                 this.createStyle();
             },
             y: function() {
-                console.log("### Y => " + this.y);
                 this.createStyle();
             },
             h: function() {
@@ -330,7 +329,7 @@
                         var pos = this.calcPosition(this.x, this.y, this.w, this.h);
                         newSize.width = pos.width;
                         newSize.height = pos.height;
-                        console.log("### resize end => " + JSON.stringify(newSize));
+//                        console.log("### resize end => " + JSON.stringify(newSize));
                         this.resizing = null;
                         this.isResizing = false;
                         break;
@@ -531,6 +530,13 @@
             updateWidth: function(width) {
                 this.containerWidth = width;
             },
+            compact: function(layout) {
+                var l = getLayoutItem(layout, this.id);
+                this.x = l.x;
+                this.y = l.y;
+                this.h = l.h;
+                this.w = l.w;
+            }
         }
     }
 </script>
