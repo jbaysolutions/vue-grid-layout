@@ -26,12 +26,9 @@ var Vue = require('vue');
 Vue.config.debug = true;
 Vue.config.devtools = true;
 
-import TextItem from './TextItem.vue';
 import GridItem from './GridItem.vue';
 import GridLayout from './GridLayout.vue';
 import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
-
-Vue.component('text-item', TextItem)
 
 new Vue({
     el: '#app',
@@ -44,13 +41,29 @@ new Vue({
         // initialLayout: generateLayout()
         // initialLayout: JSON.parse(JSON.stringify(testLayout)),
         layout: JSON.parse(JSON.stringify(testLayout)),
-        layouts: {lg: testLayout}
+        layouts: {},
+        breakpoint: "lg",
+        colNum: 0,
+        index: 0
     },
     ready: function () {
+        this.layouts = {lg: this.layout};
+        this.index = this.layout.length;
     },
     watch: {
     },
     methods: {
+        removeItem: function(item) {
+            //console.log("### REMOVE " + item.i);
+            this.layout.splice(this.layout.indexOf(item), 1);
+        },
+        addItem: function() {
+            var self = this;
+            //console.log("### LENGTH: " + this.layout.length);
+            var item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
+            this.index++;
+            this.layout.push(item);
+        }
     },
 });
 

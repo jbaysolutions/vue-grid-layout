@@ -1,7 +1,12 @@
 <template>
-    <!--<pre>{{layout | json}}</pre>-->
-    Current Breakpoint: {{breakpoint}} ({{colNum}} columns)
-    <div class="vue-grid-layout container" :style="mergedStyle">
+    <!--<pre>{{lastLayoutLength|json}}</pre>
+    <pre>{{layout.length|json}}</pre>-->
+    <!--<pre>{{breakpoint|json}}</pre>
+    <pre>{{layouts|json}}</pre>-->
+    <!--<pre>{{layout|json}}</pre>-->
+    <!--<pre>width: {{width | json}}</pre>
+    <pre>mergedStyle: {{mergedStyle | json}}</pre>-->
+    <div v-el:item class="vue-grid-layout" :style="mergedStyle">
         <slot></slot>
     </div>
 </template>
@@ -14,8 +19,8 @@
 <script>
     var Vue = require('vue');
 
-    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
-    import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout} from './responsiveUtils';
+    import {bottom, compact, getLayoutItem, moveElement, validateLayout, findItemInArray, findAndRemove} from './utils';
+    import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout, generateResponsiveLayout} from './responsiveUtils';
     import GridItem from './GridItem.vue'
 
     export default {
@@ -60,11 +65,11 @@
 
             // Optional, but if you are managing width yourself you may want to set the breakpoint
             // yourself as well.
-            /*breakpoint: {
+            breakpoint: {
                 type: String,
                 required: false,
                 default: "lg"
-            },*/
+            },
             // {name: pxVal}, e.g. {lg: 1200, md: 996, sm: 768, xs: 480}
             breakpoints: {
                 type: Object,
@@ -86,60 +91,105 @@
                 required: true
             },
 
-            layout: []
+            colNum: {
+                type: Number,
+                required: false,
+                default: 0
+            },
+
+            layout: [],
+
         },
         data: function() {
             return {
                 width: null,
-                colNum: 0,
-                breakpoint: "lg",
                 lastBreakpoint: null,
-                mergedStyle: {}
+                mergedStyle: {},
+                lastLayoutLength: 0
             };
         },
         ready() {
-            //Object.keys(this.layouts).forEach((key) => validateLayout(self.layouts[key], 'layouts.' + key));
-//            this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
-            if (this.width === null) {
-                this.onWindowResize();
+            validateLayout(this.layout);
+            var self = this;
+            window.onload = function() {
+                if (self.width === null) {
+                    self.onWindowResize();
+                    //self.width = self.$el.offsetWidth;
+                    window.addEventListener('resize', self.onWindowResize);
+                }
+                self.breakpoint = getBreakpointFromWidth(self.breakpoints, self.width);
 
-                this.breakpoint = getBreakpointFromWidth(this.breakpoints, this.width);
+                self.colNum = getColsFromBreakpoint(self.breakpoint, self.cols);
 
-                this.colNum = getColsFromBreakpoint(this.breakpoint, this.cols);
-                // Get the initial layout. This can tricky; we try to generate one however possible if one doesn't exist
-                // for this layout.
-                this.layout = findOrGenerateResponsiveLayout(this.layouts, this.breakpoints, this.breakpoint,
-                        this.breakpoint, this.colNum, this.verticalCompact);
-                this.lastBreakpoint = this.breakpoint;
-                compact(this.layout, this.verticalCompact);
+                self.lastBreakpoint = self.breakpoint;
+
+                // Get the initial layout
+                self.layout = findOrGenerateResponsiveLayout(self.layouts, self.layout, self.breakpoints, self.breakpoint,
+                        self.lastBreakpoint, self.colNum, self.verticalCompact);
+
+                self.updateHeight();
+                self.$nextTick(function() {
+                    self.onWindowResize();
+                });
             }
-
-            window.addEventListener('resize', this.onWindowResize);
         },
         watch: {
             width: function() {
                 this.onWidthChange();
             },
-            /*breakpoint: function() {
-                this.onWidthChange();
-            },*/
             breakpoints: function() {
                 this.onWidthChange();
             },
             cols: function() {
                 this.onWidthChange();
             },
-            /*layouts: function() {
-                this.onWidthChange();
-            }*/
+            layout: function() {
+                if (this.layout.length !== this.lastLayoutLength) {
+                    var self = this;
+                    var keys = Object.keys(this.layouts);
+
+//                    console.log("#### item ADDED OR REMOVED! => " + JSON.stringify(this.layout));
+//                    console.log("breakpoint: " + this.breakpoint + ", length=" + this.layout.length + ", lastLength=" + this.lastLayoutLength);
+                    keys.forEach(function(key) {
+                        if (key !== self.breakpoint) {
+                            var layout = self.layouts[key];
+                            if (self.layout.length > self.lastLayoutLength) {
+                                // add to other layouts
+                                layout.forEach(function(item) {
+                                    if (!findItemInArray(layout, "i", item.i)) {
+                                        layout.push(item);
+                                    }
+                                });
+                            } else {
+                                // remove from other layouts
+                                layout.forEach(function(item) {
+                                    if (!findItemInArray(self.layout, "i", item.i)) {
+                                        findAndRemove(layout, "i", item.i);
+                                        //layout.splice(layout.indexOf(item), 1);
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+                    this.lastLayoutLength = this.layout.length;
+                    //this.onWidthChange();
+
+                    /*this.layout = generateResponsiveLayout(this.layout, this.breakpoints, this.breakpoint,
+                            this.lastBreakpoint, this.colNum, this.verticalCompact);
+
+                    this.$nextTick(function () {*/
+                    compact(this.layout, this.verticalCompact);
+                    this.$broadcast("updateWidth", this.width);
+                    this.updateHeight();
+                }
+            }
         },
         methods: {
             onWindowResize: function() {
-                this.$nextTick(function() {
-                    if (this.$parent !== null && this.$parent.$el.offsetWidth !== undefined) {
-                        this.width = this.$parent.$el.offsetWidth;
-                    }
-                });
+                if (this.$el !== null) {
+                    this.width = this.$els.item.offsetWidth;
+                }
             },
             onWidthChange: function() {
                 this.lastBreakpoint = this.breakpoint;
@@ -179,12 +229,12 @@
             },
         },
         events: {
-            dragEvent: function(eventName, id, x, y) {
+            dragEvent: function(eventName, i, x, y) {
                 if (eventName === "drag" && x == 0 && y == 0) {
                     return;
                 }
 //                console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
-                var l = getLayoutItem(this.layout, id);
+                var l = getLayoutItem(this.layout, i);
 
                 /*
                  // Create placeholder (display only)
@@ -195,13 +245,13 @@
 
                 // Move the element to the dragged location.
                 this.layout = moveElement(this.layout, l, x, y, true);
-                this.layout = compact(this.layout, this.verticalCompact);
+                compact(this.layout, this.verticalCompact);
 
                 // needed because vue can't detect changes on array element properties
                 this.$broadcast("compact", this.layout);
                 this.updateHeight();
             },
-            resizeEvent: function(eventName, id, h, w) {
+            resizeEvent: function(eventName, i, h, w) {
                 if (eventName === "drag" && h < -40 && w < -40) {
                     return;
                 }
@@ -214,7 +264,7 @@
                  */
 
                 // Move the element to the dragged location.
-                this.layout = compact(this.layout, this.verticalCompact);
+                compact(this.layout, this.verticalCompact);
                 this.updateHeight();
             },
         }

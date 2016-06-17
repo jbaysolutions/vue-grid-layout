@@ -37,8 +37,11 @@ new Vue({
     },
     data: {
         layout: testLayout,
-        layouts: {lg: testLayout}
+        layouts: {}
     },
+    ready: function() {
+        this.layouts = {lg: this.layout};
+    }
 });
 
 

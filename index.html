@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>vue-grid-layout</title>
+    <title>Vue Grid Layout</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="examples/app.css">
 </head>
@@ -10,6 +10,7 @@
     <h1>Vue Grid Layout</h1>
     <div id="app" style="width: 100%;">
         <!--<pre>{{ $data | json }}</pre>-->
+        <!--<pre>{{ layouts | json }}</pre>-->
         <div>
             <div class="layoutJSON">
                 Displayed as <code>[x, y, w, h]</code>:
@@ -21,15 +22,25 @@
             </div>
         </div>
         <div id="content">
-            <responsive-grid-layout :layout.sync="layout" :layouts="layouts" :row-height="30" :is-draggable="true" :vertical-compact="true">
+            <button @click="addItem">Add an item</button>
+            <br/>
+            Current Breakpoint: {{breakpoint}} ({{colNum}} columns)
+            <responsive-grid-layout :layouts.sync="layouts"
+                                    :layout.sync="layout"
+                                    :col-num.sync="colNum"
+                                    :breakpoint.sync="breakpoint"
+                                    :row-height="30"
+                                    :is-draggable="true"
+                                    :vertical-compact="true">
                 <grid-item v-for="item in layout"
                            :x.sync="item.x"
                            :y.sync="item.y"
                            :w.sync="item.w"
                            :h.sync="item.h"
-                           :id="item.i"
+                           :i="item.i"
                         >
                     <span class="text">{{item.i}}</span>
+                    <button @click="removeItem(item)">REMOVE {{item.i}}</button>
                 </grid-item>
             </responsive-grid-layout>
             <!--<grid-layout :layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :vertical-compact="true">
@@ -38,7 +49,7 @@
                            :y.sync="item.y"
                            :w.sync="item.w"
                            :h.sync="item.h"
-                           :id="item.i"
+                           :i="item.i"
                 >
                     <span class="text">{{item.i}}</span>
                 </grid-item>
@@ -46,6 +57,7 @@
         </div>
 
     </div>
+    <script src="node_modules/vue/dist/vue.js"></script>
     <script src="build/bundle.js"></script>
 </body>
 </html>

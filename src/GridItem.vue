@@ -173,6 +173,11 @@
                 type: Boolean,
                 required: true
             },*/
+            static: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
             x: {
                 type: Number,
                 required: true
@@ -189,7 +194,7 @@
                 type: Number,
                 required: true
             },
-            id: {
+            i: {
                 required: true
             },
         },
@@ -370,7 +375,7 @@
                 this.lastH = y;
 
                 if (shouldUpdate) {
-                    this.$dispatch("resizeEvent", event.type, this.id, this.h, this.w);
+                    this.$dispatch("resizeEvent", event.type, this.i, this.h, this.w);
                 }
 
             },
@@ -445,7 +450,7 @@
                 this.lastY = y;
 
                 if (shouldUpdate) {
-                    this.$dispatch("dragEvent", eventName, this.id, this.x, this.y);
+                    this.$dispatch("dragEvent", eventName, this.i, this.x, this.y);
                 }
             },
             calcPosition: function(x, y, w, h) {
@@ -531,7 +536,7 @@
                 this.containerWidth = width;
             },
             compact: function(layout) {
-                var l = getLayoutItem(layout, this.id);
+                var l = getLayoutItem(layout, this.i);
                 this.x = l.x;
                 this.y = l.y;
                 this.h = l.h;

@@ -33,7 +33,7 @@ export function getBreakpointFromWidth(breakpoints: Breakpoints, width: number):
  */
 export function getColsFromBreakpoint(breakpoint: Breakpoint, cols: Breakpoints): number {
   if (!cols[breakpoint]) {
-    throw new Error("ResponsiveReactGridLayout: `cols` entry for breakpoint " + breakpoint + " is missing!");
+    throw new Error("ResponsiveGridLayout: `cols` entry for breakpoint " + breakpoint + " is missing!");
   }
   return cols[breakpoint];
 }
@@ -68,6 +68,26 @@ export function findOrGenerateResponsiveLayout(layouts: ResponsiveLayout, breakp
       break;
     }
   }
+  layout = cloneLayout(layout || []); // clone layout so we don't modify existing items
+  return compact(correctBounds(layout, {cols: cols}), verticalCompact);
+}
+
+export function generateResponsiveLayout(layout: Layout, breakpoints: Breakpoints,
+                                               breakpoint: Breakpoint, lastBreakpoint: Breakpoint,
+                                               cols: number, verticalCompact: boolean): Layout {
+  // If it already exists, just return it.
+  /*if (layouts[breakpoint]) return cloneLayout(layouts[breakpoint]);
+  // Find or generate the next layout
+  let layout = layouts[lastBreakpoint];*/
+    /*const breakpointsSorted = sortBreakpoints(breakpoints);
+  const breakpointsAbove = breakpointsSorted.slice(breakpointsSorted.indexOf(breakpoint));
+  for (let i = 0, len = breakpointsAbove.length; i < len; i++) {
+    const b = breakpointsAbove[i];
+    if (layouts[b]) {
+      layout = layouts[b];
+      break;
+    }
+  }*/
   layout = cloneLayout(layout || []); // clone layout so we don't modify existing items
   return compact(correctBounds(layout, {cols: cols}), verticalCompact);
 }

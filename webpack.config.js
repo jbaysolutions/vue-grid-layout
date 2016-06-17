@@ -13,6 +13,9 @@ module.exports = {
     publicPath: '/build/',
     filename: 'bundle.js'
   },
+    externals: {
+        "vue": "Vue",
+    },
   module: {
     loaders: [
       {

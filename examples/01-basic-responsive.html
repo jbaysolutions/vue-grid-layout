@@ -21,13 +21,17 @@
             </div>
         </div>
         <div id="content">
-            <responsive-grid-layout :layout.sync="layout" :layouts="layouts" :row-height="30" :is-draggable="true" :vertical-compact="true">
+            <responsive-grid-layout :layout.sync="layout"
+                                    :layouts="layouts"
+                                    :row-height="30"
+                                    :is-draggable="true"
+                                    :vertical-compact="true">
                 <grid-item v-for="item in layout"
                            :x.sync="item.x"
                            :y.sync="item.y"
                            :w.sync="item.w"
                            :h.sync="item.h"
-                           :id="item.i"
+                           :i="item.i"
                         >
                     <span class="text">{{item.i}}</span>
                 </grid-item>

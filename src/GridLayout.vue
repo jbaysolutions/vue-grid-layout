@@ -1,7 +1,8 @@
 <template>
-    <div class="vue-grid-layout container" :style="mergedStyle">
+    <div v-el:item class="vue-grid-layout" :style="mergedStyle">
         <slot></slot>
     </div>
+    <!--<pre>{{width|json}}</pre>-->
 </template>
 <style>
     .vue-grid-layout {
@@ -12,7 +13,7 @@
 <script>
     var Vue = require('vue');
 
-    import {bottom, compact, getLayoutItem, moveElement} from './utils';
+    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
     import GridItem from './GridItem.vue'
 
     export default {
@@ -67,21 +68,23 @@
         },
         data: function() {
             return {
-                mergedStyle: {
-                }
+                mergedStyle: {},
+                lastLayoutLength: 0
             };
         },
         ready() {
-            if (this.width === null) {
-                this.$nextTick(function() {
-//                    this.width = this.$parent.$el.offsetWidth - (this.margin[0] * 2);
-                    this.width = this.$parent.$el.offsetWidth;
-                    window.addEventListener('resize', this.onWindowResize);
-                });
-            }
-            this.layout = compact(this.layout, this.verticalCompact);
+            validateLayout(this.layout);
+            var self = this;
+            window.onload = function() {
+                if (self.width === null) {
+                    self.onWindowResize();
+                    //self.width = self.$el.offsetWidth;
+                    window.addEventListener('resize', self.onWindowResize);
+                }
+                compact(self.layout, self.verticalCompact);
 
-            this.updateHeight();
+                self.updateHeight();
+            }
         },
         watch: {
             width: function() {
@@ -90,6 +93,17 @@
                     this.updateHeight();
                 });
             },
+            layout: function() {
+                if (this.layout.length !== this.lastLayoutLength) {
+                    this.lastLayoutLength = this.layout.length;
+                    compact(this.layout, this.verticalCompact);
+
+                    //this.$nextTick(function () {
+                        this.$broadcast("updateWidth", this.width);
+                        this.updateHeight();
+                    //});
+                }
+            }
         },
         methods: {
             updateHeight: function() {
@@ -98,9 +112,12 @@
                 };
             },
             onWindowResize: function() {
-                if (this.$parent !== null && this.$parent.$el.offsetWidth !== undefined) {
+                /*if (this.$parent !== null && this.$parent.$el.offsetWidth !== undefined) {
                     this.width = this.$parent.$el.offsetWidth;
-                }
+                }*/
+                /*console.log("### WIDTH: " + this.$el.offsetWidth);
+                console.log("### WIDTH 2: " + this.$els.item.offsetWidth);*/
+                this.width = this.$el.offsetWidth;
             },
             containerHeight: function() {
                 if (!this.autoSize) return;
@@ -124,7 +141,7 @@
 
                 // Move the element to the dragged location.
                 this.layout = moveElement(this.layout, l, x, y, true);
-                this.layout = compact(this.layout, this.verticalCompact);
+                compact(this.layout, this.verticalCompact);
                 // needed because vue can't detect changes on array element properties
                 this.$broadcast("compact", this.layout);
                 this.updateHeight();
@@ -143,8 +160,9 @@
                  */
 
                 // Move the element to the dragged location.
-                this.layout = compact(this.layout, this.verticalCompact);
+                compact(this.layout, this.verticalCompact);
                 this.$broadcast("compact", this.layout);
+                this.updateHeight();
             },
         }
     }

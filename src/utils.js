@@ -15,7 +15,6 @@ export type DragCallbackData = {
 export type DragEvent = {e: Event} & DragCallbackData;
 export type Size = {width: number, height: number};
 export type ResizeEvent = {e: Event, node: HTMLElement, size: Size};
-import type React from 'react';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -44,13 +43,14 @@ export function cloneLayout(layout: Layout): Layout {
 
 // Fast path to cloning, since this is monomorphic
 export function cloneLayoutItem(layoutItem: LayoutItem): LayoutItem {
-  return {
+  /*return {
     w: layoutItem.w, h: layoutItem.h, x: layoutItem.x, y: layoutItem.y, i: layoutItem.i,
     minW: layoutItem.minW, maxW: layoutItem.maxW, minH: layoutItem.minH, maxH: layoutItem.maxH,
     moved: Boolean(layoutItem.moved), static: Boolean(layoutItem.static),
     // These can be null
     isDraggable: layoutItem.isDraggable, isResizable: layoutItem.isResizable
-  };
+  };*/
+    return JSON.parse(JSON.stringify(layoutItem));
 }
 
 /**
@@ -342,6 +342,7 @@ export function sortLayoutItemsByRowCol(layout: Layout): Layout {
  * @param  {Boolean} verticalCompact Whether or not to compact the layout vertically.
  * @return {Array}                Working layout.
  */
+/*
 export function synchronizeLayoutWithChildren(initialLayout: Layout, children: Array<React.Element>|React.Element,
                                               cols: number, verticalCompact: boolean): Layout {
   // ensure 'children' is always an array
@@ -357,7 +358,7 @@ export function synchronizeLayoutWithChildren(initialLayout: Layout, children: A
     const child = children[i];
 
     // Don't overwrite if it already exists.
-    const exists = getLayoutItem(initialLayout, child.key || "1" /* FIXME satisfies Flow */);
+    const exists = getLayoutItem(initialLayout, child.key || "1" /!* FIXME satisfies Flow *!/);
     if (exists) {
       newItem = exists;
     } else {
@@ -390,6 +391,7 @@ export function synchronizeLayoutWithChildren(initialLayout: Layout, children: A
 
   return layout;
 }
+*/
 
 /**
  * Validate a layout. Throws errors.
@@ -406,14 +408,14 @@ export function validateLayout(layout: Layout, contextName: string): void {
     const item = layout[i];
     for (let j = 0; j < subProps.length; j++) {
       if (typeof item[subProps[j]] !== 'number') {
-        throw new Error('ReactGridLayout: ' + contextName + '[' + i + '].' + subProps[j] + ' must be a number!');
+        throw new Error('VueGridLayout: ' + contextName + '[' + i + '].' + subProps[j] + ' must be a number!');
       }
     }
     if (item.i && typeof item.i !== 'string') {
-      throw new Error('ReactGridLayout: ' + contextName + '[' + i + '].i must be a string!');
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
     }
     if (item.static !== undefined && typeof item.static !== 'boolean') {
-      throw new Error('ReactGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');
     }
   }
 }
@@ -507,4 +509,22 @@ export var hyphenateRE = /([a-z\d])([A-Z])/g;
 
 export function hyphenate(str) {
     return str.replace(hyphenateRE, '$1-$2').toLowerCase();
+}
+
+
+export function findItemInArray(array, property, value) {
+    for (var i=0; i < array.length; i++)
+        if (array[i][property] == value)
+            return true;
+
+    return false;
+}
+
+export function findAndRemove(array, property, value) {
+    array.forEach(function (result, index) {
+        if (result[property] === value) {
+            //Remove from array
+            array.splice(index, 1);
+        }
+    });
 }

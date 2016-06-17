@@ -5,7 +5,6 @@ config.entry = {
 }
 
 config.output = {
-
   filename: './dist/[name].js',
   library: 'VueGridLayout',
   libraryTarget: 'umd'
