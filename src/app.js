@@ -53,6 +53,17 @@ new Vue({
     watch: {
     },
     methods: {
+        increaseWidth: function(item) {
+            var width = document.getElementById("content").offsetWidth;
+            width += 10;
+            document.getElementById("content").style.width = width+"px";
+        },
+        decreaseWidth: function(item) {
+
+            var width = document.getElementById("content").offsetWidth;
+            width -= 10;
+            document.getElementById("content").style.width = width+"px";
+        },
         removeItem: function(item) {
             //console.log("### REMOVE " + item.i);
             this.layout.splice(this.layout.indexOf(item), 1);

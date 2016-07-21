@@ -19,6 +19,8 @@
 <script>
     var Vue = require('vue');
 
+    var elementResizeDetectorMaker = require("element-resize-detector");
+
     import {bottom, compact, getLayoutItem, moveElement, validateLayout, findItemInArray, findAndRemove} from './utils';
     import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout, generateResponsiveLayout} from './responsiveUtils';
     import GridItem from './GridItem.vue'
@@ -105,7 +107,7 @@
                 width: null,
                 lastBreakpoint: null,
                 mergedStyle: {},
-                lastLayoutLength: 0
+                lastLayoutLength: 0,
             };
         },
         ready() {
@@ -129,7 +131,16 @@
 
                 self.updateHeight();
                 self.$nextTick(function() {
-                    self.onWindowResize();
+//                    self.onWindowResize();
+                    var erd = elementResizeDetectorMaker({
+                        strategy: "scroll" //<- For ultra performance.
+                    });
+                    erd.listenTo(self.$els.item, function(element) {
+                        self.onWindowResize();
+                        /*var width = element.offsetWidth;
+                        var height = element.offsetHeight;
+                        console.log("Size: " + width + "x" + height);*/
+                    });
                 });
             }
         },
@@ -187,7 +198,7 @@
         },
         methods: {
             onWindowResize: function() {
-                if (this.$el !== null) {
+                if (this.$els !== null && this.$els.item !== null) {
                     this.width = this.$els.item.offsetWidth;
                 }
             },

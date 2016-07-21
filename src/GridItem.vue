@@ -311,6 +311,7 @@
                 this.style = createMarkup(style);
             },
             handleResize: function(event) {
+                //event.dataTransfer.setData('text', this.i);
                 const position = getControlPosition(event);
                 // Get the current drag point from the event. This is used as the offset.
                 if (position == null) return; // not possible but satisfies flow
@@ -382,12 +383,14 @@
             handleDragStart: function(event) {
 //                console.log("### DRAG START");
                 this.dragHandler(event, "dragstart");
+                //event.dataTransfer.setData('text', this.i);
                 /*// Create an event object with all the data parents need to make a decision here.
                 const coreEvent = createCoreData(this, x, y);*/
 
 
             },
             handleDrag: function(event) {
+                //console.log("### DRAG!");
                 this.dragHandler(event, "drag");
             },
             handleDragEnd: function(event) {
@@ -433,6 +436,9 @@
                         const coreEvent = createCoreData(this.lastX, this.lastY, x, y);
                         newPosition.left = this.dragging.left + coreEvent.deltaX;
                         newPosition.top = this.dragging.top + coreEvent.deltaY;
+//                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
+//                        console.log("### drag => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
+//                        console.log("### drag end => " + JSON.stringify(newPosition));
                         this.dragging = newPosition;
                         break;
                 }

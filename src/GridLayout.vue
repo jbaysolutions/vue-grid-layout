@@ -13,6 +13,8 @@
 <script>
     var Vue = require('vue');
 
+    var elementResizeDetectorMaker = require("element-resize-detector");
+
     import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
     import GridItem from './GridItem.vue'
 
@@ -84,6 +86,19 @@
                 compact(self.layout, self.verticalCompact);
 
                 self.updateHeight();
+                self.$nextTick(function() {
+//                    self.onWindowResize();
+                    var erd = elementResizeDetectorMaker({
+                        strategy: "scroll" //<- For ultra performance.
+                    });
+                    erd.listenTo(self.$els.item, function(element) {
+                        self.onWindowResize();
+                        /*var width = element.offsetWidth;
+                         var height = element.offsetHeight;
+                         console.log("Size: " + width + "x" + height);*/
+                    });
+                });
+
             }
         },
         watch: {
@@ -94,7 +109,7 @@
                 });
             },
             layout: function() {
-                if (this.layout.length !== this.lastLayoutLength) {
+                if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {
                     this.lastLayoutLength = this.layout.length;
                     compact(this.layout, this.verticalCompact);
 
@@ -117,7 +132,9 @@
                 }*/
                 /*console.log("### WIDTH: " + this.$el.offsetWidth);
                 console.log("### WIDTH 2: " + this.$els.item.offsetWidth);*/
-                this.width = this.$el.offsetWidth;
+                if (this.$els !== null && this.$els.item !== null) {
+                    this.width = this.$els.item.offsetWidth;
+                }
             },
             containerHeight: function() {
                 if (!this.autoSize) return;
@@ -129,7 +146,7 @@
                 if (eventName === "drag" && x == 0 && y == 0) {
                     return;
                 }
-//                console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
 
                 /*
