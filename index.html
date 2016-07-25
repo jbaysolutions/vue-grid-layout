@@ -26,15 +26,24 @@
             <button @click="increaseWidth">Increase Width</button>
             <button @click="addItem">Add an item</button>
             <br/>
-            <grid-layout :layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true">
+            <grid-layout
+                    :layout.sync="layout"
+                    :col-num="12"
+                    :row-height="30"
+                    :is-draggable="true"
+                    :is-resizable="true"
+                    :vertical-compact="true"
+                    :margin="[10, 10]"
+                    :use-css-transforms="true"
+            >
+
                 <grid-item v-for="item in layout"
                            :x.sync="item.x"
                            :y.sync="item.y"
                            :w.sync="item.w"
                            :h.sync="item.h"
-                           :i="item.i"
-                >
-                    <test-element :text="item.i"></test-element>
+                           :i="item.i">
+                    {{item.i}}
                 </grid-item>
             </grid-layout>
         </div>

@@ -6,8 +6,6 @@
 <style>
 </style>
 <script>
-    var Vue = require('vue');
-
     export default {
         name: "TestElement",
         props: {
