@@ -21,7 +21,7 @@ var testLayout = [
     {"x":2,"y":6,"w":2,"h":2,"i":"19"}
 ];
 
-var Vue = require('vue');
+// var Vue = require('vue');
 
 Vue.config.debug = true;
 Vue.config.devtools = true;
@@ -29,6 +29,7 @@ Vue.config.devtools = true;
 import GridItem from './GridItem.vue';
 import GridLayout from './GridLayout.vue';
 import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
+import TestElement from './TestElement.vue';
 
 new Vue({
     el: '#app',
@@ -36,13 +37,10 @@ new Vue({
         ResponsiveGridLayout,
         GridLayout,
         GridItem,
+        TestElement,
     },
     data: {
-        // initialLayout: generateLayout()
-        // initialLayout: JSON.parse(JSON.stringify(testLayout)),
         layout: JSON.parse(JSON.stringify(testLayout)),
-        layouts: {},
-        breakpoint: "lg",
         colNum: 0,
         index: 0
     },

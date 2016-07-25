@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <h1>Vue Grid Layout Example 1 - Basic Responsive</h1>
+    <h1>Vue Grid Layout Example 1 - Basic</h1>
     <div id="app" style="width: 100%;">
         <!--<pre>{{ $data | json }}</pre>-->
         <div>
@@ -21,11 +21,7 @@
             </div>
         </div>
         <div id="content">
-            <responsive-grid-layout :layout.sync="layout"
-                                    :layouts="layouts"
-                                    :row-height="30"
-                                    :is-draggable="true"
-                                    :vertical-compact="true">
+            <grid-layout :layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :vertical-compact="true">
                 <grid-item v-for="item in layout"
                            :x.sync="item.x"
                            :y.sync="item.y"
@@ -35,12 +31,12 @@
                         >
                     <span class="text">{{item.i}}</span>
                 </grid-item>
-            </responsive-grid-layout>
+            </grid-layout>
         </div>
 
     </div>
     <script src="vue.js"></script>
     <script src="../dist/vue-grid-layout.js"></script>
-    <script src="01-basic-responsive.js"></script>
+    <script src="01-basic.js"></script>
 </body>
 </html>

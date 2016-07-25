@@ -26,26 +26,7 @@
             <button @click="increaseWidth">Increase Width</button>
             <button @click="addItem">Add an item</button>
             <br/>
-            Current Breakpoint: {{breakpoint}} ({{colNum}} columns)
-            <!--<responsive-grid-layout :layouts.sync="layouts"
-                                    :layout.sync="layout"
-                                    :col-num.sync="colNum"
-                                    :breakpoint.sync="breakpoint"
-                                    :row-height="30"
-                                    :is-draggable="true"
-                                    :vertical-compact="true">
-                <grid-item v-for="item in layout"
-                           :x.sync="item.x"
-                           :y.sync="item.y"
-                           :w.sync="item.w"
-                           :h.sync="item.h"
-                           :i="item.i"
-                        >
-                    <span class="text">{{item.i}}</span>
-                    <button @click="removeItem(item)">REMOVE {{item.i}}</button>
-                </grid-item>
-            </responsive-grid-layout>-->
-            <grid-layout :layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :vertical-compact="true">
+            <grid-layout :layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true">
                 <grid-item v-for="item in layout"
                            :x.sync="item.x"
                            :y.sync="item.y"
@@ -53,7 +34,7 @@
                            :h.sync="item.h"
                            :i="item.i"
                 >
-                    <span class="text">{{item.i}}</span>
+                    <test-element :text="item.i"></test-element>
                 </grid-item>
             </grid-layout>
         </div>

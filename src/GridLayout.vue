@@ -1,8 +1,10 @@
 <template>
+    <pre>{{isDragging|json}}</pre>
+    <br/>
+    <br/>
     <div v-el:item class="vue-grid-layout" :style="mergedStyle">
         <slot></slot>
     </div>
-    <!--<pre>{{width|json}}</pre>-->
 </template>
 <style>
     .vue-grid-layout {
@@ -11,8 +13,6 @@
     }
 </style>
 <script>
-    var Vue = require('vue');
-
     var elementResizeDetectorMaker = require("element-resize-detector");
 
     import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
@@ -71,7 +71,7 @@
         data: function() {
             return {
                 mergedStyle: {},
-                lastLayoutLength: 0
+                lastLayoutLength: 0,
             };
         },
         ready() {
@@ -87,15 +87,11 @@
 
                 self.updateHeight();
                 self.$nextTick(function() {
-//                    self.onWindowResize();
                     var erd = elementResizeDetectorMaker({
                         strategy: "scroll" //<- For ultra performance.
                     });
                     erd.listenTo(self.$els.item, function(element) {
                         self.onWindowResize();
-                        /*var width = element.offsetWidth;
-                         var height = element.offsetHeight;
-                         console.log("Size: " + width + "x" + height);*/
                     });
                 });
 
@@ -113,10 +109,8 @@
                     this.lastLayoutLength = this.layout.length;
                     compact(this.layout, this.verticalCompact);
 
-                    //this.$nextTick(function () {
-                        this.$broadcast("updateWidth", this.width);
-                        this.updateHeight();
-                    //});
+                    this.$broadcast("updateWidth", this.width);
+                    this.updateHeight();
                 }
             }
         },
@@ -127,11 +121,6 @@
                 };
             },
             onWindowResize: function() {
-                /*if (this.$parent !== null && this.$parent.$el.offsetWidth !== undefined) {
-                    this.width = this.$parent.$el.offsetWidth;
-                }*/
-                /*console.log("### WIDTH: " + this.$el.offsetWidth);
-                console.log("### WIDTH 2: " + this.$els.item.offsetWidth);*/
                 if (this.$els !== null && this.$els.item !== null) {
                     this.width = this.$els.item.offsetWidth;
                 }
@@ -149,13 +138,6 @@
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
 
-                /*
-                 // Create placeholder (display only)
-                 var placeholder = {
-                     w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, id: id
-                 };
-                 */
-
                 // Move the element to the dragged location.
                 this.layout = moveElement(this.layout, l, x, y, true);
                 compact(this.layout, this.verticalCompact);
@@ -164,18 +146,6 @@
                 this.updateHeight();
             },
             resizeEvent: function(eventName, id, h, w) {
-                if (eventName === "drag" && h < -40 && w < -40) {
-                    return;
-                }
-//                console.log(eventName + " id=" + id);
-
-                /*
-                 // Create placeholder (display only)
-                 var placeholder = {
-                     w: l.w, h: l.h, x: l.x, y: l.y, placeholder: true, id: id
-                 };
-                 */
-
                 // Move the element to the dragged location.
                 compact(this.layout, this.verticalCompact);
                 this.$broadcast("compact", this.layout);

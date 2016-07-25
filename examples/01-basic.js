@@ -37,7 +37,6 @@ new Vue({
     },
     data: {
         layout: testLayout,
-        layouts: {lg: testLayout}
     },
 });
 

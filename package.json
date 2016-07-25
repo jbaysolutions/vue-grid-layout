@@ -1,7 +1,7 @@
 {
   "name": "vue-grid-layout",
   "version": "0.1.0",
-  "description": "A draggable and resizable grid layout with responsive breakpoints, as a Vue component.",
+  "description": "A draggable and resizable grid layout, as a Vue component.",
   "keywords": [
     "grid",
     "vuejs",
@@ -16,20 +16,24 @@
   "scripts": {
     "dev": "webpack-dev-server --host 0.0.0.0 --inline --hot ",
     "build": "set NODE_ENV=production && webpack --progress --hide-modules",
-    "dist": "webpack --progress --hide-modules --config  webpack.build.js && set NODE_ENV=production && webpack --progress --hide-modules --config  webpack.build.min.js"
+    "dist": "set NODE_ENV=production && webpack --progress --hide-modules --config webpack.build.js && webpack --progress --hide-modules --config  webpack.build.min.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jbaysolutions/vue-grid-layout.git"
   },
   "author": "Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com)",
+  "dependencies": {
+    "element-resize-detector": "^1.1.3",
+    "interact.js": "^1.0.0",
+    "babel-runtime": "^6.0.0"
+  },
   "devDependencies": {
-    "vue": "^1.0.24",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.x",
     "babel-eslint": "^4.1.8",
     "babel-loader": "^6.x",
-    "babel-plugin-transform-runtime": "^6.1.18",
+    "babel-plugin-transform-runtime": "^6.0.0",
     "babel-plugin-transform-flow-comments": "^6.7.0",
     "babel-plugin-typecheck": "^3.6.1",
     "babel-preset-es2015": "^6.5.0",
@@ -38,12 +42,10 @@
     "css-loader": "^0.23.1",
     "style-loader": "^0.13.1",
     "stylus-loader": "^1.2.1",
-    "vue-hot-reload-api": "^1.3.2",
-    "vue-html-loader": "^1.2.2",
+    "vue-html-loader": "^1.0.0",
     "vue-style-loader": "^1.0.0",
     "vue-loader": "^8.5.2",
-    "lodash": "^4.13.1",
-    "element-resize-detector": "^1.1.3",
+    "vue": "^1.0.26",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "extract-text-webpack-plugin": "^1.0.1",
