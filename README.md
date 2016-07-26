@@ -15,9 +15,6 @@ vue-grid-layout is a grid layout system, like [Gridster](http://gridster.net), f
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Providing Grid Width](#providing-grid-width)
-- [Grid Layout Props](#grid-layout-props)
-- [Grid Item Props](#grid-item-props)
 - [Contribute](#contribute)
 - [TODO List](#todo-list)
 
@@ -28,7 +25,7 @@ vue-grid-layout is a grid layout system, like [Gridster](http://gridster.net), f
 
 #### Projects based on vue-grid-layout
 
-- [Draxed](https://www.draxed.com/)
+- [Draxed](https://www.draxed.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 
 *Know of others? Create a PR to let me know!*
 
@@ -130,5 +127,4 @@ If you have a feature request, please add it as an issue or make a pull request.
 - [x] Draggable grid items
 - [x] Resizable grid items
 - [ ] Static elements
-- [ ] Min/max w/h per item
-- [ ] Resizable handles on other corners
+- [x] Min/max w/h per item

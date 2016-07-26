@@ -15,8 +15,8 @@
   "main": "src/app.js",
   "scripts": {
     "dev": "webpack-dev-server --host 0.0.0.0 --inline --hot ",
-    "build": "set NODE_ENV=production && webpack --progress --hide-modules",
-    "dist": "set NODE_ENV=production && webpack --progress --hide-modules --config webpack.build.js && webpack --progress --hide-modules --config  webpack.build.min.js"
+    "build": "cross-env NODE_ENV=production && webpack --progress --hide-modules",
+    "dist": "webpack --progress --hide-modules --config webpack.build.js && cross-env NODE_ENV=production webpack --progress --hide-modules --config  webpack.build.min.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "babel-runtime": "^6.0.0"
   },
   "devDependencies": {
+    "cross-env": "^2.0.0",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.x",
     "babel-eslint": "^4.1.8",

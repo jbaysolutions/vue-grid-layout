@@ -53,13 +53,13 @@ new Vue({
     methods: {
         increaseWidth: function(item) {
             var width = document.getElementById("content").offsetWidth;
-            width += 10;
+            width += 20;
             document.getElementById("content").style.width = width+"px";
         },
         decreaseWidth: function(item) {
 
             var width = document.getElementById("content").offsetWidth;
-            width -= 10;
+            width -= 20;
             document.getElementById("content").style.width = width+"px";
         },
         removeItem: function(item) {

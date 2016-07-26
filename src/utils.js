@@ -209,7 +209,7 @@ export function moveElement(layout: Layout, l: LayoutItem, x: Number, y: Number,
   if (l.static) return layout;
 
   // Short-circuit if nothing to do.
-  if (l.y === y && l.x === x) return layout;
+  //if (l.y === y && l.x === x) return layout;
 
   const movingUp = y && l.y > y;
   // This is quite a bit faster than extending the object

@@ -1,9 +1,16 @@
 <template>
-    <pre>{{isDragging|json}}</pre>
+    <!--<pre>{{isDragging|json}}</pre>
     <br/>
-    <br/>
+    <br/>-->
     <div v-el:item class="vue-grid-layout" :style="mergedStyle">
         <slot></slot>
+        <grid-item class="vue-grid-placeholder"
+                   v-if="isDragging"
+                   :x="placeholder.x"
+                   :y="placeholder.y"
+                   :w="placeholder.w"
+                   :h="placeholder.h"
+                   :i="placeholder.i"></grid-item>
     </div>
 </template>
 <style>
@@ -42,7 +49,9 @@
             },
             margin: {
                 type: Array,
-                default: function () { return [10, 10]; }
+                default: function () {
+                    return [10, 10];
+                }
             },
             isDraggable: {
                 type: Boolean,
@@ -68,16 +77,24 @@
 
             layout: [],
         },
-        data: function() {
+        data: function () {
             return {
                 mergedStyle: {},
                 lastLayoutLength: 0,
+                isDragging: false,
+                placeholder: {
+                    x: 0,
+                    y: 0,
+                    w: 0,
+                    h: 0,
+                    i: 0
+                },
             };
         },
         ready() {
             validateLayout(this.layout);
             var self = this;
-            window.onload = function() {
+            window.onload = function () {
                 if (self.width === null) {
                     self.onWindowResize();
                     //self.width = self.$el.offsetWidth;
@@ -86,11 +103,11 @@
                 compact(self.layout, self.verticalCompact);
 
                 self.updateHeight();
-                self.$nextTick(function() {
+                self.$nextTick(function () {
                     var erd = elementResizeDetectorMaker({
                         strategy: "scroll" //<- For ultra performance.
                     });
-                    erd.listenTo(self.$els.item, function(element) {
+                    erd.listenTo(self.$els.item, function (element) {
                         self.onWindowResize();
                     });
                 });
@@ -98,13 +115,13 @@
             }
         },
         watch: {
-            width: function() {
-                this.$nextTick(function() {
+            width: function () {
+                this.$nextTick(function () {
                     this.$broadcast("updateWidth", this.width);
                     this.updateHeight();
                 });
             },
-            layout: function() {
+            layout: function () {
                 if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {
                     this.lastLayoutLength = this.layout.length;
                     compact(this.layout, this.verticalCompact);
@@ -115,29 +132,36 @@
             }
         },
         methods: {
-            updateHeight: function() {
+            updateHeight: function () {
                 this.mergedStyle = {
                     height: this.containerHeight()
                 };
             },
-            onWindowResize: function() {
+            onWindowResize: function () {
                 if (this.$els !== null && this.$els.item !== null) {
                     this.width = this.$els.item.offsetWidth;
                 }
             },
-            containerHeight: function() {
+            containerHeight: function () {
                 if (!this.autoSize) return;
                 return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
             }
         },
         events: {
-            dragEvent: function(eventName, id, x, y) {
-                if (eventName === "drag" && x == 0 && y == 0) {
-                    return;
+            dragEvent: function (eventName, id, x, y, w, h) {
+                if (eventName == "dragmove" || eventName == "dragstart") {
+                    this.isDragging = true;
+                    this.placeholder.i = id;
+                    this.placeholder.x = x;
+                    this.placeholder.y = y;
+                    this.placeholder.w = w;
+                    this.placeholder.h = h;
+                    this.$broadcast("updateWidth", this.width);
+                } else {
+                    this.isDragging = false;
                 }
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
-
                 // Move the element to the dragged location.
                 this.layout = moveElement(this.layout, l, x, y, true);
                 compact(this.layout, this.verticalCompact);
@@ -145,8 +169,18 @@
                 this.$broadcast("compact", this.layout);
                 this.updateHeight();
             },
-            resizeEvent: function(eventName, id, h, w) {
-                // Move the element to the dragged location.
+            resizeEvent: function (eventName, id, x, y, h, w) {
+                if (eventName == "resizestart" || eventName == "resizemove") {
+                    this.isDragging = true;
+                    this.placeholder.i = id;
+                    this.placeholder.x = x;
+                    this.placeholder.y = y;
+                    this.placeholder.w = w;
+                    this.placeholder.h = h;
+                    this.$broadcast("updateWidth", this.width);
+                } else {
+                    this.isDragging = false;
+                }
                 compact(this.layout, this.verticalCompact);
                 this.$broadcast("compact", this.layout);
                 this.updateHeight();
