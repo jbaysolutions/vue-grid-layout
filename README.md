@@ -6,7 +6,7 @@ vue-grid-layout is a grid layout system, like [Gridster](http://gridster.net), f
 
 **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-[**[Demo](https://jbaysolutions.github.io/vue-grid-layout/examples/1-basic.html) | [Changelog](/CHANGELOG.md)**]
+[**[Demo](https://jbaysolutions.github.io/vue-grid-layout/examples/01-basic.html) | [Changelog](/CHANGELOG.md)**]
 
 <!--
 ## Table of Contents
