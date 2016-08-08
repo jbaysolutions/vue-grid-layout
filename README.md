@@ -21,9 +21,12 @@ vue-grid-layout is a grid layout system, like [Gridster](http://gridster.net), f
 ## Demos
 
 
+TODO UPDATE DOCS
+TODO UPDATE CHANGELOG
+
 -->
 
-#### Projects based on vue-grid-layout
+#### Projects using vue-grid-layout
 
 - [Draxed](https://www.draxed.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 
@@ -42,12 +45,12 @@ vue-grid-layout is a grid layout system, like [Gridster](http://gridster.net), f
 
 Install the vue-grid-layout [package](https://www.npmjs.org/package/vue-grid-layout) package using [npm](https://www.npmjs.com/):
 
-	npm install react-grid-layout
+	npm install vue-grid-layout
 
 
 ## Usage
 
-npm install react-grid-layout
+npm install vue-grid-layout
 
 ```javascript
 
