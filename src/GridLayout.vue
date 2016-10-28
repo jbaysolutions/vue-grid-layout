@@ -1,5 +1,5 @@
 <template>
-    <!--<pre>{{isDragging|json}}</pre>
+    <!--<pre>{{$data|json}}</pre>
     <br/>
     <br/>-->
     <div v-el:item class="vue-grid-layout" :style="mergedStyle">
@@ -31,6 +31,7 @@
             GridItem,
         },
         props: {
+            // If true, the container height swells and contracts to fit contents
             autoSize: {
                 type: Boolean,
                 default: true
@@ -69,16 +70,12 @@
                 type: Boolean,
                 default: true
             },
-            width: {
-                type: Number,
-                required: false,
-                default: null
-            },
 
             layout: [],
         },
         data: function () {
             return {
+                width: null,
                 mergedStyle: {},
                 lastLayoutLength: 0,
                 isDragging: false,
@@ -94,7 +91,25 @@
         ready() {
             validateLayout(this.layout);
             var self = this;
-            window.onload = function () {
+            this.$nextTick(function() {
+                if (self.width === null) {
+                    self.onWindowResize();
+                    //self.width = self.$el.offsetWidth;
+                    window.addEventListener('resize', self.onWindowResize);
+                }
+                compact(self.layout, self.verticalCompact);
+
+                self.updateHeight();
+                self.$nextTick(function () {
+                    var erd = elementResizeDetectorMaker({
+                        strategy: "scroll" //<- For ultra performance.
+                    });
+                    erd.listenTo(self.$els.item, function (element) {
+                        self.onWindowResize();
+                    });
+                });
+            });
+            window.onload = function() {
                 if (self.width === null) {
                     self.onWindowResize();
                     //self.width = self.$el.offsetWidth;
@@ -112,7 +127,7 @@
                     });
                 });
 
-            }
+            };
         },
         watch: {
             width: function () {
