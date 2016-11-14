@@ -26,8 +26,11 @@
             <button @click="increaseWidth">Increase Width</button>
             <button @click="addItem">Add an item</button>
             <br/>
-            <grid-layout
-                    :layout.sync="layout"
+            <teste :items="layout">
+                <h3 name="onome">OLA</h3>OLAAAAAAAAAAAAA
+            </teste>
+            <!--<grid-layout
+                    :layout="layout"
                     :col-num="12"
                     :row-height="30"
                     :is-draggable="true"
@@ -35,7 +38,8 @@
                     :vertical-compact="true"
                     :margin="[5, 5]"
                     :use-css-transforms="true"
-            >
+            >-->
+<!--
                 <grid-item v-for="item in layout"
                            :x.sync="item.x"
                            :y.sync="item.y"
@@ -46,6 +50,7 @@
                            :i="item.i">
                     <test-element :text="item.i"></test-element>
                 </grid-item>
+-->
             </grid-layout>
         </div>
 

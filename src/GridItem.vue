@@ -1,17 +1,18 @@
 <template>
-    <div v-el:item
-             class="vue-grid-item"
-             :class="{ 'vue-resizable' : isResizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
-             :style="style"
+    <div ref="item"
+         class="vue-grid-item"
+         :class="{ 'vue-resizable' : isResizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
+         :style="style"
         >
         <slot></slot>
+        <!--{{i}}-->
         <!--<pre>
-            x: {{ x | json}}
-            y: {{ y | json}}
-            w: {{ w | json}}
-            h: {{ h | json}}
+            x: {{ x }}
+            y: {{ y }}
+            w: {{ w }}
+            h: {{ h }}
         </pre>-->
-        <span v-if="isResizable" v-el:handle class="vue-resizable-handle"></span>
+        <span v-if="isResizable" ref="handle" class="vue-resizable-handle"></span>
     </div>
 </template>
 <style>
@@ -169,7 +170,7 @@
                 style: {}
             }
         },
-        ready: function() {
+        mounted: function() {
             this.cols = this.$parent.colNum;
             this.rowHeight = this.$parent.rowHeight;
             this.margin = this.$parent.margin;
@@ -178,11 +179,13 @@
             this.isResizable = this.$parent.isResizable;
             this.useCssTransforms = this.$parent.useCssTransforms;
             this.createStyle();
+//            eventHub.$on('updateWidth', this.updateWidth);
+//            eventHub.$on('compact', this.compact);
 
             var self = this;
             if (this.isDraggable) {
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$els.item);
+                    this.interactObj = interact(this.$refs.item);
                 }
                 this.interactObj
                         .draggable({
@@ -193,7 +196,7 @@
             }
             if (this.isResizable) {
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$els.item);
+                    this.interactObj = interact(this.$refs.item);
                 }
                 this.interactObj
                         .resizable({
@@ -331,7 +334,8 @@
                 this.lastW = x;
                 this.lastH = y;
 
-                this.$dispatch("resizeEvent", event.type, this.i, this.x, this.y, this.h, this.w);
+                //eventHub.$emit("resizeEvent", event.type, this.i, this.x, this.y, this.h, this.w);
+                this.$parent.resizeEvent(event.type, this.i, this.x, this.y, this.h, this.w);
             },
             handleDrag(event) {
                 if (this.isResizing) return;
@@ -385,7 +389,8 @@
                 this.lastX = x;
                 this.lastY = y;
 
-                this.$dispatch("dragEvent", event.type, this.i, this.x, this.y, this.w, this.h);
+                //eventHub.$emit("dragEvent", event.type, this.i, this.x, this.y, this.w, this.h);
+                this.$parent.dragEvent(event.type, this.i, this.x, this.y, this.w, this.h);
             },
             calcPosition: function(x, y, w, h) {
                 const colWidth = this.calcColWidth();
@@ -453,8 +458,25 @@
                 w = Math.max(Math.min(w, this.cols - this.x), 0);
                 h = Math.max(Math.min(h, this.maxRows - this.y), 0);
                 return {w, h};
+            },
+            updateWidth: function(width, colNum) {
+                this.containerWidth = width;
+                if (colNum !== undefined && colNum !== null) {
+                    this.cols = colNum;
+                }
+            },
+            compact: function(layout) {
+                var l = getLayoutItem(layout, this.i);
+                if (l !== undefined && l !== null) {
+                    this.x = l.x;
+                    this.y = l.y;
+                    this.h = l.h;
+                    this.w = l.w;
+                }
+                this.createStyle();
             }
         },
+/*
         events: {
             updateWidth: function(width, colNum) {
                 this.containerWidth = width;
@@ -473,5 +495,6 @@
                 this.createStyle();
             }
         }
+*/
     }
 </script>

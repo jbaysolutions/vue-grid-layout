@@ -15,7 +15,7 @@
             return {
             }
         },
-        ready: function() {
+        mounted: function() {
             console.log("### " + this.text + " ready!");
         },
     }

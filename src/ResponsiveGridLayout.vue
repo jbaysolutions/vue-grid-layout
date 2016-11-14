@@ -1,12 +1,12 @@
 <template>
-    <!--<pre>{{lastLayoutLength|json}}</pre>
-    <pre>{{layout.length|json}}</pre>-->
-    <!--<pre>{{breakpoint|json}}</pre>
-    <pre>{{layouts|json}}</pre>-->
-    <!--<pre>{{layout|json}}</pre>-->
-    <!--<pre>width: {{width | json}}</pre>
-    <pre>mergedStyle: {{mergedStyle | json}}</pre>-->
-    <div v-el:item class="vue-grid-layout" :style="mergedStyle">
+    <!--<pre>{{lastLayoutLength}}</pre>
+    <pre>{{layout.length}}</pre>-->
+    <!--<pre>{{breakpoint}}</pre>
+    <pre>{{layouts}}</pre>-->
+    <!--<pre>{{layout}}</pre>-->
+    <!--<pre>width: {{width}}</pre>
+    <pre>mergedStyle: {{mergedStyle}}</pre>-->
+    <div ref="item" class="vue-grid-layout" :style="mergedStyle">
         <slot></slot>
     </div>
 </template>
@@ -104,7 +104,7 @@
                 lastLayoutLength: 0,
             };
         },
-        ready() {
+        mounted: function() {
             validateLayout(this.layout);
             this.originalCols = this.colNum;
             var self = this;
@@ -119,7 +119,7 @@
                     var erd = elementResizeDetectorMaker({
                         strategy: "scroll" //<- For ultra performance.
                     });
-                    erd.listenTo(self.$els.item, function(element) {
+                    erd.listenTo(self.$refs.item, function(element) {
                         self.onWindowResize();
                         /*var width = element.offsetWidth;
                          var height = element.offsetHeight;
@@ -136,7 +136,7 @@
                     this.colNum = 2;
                 }
                 this.$nextTick(function() {
-                    this.$broadcast("updateWidth", this.width, this.colNum);
+                    this.$emit("updateWidth", this.width, this.colNum);
                     this.updateHeight();
                     compact(this.layout, this.verticalCompact);
                 });
@@ -147,7 +147,7 @@
                     compact(this.layout, this.verticalCompact);
 
                     //this.$nextTick(function () {
-                    this.$broadcast("updateWidth", this.width);
+                    this.$emit("updateWidth", this.width);
                     this.updateHeight();
                     //});
                 }
@@ -155,8 +155,8 @@
         },
         methods: {
             onWindowResize: function() {
-                if (this.$els !== null && this.$els.item !== null) {
-                    this.width = this.$els.item.offsetWidth;
+                if (this.$refs !== null && this.$refs.item !== null) {
+                    this.width = this.$refs.item.offsetWidth;
                 }
             },
             updateHeight: function() {
@@ -177,7 +177,7 @@
                 this.layout = moveElement(this.layout, l, x, y, true);
                 compact(this.layout, this.verticalCompact);
                 // needed because vue can't detect changes on array element properties
-                this.$broadcast("compact", this.layout);
+                this.$emit("compact", this.layout);
                 this.updateHeight();
             },
             resizeEvent: function(eventName, id, h, w) {
@@ -187,7 +187,7 @@
 //                console.log(eventName + " id=" + id);
                 // Move the element to the dragged location.
                 compact(this.layout, this.verticalCompact);
-                this.$broadcast("compact", this.layout);
+                this.$emit("compact", this.layout);
                 this.updateHeight();
             },
         }

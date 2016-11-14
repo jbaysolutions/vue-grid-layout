@@ -22,15 +22,16 @@
         </div>
         <div id="content">
             <grid-layout :layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :vertical-compact="true">
-                <grid-item v-for="item in layout"
-                           :x.sync="item.x"
-                           :y.sync="item.y"
-                           :w.sync="item.w"
-                           :h.sync="item.h"
-                           :i="item.i"
-                        >
-                    <span class="text">{{item.i}}</span>
-                </grid-item>
+                <div slot="top">XXXX</div>
+                    <!--<grid-item v-for="item in layout"
+                               :x.sync="item.x"
+                               :y.sync="item.y"
+                               :w.sync="item.w"
+                               :h.sync="item.h"
+                               :i="item.i"
+                            >
+                        <span class="text">{{item.i}}</span>
+                    </grid-item>-->
             </grid-layout>
         </div>
 

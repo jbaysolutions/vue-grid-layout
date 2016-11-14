@@ -1,6 +1,6 @@
 {
   "name": "vue-grid-layout",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A draggable and resizable grid layout, as a Vue component.",
   "keywords": [
     "grid",
@@ -43,10 +43,9 @@
     "css-loader": "^0.23.1",
     "style-loader": "^0.13.1",
     "stylus-loader": "^1.2.1",
-    "vue-html-loader": "^1.0.0",
     "vue-style-loader": "^1.0.0",
-    "vue-loader": "^8.5.2",
-    "vue": "^1.0.26",
+    "vue-loader": "^9.7.0",
+    "vue": "^2.0.5",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "extract-text-webpack-plugin": "^1.0.1",
