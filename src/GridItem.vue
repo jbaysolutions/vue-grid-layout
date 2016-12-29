@@ -1,17 +1,11 @@
 <template>
-    <div v-el:item
+    <div ref="item"
              class="vue-grid-item"
              :class="{ 'vue-resizable' : isResizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
              :style="style"
         >
         <slot></slot>
-        <!--<pre>
-            x: {{ x | json}}
-            y: {{ y | json}}
-            w: {{ w | json}}
-            h: {{ h | json}}
-        </pre>-->
-        <span v-if="isResizable" v-el:handle class="vue-resizable-handle"></span>
+        <span v-if="isResizable" ref="handle" class="vue-resizable-handle"></span>
     </div>
 </template>
 <style>
@@ -62,6 +56,7 @@
 <script>
     import {setTopLeft, setTransform, createMarkup, getLayoutItem} from './utils';
     import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
+    import eventBus from './eventBus';
 
     var interact = require("interact.js");
 
@@ -169,33 +164,42 @@
                 style: {}
             }
         },
-        ready: function() {
-            this.cols = this.$parent.colNum;
-            this.rowHeight = this.$parent.rowHeight;
-            this.margin = this.$parent.margin;
-            this.maxRows = this.$parent.maxRows;
-            this.isDraggable = this.$parent.isDraggable;
-            this.isResizable = this.$parent.isResizable;
-            this.useCssTransforms = this.$parent.useCssTransforms;
-            this.createStyle();
+        created () {
+            eventBus.$on('updateWidth', function(width) {
+                this.updateWidth(width);
+            });
+            eventBus.$on('compact', function(layout) {
+                this.compact(layout);
+            });
+        },
+        mounted: function() {
+            //this.$nextTick(function () {
+                this.cols = this.$parent.colNum;
+                this.rowHeight = this.$parent.rowHeight;
+                this.margin = this.$parent.margin !== undefined ? this.$parent.margin : [10, 10];
+                this.maxRows = this.$parent.maxRows;
+                this.isDraggable = this.$parent.isDraggable;
+                this.isResizable = this.$parent.isResizable;
+                this.useCssTransforms = this.$parent.useCssTransforms;
+                this.createStyle();
 
-            var self = this;
-            if (this.isDraggable) {
-                if (this.interactObj == null) {
-                    this.interactObj = interact(this.$els.item);
-                }
-                this.interactObj
+                var self = this;
+                if (this.isDraggable) {
+                    if (this.interactObj == null) {
+                        this.interactObj = interact(this.$refs.item);
+                    }
+                    this.interactObj
                         .draggable({
                         })
                         .on('dragstart dragmove dragend', function(event) {
                             self.handleDrag(event);
                         });
-            }
-            if (this.isResizable) {
-                if (this.interactObj == null) {
-                    this.interactObj = interact(this.$els.item);
                 }
-                this.interactObj
+                if (this.isResizable) {
+                    if (this.interactObj == null) {
+                        this.interactObj = interact(this.$refs.item);
+                    }
+                    this.interactObj
                         .resizable({
                             preserveAspectRatio: false,
                             edges: {left: false, right: true, bottom: true, top: false}
@@ -203,7 +207,8 @@
                         .on('resizestart resizemove resizeend', function (event) {
                             self.handleResize(event);
                         });
-            }
+                }
+            //});
         },
         watch: {
             cols: function() {
@@ -331,7 +336,7 @@
                 this.lastW = x;
                 this.lastH = y;
 
-                this.$dispatch("resizeEvent", event.type, this.i, this.x, this.y, this.h, this.w);
+                this.$parent.resizeEvent(event.type, this.i, this.x, this.y, this.h, this.w);
             },
             handleDrag(event) {
                 if (this.isResizing) return;
@@ -385,7 +390,7 @@
                 this.lastX = x;
                 this.lastY = y;
 
-                this.$dispatch("dragEvent", event.type, this.i, this.x, this.y, this.w, this.h);
+                this.$parent.dragEvent(event.type, this.i, this.x, this.y, this.w, this.h);
             },
             calcPosition: function(x, y, w, h) {
                 const colWidth = this.calcColWidth();
@@ -453,9 +458,7 @@
                 w = Math.max(Math.min(w, this.cols - this.x), 0);
                 h = Math.max(Math.min(h, this.maxRows - this.y), 0);
                 return {w, h};
-            }
-        },
-        events: {
+            },
             updateWidth: function(width, colNum) {
                 this.containerWidth = width;
                 if (colNum !== undefined && colNum !== null) {
@@ -472,6 +475,24 @@
                 }
                 this.createStyle();
             }
-        }
+        },
+        /*events: {
+            updateWidth: function(width, colNum) {
+                this.containerWidth = width;
+                if (colNum !== undefined && colNum !== null) {
+                    this.cols = colNum;
+                }
+            },
+            compact: function(layout) {
+                var l = getLayoutItem(layout, this.i);
+                if (l !== undefined && l !== null) {
+                    this.x = l.x;
+                    this.y = l.y;
+                    this.h = l.h;
+                    this.w = l.w;
+                }
+                this.createStyle();
+            }
+        }*/
     }
 </script>

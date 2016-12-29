@@ -9,13 +9,16 @@
     export default {
         name: "TestElement",
         props: {
-            text: "x",
+            text : {
+                type: String,
+                default: "x",
+            },
         },
         data: function() {
             return {
             }
         },
-        ready: function() {
+        mounted: function() {
             console.log("### " + this.text + " ready!");
         },
     }

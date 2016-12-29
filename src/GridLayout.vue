@@ -1,11 +1,18 @@
 <template>
-    <!--<pre>{{$data|json}}</pre>
-    <br/>
-    <br/>-->
-    <div v-el:item class="vue-grid-layout" :style="mergedStyle">
-        <slot></slot>
+    <div ref="item" class="vue-grid-layout" :style="mergedStyle">
+        <pre>{{ placeholder }}</pre>
+        <grid-item v-for="item in layout"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
+                   :min-w="2"
+                   :min-h="2"
+                   :i="item.i">
+            {{item.i}}
+        </grid-item>
         <grid-item class="vue-grid-placeholder"
-                   v-if="isDragging"
+                   v-show="isDragging"
                    :x="placeholder.x"
                    :y="placeholder.y"
                    :w="placeholder.w"
@@ -23,6 +30,7 @@
     var elementResizeDetectorMaker = require("element-resize-detector");
 
     import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
+    import eventBus from './eventBus';
     import GridItem from './GridItem.vue'
 
     export default {
@@ -70,8 +78,10 @@
                 type: Boolean,
                 default: true
             },
-
-            layout: [],
+            layout: {
+                type: Array,
+                required: true,
+            },
         },
         data: function () {
             return {
@@ -88,51 +98,54 @@
                 },
             };
         },
-        ready() {
-            validateLayout(this.layout);
-            var self = this;
-            this.$nextTick(function() {
-                if (self.width === null) {
-                    self.onWindowResize();
-                    //self.width = self.$el.offsetWidth;
-                    window.addEventListener('resize', self.onWindowResize);
-                }
-                compact(self.layout, self.verticalCompact);
-
-                self.updateHeight();
-                self.$nextTick(function () {
-                    var erd = elementResizeDetectorMaker({
-                        strategy: "scroll" //<- For ultra performance.
-                    });
-                    erd.listenTo(self.$els.item, function (element) {
+        mounted: function() {
+            this.$nextTick(function () {
+                validateLayout(this.layout);
+                var self = this;
+                this.$nextTick(function() {
+                    if (self.width === null) {
                         self.onWindowResize();
+                        //self.width = self.$el.offsetWidth;
+                        window.addEventListener('resize', self.onWindowResize);
+                    }
+                    compact(self.layout, self.verticalCompact);
+
+                    self.updateHeight();
+                    self.$nextTick(function () {
+                        var erd = elementResizeDetectorMaker({
+                            strategy: "scroll" //<- For ultra performance.
+                        });
+                        erd.listenTo(self.$refs.item, function (element) {
+                            self.onWindowResize();
+                        });
                     });
                 });
+                window.onload = function() {
+                    if (self.width === null) {
+                        self.onWindowResize();
+                        //self.width = self.$el.offsetWidth;
+                        window.addEventListener('resize', self.onWindowResize);
+                    }
+                    compact(self.layout, self.verticalCompact);
+
+                    self.updateHeight();
+                    self.$nextTick(function () {
+                        var erd = elementResizeDetectorMaker({
+                            strategy: "scroll" //<- For ultra performance.
+                        });
+                        erd.listenTo(self.$refs.item, function (element) {
+                            self.onWindowResize();
+                        });
+                    });
+
+                };
             });
-            window.onload = function() {
-                if (self.width === null) {
-                    self.onWindowResize();
-                    //self.width = self.$el.offsetWidth;
-                    window.addEventListener('resize', self.onWindowResize);
-                }
-                compact(self.layout, self.verticalCompact);
-
-                self.updateHeight();
-                self.$nextTick(function () {
-                    var erd = elementResizeDetectorMaker({
-                        strategy: "scroll" //<- For ultra performance.
-                    });
-                    erd.listenTo(self.$els.item, function (element) {
-                        self.onWindowResize();
-                    });
-                });
-
-            };
         },
         watch: {
             width: function () {
                 this.$nextTick(function () {
-                    this.$broadcast("updateWidth", this.width);
+                    //this.$broadcast("updateWidth", this.width);
+                    eventBus.$emit("updateWidth", this.width);
                     this.updateHeight();
                 });
             },
@@ -141,7 +154,9 @@
                     this.lastLayoutLength = this.layout.length;
                     compact(this.layout, this.verticalCompact);
 
-                    this.$broadcast("updateWidth", this.width);
+                    //this.$broadcast("updateWidth", this.width);
+                    eventBus.$emit("updateWidth", this.width);
+
                     this.updateHeight();
                 }
             }
@@ -153,17 +168,16 @@
                 };
             },
             onWindowResize: function () {
-                if (this.$els !== null && this.$els.item !== null) {
-                    this.width = this.$els.item.offsetWidth;
+                if (this.$refs !== null && this.$refs.item !== null) {
+                    this.width = this.$refs.item.offsetWidth;
                 }
             },
             containerHeight: function () {
                 if (!this.autoSize) return;
                 return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
-            }
-        },
-        events: {
+            },
             dragEvent: function (eventName, id, x, y, w, h) {
+                var self = this;
                 if (eventName == "dragmove" || eventName == "dragstart") {
                     this.isDragging = true;
                     this.placeholder.i = id;
@@ -171,7 +185,8 @@
                     this.placeholder.y = y;
                     this.placeholder.w = w;
                     this.placeholder.h = h;
-                    this.$broadcast("updateWidth", this.width);
+                    //this.$broadcast("updateWidth", this.width);
+                    eventBus.$emit("updateWidth", this.width);
                 } else {
                     this.isDragging = false;
                 }
@@ -181,10 +196,12 @@
                 this.layout = moveElement(this.layout, l, x, y, true);
                 compact(this.layout, this.verticalCompact);
                 // needed because vue can't detect changes on array element properties
-                this.$broadcast("compact", this.layout);
+                //this.$broadcast("compact", this.layout);
+                eventBus.$emit("compact", this.layout);
                 this.updateHeight();
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
+                var self = this;
                 if (eventName == "resizestart" || eventName == "resizemove") {
                     this.isDragging = true;
                     this.placeholder.i = id;
@@ -192,14 +209,18 @@
                     this.placeholder.y = y;
                     this.placeholder.w = w;
                     this.placeholder.h = h;
-                    this.$broadcast("updateWidth", this.width);
+                    //this.$broadcast("updateWidth", this.width);
+                    eventBus.$emit("updateWidth", this.width);
                 } else {
                     this.isDragging = false;
                 }
                 compact(this.layout, this.verticalCompact);
-                this.$broadcast("compact", this.layout);
+                //this.$broadcast("compact", this.layout);
+                eventBus.$emit("compact", this.layout);
                 this.updateHeight();
             },
-        }
+        },
+        /*events: {
+        }*/
     }
 </script>

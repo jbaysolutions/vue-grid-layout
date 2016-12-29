@@ -9,8 +9,7 @@
 <body>
     <h1>Vue Grid Layout</h1>
     <div id="app" style="width: 100%;">
-        <!--<pre>{{ $data | json }}</pre>-->
-        <!--<pre>{{ layouts | json }}</pre>-->
+        <!--<pre>{{ layout | json }}</pre>-->
         <div>
             <div class="layoutJSON">
                 Displayed as <code>[x, y, w, h]</code>:
@@ -27,15 +26,15 @@
             <button @click="addItem">Add an item</button>
             <br/>
             <grid-layout
-                    :layout.sync="layout"
+                    :layout="layout"
                     :col-num="12"
                     :row-height="30"
                     :is-draggable="true"
                     :is-resizable="true"
                     :vertical-compact="true"
-                    :margin="[5, 5]"
                     :use-css-transforms="true"
             >
+<!--
                 <grid-item v-for="item in layout"
                            :x.sync="item.x"
                            :y.sync="item.y"
@@ -46,9 +45,9 @@
                            :i="item.i">
                     <test-element :text="item.i"></test-element>
                 </grid-item>
+-->
             </grid-layout>
         </div>
-
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="build/bundle.js"></script>

@@ -23,7 +23,6 @@ var testLayout = [
 
 // var Vue = require('vue');
 
-Vue.config.debug = true;
 Vue.config.devtools = true;
 
 import GridItem from './GridItem.vue';
@@ -34,7 +33,7 @@ import TestElement from './TestElement.vue';
 new Vue({
     el: '#app',
     components: {
-        ResponsiveGridLayout,
+        //ResponsiveGridLayout,
         GridLayout,
         GridItem,
         TestElement,
@@ -44,8 +43,7 @@ new Vue({
         colNum: 0,
         index: 0
     },
-    ready: function () {
-        this.layouts = {lg: this.layout};
+    mounted: function () {
         this.index = this.layout.length;
     },
     watch: {
