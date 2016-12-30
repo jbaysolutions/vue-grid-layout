@@ -23,11 +23,11 @@ var testLayout = [
 
 // var Vue = require('vue');
 
-Vue.config.devtools = true;
+//Vue.config.devtools = true;
 
 import GridItem from './GridItem.vue';
 import GridLayout from './GridLayout.vue';
-import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
+//import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
 import TestElement from './TestElement.vue';
 
 new Vue({
@@ -75,7 +75,7 @@ new Vue({
 });
 
 
-function generateLayout() {
+/*function generateLayout() {
     return _.map(_.range(0, 25), function (item, i) {
         var y = Math.ceil(Math.random() * 4) + 1;
         return {
@@ -87,7 +87,7 @@ function generateLayout() {
             static: Math.random() < 0.05
         };
     });
-}
+}*/
 
 
 

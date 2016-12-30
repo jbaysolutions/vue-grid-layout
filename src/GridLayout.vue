@@ -1,16 +1,6 @@
 <template>
     <div ref="item" class="vue-grid-layout" :style="mergedStyle">
-        <pre>{{ placeholder }}</pre>
-        <grid-item v-for="item in layout"
-                   :x="item.x"
-                   :y="item.y"
-                   :w="item.w"
-                   :h="item.h"
-                   :min-w="2"
-                   :min-h="2"
-                   :i="item.i">
-            {{item.i}}
-        </grid-item>
+        <slot></slot>
         <grid-item class="vue-grid-placeholder"
                    v-show="isDragging"
                    :x="placeholder.x"
@@ -30,7 +20,7 @@
     var elementResizeDetectorMaker = require("element-resize-detector");
 
     import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
-    import eventBus from './eventBus';
+    var eventBus = require('./eventBus');
     import GridItem from './GridItem.vue'
 
     export default {
@@ -98,6 +88,16 @@
                 },
             };
         },
+        created () {
+            var self = this;
+
+            eventBus.$on('resizeEvent', function(eventType, i, x, y, h, w) {
+                self.resizeEvent(eventType, i, x, y, h, w);
+            });
+            eventBus.$on('dragEvent', function(eventType, i, x, y, h, w) {
+                self.dragEvent(eventType, i, x, y, h, w);
+            });
+        },
         mounted: function() {
             this.$nextTick(function () {
                 validateLayout(this.layout);
@@ -150,18 +150,21 @@
                 });
             },
             layout: function () {
+                this.layoutUpdate();
+            }
+        },
+        methods: {
+            layoutUpdate() {
                 if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {
+                    console.log("### LAYOUT UPDATE!");
                     this.lastLayoutLength = this.layout.length;
                     compact(this.layout, this.verticalCompact);
 
                     //this.$broadcast("updateWidth", this.width);
                     eventBus.$emit("updateWidth", this.width);
-
                     this.updateHeight();
                 }
-            }
-        },
-        methods: {
+            },
             updateHeight: function () {
                 this.mergedStyle = {
                     height: this.containerHeight()
@@ -176,8 +179,7 @@
                 if (!this.autoSize) return;
                 return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
             },
-            dragEvent: function (eventName, id, x, y, w, h) {
-                var self = this;
+            dragEvent: function (eventName, id, x, y, h, w) {
                 if (eventName == "dragmove" || eventName == "dragstart") {
                     this.isDragging = true;
                     this.placeholder.i = id;
@@ -192,16 +194,16 @@
                 }
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
+                l.x = x;
+                l.y = y;
                 // Move the element to the dragged location.
                 this.layout = moveElement(this.layout, l, x, y, true);
                 compact(this.layout, this.verticalCompact);
                 // needed because vue can't detect changes on array element properties
-                //this.$broadcast("compact", this.layout);
-                eventBus.$emit("compact", this.layout);
+                eventBus.$emit("compact");
                 this.updateHeight();
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
-                var self = this;
                 if (eventName == "resizestart" || eventName == "resizemove") {
                     this.isDragging = true;
                     this.placeholder.i = id;
@@ -211,16 +213,17 @@
                     this.placeholder.h = h;
                     //this.$broadcast("updateWidth", this.width);
                     eventBus.$emit("updateWidth", this.width);
+
                 } else {
                     this.isDragging = false;
                 }
+                var l = getLayoutItem(this.layout, id);
+                l.h = h;
+                l.w = w;
                 compact(this.layout, this.verticalCompact);
-                //this.$broadcast("compact", this.layout);
-                eventBus.$emit("compact", this.layout);
+                eventBus.$emit("compact");
                 this.updateHeight();
             },
         },
-        /*events: {
-        }*/
     }
 </script>

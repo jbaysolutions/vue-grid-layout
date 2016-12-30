@@ -37,10 +37,40 @@ new Vue({
     },
     data: {
         layout: testLayout,
+        index: 0
     },
+/*
+    mounted: function () {
+        this.index = this.layout.length;
+    },
+    methods: {
+        increaseWidth: function(item) {
+            var width = document.getElementById("content").offsetWidth;
+            width += 20;
+            document.getElementById("content").style.width = width+"px";
+        },
+        decreaseWidth: function(item) {
+
+            var width = document.getElementById("content").offsetWidth;
+            width -= 20;
+            document.getElementById("content").style.width = width+"px";
+        },
+        removeItem: function(item) {
+            //console.log("### REMOVE " + item.i);
+            this.layout.splice(this.layout.indexOf(item), 1);
+        },
+        addItem: function() {
+            var self = this;
+            //console.log("### LENGTH: " + this.layout.length);
+            var item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
+            this.index++;
+            this.layout.push(item);
+        }
+    }
+*/
 });
 
-
+/*
 function generateLayout() {
     return _.map(_.range(0, 25), function (item, i) {
         var y = Math.ceil(Math.random() * 4) + 1;
@@ -53,7 +83,7 @@ function generateLayout() {
             static: Math.random() < 0.05
         };
     });
-}
+}*/
 
 
 

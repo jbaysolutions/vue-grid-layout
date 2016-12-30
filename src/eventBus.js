@@ -1,1 +1,3 @@
-module.export.eventBus = new Vue();
+import Vue from 'vue';
+
+module.exports = new Vue();
