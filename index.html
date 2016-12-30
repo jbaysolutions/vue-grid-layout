@@ -4,53 +4,10 @@
     <meta charset="utf-8">
     <title>Vue Grid Layout</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="examples/app.css">
+    <link href="examples/app.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Vue Grid Layout</h1>
-    <div id="app" style="width: 100%;">
-        <!--<pre>{{ $data | json }}</pre>-->
-        <!--<pre>{{ layouts | json }}</pre>-->
-        <div>
-            <div class="layoutJSON">
-                Displayed as <code>[x, y, w, h]</code>:
-                <div class="columns">
-                    <div class="layoutItem" v-for="item in layout">
-                        <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="content">
-            <button @click="decreaseWidth">Decrease Width</button>
-            <button @click="increaseWidth">Increase Width</button>
-            <button @click="addItem">Add an item</button>
-            <br/>
-            <grid-layout
-                    :layout.sync="layout"
-                    :col-num="12"
-                    :row-height="30"
-                    :is-draggable="true"
-                    :is-resizable="true"
-                    :vertical-compact="true"
-                    :margin="[5, 5]"
-                    :use-css-transforms="true"
-            >
-                <grid-item v-for="item in layout"
-                           :x.sync="item.x"
-                           :y.sync="item.y"
-                           :w.sync="item.w"
-                           :h.sync="item.h"
-                           :min-w="2"
-                           :min-h="2"
-                           :i="item.i">
-                    <test-element :text="item.i"></test-element>
-                </grid-item>
-            </grid-layout>
-        </div>
-
-    </div>
-    <script src="node_modules/vue/dist/vue.js"></script>
-    <script src="build/bundle.js"></script>
+<div id="app"></div>
+<script src="/dist/build.js"></script>
 </body>
 </html>

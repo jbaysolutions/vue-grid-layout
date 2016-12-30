@@ -1,12 +1,5 @@
 <template>
-    <!--<pre>{{lastLayoutLength|json}}</pre>
-    <pre>{{layout.length|json}}</pre>-->
-    <!--<pre>{{breakpoint|json}}</pre>
-    <pre>{{layouts|json}}</pre>-->
-    <!--<pre>{{layout|json}}</pre>-->
-    <!--<pre>width: {{width | json}}</pre>
-    <pre>mergedStyle: {{mergedStyle | json}}</pre>-->
-    <div v-el:item class="vue-grid-layout" :style="mergedStyle">
+    <div ref="item" class="vue-grid-layout" :style="mergedStyle">
         <slot></slot>
     </div>
 </template>
@@ -104,29 +97,31 @@
                 lastLayoutLength: 0,
             };
         },
-        ready() {
-            validateLayout(this.layout);
-            this.originalCols = this.colNum;
-            var self = this;
-            window.onload = function() {
-                self.onWindowResize();
-                //self.width = self.$el.offsetWidth;
-                window.addEventListener('resize', self.onWindowResize);
-                compact(self.layout, self.verticalCompact);
-                self.updateHeight();
-                self.$nextTick(function() {
+        mounted() {
+            this.$nextTick(function () {
+                validateLayout(this.layout);
+                this.originalCols = this.colNum;
+                var self = this;
+                window.onload = function() {
+                    self.onWindowResize();
+                    //self.width = self.$el.offsetWidth;
+                    window.addEventListener('resize', self.onWindowResize);
+                    compact(self.layout, self.verticalCompact);
+                    self.updateHeight();
+                    self.$nextTick(function() {
 //                    self.onWindowResize();
-                    var erd = elementResizeDetectorMaker({
-                        strategy: "scroll" //<- For ultra performance.
+                        var erd = elementResizeDetectorMaker({
+                            strategy: "scroll" //<- For ultra performance.
+                        });
+                        erd.listenTo(self.$refs.item, function(element) {
+                            self.onWindowResize();
+                            /*var width = element.offsetWidth;
+                             var height = element.offsetHeight;
+                             console.log("Size: " + width + "x" + height);*/
+                        });
                     });
-                    erd.listenTo(self.$els.item, function(element) {
-                        self.onWindowResize();
-                        /*var width = element.offsetWidth;
-                         var height = element.offsetHeight;
-                         console.log("Size: " + width + "x" + height);*/
-                    });
-                });
-            }
+                }
+            });
         },
         watch: {
             width: function() {
@@ -136,7 +131,11 @@
                     this.colNum = 2;
                 }
                 this.$nextTick(function() {
-                    this.$broadcast("updateWidth", this.width, this.colNum);
+                    //this.$broadcast("updateWidth", this.width, this.colNum);
+                    var self = this;
+                    this.$children.forEach(function(child) {
+                        child.updateWidth(self.width);
+                    });
                     this.updateHeight();
                     compact(this.layout, this.verticalCompact);
                 });
@@ -147,7 +146,12 @@
                     compact(this.layout, this.verticalCompact);
 
                     //this.$nextTick(function () {
-                    this.$broadcast("updateWidth", this.width);
+                    //this.$broadcast("updateWidth", this.width);
+                    var self = this;
+                    this.$children.forEach(function(child) {
+                        child.updateWidth(self.width);
+                    });
+
                     this.updateHeight();
                     //});
                 }
@@ -155,8 +159,8 @@
         },
         methods: {
             onWindowResize: function() {
-                if (this.$els !== null && this.$els.item !== null) {
-                    this.width = this.$els.item.offsetWidth;
+                if (this.$refs !== null && this.$refs.item !== null) {
+                    this.width = this.$refs.item.offsetWidth;
                 }
             },
             updateHeight: function() {
@@ -168,28 +172,38 @@
                 if (!this.autoSize) return;
                 return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
             },
-        },
-        events: {
             dragEvent: function(eventName, id, x, y) {
+                var self = this;
 //                console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
                 // Move the element to the dragged location.
                 this.layout = moveElement(this.layout, l, x, y, true);
                 compact(this.layout, this.verticalCompact);
                 // needed because vue can't detect changes on array element properties
-                this.$broadcast("compact", this.layout);
+                //this.$broadcast("compact", this.layout);
+                this.$children.forEach(function(child) {
+                    child.compact(self.layout);
+                });
+
                 this.updateHeight();
             },
             resizeEvent: function(eventName, id, h, w) {
+                var self = this;
                 /*if (eventName === "drag" && h < -40 && w < -40) {
                  return;
                  }*/
 //                console.log(eventName + " id=" + id);
                 // Move the element to the dragged location.
                 compact(this.layout, this.verticalCompact);
-                this.$broadcast("compact", this.layout);
+                //this.$broadcast("compact", this.layout);
+                this.$children.forEach(function(child) {
+                    child.compact(self.layout);
+                });
+
                 this.updateHeight();
             },
-        }
+        },
+        /*events: {
+        }*/
     }
 </script>

@@ -1,10 +1,12 @@
 # vue-grid-layout
 
-vue-grid-layout is a grid layout system, like [Gridster](http://gridster.net), for Vue.js.
+vue-grid-layout is a grid layout system, like [Gridster](http://gridster.net), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
+### **Current version:** 2.0.0 (Supports Vue 2.0+)
 
-**Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
+### **For Vue 1 use version [1.0.0](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.0)** 
 
+<br/>
 
 [**[Demo](https://jbaysolutions.github.io/vue-grid-layout/examples/01-basic.html) | [Changelog](/CHANGELOG.md)**]
 
@@ -50,7 +52,13 @@ Install the vue-grid-layout [package](https://www.npmjs.org/package/vue-grid-lay
 
 ## Usage
 
-npm install vue-grid-layout
+    npm install vue-grid-layout
+
+or include the script in your html (download from [releases](https://github.com/jbaysolutions/vue-grid-layout/releases)):
+ 
+```html
+    <script src="vue-grid-layout.min.js"></script>
+```` 
 
 ```javascript
 
@@ -96,7 +104,7 @@ npm install vue-grid-layout
 ````html
 
     <grid-layout
-            :layout.sync="layout"
+            :layout="layout"
             :col-num="12"
             :row-height="30"
             :is-draggable="true"
@@ -107,10 +115,10 @@ npm install vue-grid-layout
     >
 
         <grid-item v-for="item in layout"
-                   :x.sync="item.x"
-                   :y.sync="item.y"
-                   :w.sync="item.w"
-                   :h.sync="item.h"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
                    :i="item.i">
             {{item.i}}
         </grid-item>
