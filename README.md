@@ -1,6 +1,6 @@
 # vue-grid-layout
 
-vue-grid-layout is a grid layout system, like [Gridster](http://gridster.net), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
+vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
 ### **Current version:** 2.0.1 (Supports Vue 2.0+)
 
