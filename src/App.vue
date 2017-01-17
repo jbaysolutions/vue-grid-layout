@@ -33,7 +33,8 @@
                            :h="item.h"
                            :min-w="2"
                            :min-h="2"
-                           :i="item.i">
+                           :i="item.i"
+                           @resized="resized">
                     <test-element :text="item.i"></test-element>
                 </grid-item>
             </grid-layout>
@@ -89,6 +90,9 @@
             this.index = this.layout.length;
         },
         methods: {
+            resized: function(msg){
+                console.log(msg);
+            },
             increaseWidth: function(item) {
                 var width = document.getElementById("content").offsetWidth;
                 width += 20;

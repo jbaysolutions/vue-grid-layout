@@ -209,6 +209,7 @@
                         self.handleResize(event);
                     });
             }
+            this.notifyResize();
         },
         watch: {
             cols: function() {
@@ -225,9 +226,11 @@
             },
             h: function() {
                 this.createStyle();
+                this.notifyResize();
             },
             w: function() {
                 this.createStyle();
+                this.notifyResize();
             }
         },
         computed: {
@@ -451,7 +454,10 @@
             },
             compact: function() {
                 this.createStyle();
-            }
+            },
+            notifyResize: function(){
+                this.$emit('resized',{i:this.i, ...this.calcPosition(this.x,this.y,this.w,this.h)})
+            },
         },
     }
 </script>
