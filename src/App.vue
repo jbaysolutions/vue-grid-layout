@@ -33,7 +33,9 @@
                            :h="item.h"
                            :min-w="2"
                            :min-h="2"
-                           :i="item.i">
+                           :i="item.i"
+                           @resized="resized"
+                           @moved="moved">
                     <test-element :text="item.i"></test-element>
                 </grid-item>
             </grid-layout>
@@ -110,6 +112,12 @@
                 var item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
                 this.index++;
                 this.layout.push(item);
+            },
+            moved: function(item){
+                console.log(item)
+            },
+            resized: function(item){
+                console.log(item)
             }
         },
     }
