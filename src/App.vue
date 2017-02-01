@@ -113,11 +113,11 @@
                 this.index++;
                 this.layout.push(item);
             },
-            moved: function(item){
-                console.log(item)
+            moved: function(i, newX, newY){
+                console.log(i, newX, newY)
             },
-            resized: function(item){
-                console.log(item)
+            resized: function(i, newH, newW){
+                console.log(i, newH, newW)
             }
         },
     }
