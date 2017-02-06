@@ -5,13 +5,14 @@
              :style="style"
         >
         <slot></slot>
-        <span v-if="isResizable" ref="handle" class="vue-resizable-handle"></span>
+        <span v-if="isResizable" ref="handle" :class="resizableHandleClass"></span>
     </div>
 </template>
 <style>
     .vue-grid-item {
         transition: all 200ms ease;
-        transition-property: left, top;
+        transition-property: left, top, right;
+        /* add right for rtl */
     }
     .vue-grid-item.cssTransforms {
         transition-property: transform;
@@ -52,9 +53,21 @@
         box-sizing: border-box;
         cursor: se-resize;
     }
+
+    .vue-grid-item > .vue-rtl-resizable-handle {
+        bottom: 0;
+        left: 0;
+        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAuMDAwMDAwMDAwMDAwMDAyIiBoZWlnaHQ9IjEwLjAwMDAwMDAwMDAwMDAwMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KIDwhLS0gQ3JlYXRlZCB3aXRoIE1ldGhvZCBEcmF3IC0gaHR0cDovL2dpdGh1Yi5jb20vZHVvcGl4ZWwvTWV0aG9kLURyYXcvIC0tPgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSIxMiIgd2lkdGg9IjEyIiB5PSItMSIgeD0iLTEiLz4KICA8ZyBkaXNwbGF5PSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgeT0iMCIgeD0iMCIgaGVpZ2h0PSIxMDAlIiB3aWR0aD0iMTAwJSIgaWQ9ImNhbnZhc0dyaWQiPgogICA8cmVjdCBmaWxsPSJ1cmwoI2dyaWRwYXR0ZXJuKSIgc3Ryb2tlLXdpZHRoPSIwIiB5PSIwIiB4PSIwIiBoZWlnaHQ9IjEwMCUiIHdpZHRoPSIxMDAlIi8+CiAgPC9nPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxsaW5lIGNhbnZhcz0iI2ZmZmZmZiIgY2FudmFzLW9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJ1bmRlZmluZWQiIHN0cm9rZS1saW5lam9pbj0idW5kZWZpbmVkIiBpZD0ic3ZnXzEiIHkyPSItNzAuMTc4NDA3IiB4Mj0iMTI0LjQ2NDE3NSIgeTE9Ii0zOC4zOTI3MzciIHgxPSIxNDQuODIxMjg5IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlPSIjMDAwIiBmaWxsPSJub25lIi8+CiAgPGxpbmUgc3Ryb2tlPSIjNjY2NjY2IiBzdHJva2UtbGluZWNhcD0idW5kZWZpbmVkIiBzdHJva2UtbGluZWpvaW49InVuZGVmaW5lZCIgaWQ9InN2Z181IiB5Mj0iOS4xMDY5NTciIHgyPSIwLjk0NzI0NyIgeTE9Ii0wLjAxODEyOCIgeDE9IjAuOTQ3MjQ3IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KICA8bGluZSBzdHJva2UtbGluZWNhcD0idW5kZWZpbmVkIiBzdHJva2UtbGluZWpvaW49InVuZGVmaW5lZCIgaWQ9InN2Z183IiB5Mj0iOSIgeDI9IjEwLjA3MzUyOSIgeTE9IjkiIHgxPSItMC42NTU2NCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9IiM2NjY2NjYiIGZpbGw9Im5vbmUiLz4KIDwvZz4KPC9zdmc+);
+        background-position: bottom left;
+        padding-left: 3px;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        cursor: sw-resize;
+        right: auto;
+    }
 </style>
 <script>
-    import {setTopLeft, setTransform, createMarkup, getLayoutItem} from './utils';
+    import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from './utils';
     import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
     var eventBus = require('./eventBus');
 
@@ -140,7 +153,7 @@
             },
             i: {
                 required: true
-            },
+            }
         },
         data: function() {
             return {
@@ -161,7 +174,8 @@
                 lastY: NaN,
                 lastW: NaN,
                 lastH: NaN,
-                style: {}
+                style: {},
+                rtl: false
             }
         },
         created () {
@@ -171,6 +185,17 @@
             });
             eventBus.$on('compact', function(layout) {
                 self.compact(layout);
+            });
+            var direction = (document.dir !=undefined) ?
+                document.dir :
+                document.getElementsByTagName("html")[0].getAttribute("dir");
+            this.rtl = (direction == "rtl");
+            eventBus.$on('directionchange', (direction) => {
+                var direction = (document.dir != undefined) ?
+                    document.dir :
+                    document.getElementsByTagName("html")[0].getAttribute("dir");
+                this.rtl = (direction == "rtl");
+                this.compact();
             });
         },
         mounted: function() {
@@ -231,6 +256,13 @@
             }
         },
         computed: {
+            resizableHandleClass() {
+                if (this.rtl) {
+                    return 'vue-resizable-handle vue-rtl-resizable-handle';
+                } else {
+                    return 'vue-resizable-handle';
+                }
+            }
         },
         methods: {
             createStyle: function() {
@@ -243,7 +275,12 @@
 
                 if (this.isDragging) {
                     pos.top = this.dragging.top;
-                    pos.left = this.dragging.left;
+//                    Add rtl support
+                    if (this.rtl) {
+                        pos.right = this.dragging.left;
+                    } else {
+                        pos.left = this.dragging.left;
+                    }
                 }
                 if (this.isResizing) {
                     pos.width = this.resizing.width;
@@ -253,11 +290,22 @@
                 let style;
                 // CSS Transforms support (default)
                 if (this.useCssTransforms) {
-                    style = setTransform(pos.top, pos.left, pos.width, pos.height);
+//                    Add rtl support
+                    if (this.rtl) {
+                        style = setTransformRtl(pos.top, pos.right, pos.width, pos.height);
+                    } else {
+                        style = setTransform(pos.top, pos.left, pos.width, pos.height);
+                    }
+
                 }
                 // top,left (slow)
                 else {
-                    style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
+//                    Add rtl support
+                    if (this.rtl) {
+                        style = setTopRight(pos.top, pos.right, pos.width, pos.height);
+                    } else {
+                        style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
+                    }
                 }
                 this.style = style;
 
@@ -280,7 +328,11 @@
                     case "resizemove":
 //                        console.log("### resize => " + event.type + ", lastW=" + this.lastW + ", lastH=" + this.lastH);
                         const coreEvent = createCoreData(this.lastW, this.lastH, x, y);
-                        newSize.width = this.resizing.width + coreEvent.deltaX;
+                        if (this.rtl) {
+                            newSize.width = this.resizing.width - coreEvent.deltaX;
+                        } else {
+                            newSize.width = this.resizing.width + coreEvent.deltaX;
+                        }
                         newSize.height = this.resizing.height + coreEvent.deltaY;
 
                         ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
@@ -335,13 +387,16 @@
                 const {x, y} = position;
 
                 var shouldUpdate = false;
-
                 const newPosition = {top: 0, left: 0};
                 switch (event.type) {
                     case "dragstart":
                         var parentRect = event.target.offsetParent.getBoundingClientRect();
                         var clientRect = event.target.getBoundingClientRect();
-                        newPosition.left = clientRect.left - parentRect.left;
+                        if (this.rtl) {
+                            newPosition.left = (clientRect.right - parentRect.right) * -1;
+                        } else {
+                            newPosition.left = clientRect.left - parentRect.left;
+                        }
                         newPosition.top = clientRect.top - parentRect.top;
                         this.dragging = newPosition;
                         this.isDragging = true;
@@ -350,7 +405,12 @@
                         if (!this.isDragging) return;
                         parentRect = event.target.offsetParent.getBoundingClientRect();
                         clientRect = event.target.getBoundingClientRect();
-                        newPosition.left = clientRect.left - parentRect.left;
+//                        Add rtl support
+                        if (this.rtl) {
+                            newPosition.left = (clientRect.right - parentRect.right) * -1;
+                        } else {
+                            newPosition.left = clientRect.left - parentRect.left;
+                        }
                         newPosition.top = clientRect.top - parentRect.top;
 //                        console.log("### drag end => " + JSON.stringify(newPosition));
 //                        console.log("### DROP: " + JSON.stringify(newPosition));
@@ -360,7 +420,12 @@
                         break;
                     case "dragmove":
                         const coreEvent = createCoreData(this.lastX, this.lastY, x, y);
-                        newPosition.left = this.dragging.left + coreEvent.deltaX;
+//                        Add rtl support
+                        if (this.rtl) {
+                            newPosition.left = this.dragging.left - coreEvent.deltaX;
+                        } else {
+                            newPosition.left = this.dragging.left + coreEvent.deltaX;
+                        }
                         newPosition.top = this.dragging.top + coreEvent.deltaY;
 //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
 //                        console.log("### drag => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
@@ -370,7 +435,11 @@
                 }
 
                 // Get new XY
-                var pos = this.calcXY(newPosition.top, newPosition.left);
+                if (this.rtl) {
+                    var pos = this.calcXY(newPosition.top, newPosition.left);
+                } else {
+                    var pos = this.calcXY(newPosition.top, newPosition.left);
+                }
 
                 this.lastX = x;
                 this.lastY = y;
@@ -380,16 +449,29 @@
             },
             calcPosition: function(x, y, w, h) {
                 const colWidth = this.calcColWidth();
+                // add rtl support
+                if (this.rtl) {
+                    var out = {
+                        right: Math.round(colWidth * x + (x + 1) * this.margin[0]),
+                        top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
+                        // 0 * Infinity === NaN, which causes problems with resize constriants;
+                        // Fix this if it occurs.
+                        // Note we do it here rather than later because Math.round(Infinity) causes deopt
+                        width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
+                        height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
+                    };
+                } else {
+                    var out = {
+                        left: Math.round(colWidth * x + (x + 1) * this.margin[0]),
+                        top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
+                        // 0 * Infinity === NaN, which causes problems with resize constriants;
+                        // Fix this if it occurs.
+                        // Note we do it here rather than later because Math.round(Infinity) causes deopt
+                        width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
+                        height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
+                    };
+                }
 
-                const out = {
-                    left: Math.round(colWidth * x + (x + 1) * this.margin[0]),
-                    top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
-                    // 0 * Infinity === NaN, which causes problems with resize constriants;
-                    // Fix this if it occurs.
-                    // Note we do it here rather than later because Math.round(Infinity) causes deopt
-                    width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
-                    height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
-                };
 
                 return out;
             },
@@ -399,6 +481,7 @@
              * @param  {Number} left Left position (relative to parent) in pixels.
              * @return {Object} x and y in grid units.
              */
+            // TODO check if this function needs change in order to support rtl.
             calcXY(top, left) {
                 const colWidth = this.calcColWidth();
 
