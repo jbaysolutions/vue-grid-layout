@@ -34,8 +34,8 @@
                            :min-w="2"
                            :min-h="2"
                            :i="item.i"
-                           @resized="resized"
-                           @moved="moved">
+                           @resize="resize"
+                           @move="move">
                     <test-element :text="item.i"></test-element>
                 </grid-item>
             </grid-layout>
@@ -113,11 +113,28 @@
                 this.index++;
                 this.layout.push(item);
             },
-            moved: function(i, newX, newY){
+            move: function(i, newX, newY){
                 console.log(i, newX, newY)
             },
-            resized: function(i, newH, newW){
+            resize: function(i, newH, newW){
                 console.log(i, newH, newW)
+            }
+             /**
+             * Add change direction button
+             */
+            changeDirection() {
+                let documentDirection = (document.dir !=undefined) ?
+                    document.dir :
+                    document.getElementsByTagName("html")[0].getAttribute("dir");
+                let toggle = "";
+                if (documentDirection == "rtl") {
+                    toggle = "ltr"
+                } else {
+                    toggle = "rtl"
+                }
+                var html = document.getElementsByTagName("html")[0];
+                html.setAttribute("dir", toggle);
+                eventBus.$emit('directionchange');
             }
         },
     }
