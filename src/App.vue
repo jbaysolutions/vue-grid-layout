@@ -118,7 +118,7 @@
             },
             resize: function(i, newH, newW){
                 console.log(i, newH, newW)
-            },
+            },         
              /**
              * Add change direction button
              */
