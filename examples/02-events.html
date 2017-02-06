@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <h1>Vue Grid Layout Example 1 - Basic</h1>
+    <h1>Vue Grid Layout Example 2 - Move and resize events</h1>
 
     <a href="https://github.com/jbaysolutions/vue-grid-layout">View project on Github</a>
     <br/>
-    <a href="02-events.html">Next example: Move and resize events</a>
+    <a href="01-basic.html">Previous example: Basic</a>
 
     <div id="app" style="width: 100%;">
         <!--<pre>{{ $data | json }}</pre>-->
@@ -22,6 +22,12 @@
                     <div class="layoutItem" v-for="item in layout">
                         <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
                     </div>
+                </div>
+            </div>
+            <div ref="eventsDiv" class="eventsJSON">
+                Events:
+                <div v-for="event in eventLog">
+                    {{event}}
                 </div>
             </div>
         </div>
@@ -43,15 +49,17 @@
                            :w="item.w"
                            :h="item.h"
                            :i="item.i"
-                        >
+                           @resize="resizeEvent"
+                           @move="moveEvent">
                     <span class="text">{{item.i}}</span>
                 </grid-item>
             </grid-layout>
         </div>
+        <pre>{{eventLog | json}}</pre>
 
     </div>
     <script src="vue.min.js"></script>
     <script src="../dist/vue-grid-layout.js"></script>
-    <script src="01-basic.js"></script>
+    <script src="02-events.js"></script>
 </body>
 </html>

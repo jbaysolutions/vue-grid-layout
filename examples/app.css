@@ -13,6 +13,16 @@
     margin-top: 10px;
     padding: 10px;
 }
+
+.eventsJSON {
+    background: #ddd;
+    border: 1px solid black;
+    margin-top: 10px;
+    padding: 10px;
+    height: 100px;
+    overflow-y: scroll;
+}
+
 .columns {
     -moz-columns: 120px;
     -webkit-columns: 120px;

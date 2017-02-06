@@ -2,7 +2,7 @@
 
 vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.0.1 (Supports Vue 2.0+)
+### **Current version:** 2.1.0 (Supports Vue 2.0+)
 
 ### **For Vue 1 use version [1.0.0](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.0)** 
 
@@ -125,6 +125,53 @@ or include the script in your html (download from [releases](https://github.com/
         </grid-item>
     </grid-layout>
 ```` 
+
+### Events
+
+Move and resize event listeners can be added to each grid-item, so that the parent Vue can be notified when a grid element is being moved or resized.
+Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/02-events.html)   
+
+````html
+
+    <grid-layout
+            :layout="layout"
+            :col-num="12"
+            :row-height="30"
+            :is-draggable="true"
+            :is-resizable="true"
+            :vertical-compact="true"
+            :margin="[10, 10]"
+            :use-css-transforms="true"
+    >
+
+        <grid-item v-for="item in layout"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
+                   :i="item.i"
+                   @resize="resizeEvent"
+                   @move="moveEvent">
+            {{item.i}}
+        </grid-item>
+    </grid-layout>
+```` 
+
+* Move event: every time an item is being moved and changes position
+
+```javascript
+    moveEvent: function(i, newX, newY){
+        console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
+    },
+```
+
+* Resize event: every time an item is being resized and changes size
+ 
+```javascript
+    resizeEvent: function(i, newH, newW){
+        console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
+    },
+``` 
 
 
 ## Contribute
