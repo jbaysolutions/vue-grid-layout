@@ -35,7 +35,9 @@
                            :h="item.h"
                            :min-w="2"
                            :min-h="2"
-                           :i="item.i">
+                           :i="item.i"
+                           @resize="resize"
+                           @move="move">
                     <test-element :text="item.i"></test-element>
                 </grid-item>
             </grid-layout>
@@ -114,6 +116,12 @@
                 this.index++;
                 this.layout.push(item);
             },
+            move: function(i, newX, newY){
+                console.log(i, newX, newY)
+            },
+            resize: function(i, newH, newW){
+                console.log(i, newH, newW)
+            },         
             /**
              * Add change direction button
              */

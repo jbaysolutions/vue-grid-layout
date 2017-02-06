@@ -375,6 +375,7 @@
                 this.lastH = y;
 
                 eventBus.$emit("resizeEvent", event.type, this.i, this.x, this.y, pos.h, pos.w);
+                this.$emit("resize", this.i, pos.h, pos.w);
             },
             handleDrag(event) {
                 if (this.isResizing) return;
@@ -444,6 +445,7 @@
                 this.lastY = y;
 
                 eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.h, this.w);
+                this.$emit("move", this.i, pos.x, pos.y);
             },
             calcPosition: function(x, y, w, h) {
                 const colWidth = this.calcColWidth();
