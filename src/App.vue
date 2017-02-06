@@ -16,6 +16,8 @@
             <button @click="decreaseWidth">Decrease Width</button>
             <button @click="increaseWidth">Increase Width</button>
             <button @click="addItem">Add an item</button>
+            <!-- Add to show rtl support -->
+            <button @click="changeDirection">Change Direction</button>
             <br/>
             <grid-layout
                     :layout="layout"
@@ -46,6 +48,7 @@
     import GridLayout from './GridLayout.vue';
     //import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
     import TestElement from './TestElement.vue';
+    var eventBus = require('./eventBus');
 
     var testLayout = [
         {"x":0,"y":0,"w":2,"h":2,"i":"0"},
@@ -110,6 +113,23 @@
                 var item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
                 this.index++;
                 this.layout.push(item);
+            },
+            /**
+             * Add change direction button
+             */
+            changeDirection() {
+                let documentDirection = (document.dir !=undefined) ?
+                    document.dir :
+                    document.getElementsByTagName("html")[0].getAttribute("dir");
+                let toggle = "";
+                if (documentDirection == "rtl") {
+                    toggle = "ltr"
+                } else {
+                    toggle = "rtl"
+                }
+                var html = document.getElementsByTagName("html")[0];
+                html.setAttribute("dir", toggle);
+                eventBus.$emit('directionchange');
             }
         },
     }

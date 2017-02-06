@@ -17,7 +17,6 @@ export type Size = {width: number, height: number};
 export type ResizeEvent = {e: Event, node: HTMLElement, size: Size};
 
 const isProduction = process.env.NODE_ENV === 'production';
-
 /**
  * Return the bottom coordinate of the layout.
  *
@@ -27,7 +26,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 export function bottom(layout: Layout): number {
   let max = 0, bottomY;
   for (let i = 0, len = layout.length; i < len; i++) {
-    bottomY = layout[i].y + layout[i].h;
+    bottomY = layout[i]. y + layout[i].h;
     if (bottomY > max) max = bottomY;
   }
   return max;
@@ -307,6 +306,29 @@ export function setTransform(top, left, width, height): Object {
     position: 'absolute'
   };
 }
+/**
+ * Just like the setTransform method, but instead it will return a negative value of right.
+ *
+ * @param top
+ * @param right
+ * @param width
+ * @param height
+ * @returns {{transform: string, WebkitTransform: string, MozTransform: string, msTransform: string, OTransform: string, width: string, height: string, position: string}}
+ */
+export function setTransformRtl(top, right, width, height): Object {
+    // Replace unitless items with px
+    const translate = "translate(" + right * -1 + "px," + top + "px)";
+    return {
+        transform: translate,
+        WebkitTransform: translate,
+        MozTransform: translate,
+        msTransform: translate,
+        OTransform: translate,
+        width: width + "px",
+        height: height + "px",
+        position: 'absolute'
+    };
+}
 
 export function setTopLeft(top, left, width, height): Object {
     return {
@@ -317,6 +339,25 @@ export function setTopLeft(top, left, width, height): Object {
         position: 'absolute'
     };
 }
+/**
+ * Just like the setTopLeft method, but instead, it will return a right property instead of left.
+ *
+ * @param top
+ * @param right
+ * @param width
+ * @param height
+ * @returns {{top: string, right: string, width: string, height: string, position: string}}
+ */
+export function setTopRight(top, right, width, height): Object {
+    return {
+        top: top + "px",
+        right: right+ "px",
+        width: width + "px",
+        height: height + "px",
+        position: 'absolute'
+    };
+}
+
 
 /**
  * Get layout items sorted from top left to right and down.

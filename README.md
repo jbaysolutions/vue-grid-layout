@@ -41,6 +41,7 @@ TODO UPDATE CHANGELOG
 * Bounds checking for dragging and resizing
 * Widgets may be added or removed without rebuilding grid
 * Layout can be serialized and restored
+* Automatic RTL support
 
 
 ## Installation
