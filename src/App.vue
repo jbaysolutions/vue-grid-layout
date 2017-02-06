@@ -117,10 +117,10 @@
                 this.layout.push(item);
             },
             move: function(i, newX, newY){
-                console.log(i, newX, newY)
+                console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
             },
             resize: function(i, newH, newW){
-                console.log(i, newH, newW)
+                console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
             },         
             /**
              * Add change direction button
