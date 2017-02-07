@@ -151,6 +151,13 @@
             },
             layout: function () {
                 this.layoutUpdate();
+            },
+            //usually used to switch grid-item draggable or& resizable
+            isDraggable(){
+              eventBus.$emit("changeDraggable", this.isDraggable);
+            },
+            isResizable(){
+              eventBus.$emit("changeResizable", this.isResizable);
             }
         },
         methods: {
