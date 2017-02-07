@@ -197,6 +197,13 @@
                 this.rtl = (direction == "rtl");
                 this.compact();
             });
+            //sync with the parent component when changes happen
+            eventBus.$on('changeResizable', function(p) {
+              self.isResizable = p;
+            });
+            eventBus.$on('changeDraggable', function(p) {
+              self.isDraggable = p;
+            });
         },
         mounted: function() {
             this.cols = this.$parent.colNum;
