@@ -69,12 +69,14 @@
 <script>
     import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from './utils';
     import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
+    var EventMixins = require('./EventMixins');
     var eventBus = require('./eventBus');
 
     var interact = require("interact.js");
 
     export default {
         name: "GridItem",
+        mixins: [EventMixins],
         props: {
             /*cols: {
                 type: Number,
@@ -179,18 +181,20 @@
             }
         },
         created () {
+            this.eventID = this.$parent.eventID;
+
             var self = this;
-            eventBus.$on('updateWidth', function(width) {
+            eventBus.$on(this._eventName('updateWidth'), function(width) {
                 self.updateWidth(width);
             });
-            eventBus.$on('compact', function(layout) {
+            eventBus.$on(this._eventName('compact'), function(layout) {
                 self.compact(layout);
             });
             var direction = (document.dir !=undefined) ?
                 document.dir :
                 document.getElementsByTagName("html")[0].getAttribute("dir");
             this.rtl = (direction == "rtl");
-            eventBus.$on('directionchange', (direction) => {
+            eventBus.$on(this._eventName('directionchange'), (direction) => {
                 var direction = (document.dir != undefined) ?
                     document.dir :
                     document.getElementsByTagName("html")[0].getAttribute("dir");
@@ -377,7 +381,7 @@
                 if (this.w !== pos.w || this.h !== pos.h) {
                     this.$emit("resize", this.i, pos.h, pos.w);
                 }
-                eventBus.$emit("resizeEvent", event.type, this.i, this.x, this.y, pos.h, pos.w);
+                eventBus.$emit(this._eventName("resizeEvent"), event.type, this.i, this.x, this.y, pos.h, pos.w);
             },
             handleDrag(event) {
                 if (this.isResizing) return;
@@ -449,7 +453,7 @@
                 if (this.x !== pos.x || this.y !== pos.y) {
                     this.$emit("move", this.i, pos.x, pos.y);
                 }
-                eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.h, this.w);
+                eventBus.$emit(this._eventName("dragEvent"), event.type, this.i, pos.x, pos.y, this.h, this.w);
             },
             calcPosition: function(x, y, w, h) {
                 const colWidth = this.calcColWidth();
