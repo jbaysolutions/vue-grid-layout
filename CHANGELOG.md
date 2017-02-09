@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.1 (Fev 9, 2017)
+
+* Implemented #13, dynamic row height update support
+* Implemented #23, dynamic enable/disable dragging and resizing support
+* Implemented #21, moved and resized events
+
+
 ## 2.1.0 (Fev 6, 2017)
 
 * RTL support (thanks [easteregg](https://github.com/easteregg))
