@@ -129,6 +129,8 @@ or include the script in your html (download from [releases](https://github.com/
 ### Events
 
 Move and resize event listeners can be added to each grid-item, so that the parent Vue can be notified when a grid element is being moved or resized.
+Moved and resized event listeners can be added, if the only notification needed is when an item is finished moving or resizing.
+
 Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/02-events.html)   
 
 ````html
@@ -151,7 +153,9 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
                    :h="item.h"
                    :i="item.i"
                    @resize="resizeEvent"
-                   @move="moveEvent">
+                   @move="moveEvent"
+                   @resized="resizedEvent"
+                   @moved="movedEvent">
             {{item.i}}
         </grid-item>
     </grid-layout>
@@ -170,6 +174,22 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 ```javascript
     resizeEvent: function(i, newH, newW){
         console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
+    },
+``` 
+
+* Moved event: every time an item is finished being moved and changes position
+
+```javascript
+    movedEvent: function(i, newX, newY){
+        console.log("MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
+    },
+```
+
+* Resized event: every time an item is finished being resized and changes size
+ 
+```javascript
+    resizedEvent: function(i, newH, newW){
+        console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW);
     },
 ``` 
 

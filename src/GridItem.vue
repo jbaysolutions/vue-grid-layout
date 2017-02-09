@@ -180,7 +180,12 @@
                 rtl: false,
 
                 dragEventSet: false,
-                resizeEventSet: false
+                resizeEventSet: false,
+
+                previousW: null,
+                previousH: null,
+                previousX: null,
+                previousY: null,
             }
         },
         created () {
@@ -353,6 +358,8 @@
                 const newSize = {width: 0, height: 0};
                 switch (event.type) {
                     case "resizestart":
+                        this.previousW = this.w;
+                        this.previousH = this.h;
                         var pos = this.calcPosition(this.x, this.y, this.w, this.h);
                         newSize.width = pos.width;
                         newSize.height = pos.height;
@@ -411,6 +418,9 @@
                 if (this.w !== pos.w || this.h !== pos.h) {
                     this.$emit("resize", this.i, pos.h, pos.w);
                 }
+                if (event.type === "resizeend" && (this.previousW !== this.w || this.previousH !== this.h)) {
+                    this.$emit("resized", this.i, pos.h, pos.w);
+                }
                 eventBus.$emit("resizeEvent", event.type, this.i, this.x, this.y, pos.h, pos.w);
             },
             handleDrag(event) {
@@ -426,6 +436,9 @@
                 const newPosition = {top: 0, left: 0};
                 switch (event.type) {
                     case "dragstart":
+                        this.previousX = this.x;
+                        this.previousY = this.y;
+
                         var parentRect = event.target.offsetParent.getBoundingClientRect();
                         var clientRect = event.target.getBoundingClientRect();
                         if (this.rtl) {
@@ -482,6 +495,9 @@
 
                 if (this.x !== pos.x || this.y !== pos.y) {
                     this.$emit("move", this.i, pos.x, pos.y);
+                }
+                if (event.type === "dragend" && (this.previousX !== this.x || this.previousY !== this.y)) {
+                    this.$emit("moved", this.i, pos.x, pos.y);
                 }
                 eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.h, this.w);
             },

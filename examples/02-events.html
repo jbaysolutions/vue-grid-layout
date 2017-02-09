@@ -50,7 +50,10 @@
                            :h="item.h"
                            :i="item.i"
                            @resize="resizeEvent"
-                           @move="moveEvent">
+                           @move="moveEvent"
+                           @resized="resizedEvent"
+                           @moved="movedEvent"
+                >
                     <span class="text">{{item.i}}</span>
                 </grid-item>
             </grid-layout>

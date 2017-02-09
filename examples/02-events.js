@@ -58,6 +58,17 @@ new Vue({
             this.eventLog.push(msg);
             console.log(msg);
         },
+        movedEvent: function(i, newX, newY){
+            var msg = "MOVED i=" + i + ", X=" + newX + ", Y=" + newY;
+            this.eventLog.push(msg);
+            console.log(msg);
+
+        },
+        resizedEvent: function(i, newH, newW){
+            var msg = "RESIZED i=" + i + ", H=" + newH + ", W=" + newW;
+            this.eventLog.push(msg);
+            console.log(msg);
+        },
     }
 });
 
