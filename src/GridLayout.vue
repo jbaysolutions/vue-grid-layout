@@ -152,6 +152,9 @@
             layout: function () {
                 this.layoutUpdate();
             },
+            rowHeight: function() {
+                eventBus.$emit("setRowHeight", this.rowHeight);
+            },
             isDraggable: function() {
                 eventBus.$emit("setDraggable", this.isDraggable);
             },

@@ -202,11 +202,11 @@
             eventBus.$on('setResizable', function(isResizable) {
                 self.isResizable = isResizable;
             });
-            /*eventBus.$on('setRowHeight', function(rowHeight) {
-                this.rowHeight = rowHeight;
+            eventBus.$on('setRowHeight', function(rowHeight) {
+                self.rowHeight = rowHeight;
             });
-            eventBus.$on('setColNum', function(colNum) {
-                this.cols = colNum;
+            /*eventBus.$on('setColNum', function(colNum) {
+                self.cols = colNum;
             });*/
             var direction = (document.dir !=undefined) ?
                 document.dir :
@@ -274,6 +274,9 @@
                         enabled:false
                     });
                 }
+            },
+            rowHeight: function() {
+                this.createStyle();
             },
             cols: function() {
                 this.createStyle();

@@ -21,10 +21,12 @@
             <input type="checkbox" v-model="draggable"/> Draggable
             <input type="checkbox" v-model="resizable"/> Resizable
             <br/>
+            Row Height: <input type="number" v-model="rowHeight"/>
+            <br/>
             <grid-layout
                     :layout="layout"
                     :col-num="12"
-                    :row-height="30"
+                    :row-height="rowHeight"
                     :is-draggable="draggable"
                     :is-resizable="resizable"
                     :vertical-compact="true"
@@ -93,6 +95,7 @@
                 layout: JSON.parse(JSON.stringify(testLayout)),
                 draggable: true,
                 resizable: true,
+                rowHeight: 30,
                 colNum: 0,
                 index: 0
             }
