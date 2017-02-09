@@ -96,16 +96,18 @@
             maxRows: {
                 type: Number,
                 required: true
-            },
+            },*/
             isDraggable: {
                 type: Boolean,
-                required: true
+                required: false,
+                default: null
             },
             isResizable: {
                 type: Boolean,
-                required: true
+                required: false,
+                default: null
             },
-            useCssTransforms: {
+            /*useCssTransforms: {
                 type: Boolean,
                 required: true
             },
@@ -162,8 +164,8 @@
                 rowHeight: 30,
                 margin: [10, 10],
                 maxRows: Infinity,
-                isDraggable: true,
-                isResizable: true,
+//                isDraggable: null,
+//                isResizable: null,
                 useCssTransforms: true,
 
                 isDragging: false,
@@ -175,7 +177,10 @@
                 lastW: NaN,
                 lastH: NaN,
                 style: {},
-                rtl: false
+                rtl: false,
+
+                dragEventSet: false,
+                resizeEventSet: false
             }
         },
         created () {
@@ -186,6 +191,18 @@
             eventBus.$on('compact', function(layout) {
                 self.compact(layout);
             });
+            eventBus.$on('setDraggable', function(isDraggable) {
+                self.isDraggable = isDraggable;
+            });
+            eventBus.$on('setResizable', function(isResizable) {
+                self.isResizable = isResizable;
+            });
+            /*eventBus.$on('setRowHeight', function(rowHeight) {
+                this.rowHeight = rowHeight;
+            });
+            eventBus.$on('setColNum', function(colNum) {
+                this.cols = colNum;
+            });*/
             var direction = (document.dir !=undefined) ?
                 document.dir :
                 document.getElementsByTagName("html")[0].getAttribute("dir");
@@ -208,34 +225,51 @@
             this.isResizable = this.$parent.isResizable;
             this.useCssTransforms = this.$parent.useCssTransforms;
             this.createStyle();
-
-            var self = this;
-            if (this.isDraggable) {
-                if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item);
-                }
-                this.interactObj
-                    .draggable({
-                    })
-                    .on('dragstart dragmove dragend', function(event) {
-                        self.handleDrag(event);
-                    });
-            }
-            if (this.isResizable) {
-                if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item);
-                }
-                this.interactObj
-                    .resizable({
-                        preserveAspectRatio: false,
-                        edges: {left: false, right: true, bottom: true, top: false}
-                    })
-                    .on('resizestart resizemove resizeend', function (event) {
-                        self.handleResize(event);
-                    });
-            }
         },
         watch: {
+            isDraggable: function() {
+                var self = this;
+                if (this.interactObj == null) {
+                    this.interactObj = interact(this.$refs.item);
+                }
+                if (this.isDraggable) {
+                    this.interactObj.draggable({});
+                    if (!this.dragEventSet) {
+                        this.dragEventSet = true;
+                        this.interactObj.on('dragstart dragmove dragend', function (event) {
+                            self.handleDrag(event);
+                        });
+                    }
+                } else {
+                    this.interactObj.draggable({
+                            enabled:false
+                        });
+                }
+            },
+            isResizable: function() {
+                var self = this;
+                if (this.interactObj == null) {
+                    this.interactObj = interact(this.$refs.item);
+                }
+                if (this.isResizable) {
+                    this.interactObj
+                        .resizable({
+                            preserveAspectRatio: false,
+                            edges: {left: false, right: true, bottom: true, top: false}
+                        });
+                    if (!this.resizeEventSet) {
+                        this.resizeEventSet = true;
+                        this.interactObj
+                            .on('resizestart resizemove resizeend', function (event) {
+                                self.handleResize(event);
+                            });
+                    }
+                } else {
+                    this.interactObj.resizable({
+                        enabled:false
+                    });
+                }
+            },
             cols: function() {
                 this.createStyle();
             },

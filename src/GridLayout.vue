@@ -151,12 +151,18 @@
             },
             layout: function () {
                 this.layoutUpdate();
+            },
+            isDraggable: function() {
+                eventBus.$emit("setDraggable", this.isDraggable);
+            },
+            isResizable: function() {
+                eventBus.$emit("setResizable", this.isResizable);
             }
         },
         methods: {
             layoutUpdate() {
                 if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {
-                    console.log("### LAYOUT UPDATE!");
+//                    console.log("### LAYOUT UPDATE!");
                     this.lastLayoutLength = this.layout.length;
                     compact(this.layout, this.verticalCompact);
 

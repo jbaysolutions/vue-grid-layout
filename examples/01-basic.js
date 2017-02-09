@@ -37,6 +37,8 @@ new Vue({
     },
     data: {
         layout: testLayout,
+        draggable: true,
+        resizable: true,
         index: 0
     },
 /*

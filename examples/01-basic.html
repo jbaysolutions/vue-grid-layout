@@ -29,11 +29,14 @@
             <!--<button @click="decreaseWidth">Decrease Width</button>
             <button @click="increaseWidth">Increase Width</button>
             <button @click="addItem">Add an item</button>-->
+            <input type="checkbox" v-model="draggable"/> Draggable
+            <input type="checkbox" v-model="resizable"/> Resizable
+            <br/>
             <grid-layout :layout="layout"
                          :col-num="12"
                          :row-height="30"
-                         :is-draggable="true"
-                         :is-resizable="true"
+                         :is-draggable="draggable"
+                         :is-resizable="resizable"
                          :vertical-compact="true"
                          :use-css-transforms="true"
             >

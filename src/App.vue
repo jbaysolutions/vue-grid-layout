@@ -18,13 +18,15 @@
             <button @click="addItem">Add an item</button>
             <!-- Add to show rtl support -->
             <button @click="changeDirection">Change Direction</button>
+            <input type="checkbox" v-model="draggable"/> Draggable
+            <input type="checkbox" v-model="resizable"/> Resizable
             <br/>
             <grid-layout
                     :layout="layout"
                     :col-num="12"
                     :row-height="30"
-                    :is-draggable="true"
-                    :is-resizable="true"
+                    :is-draggable="draggable"
+                    :is-resizable="resizable"
                     :vertical-compact="true"
                     :use-css-transforms="true"
             >
@@ -86,6 +88,8 @@
         data () {
             return {
                 layout: JSON.parse(JSON.stringify(testLayout)),
+                draggable: true,
+                resizable: true,
                 colNum: 0,
                 index: 0
             }
