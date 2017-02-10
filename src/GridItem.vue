@@ -190,21 +190,43 @@
         },
         created () {
             var self = this;
-            eventBus.$on('updateWidth', function(width) {
+
+            // Accessible refernces of functions for removing in beforeDestroy
+            self.updateWidthHandler = function(width) {
                 self.updateWidth(width);
-            });
-            eventBus.$on('compact', function(layout) {
+            };
+
+            self.compactHandler = function(layout) {
                 self.compact(layout);
-            });
-            eventBus.$on('setDraggable', function(isDraggable) {
+            };
+
+            self.setDraggableHandler = function(isDraggable) {
                 self.isDraggable = isDraggable;
-            });
-            eventBus.$on('setResizable', function(isResizable) {
+            };
+
+            self.setResizableHandler = function(isResizable) {
                 self.isResizable = isResizable;
-            });
-            eventBus.$on('setRowHeight', function(rowHeight) {
+            };
+
+            self.setRowHeightHandler = function(rowHeight) {
                 self.rowHeight = rowHeight;
-            });
+            };
+
+            self.directionchangeHandler = (direction) => {
+                var direction = (document.dir != undefined) ?
+                    document.dir :
+                    document.getElementsByTagName("html")[0].getAttribute("dir");
+                this.rtl = (direction == "rtl");
+                this.compact();
+            };
+
+            eventBus.$on('updateWidth', self.updateWidthHandler);
+            eventBus.$on('compact', self.compactHandler);
+            eventBus.$on('setDraggable', self.setDraggableHandler);
+            eventBus.$on('setResizable', self.setResizableHandler);
+            eventBus.$on('setRowHeight', self.setRowHeightHandler);
+            eventBus.$on('directionchange', self.directionchangeHandler);
+
             /*eventBus.$on('setColNum', function(colNum) {
                 self.cols = colNum;
             });*/
@@ -212,13 +234,15 @@
                 document.dir :
                 document.getElementsByTagName("html")[0].getAttribute("dir");
             this.rtl = (direction == "rtl");
-            eventBus.$on('directionchange', (direction) => {
-                var direction = (document.dir != undefined) ?
-                    document.dir :
-                    document.getElementsByTagName("html")[0].getAttribute("dir");
-                this.rtl = (direction == "rtl");
-                this.compact();
-            });
+        },
+        beforeDestroy: function(){
+            //Remove listeners
+            eventBus.$off('updateWidth', self.updateWidthHandler);
+            eventBus.$off('compact', self.compactHandler);
+            eventBus.$off('setDraggable', self.setDraggableHandler);
+            eventBus.$off('setResizable', self.setResizableHandler);
+            eventBus.$off('setRowHeight', self.setRowHeightHandler);
+            eventBus.$off('directionchange', self.directionchangeHandler);
         },
         mounted: function() {
             this.cols = this.$parent.colNum;

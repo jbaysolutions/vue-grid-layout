@@ -91,12 +91,23 @@
         created () {
             var self = this;
 
-            eventBus.$on('resizeEvent', function(eventType, i, x, y, h, w) {
+            // Accessible refernces of functions for removing in beforeDestroy
+            self.resizeEventHandler = function(eventType, i, x, y, h, w) {
                 self.resizeEvent(eventType, i, x, y, h, w);
-            });
-            eventBus.$on('dragEvent', function(eventType, i, x, y, h, w) {
+            };
+
+            self.dragEventHandler = function(eventType, i, x, y, h, w) {
                 self.dragEvent(eventType, i, x, y, h, w);
-            });
+            };
+
+            eventBus.$on('resizeEvent', self.resizeEventHandler);
+            eventBus.$on('dragEvent', self.dragEventHandler);
+        },
+        beforeDestroy: function(){
+            //Remove listeners
+            eventBus.$off('resizeEvent', self.resizeEventHandler);
+            eventBus.$off('dragEvent', self.dragEventHandler);
+            window.removeEventListener("resize", self.onWindowResize)
         },
         mounted: function() {
             this.$nextTick(function () {
