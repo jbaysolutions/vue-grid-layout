@@ -97,6 +97,10 @@
                 lastLayoutLength: 0,
             };
         },
+        beforeDestroy: function(){
+            //Remove listeners
+            window.removeEventListener("resize", self.onWindowResize)
+        },
         mounted() {
             this.$nextTick(function () {
                 validateLayout(this.layout);
