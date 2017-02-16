@@ -46,6 +46,7 @@
                            @moved="moved"
                 >
                     <test-element :text="item.i"></test-element>
+                    <!--<button @click="clicked">CLICK ME!</button>-->
                 </grid-item>
             </grid-layout>
         </div>
@@ -104,6 +105,9 @@
             this.index = this.layout.length;
         },
         methods: {
+            clicked: function() {
+                window.alert("CLICK!");
+            },
             increaseWidth: function(item) {
                 var width = document.getElementById("content").offsetWidth;
                 width += 20;

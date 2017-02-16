@@ -235,7 +235,7 @@
             isDraggable: function() {
                 var self = this;
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item);
+                    this.interactObj = interact(this.$refs.item, {ignoreFrom: "a, button"});
                 }
                 if (this.isDraggable) {
                     this.interactObj.draggable({});
@@ -254,7 +254,7 @@
             isResizable: function() {
                 var self = this;
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item);
+                    this.interactObj = interact(this.$refs.item, {ignoreFrom: "a, button"});
                 }
                 if (this.isResizable) {
                     this.interactObj
