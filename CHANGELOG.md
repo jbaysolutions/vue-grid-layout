@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.2 (Fev 16, 2017)
+
+* Implemented #12, buttons on GridItems would trigger drag on mobile
+* Implemented #24, listeners removal beforeDestroy (thanks [pbabey](https://github.com/pbabey))
+
+
 ## 2.1.1 (Fev 9, 2017)
 
 * Implemented #13, dynamic row height update support
