@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.3 (Mar 9, 2017)
+
+* Fixed #27, props mutation warnings
+
+
 ## 2.1.2 (Fev 16, 2017)
 
 * Implemented #12, buttons on GridItems would trigger drag on mobile

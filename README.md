@@ -2,7 +2,7 @@
 
 vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.1.2 (Supports Vue 2.0+)
+### **Current version:** 2.1.3 (Supports Vue 2.*)
 
 ### **For Vue 1 use version [1.0.0](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.0)** 
 
@@ -24,8 +24,6 @@ vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.i
 
 
 TODO UPDATE DOCS
-TODO UPDATE CHANGELOG
-
 -->
 
 #### Projects using vue-grid-layout
@@ -125,6 +123,9 @@ or include the script in your html (download from [releases](https://github.com/
         </grid-item>
     </grid-layout>
 ```` 
+
+<!-- TODO DOCUMENTAR PROPS DE GridLayout E GridItem -->
+
 
 ### Events
 
