@@ -17,14 +17,18 @@
     }
 </style>
 <script>
+    import Vue from 'vue';
     var elementResizeDetectorMaker = require("element-resize-detector");
 
     import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
-    var eventBus = require('./eventBus');
+    //var eventBus = require('./eventBus');
     import GridItem from './GridItem.vue'
 
     export default {
         name: "GridLayout",
+        provide: {
+            eventBus: new Vue()
+        },
         components: {
             GridItem,
         },
@@ -100,13 +104,14 @@
                 self.dragEvent(eventType, i, x, y, h, w);
             };
 
-            eventBus.$on('resizeEvent', self.resizeEventHandler);
-            eventBus.$on('dragEvent', self.dragEventHandler);
+            self.eventBus = self._provided.eventBus;
+            self.eventBus.$on('resizeEvent', self.resizeEventHandler);
+            self.eventBus.$on('dragEvent', self.dragEventHandler);
         },
         beforeDestroy: function(){
             //Remove listeners
-            eventBus.$off('resizeEvent', self.resizeEventHandler);
-            eventBus.$off('dragEvent', self.dragEventHandler);
+            this.eventBus.$off('resizeEvent', self.resizeEventHandler);
+            this.eventBus.$off('dragEvent', self.dragEventHandler);
             window.removeEventListener("resize", self.onWindowResize)
         },
         mounted: function() {
@@ -156,7 +161,7 @@
             width: function () {
                 this.$nextTick(function () {
                     //this.$broadcast("updateWidth", this.width);
-                    eventBus.$emit("updateWidth", this.width);
+                    this.eventBus.$emit("updateWidth", this.width);
                     this.updateHeight();
                 });
             },
@@ -164,13 +169,13 @@
                 this.layoutUpdate();
             },
             rowHeight: function() {
-                eventBus.$emit("setRowHeight", this.rowHeight);
+                this.eventBus.$emit("setRowHeight", this.rowHeight);
             },
             isDraggable: function() {
-                eventBus.$emit("setDraggable", this.isDraggable);
+                this.eventBus.$emit("setDraggable", this.isDraggable);
             },
             isResizable: function() {
-                eventBus.$emit("setResizable", this.isResizable);
+                this.eventBus.$emit("setResizable", this.isResizable);
             }
         },
         methods: {
@@ -181,7 +186,7 @@
                     compact(this.layout, this.verticalCompact);
 
                     //this.$broadcast("updateWidth", this.width);
-                    eventBus.$emit("updateWidth", this.width);
+                    this.eventBus.$emit("updateWidth", this.width);
                     this.updateHeight();
                 }
             },
@@ -208,7 +213,7 @@
                     this.placeholder.w = w;
                     this.placeholder.h = h;
                     //this.$broadcast("updateWidth", this.width);
-                    eventBus.$emit("updateWidth", this.width);
+                    this.eventBus.$emit("updateWidth", this.width);
                 } else {
                     this.isDragging = false;
                 }
@@ -220,7 +225,7 @@
                 this.layout = moveElement(this.layout, l, x, y, true);
                 compact(this.layout, this.verticalCompact);
                 // needed because vue can't detect changes on array element properties
-                eventBus.$emit("compact");
+                this.eventBus.$emit("compact");
                 this.updateHeight();
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
@@ -232,7 +237,7 @@
                     this.placeholder.w = w;
                     this.placeholder.h = h;
                     //this.$broadcast("updateWidth", this.width);
-                    eventBus.$emit("updateWidth", this.width);
+                    this.eventBus.$emit("updateWidth", this.width);
 
                 } else {
                     this.isDragging = false;
@@ -241,7 +246,7 @@
                 l.h = h;
                 l.w = w;
                 compact(this.layout, this.verticalCompact);
-                eventBus.$emit("compact");
+                this.eventBus.$emit("compact");
                 this.updateHeight();
             },
         },

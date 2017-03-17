@@ -69,7 +69,7 @@
 <script>
     import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from './utils';
     import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
-    var eventBus = require('./eventBus');
+//    var eventBus = require('./eventBus');
 
     var interact = require("interact.js");
 
@@ -157,6 +157,7 @@
                 required: true
             }
         },
+        inject: ["eventBus"],
         data: function() {
             return {
                 cols: 1,
@@ -224,14 +225,14 @@
                 this.compact();
             };
 
-            eventBus.$on('updateWidth', self.updateWidthHandler);
-            eventBus.$on('compact', self.compactHandler);
-            eventBus.$on('setDraggable', self.setDraggableHandler);
-            eventBus.$on('setResizable', self.setResizableHandler);
-            eventBus.$on('setRowHeight', self.setRowHeightHandler);
-            eventBus.$on('directionchange', self.directionchangeHandler);
+            this.eventBus.$on('updateWidth', self.updateWidthHandler);
+            this.eventBus.$on('compact', self.compactHandler);
+            this.eventBus.$on('setDraggable', self.setDraggableHandler);
+            this.eventBus.$on('setResizable', self.setResizableHandler);
+            this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
+            this.eventBus.$on('directionchange', self.directionchangeHandler);
 
-            /*eventBus.$on('setColNum', function(colNum) {
+            /*this.eventBus.$on('setColNum', function(colNum) {
                 self.cols = colNum;
             });*/
             var direction = (document.dir !=undefined) ?
@@ -241,12 +242,12 @@
         },
         beforeDestroy: function(){
             //Remove listeners
-            eventBus.$off('updateWidth', self.updateWidthHandler);
-            eventBus.$off('compact', self.compactHandler);
-            eventBus.$off('setDraggable', self.setDraggableHandler);
-            eventBus.$off('setResizable', self.setResizableHandler);
-            eventBus.$off('setRowHeight', self.setRowHeightHandler);
-            eventBus.$off('directionchange', self.directionchangeHandler);
+            this.eventBus.$off('updateWidth', self.updateWidthHandler);
+            this.eventBus.$off('compact', self.compactHandler);
+            this.eventBus.$off('setDraggable', self.setDraggableHandler);
+            this.eventBus.$off('setResizable', self.setResizableHandler);
+            this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
+            this.eventBus.$off('directionchange', self.directionchangeHandler);
         },
         mounted: function() {
             this.cols = this.$parent.colNum;
@@ -466,7 +467,7 @@
                 if (event.type === "resizeend" && (this.previousW !== this.w || this.previousH !== this.h)) {
                     this.$emit("resized", this.i, pos.h, pos.w);
                 }
-                eventBus.$emit("resizeEvent", event.type, this.i, this.x, this.y, pos.h, pos.w);
+                this.eventBus.$emit("resizeEvent", event.type, this.i, this.x, this.y, pos.h, pos.w);
             },
             handleDrag(event) {
                 if (this.isResizing) return;
@@ -544,7 +545,7 @@
                 if (event.type === "dragend" && (this.previousX !== this.x || this.previousY !== this.y)) {
                     this.$emit("moved", this.i, pos.x, pos.y);
                 }
-                eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.h, this.w);
+                this.eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.h, this.w);
             },
             calcPosition: function(x, y, w, h) {
                 const colWidth = this.calcColWidth();

@@ -32,7 +32,24 @@
                     :vertical-compact="true"
                     :use-css-transforms="true"
             >
-                <grid-item v-for="item in layout"
+                <grid-item v-for="item in layout" :key="item.i"
+                           :x="item.x"
+                           :y="item.y"
+                           :w="item.w"
+                           :h="item.h"
+                           :min-w="2"
+                           :min-h="2"
+                           :i="item.i"
+                           @resize="resize"
+                           @move="move"
+                           @resized="resized"
+                           @moved="moved"
+                >
+                    <test-element :text="item.i"></test-element>
+                    <!--<button @click="clicked">CLICK ME!</button>-->
+                </grid-item>
+<!--
+                <grid-item v-for="item in layout" :key="item.i"
                            :x="item.x"
                            :y="item.y"
                            :w="item.w"
@@ -48,8 +65,8 @@
                            @moved="moved"
                 >
                     <test-element :text="item.i"></test-element>
-                    <!--<button @click="clicked">CLICK ME!</button>-->
                 </grid-item>
+-->
             </grid-layout>
         </div>
     </div>
@@ -60,7 +77,7 @@
     import GridLayout from './GridLayout.vue';
     //import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
     import TestElement from './TestElement.vue';
-    var eventBus = require('./eventBus');
+    //var eventBus = require('./eventBus');
 
     var testLayout = [
         {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true},
@@ -159,7 +176,7 @@
                 }
                 var html = document.getElementsByTagName("html")[0];
                 html.setAttribute("dir", toggle);
-                eventBus.$emit('directionchange');
+                //eventBus.$emit('directionchange');
             }
         },
     }
