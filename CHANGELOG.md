@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.4 (Mar 20, 2017)
+
+* Implemented #32, support for multiple grid instances on the same page
+
 ## 2.1.3 (Mar 9, 2017)
 
 * Fixed #27, props mutation warnings
