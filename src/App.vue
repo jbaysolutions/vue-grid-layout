@@ -11,6 +11,14 @@
                     </div>
                 </div>
             </div>
+            <div class="layoutJSON">
+                Displayed as <code>[x, y, w, h]</code>:
+                <div class="columns">
+                    <div class="layoutItem" v-for="item in layout2">
+                        <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="content">
             <button @click="decreaseWidth">Decrease Width</button>
@@ -48,8 +56,18 @@
                     <test-element :text="item.i"></test-element>
                     <!--<button @click="clicked">CLICK ME!</button>-->
                 </grid-item>
-<!--
-                <grid-item v-for="item in layout" :key="item.i"
+            </grid-layout>
+            <hr/>
+            <grid-layout
+                    :layout="layout2"
+                    :col-num="12"
+                    :row-height="rowHeight"
+                    :is-draggable="draggable"
+                    :is-resizable="resizable"
+                    :vertical-compact="true"
+                    :use-css-transforms="true"
+            >
+                <grid-item v-for="item in layout2" :key="item.i"
                            :x="item.x"
                            :y="item.y"
                            :w="item.w"
@@ -59,14 +77,9 @@
                            :i="item.i"
                            :is-draggable="item.draggable"
                            :is-resizable="item.resizable"
-                           @resize="resize"
-                           @move="move"
-                           @resized="resized"
-                           @moved="moved"
                 >
                     <test-element :text="item.i"></test-element>
                 </grid-item>
--->
             </grid-layout>
         </div>
     </div>
@@ -113,6 +126,7 @@
         data () {
             return {
                 layout: JSON.parse(JSON.stringify(testLayout)),
+                layout2: JSON.parse(JSON.stringify(testLayout)),
                 draggable: true,
                 resizable: true,
                 rowHeight: 30,

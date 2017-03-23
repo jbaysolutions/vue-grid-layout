@@ -27,7 +27,7 @@
     export default {
         name: "GridLayout",
         provide: {
-            eventBus: new Vue()
+            eventBus: null
         },
         components: {
             GridItem,
@@ -104,6 +104,7 @@
                 self.dragEvent(eventType, i, x, y, h, w);
             };
 
+            self._provided.eventBus =  new Vue();
             self.eventBus = self._provided.eventBus;
             self.eventBus.$on('resizeEvent', self.resizeEventHandler);
             self.eventBus.$on('dragEvent', self.dragEventHandler);
