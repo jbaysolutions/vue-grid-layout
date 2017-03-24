@@ -197,7 +197,7 @@
                 };
             },
             onWindowResize: function () {
-                if (this.$refs !== null && this.$refs.item !== null) {
+                if (this.$refs !== null && this.$refs.item !== null && this.$refs.item !== undefined) {
                     this.width = this.$refs.item.offsetWidth;
                 }
             },
