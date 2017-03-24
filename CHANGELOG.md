@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.5 (Mar 24, 2017)
+
+* Really fixed #22 #32, multiple grid instances were not working properly in 2.1.4
+* resizedEvent now also returns item width and height in pixels (implements #34)
+
+
 ## 2.1.4 (Mar 20, 2017)
 
 * Implemented #32, support for multiple grid instances on the same page

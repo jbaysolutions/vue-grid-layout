@@ -172,8 +172,8 @@
             moved: function(i, newX, newY){
                 console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
             },
-            resized: function(i, newH, newW){
-                console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW);
+            resized: function(i, newH, newW, newHPx, newWPx){
+                console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
             },
             /**
              * Add change direction button

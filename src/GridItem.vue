@@ -465,7 +465,7 @@
                     this.$emit("resize", this.i, pos.h, pos.w);
                 }
                 if (event.type === "resizeend" && (this.previousW !== this.w || this.previousH !== this.h)) {
-                    this.$emit("resized", this.i, pos.h, pos.w);
+                    this.$emit("resized", this.i, pos.h, pos.w, newSize.width, newSize.height);
                 }
                 this.eventBus.$emit("resizeEvent", event.type, this.i, this.x, this.y, pos.h, pos.w);
             },
