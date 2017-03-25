@@ -2,8 +2,9 @@
 
 vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.1.1 (Supports Vue 2.0+)
+### **Current version:** 2.1.5 (Supports Vue 2.2+)
 
+### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
 ### **For Vue 1 use version [1.0.0](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.0)** 
 
 <br/>
@@ -24,8 +25,6 @@ vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.i
 
 
 TODO UPDATE DOCS
-TODO UPDATE CHANGELOG
-
 -->
 
 #### Projects using vue-grid-layout
@@ -126,6 +125,9 @@ or include the script in your html (download from [releases](https://github.com/
     </grid-layout>
 ```` 
 
+<!-- TODO DOCUMENTAR PROPS DE GridLayout E GridItem -->
+
+
 ### Events
 
 Move and resize event listeners can be added to each grid-item, so that the parent Vue can be notified when a grid element is being moved or resized.
@@ -188,8 +190,17 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 * Resized event: every time an item is finished being resized and changes size
  
 ```javascript
-    resizedEvent: function(i, newH, newW){
-        console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW);
+    /**
+     * 
+     * @param i the item id/index
+     * @param newH new height in grid rows 
+     * @param newW new width in grid columns
+     * @param newHPx new height in pixels
+     * @param newWPx new width in pixels
+     * 
+     */
+    resizedEvent: function(i, newH, newW, newHPx, newWPx){
+        console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
     },
 ``` 
 

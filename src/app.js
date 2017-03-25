@@ -21,7 +21,6 @@ var testLayout = [
     {"x":2,"y":6,"w":2,"h":2,"i":"19"}
 ];
 
-// var Vue = require('vue');
 
 //Vue.config.devtools = true;
 

@@ -32,8 +32,8 @@ var GridItem = VueGridLayout.GridItem;
 new Vue({
     el: '#app',
     components: {
-        GridLayout,
-        GridItem,
+		"GridLayout": GridLayout,
+		"GridItem": GridItem
     },
     data: {
         layout: testLayout,

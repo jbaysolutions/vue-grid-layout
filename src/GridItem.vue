@@ -1,11 +1,11 @@
 <template>
     <div ref="item"
              class="vue-grid-item"
-             :class="{ 'vue-resizable' : isResizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
+             :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
              :style="style"
         >
         <slot></slot>
-        <span v-if="isResizable" ref="handle" :class="resizableHandleClass"></span>
+        <span v-if="resizable" ref="handle" :class="resizableHandleClass"></span>
     </div>
 </template>
 <style>
@@ -69,7 +69,7 @@
 <script>
     import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from './utils';
     import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
-    var eventBus = require('./eventBus');
+//    var eventBus = require('./eventBus');
 
     var interact = require("interact.js");
 
@@ -157,6 +157,7 @@
                 required: true
             }
         },
+        inject: ["eventBus"],
         data: function() {
             return {
                 cols: 1,
@@ -164,8 +165,8 @@
                 rowHeight: 30,
                 margin: [10, 10],
                 maxRows: Infinity,
-//                isDraggable: null,
-//                isResizable: null,
+                draggable: null,
+                resizable: null,
                 useCssTransforms: true,
 
                 isDragging: false,
@@ -201,11 +202,15 @@
             };
 
             self.setDraggableHandler = function(isDraggable) {
-                self.isDraggable = isDraggable;
+                if (self.isDraggable === null) {
+                    self.draggable = isDraggable;
+                }
             };
 
             self.setResizableHandler = function(isResizable) {
-                self.isResizable = isResizable;
+                if (self.isResizable === null) {
+                    self.resizable = isResizable;
+                }
             };
 
             self.setRowHeightHandler = function(rowHeight) {
@@ -220,14 +225,14 @@
                 this.compact();
             };
 
-            eventBus.$on('updateWidth', self.updateWidthHandler);
-            eventBus.$on('compact', self.compactHandler);
-            eventBus.$on('setDraggable', self.setDraggableHandler);
-            eventBus.$on('setResizable', self.setResizableHandler);
-            eventBus.$on('setRowHeight', self.setRowHeightHandler);
-            eventBus.$on('directionchange', self.directionchangeHandler);
+            this.eventBus.$on('updateWidth', self.updateWidthHandler);
+            this.eventBus.$on('compact', self.compactHandler);
+            this.eventBus.$on('setDraggable', self.setDraggableHandler);
+            this.eventBus.$on('setResizable', self.setResizableHandler);
+            this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
+            this.eventBus.$on('directionchange', self.directionchangeHandler);
 
-            /*eventBus.$on('setColNum', function(colNum) {
+            /*this.eventBus.$on('setColNum', function(colNum) {
                 self.cols = colNum;
             });*/
             var direction = (document.dir !=undefined) ?
@@ -237,12 +242,12 @@
         },
         beforeDestroy: function(){
             //Remove listeners
-            eventBus.$off('updateWidth', self.updateWidthHandler);
-            eventBus.$off('compact', self.compactHandler);
-            eventBus.$off('setDraggable', self.setDraggableHandler);
-            eventBus.$off('setResizable', self.setResizableHandler);
-            eventBus.$off('setRowHeight', self.setRowHeightHandler);
-            eventBus.$off('directionchange', self.directionchangeHandler);
+            this.eventBus.$off('updateWidth', self.updateWidthHandler);
+            this.eventBus.$off('compact', self.compactHandler);
+            this.eventBus.$off('setDraggable', self.setDraggableHandler);
+            this.eventBus.$off('setResizable', self.setResizableHandler);
+            this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
+            this.eventBus.$off('directionchange', self.directionchangeHandler);
         },
         mounted: function() {
             this.cols = this.$parent.colNum;
@@ -250,18 +255,29 @@
             this.containerWidth = this.$parent.width !== null ? this.$parent.width : 100;
             this.margin = this.$parent.margin !== undefined ? this.$parent.margin : [10, 10];
             this.maxRows = this.$parent.maxRows;
-            this.isDraggable = this.$parent.isDraggable;
-            this.isResizable = this.$parent.isResizable;
+            if (this.isDraggable === null) {
+                this.draggable = this.$parent.isDraggable;
+            } else {
+                this.draggable = this.isDraggable;
+            }
+            if (this.isResizable === null) {
+                this.resizable = this.$parent.isResizable;
+            } else {
+                this.resizable = this.isResizable;
+            }
             this.useCssTransforms = this.$parent.useCssTransforms;
             this.createStyle();
         },
         watch: {
             isDraggable: function() {
+                this.draggable = this.isDraggable;
+            },
+            draggable: function() {
                 var self = this;
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item);
+                    this.interactObj = interact(this.$refs.item, {ignoreFrom: "a, button"});
                 }
-                if (this.isDraggable) {
+                if (this.draggable) {
                     this.interactObj.draggable({});
                     if (!this.dragEventSet) {
                         this.dragEventSet = true;
@@ -276,11 +292,14 @@
                 }
             },
             isResizable: function() {
+               this.resizable = this.isResizable;
+            },
+            resizable: function() {
                 var self = this;
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item);
+                    this.interactObj = interact(this.$refs.item, {ignoreFrom: "a, button"});
                 }
-                if (this.isResizable) {
+                if (this.resizable) {
                     this.interactObj
                         .resizable({
                             preserveAspectRatio: false,
@@ -446,9 +465,9 @@
                     this.$emit("resize", this.i, pos.h, pos.w);
                 }
                 if (event.type === "resizeend" && (this.previousW !== this.w || this.previousH !== this.h)) {
-                    this.$emit("resized", this.i, pos.h, pos.w);
+                    this.$emit("resized", this.i, pos.h, pos.w, newSize.width, newSize.height);
                 }
-                eventBus.$emit("resizeEvent", event.type, this.i, this.x, this.y, pos.h, pos.w);
+                this.eventBus.$emit("resizeEvent", event.type, this.i, this.x, this.y, pos.h, pos.w);
             },
             handleDrag(event) {
                 if (this.isResizing) return;
@@ -526,7 +545,7 @@
                 if (event.type === "dragend" && (this.previousX !== this.x || this.previousY !== this.y)) {
                     this.$emit("moved", this.i, pos.x, pos.y);
                 }
-                eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.h, this.w);
+                this.eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.h, this.w);
             },
             calcPosition: function(x, y, w, h) {
                 const colWidth = this.calcColWidth();

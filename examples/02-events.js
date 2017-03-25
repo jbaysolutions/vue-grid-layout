@@ -32,8 +32,8 @@ var GridItem = VueGridLayout.GridItem;
 new Vue({
     el: '#app',
     components: {
-        GridLayout,
-        GridItem,
+        "GridLayout": GridLayout,
+        "GridItem": GridItem
     },
     data: {
         layout: testLayout,
@@ -64,8 +64,17 @@ new Vue({
             console.log(msg);
 
         },
-        resizedEvent: function(i, newH, newW){
-            var msg = "RESIZED i=" + i + ", H=" + newH + ", W=" + newW;
+        /**
+         *
+         * @param i the item id/index
+         * @param newH new height in grid rows
+         * @param newW new width in grid columns
+         * @param newHPx new height in pixels
+         * @param newWPx new width in pixels
+         *
+         */
+        resizedEvent: function(i, newH, newW, newHPx, newWPx){
+            var msg = "RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx;
             this.eventLog.push(msg);
             console.log(msg);
         },
