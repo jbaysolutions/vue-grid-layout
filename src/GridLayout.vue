@@ -220,6 +220,10 @@
                 }
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
+                //GetLayoutItem sometimes returns null object
+                if (l == null){
+                    l = {x:0, y:0}
+                }
                 l.x = x;
                 l.y = y;
                 // Move the element to the dragged location.
@@ -244,6 +248,10 @@
                     this.isDragging = false;
                 }
                 var l = getLayoutItem(this.layout, id);
+                //GetLayoutItem sometimes return null object
+                if (l == null){
+                    l = {h:0, w:0}
+                }
                 l.h = h;
                 l.w = w;
                 compact(this.layout, this.verticalCompact);
