@@ -155,6 +155,16 @@
             },
             i: {
                 required: true
+            },
+            dragIgnoreFrom: {
+                type: String,
+                required: false,
+                default: 'a, button'
+            },
+            resizeIgnoreFrom: {
+                type: String,
+                required: false,
+                default: 'a, button'
             }
         },
         inject: ["eventBus"],
@@ -275,7 +285,7 @@
             draggable: function() {
                 var self = this;
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item, {ignoreFrom: "a, button"});
+                    this.interactObj = interact(this.$refs.item, {ignoreFrom: this.dragIgnoreFrom});
                 }
                 if (this.draggable) {
                     this.interactObj.draggable({});
@@ -297,7 +307,7 @@
             resizable: function() {
                 var self = this;
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item, {ignoreFrom: "a, button"});
+                    this.interactObj = interact(this.$refs.item, {ignoreFrom: resizeIgnoreFrom});
                 }
                 if (this.resizable) {
                     this.interactObj
