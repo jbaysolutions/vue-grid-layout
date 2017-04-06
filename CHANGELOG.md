@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.6 (Apr 6, 2017)
+
+* Fixed #43, configurable drag elements ignore on grid item contents (thanks [neithere](https://github.com/neithere)) 
+* Fix for getLayoutItem, sometimes returns null elements (thanks [pbabey](https://github.com/pbabey))
+
 ## 2.1.5 (Mar 24, 2017)
 
 * Really fixed #22 #32, multiple grid instances were not working properly in 2.1.4
