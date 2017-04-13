@@ -83,23 +83,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
 	__webpack_require__(2)
 	__vue_script__ = __webpack_require__(6)
-	if (__vue_script__ &&
-	    __vue_script__.__esModule &&
-	    Object.keys(__vue_script__).length > 1) {
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
 	  console.warn("[vue-loader] src\\GridItem.vue: named exports in *.vue files are ignored.")}
 	__vue_template__ = __webpack_require__(48)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
 	if (__vue_template__) {
-	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	__vue_options__.template = __vue_template__
 	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "./GridItem.vue"
+	  var id = "_v-e800ab18/GridItem.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -123,8 +128,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridItem.vue", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridItem.vue");
+			module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridItem.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridItem.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -501,8 +506,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	//     }
 	// </style>
 	// <script>
-	
-	
 	var interact = __webpack_require__(47);
 	
 	exports.default = {
@@ -702,8 +705,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var position = (0, _draggableUtils.getControlPosition)(event);
 	            // Get the current drag point from the event. This is used as the offset.
 	            if (position == null) return; // not possible but satisfies flow
-	            var x = position.x;
-	            var y = position.y;
+	            var x = position.x,
+	                y = position.y;
 	
 	
 	            var newSize = { width: 0, height: 0 };
@@ -774,8 +777,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            // Get the current drag point from the event. This is used as the offset.
 	            if (position == null) return; // not possible but satisfies flow
-	            var x = position.x;
-	            var y = position.y;
+	            var x = position.x,
+	                y = position.y;
 	
 	
 	            var shouldUpdate = false;
@@ -1498,8 +1501,94 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	// shim for using process in browser
-	
 	var process = module.exports = {};
+	
+	// cached from whatever global is present so that test runners that stub it
+	// don't break things.  But we need to wrap it in a try catch in case it is
+	// wrapped in strict mode code which doesn't define any globals.  It's inside a
+	// function because try/catches deoptimize in certain engines.
+	
+	var cachedSetTimeout;
+	var cachedClearTimeout;
+	
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
+	(function () {
+	    try {
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
+	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
+	    }
+	    try {
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
+	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
+	    }
+	} ())
+	function runTimeout(fun) {
+	    if (cachedSetTimeout === setTimeout) {
+	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
+	        return setTimeout(fun, 0);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedSetTimeout(fun, 0);
+	    } catch(e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+	            return cachedSetTimeout.call(null, fun, 0);
+	        } catch(e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+	            return cachedSetTimeout.call(this, fun, 0);
+	        }
+	    }
+	
+	
+	}
+	function runClearTimeout(marker) {
+	    if (cachedClearTimeout === clearTimeout) {
+	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
+	        return clearTimeout(marker);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedClearTimeout(marker);
+	    } catch (e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+	            return cachedClearTimeout.call(null, marker);
+	        } catch (e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+	            return cachedClearTimeout.call(this, marker);
+	        }
+	    }
+	
+	
+	
+	}
 	var queue = [];
 	var draining = false;
 	var currentQueue;
@@ -1524,7 +1613,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (draining) {
 	        return;
 	    }
-	    var timeout = setTimeout(cleanUpNextTick);
+	    var timeout = runTimeout(cleanUpNextTick);
 	    draining = true;
 	
 	    var len = queue.length;
@@ -1541,7 +1630,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    currentQueue = null;
 	    draining = false;
-	    clearTimeout(timeout);
+	    runClearTimeout(timeout);
 	}
 	
 	process.nextTick = function (fun) {
@@ -1553,7 +1642,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    queue.push(new Item(fun, args));
 	    if (queue.length === 1 && !draining) {
-	        setTimeout(drainQueue, 0);
+	        runTimeout(drainQueue);
 	    }
 	};
 	
@@ -2146,7 +2235,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	 * interact.js v1.2.6
+	 * interact.js v1.2.8
 	 *
 	 * Copyright (c) 2012-2015 Taye Adeyemi <dev@taye.me>
 	 * Open source under the MIT License.
@@ -2391,7 +2480,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        supportsTouch = (('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch),
 	
 	        // Does the browser support PointerEvents
-	        supportsPointerEvent = !!PointerEvent,
+	        // Avoid PointerEvent bugs introduced in Chrome 55
+	        supportsPointerEvent = PointerEvent && !/Chrome/.test(navigator.userAgent),
 	
 	        // Less Precision with touch input
 	        margin = supportsTouch || supportsPointerEvent? 20: 10,
@@ -3524,14 +3614,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	                    this.pointerHover(pointer, event, this.matches, this.matchElements);
 	                    events.add(eventTarget,
-	                                        PointerEvent? pEventTypes.move : 'mousemove',
+	                                        supportsPointerEvent? pEventTypes.move : 'mousemove',
 	                                        listeners.pointerHover);
 	                }
 	                else if (this.target) {
 	                    if (nodeContains(prevTargetElement, eventTarget)) {
 	                        this.pointerHover(pointer, event, this.matches, this.matchElements);
 	                        events.add(this.element,
-	                                            PointerEvent? pEventTypes.move : 'mousemove',
+	                                            supportsPointerEvent? pEventTypes.move : 'mousemove',
 	                                            listeners.pointerHover);
 	                    }
 	                    else {
@@ -3583,7 +3673,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // Remove temporary event listeners for selector Interactables
 	            if (!interactables.get(eventTarget)) {
 	                events.remove(eventTarget,
-	                                       PointerEvent? pEventTypes.move : 'mousemove',
+	                                       supportsPointerEvent? pEventTypes.move : 'mousemove',
 	                                       listeners.pointerHover);
 	            }
 	
@@ -3895,7 +3985,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            // set the startCoords if there was no prepared action
 	            if (!this.prepared.name) {
-	                this.setEventXY(this.startCoords);
+	                this.setEventXY(this.startCoords, this.pointers);
 	            }
 	
 	            this.prepared.name  = action.name;
@@ -6077,7 +6167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            if (isElement(element, _window)) {
 	
-	                if (PointerEvent) {
+	                if (supportsPointerEvent) {
 	                    events.add(this._element, pEventTypes.down, listeners.pointerDown );
 	                    events.add(this._element, pEventTypes.move, listeners.pointerHover);
 	                }
@@ -7922,7 +8012,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            events.add(doc, eventType, delegateUseCapture, true);
 	        }
 	
-	        if (PointerEvent) {
+	        if (supportsPointerEvent) {
 	            if (PointerEvent === win.MSPointerEvent) {
 	                pEventTypes = {
 	                    up: 'MSPointerUp', down: 'MSPointerDown', over: 'mouseover',
@@ -8134,23 +8224,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
 	__webpack_require__(50)
 	__vue_script__ = __webpack_require__(52)
-	if (__vue_script__ &&
-	    __vue_script__.__esModule &&
-	    Object.keys(__vue_script__).length > 1) {
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
 	  console.warn("[vue-loader] src\\GridLayout.vue: named exports in *.vue files are ignored.")}
 	__vue_template__ = __webpack_require__(66)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
 	if (__vue_template__) {
-	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	__vue_options__.template = __vue_template__
 	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "./GridLayout.vue"
+	  var id = "_v-66d6d8cb/GridLayout.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -8174,8 +8269,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridLayout.vue", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridLayout.vue");
+			module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridLayout.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridLayout.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -8496,7 +8591,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // To maintain compatability with idHandler.get(element, readonly), make sure to wrap the given idHandler
 	        // so that readonly flag always is true when it's used here. This may be removed next major version bump.
 	        idHandler = {
-	            get: function (element) { options.idHandler.get(element, true); },
+	            get: function (element) { return options.idHandler.get(element, true); },
 	            set: options.idHandler.set
 	        };
 	    } else {
@@ -8558,7 +8653,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        throw new Error("Invalid strategy name: " + desiredStrategy);
 	    }
 	
-	    //Calls can be made to listenTo with elements that are still are being installed.
+	    //Calls can be made to listenTo with elements that are still being installed.
 	    //Also, same elements can occur in the elements list in the listenTo function.
 	    //With this map, the ready callbacks can be synchronized between the calls
 	    //so that the ready callback can always be called when an element is ready - even if
@@ -8664,10 +8759,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        // Since the element size might have changed since the call to "listenTo", we need to check for this change,
 	                        // so that a resize event may be emitted.
 	                        // Having the startSize object is optional (since it does not make sense in some cases such as unrendered elements), so check for its existance before.
-	                        if (stateHandler.getState(element).startSize) {
+	                        // Also, check the state existance before since the element may have been uninstalled in the installation process.
+	                        var state = stateHandler.getState(element);
+	                        if (state && state.startSize) {
 	                            var width = element.offsetWidth;
 	                            var height = element.offsetHeight;
-	                            if (stateHandler.getState(element).startSize.width !== width || stateHandler.getState(element).startSize.height !== height) {
+	                            if (state.startSize.width !== width || state.startSize.height !== height) {
 	                                onResizeCallback(element);
 	                            }
 	                        }
@@ -8844,7 +8941,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @returns All listeners for the given element.
 	     */
 	    function getListeners(element) {
-	        return eventListeners[idHandler.get(element)] || [];
+	        var id = idHandler.get(element);
+	
+	        if (id === undefined) {
+	            return [];
+	        }
+	
+	        return eventListeners[id] || [];
 	    }
 	
 	    /**
@@ -8874,7 +8977,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    function removeAllListeners(element) {
-	      var listeners = eventListeners[idHandler.get(element)];
+	      var listeners = getListeners(element);
 	      if (!listeners) { return; }
 	      listeners.length = 0;
 	    }
@@ -9408,6 +9511,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                //Add an object element as a child to the target element that will be listened to for resize events.
 	                var object = document.createElement("object");
 	                object.style.cssText = OBJECT_STYLE;
+	                object.tabIndex = -1;
 	                object.type = "text/html";
 	                object.onload = onObjectLoad;
 	
@@ -9513,10 +9617,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var height = 500;
 	
 	        var child = document.createElement("div");
-	        child.style.cssText = "position: absolute; width: " + width*2 + "px; height: " + height*2 + "px; visibility: hidden;";
+	        child.style.cssText = "position: absolute; width: " + width*2 + "px; height: " + height*2 + "px; visibility: hidden; margin: 0; padding: 0;";
 	
 	        var container = document.createElement("div");
-	        container.style.cssText = "position: absolute; width: " + width + "px; height: " + height + "px; overflow: scroll; visibility: none; top: " + -width*3 + "px; left: " + -height*3 + "px; visibility: hidden;";
+	        container.style.cssText = "position: absolute; width: " + width + "px; height: " + height + "px; overflow: scroll; visibility: none; top: " + -width*3 + "px; left: " + -height*3 + "px; visibility: hidden; margin: 0; padding: 0;";
 	
 	        container.appendChild(child);
 	
@@ -9560,6 +9664,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    function addAnimationClass(element) {
 	        element.className += " " + detectionContainerClass + "_animation_active";
+	    }
+	
+	    function addEvent(el, name, cb) {
+	        if (el.addEventListener) {
+	            el.addEventListener(name, cb);
+	        } else if(el.attachEvent) {
+	            el.attachEvent("on" + name, cb);
+	        } else {
+	            return reporter.error("[scroll] Don't know how to add event listeners.");
+	        }
+	    }
+	
+	    function removeEvent(el, name, cb) {
+	        if (el.removeEventListener) {
+	            el.removeEventListener(name, cb);
+	        } else if(el.detachEvent) {
+	            el.detachEvent("on" + name, cb);
+	        } else {
+	            return reporter.error("[scroll] Don't know how to remove event listeners.");
+	        }
+	    }
+	
+	    function getExpandElement(element) {
+	        return getState(element).container.childNodes[0].childNodes[0].childNodes[0];
+	    }
+	
+	    function getShrinkElement(element) {
+	        return getState(element).container.childNodes[0].childNodes[0].childNodes[1];
 	    }
 	
 	    /**
@@ -9667,16 +9799,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            getState(element).lastHeight  = height;
 	        }
 	
-	        function getExpandElement(element) {
-	            return getState(element).container.childNodes[0].childNodes[0].childNodes[0];
-	        }
-	
 	        function getExpandChildElement(element) {
 	            return getExpandElement(element).childNodes[0];
-	        }
-	
-	        function getShrinkElement(element) {
-	            return getState(element).container.childNodes[0].childNodes[0].childNodes[1];
 	        }
 	
 	        function getWidthOffset() {
@@ -9716,30 +9840,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	            shrink.scrollTop    = shrinkHeight;
 	        }
 	
-	        function addEvent(el, name, cb) {
-	            if (el.addEventListener) {
-	                el.addEventListener(name, cb);
-	            } else if(el.attachEvent) {
-	                el.attachEvent("on" + name, cb);
-	            } else {
-	                return reporter.error("[scroll] Don't know how to add event listeners.");
-	            }
-	        }
-	
 	        function injectContainerElement() {
 	            var container = getState(element).container;
 	
 	            if (!container) {
 	                container                   = document.createElement("div");
 	                container.className         = detectionContainerClass;
-	                container.style.cssText     = "visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden;";
+	                container.style.cssText     = "visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden; margin: 0; padding: 0;";
 	                getState(element).container = container;
 	                addAnimationClass(container);
 	                element.appendChild(container);
 	
-	                addEvent(container, "animationstart", function onAnimationStart () {
+	                var onAnimationStart = function () {
 	                    getState(element).onRendered && getState(element).onRendered();
-	                });
+	                };
+	
+	                addEvent(container, "animationstart", onAnimationStart);
+	
+	                // Store the event handler here so that they may be removed when uninstall is called.
+	                // See uninstall function for an explanation why it is needed.
+	                getState(element).onAnimationStart = onAnimationStart;
 	            }
 	
 	            return container;
@@ -9774,7 +9894,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	
-	            function getTopBottomBottomRightCssText(left, top, bottom, right) {
+	            function getLeftTopBottomRightCssText(left, top, bottom, right) {
 	                left = (!left ? "0" : (left + "px"));
 	                top = (!top ? "0" : (top + "px"));
 	                bottom = (!bottom ? "0" : (bottom + "px"));
@@ -9808,10 +9928,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            var scrollbarWidth          = scrollbarSizes.width;
 	            var scrollbarHeight         = scrollbarSizes.height;
-	            var containerContainerStyle = "position: absolute; overflow: hidden; z-index: -1; visibility: hidden; width: 100%; height: 100%; left: 0px; top: 0px;";
-	            var containerStyle          = "position: absolute; overflow: hidden; z-index: -1; visibility: hidden; " + getTopBottomBottomRightCssText(-(1 + scrollbarWidth), -(1 + scrollbarHeight), -scrollbarHeight, -scrollbarWidth);
-	            var expandStyle             = "position: absolute; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;";
-	            var shrinkStyle             = "position: absolute; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;";
+	            var containerContainerStyle = "position: absolute; flex: none; overflow: hidden; z-index: -1; visibility: hidden; width: 100%; height: 100%; left: 0px; top: 0px;";
+	            var containerStyle          = "position: absolute; flex: none; overflow: hidden; z-index: -1; visibility: hidden; " + getLeftTopBottomRightCssText(-(1 + scrollbarWidth), -(1 + scrollbarHeight), -scrollbarHeight, -scrollbarWidth);
+	            var expandStyle             = "position: absolute; flex: none; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;";
+	            var shrinkStyle             = "position: absolute; flex: none; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;";
 	            var expandChildStyle        = "position: absolute; left: 0; top: 0;";
 	            var shrinkChildStyle        = "position: absolute; width: 200%; height: 200%;";
 	
@@ -9821,6 +9941,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var expandChild             = document.createElement("div");
 	            var shrink                  = document.createElement("div");
 	            var shrinkChild             = document.createElement("div");
+	
+	            // Some browsers choke on the resize system being rtl, so force it to ltr. https://github.com/wnr/element-resize-detector/issues/56
+	            // However, dir should not be set on the top level container as it alters the dimensions of the target element in some browsers.
+	            containerContainer.dir              = "ltr";
 	
 	            containerContainer.style.cssText    = containerContainerStyle;
 	            containerContainer.className        = detectionContainerClass;
@@ -9838,13 +9962,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	            containerContainer.appendChild(container);
 	            rootContainer.appendChild(containerContainer);
 	
-	            addEvent(expand, "scroll", function onExpandScroll() {
+	            function onExpandScroll() {
 	                getState(element).onExpand && getState(element).onExpand();
-	            });
+	            }
 	
-	            addEvent(shrink, "scroll", function onShrinkScroll() {
+	            function onShrinkScroll() {
 	                getState(element).onShrink && getState(element).onShrink();
-	            });
+	            }
+	
+	            addEvent(expand, "scroll", onExpandScroll);
+	            addEvent(shrink, "scroll", onShrinkScroll);
+	
+	            // Store the event handlers here so that they may be removed when uninstall is called.
+	            // See uninstall function for an explanation why it is needed.
+	            getState(element).onExpandScroll = onExpandScroll;
+	            getState(element).onShrinkScroll = onShrinkScroll;
 	        }
 	
 	        function registerListenersAndPositionElements() {
@@ -9866,7 +9998,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // Otherwise the if-check in handleScroll is useless.
 	                storeCurrentSize(element, width, height);
 	
+	                // Since we delay the processing of the batch, there is a risk that uninstall has been called before the batch gets to execute.
+	                // Since there is no way to cancel the fn executions, we need to add an uninstall guard to all fns of the batch.
+	
 	                batchProcessor.add(0, function performUpdateChildSizes() {
+	                    if (!getState(element)) {
+	                        debug("Aborting because element has been uninstalled");
+	                        return;
+	                    }
+	
 	                    if (options.debug) {
 	                        var w = element.offsetWidth;
 	                        var h = element.offsetHeight;
@@ -9880,11 +10020,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	                });
 	
 	                batchProcessor.add(1, function updateScrollbars() {
+	                    if (!getState(element)) {
+	                        debug("Aborting because element has been uninstalled");
+	                        return;
+	                    }
+	
 	                    positionScrollbars(element, width, height);
 	                });
 	
 	                if (done) {
-	                    batchProcessor.add(2, done);
+	                    batchProcessor.add(2, function () {
+	                        if (!getState(element)) {
+	                            debug("Aborting because element has been uninstalled");
+	                            return;
+	                        }
+	
+	                        done();
+	                    });
 	                }
 	            }
 	
@@ -10027,13 +10179,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return;
 	        }
 	
-	        if (state.busy) {
-	            // Uninstall has been called while the element is being prepared.
-	            // Right between the sync code and async batch.
-	            return;
-	        }
+	        // Uninstall may have been called in the following scenarios:
+	        // (1) Right between the sync code and async batch (here state.busy = true, but nothing have been registered or injected).
+	        // (2) In the ready callback of the last level of the batch by another element (here, state.busy = true, but all the stuff has been injected).
+	        // (3) After the installation process (here, state.busy = false and all the stuff has been injected).
+	        // So to be on the safe side, let's check for each thing before removing.
 	
-	        element.removeChild(state.container);
+	        // We need to remove the event listeners, because otherwise the event might fire on an uninstall element which results in an error when trying to get the state of the element.
+	        state.onExpandScroll && removeEvent(getExpandElement(element), "scroll", state.onExpandScroll);
+	        state.onShrinkScroll && removeEvent(getShrinkElement(element), "scroll", state.onShrinkScroll);
+	        state.onAnimationStart && removeEvent(state.container, "animationstart", state.onAnimationStart);
+	
+	        state.container && element.removeChild(state.container);
 	    }
 	
 	    return {
@@ -10055,23 +10212,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
 	__webpack_require__(68)
 	__vue_script__ = __webpack_require__(70)
-	if (__vue_script__ &&
-	    __vue_script__.__esModule &&
-	    Object.keys(__vue_script__).length > 1) {
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
 	  console.warn("[vue-loader] src\\ResponsiveGridLayout.vue: named exports in *.vue files are ignored.")}
 	__vue_template__ = __webpack_require__(72)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
 	if (__vue_template__) {
-	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	__vue_options__.template = __vue_template__
 	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "./ResponsiveGridLayout.vue"
+	  var id = "_v-6d0d2fdf/ResponsiveGridLayout.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -10095,8 +10257,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ResponsiveGridLayout.vue", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ResponsiveGridLayout.vue");
+			module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ResponsiveGridLayout.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ResponsiveGridLayout.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
