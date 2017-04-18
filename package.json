@@ -1,6 +1,6 @@
 {
   "name": "vue-grid-layout",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A draggable and resizable grid layout, as a Vue component.",
   "keywords": [
     "grid",
@@ -12,7 +12,7 @@
     "fluid",
     "responsive"
   ],
-  "main": "dist/vue-grid-layout.js",
+  "main": "dist/vue-grid-layout.min.js",
   "scripts": {
     "dev": "webpack-dev-server --host 0.0.0.0 --inline --hot",
     "build": "cross-env NODE_ENV=production && webpack --progress --hide-modules",
