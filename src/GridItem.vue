@@ -67,7 +67,7 @@
     }
 </style>
 <script>
-    import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from './utils';
+    import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem, validateLayout} from './utils';
     import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
 //    var eventBus = require('./eventBus');
 
@@ -262,6 +262,7 @@
             this.eventBus.$off('directionchange', self.directionchangeHandler);
         },
         mounted: function() {
+		    validateLayout(this);
             this.cols = this.$parent.colNum;
             this.rowHeight = this.$parent.rowHeight;
             this.containerWidth = this.$parent.width !== null ? this.$parent.width : 100;

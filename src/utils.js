@@ -437,27 +437,23 @@ export function synchronizeLayoutWithChildren(initialLayout: Layout, children: A
 /**
  * Validate a layout. Throws errors.
  *
- * @param  {Array}  layout        Array of layout items.
+ * @param  {Object}  layout       Layout item.
  * @param  {String} [contextName] Context name for errors.
  * @throw  {Error}                Validation error.
  */
 export function validateLayout(layout: Layout, contextName: string): void {
   contextName = contextName || "Layout";
   const subProps = ['x', 'y', 'w', 'h'];
-  if (!Array.isArray(layout)) throw new Error(contextName + " must be an array!");
-  for (let i = 0, len = layout.length; i < len; i++) {
-    const item = layout[i];
-    for (let j = 0; j < subProps.length; j++) {
-      if (typeof item[subProps[j]] !== 'number') {
-        throw new Error('VueGridLayout: ' + contextName + '[' + i + '].' + subProps[j] + ' must be a number!');
-      }
+  for (let j = 0; j < subProps.length; j++) {
+    if (typeof layout[subProps[j]] !== 'number') {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].' + subProps[j] + ' must be a number!');
     }
-    if (item.i && typeof item.i !== 'string') {
-      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
-    }
-    if (item.static !== undefined && typeof item.static !== 'boolean') {
-      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');
-    }
+  }
+  if (layout.i && typeof layout.i !== 'string') {
+    throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
+  }
+  if (layout.static !== undefined && typeof layout.static !== 'boolean') {
+    throw new Error('VueGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');
   }
 }
 
