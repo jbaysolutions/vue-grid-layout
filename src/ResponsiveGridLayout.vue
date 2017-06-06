@@ -12,7 +12,7 @@
 <script>
     var elementResizeDetectorMaker = require("element-resize-detector");
 
-    import {bottom, compact, getLayoutItem, moveElement, validateLayout, findItemInArray, findAndRemove} from './utils';
+    import {bottom, compact, getLayoutItem, moveElement, findItemInArray, findAndRemove} from './utils';
     import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout, generateResponsiveLayout} from './responsiveUtils';
     import GridItem from './GridItem.vue'
 
@@ -103,7 +103,6 @@
         },
         mounted() {
             this.$nextTick(function () {
-                validateLayout(this.layout);
                 this.originalCols = this.colNum;
                 var self = this;
                 window.onload = function() {

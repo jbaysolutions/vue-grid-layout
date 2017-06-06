@@ -20,7 +20,7 @@
     import Vue from 'vue';
     var elementResizeDetectorMaker = require("element-resize-detector");
 
-    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
+    import {bottom, compact, getLayoutItem, moveElement} from './utils';
     //var eventBus = require('./eventBus');
     import GridItem from './GridItem.vue'
 
@@ -117,7 +117,6 @@
         },
         mounted: function() {
             this.$nextTick(function () {
-                validateLayout(this.layout);
                 var self = this;
                 this.$nextTick(function() {
                     if (self.width === null) {
