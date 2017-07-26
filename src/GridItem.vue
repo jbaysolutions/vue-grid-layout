@@ -146,6 +146,16 @@
             i: {
                 required: true
             },
+            dragIgnoreFrom: {
+                type: String,
+                required: false,
+                default: 'a, button'
+            },
+            resizeIgnoreFrom: {
+                type: String,
+                required: false,
+                default: 'a, button'
+            }
         },
         data: function() {
             return {
@@ -182,7 +192,7 @@
             var self = this;
             if (this.isDraggable) {
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$els.item);
+                    this.interactObj = interact(this.$els.item, {ignoreFrom: this.dragIgnoreFrom});
                 }
                 this.interactObj
                         .draggable({
@@ -193,7 +203,7 @@
             }
             if (this.isResizable) {
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$els.item);
+                    this.interactObj = interact(this.$els.item, {ignoreFrom: this.resizeIgnoreFrom});
                 }
                 this.interactObj
                         .resizable({
