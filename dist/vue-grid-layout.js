@@ -52,7 +52,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -78,28 +78,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	module.exports = VueGridLayout;
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
 	__webpack_require__(2)
 	__vue_script__ = __webpack_require__(6)
-	if (__vue_script__ &&
-	    __vue_script__.__esModule &&
-	    Object.keys(__vue_script__).length > 1) {
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
 	  console.warn("[vue-loader] src\\GridItem.vue: named exports in *.vue files are ignored.")}
 	__vue_template__ = __webpack_require__(48)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
 	if (__vue_template__) {
-	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	__vue_options__.template = __vue_template__
 	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "./GridItem.vue"
+	  var id = "_v-b56352ac/GridItem.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -107,9 +112,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	})()}
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
@@ -123,8 +128,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridItem.vue", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridItem.vue");
+			module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridItem.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridItem.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -133,23 +138,23 @@ return /******/ (function(modules) { // webpackBootstrap
 		module.hot.dispose(function() { update(); });
 	}
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.vue-grid-item {\n    -webkit-transition: all 200ms ease;\n    transition: all 200ms ease;\n    -webkit-transition-property: left, top;\n    transition-property: left, top;\n}\n.vue-grid-item.cssTransforms {\n    -webkit-transition-property: -webkit-transform;\n    transition-property: -webkit-transform;\n    transition-property: transform;\n    transition-property: transform, -webkit-transform;\n}\n.vue-grid-item.resizing {\n    opacity: 0.6;\n    z-index: 3;\n}\n\n.vue-grid-item.vue-draggable-dragging {\n    /*transition:none;*/\n    z-index: 3;\n}\n\n.vue-grid-item.vue-grid-placeholder {\n    background: red;\n    opacity: 0.2;\n    -webkit-transition-duration: 100ms;\n            transition-duration: 100ms;\n    z-index: 2;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    -o-user-select: none;\n    user-select: none;\n}\n\n.vue-grid-item > .vue-resizable-handle {\n    position: absolute;\n    width: 20px;\n    height: 20px;\n    bottom: 0;\n    right: 0;\n    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');\n    background-position: bottom right;\n    padding: 0 3px 3px 0;\n    background-repeat: no-repeat;\n    background-origin: content-box;\n    box-sizing: border-box;\n    cursor: se-resize;\n}\n", "", {"version":3,"sources":["/./src/GridItem.vue?8d105490"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAiBA;IACA,mCAAA;IAAA,2BAAA;IACA,uCAAA;IAAA,+BAAA;CACA;AACA;IACA,+CAAA;IAAA,uCAAA;IAAA,+BAAA;IAAA,kDAAA;CACA;AACA;IACA,aAAA;IACA,WAAA;CACA;;AAEA;IACA,oBAAA;IACA,WAAA;CACA;;AAEA;IACA,gBAAA;IACA,aAAA;IACA,mCAAA;YAAA,2BAAA;IACA,WAAA;IACA,0BAAA;IACA,uBAAA;IACA,sBAAA;IACA,qBAAA;IACA,kBAAA;CACA;;AAEA;IACA,mBAAA;IACA,YAAA;IACA,aAAA;IACA,UAAA;IACA,SAAA;IACA,s3BAAA;IACA,kCAAA;IACA,qBAAA;IACA,6BAAA;IACA,+BAAA;IACA,uBAAA;IACA,kBAAA;CACA","file":"GridItem.vue","sourcesContent":["<template>\r\n    <div v-el:item\r\n             class=\"vue-grid-item\"\r\n             :class=\"{ 'vue-resizable' : isResizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }\"\r\n             :style=\"style\"\r\n        >\r\n        <slot></slot>\r\n        <!--<pre>\r\n            x: {{ x | json}}\r\n            y: {{ y | json}}\r\n            w: {{ w | json}}\r\n            h: {{ h | json}}\r\n        </pre>-->\r\n        <span v-if=\"isResizable\" v-el:handle class=\"vue-resizable-handle\"></span>\r\n    </div>\r\n</template>\r\n<style>\r\n    .vue-grid-item {\r\n        transition: all 200ms ease;\r\n        transition-property: left, top;\r\n    }\r\n    .vue-grid-item.cssTransforms {\r\n        transition-property: transform;\r\n    }\r\n    .vue-grid-item.resizing {\r\n        opacity: 0.6;\r\n        z-index: 3;\r\n    }\r\n\r\n    .vue-grid-item.vue-draggable-dragging {\r\n        /*transition:none;*/\r\n        z-index: 3;\r\n    }\r\n\r\n    .vue-grid-item.vue-grid-placeholder {\r\n        background: red;\r\n        opacity: 0.2;\r\n        transition-duration: 100ms;\r\n        z-index: 2;\r\n        -webkit-user-select: none;\r\n        -moz-user-select: none;\r\n        -ms-user-select: none;\r\n        -o-user-select: none;\r\n        user-select: none;\r\n    }\r\n\r\n    .vue-grid-item > .vue-resizable-handle {\r\n        position: absolute;\r\n        width: 20px;\r\n        height: 20px;\r\n        bottom: 0;\r\n        right: 0;\r\n        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');\r\n        background-position: bottom right;\r\n        padding: 0 3px 3px 0;\r\n        background-repeat: no-repeat;\r\n        background-origin: content-box;\r\n        box-sizing: border-box;\r\n        cursor: se-resize;\r\n    }\r\n</style>\r\n<script>\r\n    import {setTopLeft, setTransform, createMarkup, getLayoutItem} from './utils';\r\n    import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';\r\n\r\n    var interact = require(\"interact.js\");\r\n\r\n    export default {\r\n        name: \"GridItem\",\r\n        props: {\r\n            /*cols: {\r\n                type: Number,\r\n                required: true\r\n            },*/\r\n            /*containerWidth: {\r\n                type: Number,\r\n                required: true\r\n\r\n            },\r\n            rowHeight: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            margin: {\r\n                type: Array,\r\n                required: true\r\n            },\r\n            maxRows: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            isDraggable: {\r\n                type: Boolean,\r\n                required: true\r\n            },\r\n            isResizable: {\r\n                type: Boolean,\r\n                required: true\r\n            },\r\n            useCssTransforms: {\r\n                type: Boolean,\r\n                required: true\r\n            },\r\n            static: {\r\n                type: Boolean,\r\n                required: false,\r\n                default: false\r\n            },\r\n            */\r\n            minH: {\r\n                type: Number,\r\n                required: false,\r\n                default: 1\r\n            },\r\n            minW: {\r\n                type: Number,\r\n                required: false,\r\n                default: 1\r\n            },\r\n            maxH: {\r\n                type: Number,\r\n                required: false,\r\n                default: Infinity\r\n            },\r\n            maxW: {\r\n                type: Number,\r\n                required: false,\r\n                default: Infinity\r\n            },\r\n            x: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            y: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            w: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            h: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            i: {\r\n                required: true\r\n            },\r\n        },\r\n        data: function() {\r\n            return {\r\n                cols: 1,\r\n                containerWidth: 100,\r\n                rowHeight: 30,\r\n                margin: [10, 10],\r\n                maxRows: Infinity,\r\n                isDraggable: true,\r\n                isResizable: true,\r\n                useCssTransforms: true,\r\n\r\n                isDragging: false,\r\n                dragging: null,\r\n                isResizing: false,\r\n                resizing: null,\r\n                lastX: NaN,\r\n                lastY: NaN,\r\n                lastW: NaN,\r\n                lastH: NaN,\r\n                style: {}\r\n            }\r\n        },\r\n        ready: function() {\r\n            this.cols = this.$parent.colNum;\r\n            this.rowHeight = this.$parent.rowHeight;\r\n            this.margin = this.$parent.margin;\r\n            this.maxRows = this.$parent.maxRows;\r\n            this.isDraggable = this.$parent.isDraggable;\r\n            this.isResizable = this.$parent.isResizable;\r\n            this.useCssTransforms = this.$parent.useCssTransforms;\r\n            this.createStyle();\r\n\r\n            var self = this;\r\n            if (this.isDraggable) {\r\n                if (this.interactObj == null) {\r\n                    this.interactObj = interact(this.$els.item);\r\n                }\r\n                this.interactObj\r\n                        .draggable({\r\n                        })\r\n                        .on('dragstart dragmove dragend', function(event) {\r\n                            self.handleDrag(event);\r\n                        });\r\n            }\r\n            if (this.isResizable) {\r\n                if (this.interactObj == null) {\r\n                    this.interactObj = interact(this.$els.item);\r\n                }\r\n                this.interactObj\r\n                        .resizable({\r\n                            preserveAspectRatio: false,\r\n                            edges: {left: false, right: true, bottom: true, top: false}\r\n                        })\r\n                        .on('resizestart resizemove resizeend', function (event) {\r\n                            self.handleResize(event);\r\n                        });\r\n            }\r\n        },\r\n        watch: {\r\n            cols: function() {\r\n                this.createStyle();\r\n            },\r\n            containerWidth: function() {\r\n                this.createStyle();\r\n            },\r\n            x: function() {\r\n                this.createStyle();\r\n            },\r\n            y: function() {\r\n                this.createStyle();\r\n            },\r\n            h: function() {\r\n                this.createStyle();\r\n            },\r\n            w: function() {\r\n                this.createStyle();\r\n            }\r\n        },\r\n        computed: {\r\n        },\r\n        methods: {\r\n            createStyle: function() {\r\n                if (this.x + this.w > this.cols) {\r\n                    this.x = 0;\r\n                    this.w = this.cols;\r\n                }\r\n\r\n//                var pos = this.calcPosition(x, y, w, h);\r\n                var pos = this.calcPosition(this.x, this.y, this.w, this.h);\r\n\r\n                if (this.isDragging) {\r\n                    pos.top = this.dragging.top;\r\n                    pos.left = this.dragging.left;\r\n                }\r\n                if (this.isResizing) {\r\n                    pos.width = this.resizing.width;\r\n                    pos.height = this.resizing.height;\r\n                }\r\n\r\n                //const {usePercentages, containerWidth, useCssTransforms} = this.props;\r\n\r\n                let style;\r\n                // CSS Transforms support (default)\r\n                if (this.useCssTransforms) {\r\n                    style = setTransform(pos.top, pos.left, pos.width, pos.height);\r\n                }\r\n                // top,left (slow)\r\n                else {\r\n                    style = setTopLeft(pos.top, pos.left, pos.width, pos.height);\r\n                }\r\n/*\r\n                if (this.isDragging || this.isResizing) {\r\n                    style[\"z-index\"] = 3;\r\n                }\r\n*/\r\n//                this.style = createMarkup(style);\r\n                this.style = style;\r\n\r\n            },\r\n            handleResize: function(event) {\r\n                const position = getControlPosition(event);\r\n                // Get the current drag point from the event. This is used as the offset.\r\n                if (position == null) return; // not possible but satisfies flow\r\n                const {x, y} = position;\r\n\r\n                const newSize = {width: 0, height: 0};\r\n                switch (event.type) {\r\n                    case \"resizestart\":\r\n                        var pos = this.calcPosition(this.x, this.y, this.w, this.h);\r\n                        newSize.width = pos.width;\r\n                        newSize.height = pos.height;\r\n                        this.resizing = newSize;\r\n                        this.isResizing = true;\r\n                        break;\r\n                    case \"resizemove\":\r\n//                        console.log(\"### resize => \" + event.type + \", lastW=\" + this.lastW + \", lastH=\" + this.lastH);\r\n                        const coreEvent = createCoreData(this.lastW, this.lastH, x, y);\r\n//                                console.log(\"### DRAG: \" + JSON.stringify(coreEvent));\r\n                        newSize.width = this.resizing.width + coreEvent.deltaX;\r\n                        newSize.height = this.resizing.height + coreEvent.deltaY;\r\n\r\n                        ///console.log(\"### resize => \" + event.type + \", deltaX=\" + coreEvent.deltaX + \", deltaY=\" + coreEvent.deltaY);\r\n                        this.resizing = newSize;\r\n                        break;\r\n                    case \"resizeend\":\r\n                        //console.log(\"### resize end => x=\" +this.x + \" y=\" + this.y + \" w=\" + this.w + \" h=\" + this.h);\r\n                        var pos = this.calcPosition(this.x, this.y, this.w, this.h);\r\n                        newSize.width = pos.width;\r\n                        newSize.height = pos.height;\r\n//                        console.log(\"### resize end => \" + JSON.stringify(newSize));\r\n                        this.resizing = null;\r\n                        this.isResizing = false;\r\n                        break;\r\n                }\r\n\r\n                // Get new WH\r\n                var pos = this.calcWH(newSize.height, newSize.width);\r\n                if (pos.w < this.minW) {\r\n                    pos.w = this.minW;\r\n                }\r\n                if (pos.w > this.maxW) {\r\n                    pos.w = this.maxW;\r\n                }\r\n                if (pos.h < this.minH) {\r\n                    pos.h = this.minH;\r\n                }\r\n                if (pos.h > this.maxH) {\r\n                    pos.h = this.maxH;\r\n                }\r\n\r\n                if (pos.h >= 1) {\r\n                    this.h = pos.h;\r\n                } else {\r\n                    this.h = 1;\r\n                }\r\n                if (pos.w >= 1) {\r\n                    this.w = pos.w;\r\n                } else {\r\n                    this.w = 1;\r\n                }\r\n\r\n                this.lastW = x;\r\n                this.lastH = y;\r\n\r\n                this.$dispatch(\"resizeEvent\", event.type, this.i, this.x, this.y, this.h, this.w);\r\n            },\r\n            handleDrag(event) {\r\n                if (this.isResizing) return;\r\n\r\n                const position = getControlPosition(event);\r\n\r\n                // Get the current drag point from the event. This is used as the offset.\r\n                if (position == null) return; // not possible but satisfies flow\r\n                const {x, y} = position;\r\n\r\n                var shouldUpdate = false;\r\n\r\n                const newPosition = {top: 0, left: 0};\r\n                switch (event.type) {\r\n                    case \"dragstart\":\r\n                        var parentRect = event.target.offsetParent.getBoundingClientRect();\r\n                        var clientRect = event.target.getBoundingClientRect();\r\n                        newPosition.left = clientRect.left - parentRect.left;\r\n                        newPosition.top = clientRect.top - parentRect.top;\r\n                        this.dragging = newPosition;\r\n                        this.isDragging = true;\r\n                        break;\r\n                    case \"dragend\":\r\n                        if (!this.isDragging) return;\r\n                        parentRect = event.target.offsetParent.getBoundingClientRect();\r\n                        clientRect = event.target.getBoundingClientRect();\r\n                        newPosition.left = clientRect.left - parentRect.left;\r\n                        newPosition.top = clientRect.top - parentRect.top;\r\n//                        console.log(\"### drag end => \" + JSON.stringify(newPosition));\r\n//                        console.log(\"### DROP: \" + JSON.stringify(newPosition));\r\n                        this.dragging = null;\r\n                        this.isDragging = false;\r\n                        shouldUpdate = true;\r\n                        break;\r\n                    case \"dragmove\":\r\n                        const coreEvent = createCoreData(this.lastX, this.lastY, x, y);\r\n                        newPosition.left = this.dragging.left + coreEvent.deltaX;\r\n                        newPosition.top = this.dragging.top + coreEvent.deltaY;\r\n//                        console.log(\"### drag => \" + event.type + \", x=\" + x + \", y=\" + y);\r\n//                        console.log(\"### drag => \" + event.type + \", deltaX=\" + coreEvent.deltaX + \", deltaY=\" + coreEvent.deltaY);\r\n//                        console.log(\"### drag end => \" + JSON.stringify(newPosition));\r\n                        this.dragging = newPosition;\r\n                        break;\r\n                }\r\n\r\n                // Get new XY\r\n                var pos = this.calcXY(newPosition.top, newPosition.left);\r\n                this.x = pos.x;\r\n                this.y = pos.y;\r\n\r\n                this.lastX = x;\r\n                this.lastY = y;\r\n\r\n                this.$dispatch(\"dragEvent\", event.type, this.i, this.x, this.y, this.w, this.h);\r\n            },\r\n            calcPosition: function(x, y, w, h) {\r\n                const colWidth = this.calcColWidth();\r\n\r\n                const out = {\r\n                    left: Math.round(colWidth * x + (x + 1) * this.margin[0]),\r\n                    top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),\r\n                    // 0 * Infinity === NaN, which causes problems with resize constriants;\r\n                    // Fix this if it occurs.\r\n                    // Note we do it here rather than later because Math.round(Infinity) causes deopt\r\n                    width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),\r\n                    height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])\r\n                };\r\n\r\n                return out;\r\n            },\r\n            /**\r\n             * Translate x and y coordinates from pixels to grid units.\r\n             * @param  {Number} top  Top position (relative to parent) in pixels.\r\n             * @param  {Number} left Left position (relative to parent) in pixels.\r\n             * @return {Object} x and y in grid units.\r\n             */\r\n            calcXY(top, left) {\r\n                const colWidth = this.calcColWidth();\r\n\r\n                // left = colWidth * x + margin * (x + 1)\r\n                // l = cx + m(x+1)\r\n                // l = cx + mx + m\r\n                // l - m = cx + mx\r\n                // l - m = x(c + m)\r\n                // (l - m) / (c + m) = x\r\n                // x = (left - margin) / (coldWidth + margin)\r\n                let x = Math.round((left - this.margin[0]) / (colWidth + this.margin[0]));\r\n                let y = Math.round((top - this.margin[1]) / (this.rowHeight + this.margin[1]));\r\n\r\n                // Capping\r\n                x = Math.max(Math.min(x, this.cols - this.w), 0);\r\n                y = Math.max(Math.min(y, this.maxRows - this.h), 0);\r\n\r\n                return {x, y};\r\n            },\r\n            // Helper for generating column width\r\n            calcColWidth() {\r\n                var colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;\r\n//                console.log(\"### COLS=\" + this.cols + \" COL WIDTH=\" + colWidth);\r\n                return colWidth;\r\n            },\r\n\r\n            /**\r\n             * Given a height and width in pixel values, calculate grid units.\r\n             * @param  {Number} height Height in pixels.\r\n             * @param  {Number} width  Width in pixels.\r\n             * @return {Object} w, h as grid units.\r\n             */\r\n            calcWH(height, width) {\r\n                const colWidth = this.calcColWidth();\r\n\r\n                // width = colWidth * w - (margin * (w - 1))\r\n                // ...\r\n                // w = (width + margin) / (colWidth + margin)\r\n                let w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));\r\n                let h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));\r\n\r\n                // Capping\r\n                w = Math.max(Math.min(w, this.cols - this.x), 0);\r\n                h = Math.max(Math.min(h, this.maxRows - this.y), 0);\r\n                return {w, h};\r\n            }\r\n        },\r\n        events: {\r\n            updateWidth: function(width, colNum) {\r\n                this.containerWidth = width;\r\n                if (colNum !== undefined && colNum !== null) {\r\n                    this.cols = colNum;\r\n                }\r\n            },\r\n            compact: function(layout) {\r\n                var l = getLayoutItem(layout, this.i);\r\n                if (l !== undefined && l !== null) {\r\n                    this.x = l.x;\r\n                    this.y = l.y;\r\n                    this.h = l.h;\r\n                    this.w = l.w;\r\n                }\r\n                this.createStyle();\r\n            }\r\n        }\r\n    }\r\n</script>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.vue-grid-item {\n    transition: all 200ms ease;\n    transition-property: left, top;\n}\n.vue-grid-item.cssTransforms {\n    transition-property: -webkit-transform;\n    transition-property: transform;\n    transition-property: transform, -webkit-transform;\n}\n.vue-grid-item.resizing {\n    opacity: 0.6;\n    z-index: 3;\n}\n\n.vue-grid-item.vue-draggable-dragging {\n    /*transition:none;*/\n    z-index: 3;\n}\n\n.vue-grid-item.vue-grid-placeholder {\n    background: red;\n    opacity: 0.2;\n    transition-duration: 100ms;\n    z-index: 2;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    -o-user-select: none;\n    user-select: none;\n}\n\n.vue-grid-item > .vue-resizable-handle {\n    position: absolute;\n    width: 20px;\n    height: 20px;\n    bottom: 0;\n    right: 0;\n    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');\n    background-position: bottom right;\n    padding: 0 3px 3px 0;\n    background-repeat: no-repeat;\n    background-origin: content-box;\n    box-sizing: border-box;\n    cursor: se-resize;\n}\n", "", {"version":3,"sources":["/./src/GridItem.vue?1bd4544e"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAiBA;IACA,2BAAA;IACA,+BAAA;CACA;AACA;IACA,uCAAA;IAAA,+BAAA;IAAA,kDAAA;CACA;AACA;IACA,aAAA;IACA,WAAA;CACA;;AAEA;IACA,oBAAA;IACA,WAAA;CACA;;AAEA;IACA,gBAAA;IACA,aAAA;IACA,2BAAA;IACA,WAAA;IACA,0BAAA;IACA,uBAAA;IACA,sBAAA;IACA,qBAAA;IACA,kBAAA;CACA;;AAEA;IACA,mBAAA;IACA,YAAA;IACA,aAAA;IACA,UAAA;IACA,SAAA;IACA,s3BAAA;IACA,kCAAA;IACA,qBAAA;IACA,6BAAA;IACA,+BAAA;IACA,uBAAA;IACA,kBAAA;CACA","file":"GridItem.vue","sourcesContent":["<template>\r\n    <div v-el:item\r\n             class=\"vue-grid-item\"\r\n             :class=\"{ 'vue-resizable' : isResizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }\"\r\n             :style=\"style\"\r\n        >\r\n        <slot></slot>\r\n        <!--<pre>\r\n            x: {{ x | json}}\r\n            y: {{ y | json}}\r\n            w: {{ w | json}}\r\n            h: {{ h | json}}\r\n        </pre>-->\r\n        <span v-if=\"isResizable\" v-el:handle class=\"vue-resizable-handle\"></span>\r\n    </div>\r\n</template>\r\n<style>\r\n    .vue-grid-item {\r\n        transition: all 200ms ease;\r\n        transition-property: left, top;\r\n    }\r\n    .vue-grid-item.cssTransforms {\r\n        transition-property: transform;\r\n    }\r\n    .vue-grid-item.resizing {\r\n        opacity: 0.6;\r\n        z-index: 3;\r\n    }\r\n\r\n    .vue-grid-item.vue-draggable-dragging {\r\n        /*transition:none;*/\r\n        z-index: 3;\r\n    }\r\n\r\n    .vue-grid-item.vue-grid-placeholder {\r\n        background: red;\r\n        opacity: 0.2;\r\n        transition-duration: 100ms;\r\n        z-index: 2;\r\n        -webkit-user-select: none;\r\n        -moz-user-select: none;\r\n        -ms-user-select: none;\r\n        -o-user-select: none;\r\n        user-select: none;\r\n    }\r\n\r\n    .vue-grid-item > .vue-resizable-handle {\r\n        position: absolute;\r\n        width: 20px;\r\n        height: 20px;\r\n        bottom: 0;\r\n        right: 0;\r\n        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');\r\n        background-position: bottom right;\r\n        padding: 0 3px 3px 0;\r\n        background-repeat: no-repeat;\r\n        background-origin: content-box;\r\n        box-sizing: border-box;\r\n        cursor: se-resize;\r\n    }\r\n</style>\r\n<script>\r\n    import {setTopLeft, setTransform, createMarkup, getLayoutItem} from './utils';\r\n    import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';\r\n\r\n    var interact = require(\"interact.js\");\r\n\r\n    export default {\r\n        name: \"GridItem\",\r\n        props: {\r\n            /*cols: {\r\n                type: Number,\r\n                required: true\r\n            },*/\r\n            /*containerWidth: {\r\n                type: Number,\r\n                required: true\r\n\r\n            },\r\n            rowHeight: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            margin: {\r\n                type: Array,\r\n                required: true\r\n            },\r\n            maxRows: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            isDraggable: {\r\n                type: Boolean,\r\n                required: true\r\n            },\r\n            isResizable: {\r\n                type: Boolean,\r\n                required: true\r\n            },\r\n            useCssTransforms: {\r\n                type: Boolean,\r\n                required: true\r\n            },\r\n            static: {\r\n                type: Boolean,\r\n                required: false,\r\n                default: false\r\n            },\r\n            */\r\n            minH: {\r\n                type: Number,\r\n                required: false,\r\n                default: 1\r\n            },\r\n            minW: {\r\n                type: Number,\r\n                required: false,\r\n                default: 1\r\n            },\r\n            maxH: {\r\n                type: Number,\r\n                required: false,\r\n                default: Infinity\r\n            },\r\n            maxW: {\r\n                type: Number,\r\n                required: false,\r\n                default: Infinity\r\n            },\r\n            x: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            y: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            w: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            h: {\r\n                type: Number,\r\n                required: true\r\n            },\r\n            i: {\r\n                required: true\r\n            },\r\n            dragIgnoreFrom: {\r\n                type: String,\r\n                required: false,\r\n                default: 'a, button'\r\n            },\r\n            resizeIgnoreFrom: {\r\n                type: String,\r\n                required: false,\r\n                default: 'a, button'\r\n            }\r\n        },\r\n        data: function() {\r\n            return {\r\n                cols: 1,\r\n                containerWidth: 100,\r\n                rowHeight: 30,\r\n                margin: [10, 10],\r\n                maxRows: Infinity,\r\n                isDraggable: true,\r\n                isResizable: true,\r\n                useCssTransforms: true,\r\n\r\n                isDragging: false,\r\n                dragging: null,\r\n                isResizing: false,\r\n                resizing: null,\r\n                lastX: NaN,\r\n                lastY: NaN,\r\n                lastW: NaN,\r\n                lastH: NaN,\r\n                style: {}\r\n            }\r\n        },\r\n        ready: function() {\r\n            this.cols = this.$parent.colNum;\r\n            this.rowHeight = this.$parent.rowHeight;\r\n            this.margin = this.$parent.margin;\r\n            this.maxRows = this.$parent.maxRows;\r\n            this.isDraggable = this.$parent.isDraggable;\r\n            this.isResizable = this.$parent.isResizable;\r\n            this.useCssTransforms = this.$parent.useCssTransforms;\r\n            this.createStyle();\r\n\r\n            var self = this;\r\n            if (this.isDraggable) {\r\n                if (this.interactObj == null) {\r\n                    this.interactObj = interact(this.$els.item, {ignoreFrom: this.dragIgnoreFrom});\r\n                }\r\n                this.interactObj\r\n                        .draggable({\r\n                        })\r\n                        .on('dragstart dragmove dragend', function(event) {\r\n                            self.handleDrag(event);\r\n                        });\r\n            }\r\n            if (this.isResizable) {\r\n                if (this.interactObj == null) {\r\n                    this.interactObj = interact(this.$els.item, {ignoreFrom: this.resizeIgnoreFrom});\r\n                }\r\n                this.interactObj\r\n                        .resizable({\r\n                            preserveAspectRatio: false,\r\n                            edges: {left: false, right: true, bottom: true, top: false}\r\n                        })\r\n                        .on('resizestart resizemove resizeend', function (event) {\r\n                            self.handleResize(event);\r\n                        });\r\n            }\r\n        },\r\n        watch: {\r\n            cols: function() {\r\n                this.createStyle();\r\n            },\r\n            containerWidth: function() {\r\n                this.createStyle();\r\n            },\r\n            x: function() {\r\n                this.createStyle();\r\n            },\r\n            y: function() {\r\n                this.createStyle();\r\n            },\r\n            h: function() {\r\n                this.createStyle();\r\n            },\r\n            w: function() {\r\n                this.createStyle();\r\n            }\r\n        },\r\n        computed: {\r\n        },\r\n        methods: {\r\n            createStyle: function() {\r\n                if (this.x + this.w > this.cols) {\r\n                    this.x = 0;\r\n                    this.w = this.cols;\r\n                }\r\n\r\n//                var pos = this.calcPosition(x, y, w, h);\r\n                var pos = this.calcPosition(this.x, this.y, this.w, this.h);\r\n\r\n                if (this.isDragging) {\r\n                    pos.top = this.dragging.top;\r\n                    pos.left = this.dragging.left;\r\n                }\r\n                if (this.isResizing) {\r\n                    pos.width = this.resizing.width;\r\n                    pos.height = this.resizing.height;\r\n                }\r\n\r\n                //const {usePercentages, containerWidth, useCssTransforms} = this.props;\r\n\r\n                let style;\r\n                // CSS Transforms support (default)\r\n                if (this.useCssTransforms) {\r\n                    style = setTransform(pos.top, pos.left, pos.width, pos.height);\r\n                }\r\n                // top,left (slow)\r\n                else {\r\n                    style = setTopLeft(pos.top, pos.left, pos.width, pos.height);\r\n                }\r\n/*\r\n                if (this.isDragging || this.isResizing) {\r\n                    style[\"z-index\"] = 3;\r\n                }\r\n*/\r\n//                this.style = createMarkup(style);\r\n                this.style = style;\r\n\r\n            },\r\n            handleResize: function(event) {\r\n                const position = getControlPosition(event);\r\n                // Get the current drag point from the event. This is used as the offset.\r\n                if (position == null) return; // not possible but satisfies flow\r\n                const {x, y} = position;\r\n\r\n                const newSize = {width: 0, height: 0};\r\n                switch (event.type) {\r\n                    case \"resizestart\":\r\n                        var pos = this.calcPosition(this.x, this.y, this.w, this.h);\r\n                        newSize.width = pos.width;\r\n                        newSize.height = pos.height;\r\n                        this.resizing = newSize;\r\n                        this.isResizing = true;\r\n                        break;\r\n                    case \"resizemove\":\r\n//                        console.log(\"### resize => \" + event.type + \", lastW=\" + this.lastW + \", lastH=\" + this.lastH);\r\n                        const coreEvent = createCoreData(this.lastW, this.lastH, x, y);\r\n//                                console.log(\"### DRAG: \" + JSON.stringify(coreEvent));\r\n                        newSize.width = this.resizing.width + coreEvent.deltaX;\r\n                        newSize.height = this.resizing.height + coreEvent.deltaY;\r\n\r\n                        ///console.log(\"### resize => \" + event.type + \", deltaX=\" + coreEvent.deltaX + \", deltaY=\" + coreEvent.deltaY);\r\n                        this.resizing = newSize;\r\n                        break;\r\n                    case \"resizeend\":\r\n                        //console.log(\"### resize end => x=\" +this.x + \" y=\" + this.y + \" w=\" + this.w + \" h=\" + this.h);\r\n                        var pos = this.calcPosition(this.x, this.y, this.w, this.h);\r\n                        newSize.width = pos.width;\r\n                        newSize.height = pos.height;\r\n//                        console.log(\"### resize end => \" + JSON.stringify(newSize));\r\n                        this.resizing = null;\r\n                        this.isResizing = false;\r\n                        break;\r\n                }\r\n\r\n                // Get new WH\r\n                var pos = this.calcWH(newSize.height, newSize.width);\r\n                if (pos.w < this.minW) {\r\n                    pos.w = this.minW;\r\n                }\r\n                if (pos.w > this.maxW) {\r\n                    pos.w = this.maxW;\r\n                }\r\n                if (pos.h < this.minH) {\r\n                    pos.h = this.minH;\r\n                }\r\n                if (pos.h > this.maxH) {\r\n                    pos.h = this.maxH;\r\n                }\r\n\r\n                if (pos.h >= 1) {\r\n                    this.h = pos.h;\r\n                } else {\r\n                    this.h = 1;\r\n                }\r\n                if (pos.w >= 1) {\r\n                    this.w = pos.w;\r\n                } else {\r\n                    this.w = 1;\r\n                }\r\n\r\n                this.lastW = x;\r\n                this.lastH = y;\r\n\r\n                this.$dispatch(\"resizeEvent\", event.type, this.i, this.x, this.y, this.h, this.w);\r\n            },\r\n            handleDrag(event) {\r\n                if (this.isResizing) return;\r\n\r\n                const position = getControlPosition(event);\r\n\r\n                // Get the current drag point from the event. This is used as the offset.\r\n                if (position == null) return; // not possible but satisfies flow\r\n                const {x, y} = position;\r\n\r\n                var shouldUpdate = false;\r\n\r\n                const newPosition = {top: 0, left: 0};\r\n                switch (event.type) {\r\n                    case \"dragstart\":\r\n                        var parentRect = event.target.offsetParent.getBoundingClientRect();\r\n                        var clientRect = event.target.getBoundingClientRect();\r\n                        newPosition.left = clientRect.left - parentRect.left;\r\n                        newPosition.top = clientRect.top - parentRect.top;\r\n                        this.dragging = newPosition;\r\n                        this.isDragging = true;\r\n                        break;\r\n                    case \"dragend\":\r\n                        if (!this.isDragging) return;\r\n                        parentRect = event.target.offsetParent.getBoundingClientRect();\r\n                        clientRect = event.target.getBoundingClientRect();\r\n                        newPosition.left = clientRect.left - parentRect.left;\r\n                        newPosition.top = clientRect.top - parentRect.top;\r\n//                        console.log(\"### drag end => \" + JSON.stringify(newPosition));\r\n//                        console.log(\"### DROP: \" + JSON.stringify(newPosition));\r\n                        this.dragging = null;\r\n                        this.isDragging = false;\r\n                        shouldUpdate = true;\r\n                        break;\r\n                    case \"dragmove\":\r\n                        const coreEvent = createCoreData(this.lastX, this.lastY, x, y);\r\n                        newPosition.left = this.dragging.left + coreEvent.deltaX;\r\n                        newPosition.top = this.dragging.top + coreEvent.deltaY;\r\n//                        console.log(\"### drag => \" + event.type + \", x=\" + x + \", y=\" + y);\r\n//                        console.log(\"### drag => \" + event.type + \", deltaX=\" + coreEvent.deltaX + \", deltaY=\" + coreEvent.deltaY);\r\n//                        console.log(\"### drag end => \" + JSON.stringify(newPosition));\r\n                        this.dragging = newPosition;\r\n                        break;\r\n                }\r\n\r\n                // Get new XY\r\n                var pos = this.calcXY(newPosition.top, newPosition.left);\r\n                this.x = pos.x;\r\n                this.y = pos.y;\r\n\r\n                this.lastX = x;\r\n                this.lastY = y;\r\n\r\n                this.$dispatch(\"dragEvent\", event.type, this.i, this.x, this.y, this.w, this.h);\r\n            },\r\n            calcPosition: function(x, y, w, h) {\r\n                const colWidth = this.calcColWidth();\r\n\r\n                const out = {\r\n                    left: Math.round(colWidth * x + (x + 1) * this.margin[0]),\r\n                    top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),\r\n                    // 0 * Infinity === NaN, which causes problems with resize constriants;\r\n                    // Fix this if it occurs.\r\n                    // Note we do it here rather than later because Math.round(Infinity) causes deopt\r\n                    width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),\r\n                    height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])\r\n                };\r\n\r\n                return out;\r\n            },\r\n            /**\r\n             * Translate x and y coordinates from pixels to grid units.\r\n             * @param  {Number} top  Top position (relative to parent) in pixels.\r\n             * @param  {Number} left Left position (relative to parent) in pixels.\r\n             * @return {Object} x and y in grid units.\r\n             */\r\n            calcXY(top, left) {\r\n                const colWidth = this.calcColWidth();\r\n\r\n                // left = colWidth * x + margin * (x + 1)\r\n                // l = cx + m(x+1)\r\n                // l = cx + mx + m\r\n                // l - m = cx + mx\r\n                // l - m = x(c + m)\r\n                // (l - m) / (c + m) = x\r\n                // x = (left - margin) / (coldWidth + margin)\r\n                let x = Math.round((left - this.margin[0]) / (colWidth + this.margin[0]));\r\n                let y = Math.round((top - this.margin[1]) / (this.rowHeight + this.margin[1]));\r\n\r\n                // Capping\r\n                x = Math.max(Math.min(x, this.cols - this.w), 0);\r\n                y = Math.max(Math.min(y, this.maxRows - this.h), 0);\r\n\r\n                return {x, y};\r\n            },\r\n            // Helper for generating column width\r\n            calcColWidth() {\r\n                var colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;\r\n//                console.log(\"### COLS=\" + this.cols + \" COL WIDTH=\" + colWidth);\r\n                return colWidth;\r\n            },\r\n\r\n            /**\r\n             * Given a height and width in pixel values, calculate grid units.\r\n             * @param  {Number} height Height in pixels.\r\n             * @param  {Number} width  Width in pixels.\r\n             * @return {Object} w, h as grid units.\r\n             */\r\n            calcWH(height, width) {\r\n                const colWidth = this.calcColWidth();\r\n\r\n                // width = colWidth * w - (margin * (w - 1))\r\n                // ...\r\n                // w = (width + margin) / (colWidth + margin)\r\n                let w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));\r\n                let h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));\r\n\r\n                // Capping\r\n                w = Math.max(Math.min(w, this.cols - this.x), 0);\r\n                h = Math.max(Math.min(h, this.maxRows - this.y), 0);\r\n                return {w, h};\r\n            }\r\n        },\r\n        events: {\r\n            updateWidth: function(width, colNum) {\r\n                this.containerWidth = width;\r\n                if (colNum !== undefined && colNum !== null) {\r\n                    this.cols = colNum;\r\n                }\r\n            },\r\n            compact: function(layout) {\r\n                var l = getLayoutItem(layout, this.i);\r\n                if (l !== undefined && l !== null) {\r\n                    this.x = l.x;\r\n                    this.y = l.y;\r\n                    this.h = l.h;\r\n                    this.w = l.w;\r\n                }\r\n                this.createStyle();\r\n            }\r\n        }\r\n    }\r\n</script>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
@@ -203,9 +208,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
@@ -425,9 +430,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -501,8 +506,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	//     }
 	// </style>
 	// <script>
-	
-	
 	var interact = __webpack_require__(47);
 	
 	exports.default = {
@@ -584,6 +587,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        i: {
 	            required: true
+	        },
+	        dragIgnoreFrom: {
+	            type: String,
+	            required: false,
+	            default: 'a, button'
+	        },
+	        resizeIgnoreFrom: {
+	            type: String,
+	            required: false,
+	            default: 'a, button'
 	        }
 	    },
 	    data: function data() {
@@ -621,7 +634,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var self = this;
 	        if (this.isDraggable) {
 	            if (this.interactObj == null) {
-	                this.interactObj = interact(this.$els.item);
+	                this.interactObj = interact(this.$els.item, { ignoreFrom: this.dragIgnoreFrom });
 	            }
 	            this.interactObj.draggable({}).on('dragstart dragmove dragend', function (event) {
 	                self.handleDrag(event);
@@ -629,7 +642,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        if (this.isResizable) {
 	            if (this.interactObj == null) {
-	                this.interactObj = interact(this.$els.item);
+	                this.interactObj = interact(this.$els.item, { ignoreFrom: this.resizeIgnoreFrom });
 	            }
 	            this.interactObj.resizable({
 	                preserveAspectRatio: false,
@@ -702,8 +715,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var position = (0, _draggableUtils.getControlPosition)(event);
 	            // Get the current drag point from the event. This is used as the offset.
 	            if (position == null) return; // not possible but satisfies flow
-	            var x = position.x;
-	            var y = position.y;
+	            var x = position.x,
+	                y = position.y;
 	
 	
 	            var newSize = { width: 0, height: 0 };
@@ -774,8 +787,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            // Get the current drag point from the event. This is used as the offset.
 	            if (position == null) return; // not possible but satisfies flow
-	            var x = position.x;
-	            var y = position.y;
+	            var x = position.x,
+	                y = position.y;
 	
 	
 	            var shouldUpdate = false;
@@ -912,13 +925,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.createStyle();
 	        }
 	    }
+	    // </script>
+	    /* generated by vue-loader */
+	
 	};
-	// </script>
-	/* generated by vue-loader */
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
@@ -1493,13 +1507,99 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// shim for using process in browser
-	
 	var process = module.exports = {};
+	
+	// cached from whatever global is present so that test runners that stub it
+	// don't break things.  But we need to wrap it in a try catch in case it is
+	// wrapped in strict mode code which doesn't define any globals.  It's inside a
+	// function because try/catches deoptimize in certain engines.
+	
+	var cachedSetTimeout;
+	var cachedClearTimeout;
+	
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
+	(function () {
+	    try {
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
+	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
+	    }
+	    try {
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
+	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
+	    }
+	} ())
+	function runTimeout(fun) {
+	    if (cachedSetTimeout === setTimeout) {
+	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
+	        return setTimeout(fun, 0);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedSetTimeout(fun, 0);
+	    } catch(e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+	            return cachedSetTimeout.call(null, fun, 0);
+	        } catch(e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+	            return cachedSetTimeout.call(this, fun, 0);
+	        }
+	    }
+	
+	
+	}
+	function runClearTimeout(marker) {
+	    if (cachedClearTimeout === clearTimeout) {
+	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
+	        return clearTimeout(marker);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedClearTimeout(marker);
+	    } catch (e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+	            return cachedClearTimeout.call(null, marker);
+	        } catch (e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+	            return cachedClearTimeout.call(this, marker);
+	        }
+	    }
+	
+	
+	
+	}
 	var queue = [];
 	var draining = false;
 	var currentQueue;
@@ -1524,7 +1624,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (draining) {
 	        return;
 	    }
-	    var timeout = setTimeout(cleanUpNextTick);
+	    var timeout = runTimeout(cleanUpNextTick);
 	    draining = true;
 	
 	    var len = queue.length;
@@ -1541,7 +1641,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    currentQueue = null;
 	    draining = false;
-	    clearTimeout(timeout);
+	    runClearTimeout(timeout);
 	}
 	
 	process.nextTick = function (fun) {
@@ -1553,7 +1653,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    queue.push(new Item(fun, args));
 	    if (queue.length === 1 && !draining) {
-	        setTimeout(drainQueue, 0);
+	        runTimeout(drainQueue);
 	    }
 	};
 	
@@ -1581,6 +1681,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	process.removeListener = noop;
 	process.removeAllListeners = noop;
 	process.emit = noop;
+	process.prependListener = noop;
+	process.prependOnceListener = noop;
+	
+	process.listeners = function (name) { return [] }
 	
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');
@@ -1593,22 +1697,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	process.umask = function() { return 0; };
 
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = { "default": __webpack_require__(10), __esModule: true };
 
-/***/ },
+/***/ }),
 /* 10 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(11);
 	module.exports = __webpack_require__(31).Object.keys;
 
-/***/ },
+/***/ }),
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
 	var toObject = __webpack_require__(12)
@@ -1620,9 +1724,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	});
 
-/***/ },
+/***/ }),
 /* 12 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
 	var defined = __webpack_require__(13);
@@ -1630,9 +1734,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return Object(defined(it));
 	};
 
-/***/ },
+/***/ }),
 /* 13 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
 	module.exports = function(it){
@@ -1640,9 +1744,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return it;
 	};
 
-/***/ },
+/***/ }),
 /* 14 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
 	var $keys       = __webpack_require__(15)
@@ -1652,9 +1756,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return $keys(O, enumBugKeys);
 	};
 
-/***/ },
+/***/ }),
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var has          = __webpack_require__(16)
 	  , toIObject    = __webpack_require__(17)
@@ -1674,18 +1778,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return result;
 	};
 
-/***/ },
+/***/ }),
 /* 16 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	var hasOwnProperty = {}.hasOwnProperty;
 	module.exports = function(it, key){
 	  return hasOwnProperty.call(it, key);
 	};
 
-/***/ },
+/***/ }),
 /* 17 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
 	var IObject = __webpack_require__(18)
@@ -1694,9 +1798,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return IObject(defined(it));
 	};
 
-/***/ },
+/***/ }),
 /* 18 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
 	var cof = __webpack_require__(19);
@@ -1704,9 +1808,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return cof(it) == 'String' ? it.split('') : Object(it);
 	};
 
-/***/ },
+/***/ }),
 /* 19 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	var toString = {}.toString;
 	
@@ -1714,9 +1818,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return toString.call(it).slice(8, -1);
 	};
 
-/***/ },
+/***/ }),
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// false -> Array#indexOf
 	// true  -> Array#includes
@@ -1740,9 +1844,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	};
 
-/***/ },
+/***/ }),
 /* 21 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 7.1.15 ToLength
 	var toInteger = __webpack_require__(22)
@@ -1751,9 +1855,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 	};
 
-/***/ },
+/***/ }),
 /* 22 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// 7.1.4 ToInteger
 	var ceil  = Math.ceil
@@ -1762,9 +1866,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 	};
 
-/***/ },
+/***/ }),
 /* 23 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var toInteger = __webpack_require__(22)
 	  , max       = Math.max
@@ -1774,9 +1878,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return index < 0 ? max(index + length, 0) : min(index, length);
 	};
 
-/***/ },
+/***/ }),
 /* 24 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var shared = __webpack_require__(25)('keys')
 	  , uid    = __webpack_require__(27);
@@ -1784,9 +1888,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return shared[key] || (shared[key] = uid(key));
 	};
 
-/***/ },
+/***/ }),
 /* 25 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(26)
 	  , SHARED = '__core-js_shared__'
@@ -1795,18 +1899,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return store[key] || (store[key] = {});
 	};
 
-/***/ },
+/***/ }),
 /* 26 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 	var global = module.exports = typeof window != 'undefined' && window.Math == Math
 	  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
-/***/ },
+/***/ }),
 /* 27 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	var id = 0
 	  , px = Math.random();
@@ -1814,18 +1918,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 	};
 
-/***/ },
+/***/ }),
 /* 28 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// IE 8- don't enum bug keys
 	module.exports = (
 	  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 	).split(',');
 
-/***/ },
+/***/ }),
 /* 29 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
 	var $export = __webpack_require__(30)
@@ -1838,9 +1942,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
 	};
 
-/***/ },
+/***/ }),
 /* 30 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var global    = __webpack_require__(26)
 	  , core      = __webpack_require__(31)
@@ -1904,16 +2008,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	$export.R = 128; // real proto method for `library` 
 	module.exports = $export;
 
-/***/ },
+/***/ }),
 /* 31 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	var core = module.exports = {version: '2.4.0'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
-/***/ },
+/***/ }),
 /* 32 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
 	var aFunction = __webpack_require__(33);
@@ -1936,18 +2040,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	};
 
-/***/ },
+/***/ }),
 /* 33 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = function(it){
 	  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
 	  return it;
 	};
 
-/***/ },
+/***/ }),
 /* 34 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var dP         = __webpack_require__(35)
 	  , createDesc = __webpack_require__(43);
@@ -1958,9 +2062,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return object;
 	};
 
-/***/ },
+/***/ }),
 /* 35 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var anObject       = __webpack_require__(36)
 	  , IE8_DOM_DEFINE = __webpack_require__(38)
@@ -1979,9 +2083,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return O;
 	};
 
-/***/ },
+/***/ }),
 /* 36 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(37);
 	module.exports = function(it){
@@ -1989,34 +2093,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return it;
 	};
 
-/***/ },
+/***/ }),
 /* 37 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = function(it){
 	  return typeof it === 'object' ? it !== null : typeof it === 'function';
 	};
 
-/***/ },
+/***/ }),
 /* 38 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = !__webpack_require__(39) && !__webpack_require__(40)(function(){
 	  return Object.defineProperty(__webpack_require__(41)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
-/***/ },
+/***/ }),
 /* 39 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// Thank's IE8 for his funny defineProperty
 	module.exports = !__webpack_require__(40)(function(){
 	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
-/***/ },
+/***/ }),
 /* 40 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = function(exec){
 	  try {
@@ -2026,9 +2130,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	};
 
-/***/ },
+/***/ }),
 /* 41 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(37)
 	  , document = __webpack_require__(26).document
@@ -2038,9 +2142,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return is ? document.createElement(it) : {};
 	};
 
-/***/ },
+/***/ }),
 /* 42 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 7.1.1 ToPrimitive(input [, PreferredType])
 	var isObject = __webpack_require__(37);
@@ -2055,9 +2159,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  throw TypeError("Can't convert object to primitive value");
 	};
 
-/***/ },
+/***/ }),
 /* 43 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = function(bitmap, value){
 	  return {
@@ -2068,15 +2172,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	};
 
-/***/ },
+/***/ }),
 /* 44 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = { "default": __webpack_require__(45), __esModule: true };
 
-/***/ },
+/***/ }),
 /* 45 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var core  = __webpack_require__(31)
 	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
@@ -2084,9 +2188,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return $JSON.stringify.apply($JSON, arguments);
 	};
 
-/***/ },
+/***/ }),
 /* 46 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 	
@@ -2141,12 +2245,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return typeof num === 'number' && !isNaN(num);
 	}
 
-/***/ },
+/***/ }),
 /* 47 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * interact.js v1.2.6
+	 * interact.js v1.2.8
 	 *
 	 * Copyright (c) 2012-2015 Taye Adeyemi <dev@taye.me>
 	 * Open source under the MIT License.
@@ -2391,7 +2495,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        supportsTouch = (('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch),
 	
 	        // Does the browser support PointerEvents
-	        supportsPointerEvent = !!PointerEvent,
+	        // Avoid PointerEvent bugs introduced in Chrome 55
+	        supportsPointerEvent = PointerEvent && !/Chrome/.test(navigator.userAgent),
 	
 	        // Less Precision with touch input
 	        margin = supportsTouch || supportsPointerEvent? 20: 10,
@@ -3524,14 +3629,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	                    this.pointerHover(pointer, event, this.matches, this.matchElements);
 	                    events.add(eventTarget,
-	                                        PointerEvent? pEventTypes.move : 'mousemove',
+	                                        supportsPointerEvent? pEventTypes.move : 'mousemove',
 	                                        listeners.pointerHover);
 	                }
 	                else if (this.target) {
 	                    if (nodeContains(prevTargetElement, eventTarget)) {
 	                        this.pointerHover(pointer, event, this.matches, this.matchElements);
 	                        events.add(this.element,
-	                                            PointerEvent? pEventTypes.move : 'mousemove',
+	                                            supportsPointerEvent? pEventTypes.move : 'mousemove',
 	                                            listeners.pointerHover);
 	                    }
 	                    else {
@@ -3583,7 +3688,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // Remove temporary event listeners for selector Interactables
 	            if (!interactables.get(eventTarget)) {
 	                events.remove(eventTarget,
-	                                       PointerEvent? pEventTypes.move : 'mousemove',
+	                                       supportsPointerEvent? pEventTypes.move : 'mousemove',
 	                                       listeners.pointerHover);
 	            }
 	
@@ -3895,7 +4000,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            // set the startCoords if there was no prepared action
 	            if (!this.prepared.name) {
-	                this.setEventXY(this.startCoords);
+	                this.setEventXY(this.startCoords, this.pointers);
 	            }
 	
 	            this.prepared.name  = action.name;
@@ -6077,7 +6182,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            if (isElement(element, _window)) {
 	
-	                if (PointerEvent) {
+	                if (supportsPointerEvent) {
 	                    events.add(this._element, pEventTypes.down, listeners.pointerDown );
 	                    events.add(this._element, pEventTypes.move, listeners.pointerHover);
 	                }
@@ -7922,7 +8027,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            events.add(doc, eventType, delegateUseCapture, true);
 	        }
 	
-	        if (PointerEvent) {
+	        if (supportsPointerEvent) {
 	            if (PointerEvent === win.MSPointerEvent) {
 	                pEventTypes = {
 	                    up: 'MSPointerUp', down: 'MSPointerDown', over: 'mouseover',
@@ -8123,34 +8228,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	} (typeof window === 'undefined'? undefined : window));
 
 
-/***/ },
+/***/ }),
 /* 48 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "\n<div v-el:item\n         class=\"vue-grid-item\"\n         :class=\"{ 'vue-resizable' : isResizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }\"\n         :style=\"style\"\n    >\n    <slot></slot>\n    <!--<pre>\n        x: {{ x | json}}\n        y: {{ y | json}}\n        w: {{ w | json}}\n        h: {{ h | json}}\n    </pre>-->\n    <span v-if=\"isResizable\" v-el:handle class=\"vue-resizable-handle\"></span>\n</div>\n";
 
-/***/ },
+/***/ }),
 /* 49 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
 	__webpack_require__(50)
 	__vue_script__ = __webpack_require__(52)
-	if (__vue_script__ &&
-	    __vue_script__.__esModule &&
-	    Object.keys(__vue_script__).length > 1) {
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
 	  console.warn("[vue-loader] src\\GridLayout.vue: named exports in *.vue files are ignored.")}
 	__vue_template__ = __webpack_require__(66)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
 	if (__vue_template__) {
-	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	__vue_options__.template = __vue_template__
 	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "./GridLayout.vue"
+	  var id = "_v-672b4f81/GridLayout.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -8158,9 +8268,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	})()}
 
-/***/ },
+/***/ }),
 /* 50 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
@@ -8174,8 +8284,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridLayout.vue", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridLayout.vue");
+			module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridLayout.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./GridLayout.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -8184,23 +8294,23 @@ return /******/ (function(modules) { // webpackBootstrap
 		module.hot.dispose(function() { update(); });
 	}
 
-/***/ },
+/***/ }),
 /* 51 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.vue-grid-layout {\n    position: relative;\n    -webkit-transition: height 200ms ease;\n    transition: height 200ms ease;\n}\n", "", {"version":3,"sources":["/./src/GridLayout.vue?f5d44fae"],"names":[],"mappings":";;;;;;;;;;;;;;;;AAgBA;IACA,mBAAA;IACA,sCAAA;IAAA,8BAAA;CACA","file":"GridLayout.vue","sourcesContent":["<template>\r\n    <!--<pre>{{$data|json}}</pre>\r\n    <br/>\r\n    <br/>-->\r\n    <div v-el:item class=\"vue-grid-layout\" :style=\"mergedStyle\">\r\n        <slot></slot>\r\n        <grid-item class=\"vue-grid-placeholder\"\r\n                   v-if=\"isDragging\"\r\n                   :x=\"placeholder.x\"\r\n                   :y=\"placeholder.y\"\r\n                   :w=\"placeholder.w\"\r\n                   :h=\"placeholder.h\"\r\n                   :i=\"placeholder.i\"></grid-item>\r\n    </div>\r\n</template>\r\n<style>\r\n    .vue-grid-layout {\r\n        position: relative;\r\n        transition: height 200ms ease;\r\n    }\r\n</style>\r\n<script>\r\n    var elementResizeDetectorMaker = require(\"element-resize-detector\");\r\n\r\n    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';\r\n    import GridItem from './GridItem.vue'\r\n\r\n    export default {\r\n        name: \"GridLayout\",\r\n        components: {\r\n            GridItem,\r\n        },\r\n        props: {\r\n            // If true, the container height swells and contracts to fit contents\r\n            autoSize: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            colNum: {\r\n                type: Number,\r\n                default: 12\r\n            },\r\n            rowHeight: {\r\n                type: Number,\r\n                default: 150\r\n            },\r\n            maxRows: {\r\n                type: Number,\r\n                default: Infinity\r\n            },\r\n            margin: {\r\n                type: Array,\r\n                default: function () {\r\n                    return [10, 10];\r\n                }\r\n            },\r\n            isDraggable: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            isResizable: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            useCssTransforms: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            verticalCompact: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n\r\n            layout: [],\r\n        },\r\n        data: function () {\r\n            return {\r\n                width: null,\r\n                mergedStyle: {},\r\n                lastLayoutLength: 0,\r\n                isDragging: false,\r\n                placeholder: {\r\n                    x: 0,\r\n                    y: 0,\r\n                    w: 0,\r\n                    h: 0,\r\n                    i: 0\r\n                },\r\n            };\r\n        },\r\n        ready() {\r\n            validateLayout(this.layout);\r\n            var self = this;\r\n            this.$nextTick(function() {\r\n                if (self.width === null) {\r\n                    self.onWindowResize();\r\n                    //self.width = self.$el.offsetWidth;\r\n                    window.addEventListener('resize', self.onWindowResize);\r\n                }\r\n                compact(self.layout, self.verticalCompact);\r\n\r\n                self.updateHeight();\r\n                self.$nextTick(function () {\r\n                    var erd = elementResizeDetectorMaker({\r\n                        strategy: \"scroll\" //<- For ultra performance.\r\n                    });\r\n                    erd.listenTo(self.$els.item, function (element) {\r\n                        self.onWindowResize();\r\n                    });\r\n                });\r\n            });\r\n            window.onload = function() {\r\n                if (self.width === null) {\r\n                    self.onWindowResize();\r\n                    //self.width = self.$el.offsetWidth;\r\n                    window.addEventListener('resize', self.onWindowResize);\r\n                }\r\n                compact(self.layout, self.verticalCompact);\r\n\r\n                self.updateHeight();\r\n                self.$nextTick(function () {\r\n                    var erd = elementResizeDetectorMaker({\r\n                        strategy: \"scroll\" //<- For ultra performance.\r\n                    });\r\n                    erd.listenTo(self.$els.item, function (element) {\r\n                        self.onWindowResize();\r\n                    });\r\n                });\r\n\r\n            };\r\n        },\r\n        watch: {\r\n            width: function () {\r\n                this.$nextTick(function () {\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                    this.updateHeight();\r\n                });\r\n            },\r\n            layout: function () {\r\n                if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {\r\n                    this.lastLayoutLength = this.layout.length;\r\n                    compact(this.layout, this.verticalCompact);\r\n\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                    this.updateHeight();\r\n                }\r\n            }\r\n        },\r\n        methods: {\r\n            updateHeight: function () {\r\n                this.mergedStyle = {\r\n                    height: this.containerHeight()\r\n                };\r\n            },\r\n            onWindowResize: function () {\r\n                if (this.$els !== null && this.$els.item !== null) {\r\n                    this.width = this.$els.item.offsetWidth;\r\n                }\r\n            },\r\n            containerHeight: function () {\r\n                if (!this.autoSize) return;\r\n                return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';\r\n            }\r\n        },\r\n        events: {\r\n            dragEvent: function (eventName, id, x, y, w, h) {\r\n                if (eventName == \"dragmove\" || eventName == \"dragstart\") {\r\n                    this.isDragging = true;\r\n                    this.placeholder.i = id;\r\n                    this.placeholder.x = x;\r\n                    this.placeholder.y = y;\r\n                    this.placeholder.w = w;\r\n                    this.placeholder.h = h;\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                } else {\r\n                    this.isDragging = false;\r\n                }\r\n                //console.log(eventName + \" id=\" + id + \", x=\" + x + \", y=\" + y);\r\n                var l = getLayoutItem(this.layout, id);\r\n                // Move the element to the dragged location.\r\n                this.layout = moveElement(this.layout, l, x, y, true);\r\n                compact(this.layout, this.verticalCompact);\r\n                // needed because vue can't detect changes on array element properties\r\n                this.$broadcast(\"compact\", this.layout);\r\n                this.updateHeight();\r\n            },\r\n            resizeEvent: function (eventName, id, x, y, h, w) {\r\n                if (eventName == \"resizestart\" || eventName == \"resizemove\") {\r\n                    this.isDragging = true;\r\n                    this.placeholder.i = id;\r\n                    this.placeholder.x = x;\r\n                    this.placeholder.y = y;\r\n                    this.placeholder.w = w;\r\n                    this.placeholder.h = h;\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                } else {\r\n                    this.isDragging = false;\r\n                }\r\n                compact(this.layout, this.verticalCompact);\r\n                this.$broadcast(\"compact\", this.layout);\r\n                this.updateHeight();\r\n            },\r\n        }\r\n    }\r\n</script>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.vue-grid-layout {\n    position: relative;\n    transition: height 200ms ease;\n}\n", "", {"version":3,"sources":["/./src/GridLayout.vue?f5d44fae"],"names":[],"mappings":";;;;;;;;;;;;;;;;AAgBA;IACA,mBAAA;IACA,8BAAA;CACA","file":"GridLayout.vue","sourcesContent":["<template>\r\n    <!--<pre>{{$data|json}}</pre>\r\n    <br/>\r\n    <br/>-->\r\n    <div v-el:item class=\"vue-grid-layout\" :style=\"mergedStyle\">\r\n        <slot></slot>\r\n        <grid-item class=\"vue-grid-placeholder\"\r\n                   v-if=\"isDragging\"\r\n                   :x=\"placeholder.x\"\r\n                   :y=\"placeholder.y\"\r\n                   :w=\"placeholder.w\"\r\n                   :h=\"placeholder.h\"\r\n                   :i=\"placeholder.i\"></grid-item>\r\n    </div>\r\n</template>\r\n<style>\r\n    .vue-grid-layout {\r\n        position: relative;\r\n        transition: height 200ms ease;\r\n    }\r\n</style>\r\n<script>\r\n    var elementResizeDetectorMaker = require(\"element-resize-detector\");\r\n\r\n    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';\r\n    import GridItem from './GridItem.vue'\r\n\r\n    export default {\r\n        name: \"GridLayout\",\r\n        components: {\r\n            GridItem,\r\n        },\r\n        props: {\r\n            // If true, the container height swells and contracts to fit contents\r\n            autoSize: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            colNum: {\r\n                type: Number,\r\n                default: 12\r\n            },\r\n            rowHeight: {\r\n                type: Number,\r\n                default: 150\r\n            },\r\n            maxRows: {\r\n                type: Number,\r\n                default: Infinity\r\n            },\r\n            margin: {\r\n                type: Array,\r\n                default: function () {\r\n                    return [10, 10];\r\n                }\r\n            },\r\n            isDraggable: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            isResizable: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            useCssTransforms: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            verticalCompact: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n\r\n            layout: [],\r\n        },\r\n        data: function () {\r\n            return {\r\n                width: null,\r\n                mergedStyle: {},\r\n                lastLayoutLength: 0,\r\n                isDragging: false,\r\n                placeholder: {\r\n                    x: 0,\r\n                    y: 0,\r\n                    w: 0,\r\n                    h: 0,\r\n                    i: 0\r\n                },\r\n            };\r\n        },\r\n        ready() {\r\n            validateLayout(this.layout);\r\n            var self = this;\r\n            this.$nextTick(function() {\r\n                if (self.width === null) {\r\n                    self.onWindowResize();\r\n                    //self.width = self.$el.offsetWidth;\r\n                    window.addEventListener('resize', self.onWindowResize);\r\n                }\r\n                compact(self.layout, self.verticalCompact);\r\n\r\n                self.updateHeight();\r\n                self.$nextTick(function () {\r\n                    var erd = elementResizeDetectorMaker({\r\n                        strategy: \"scroll\" //<- For ultra performance.\r\n                    });\r\n                    erd.listenTo(self.$els.item, function (element) {\r\n                        self.onWindowResize();\r\n                    });\r\n                });\r\n            });\r\n            window.onload = function() {\r\n                if (self.width === null) {\r\n                    self.onWindowResize();\r\n                    //self.width = self.$el.offsetWidth;\r\n                    window.addEventListener('resize', self.onWindowResize);\r\n                }\r\n                compact(self.layout, self.verticalCompact);\r\n\r\n                self.updateHeight();\r\n                self.$nextTick(function () {\r\n                    var erd = elementResizeDetectorMaker({\r\n                        strategy: \"scroll\" //<- For ultra performance.\r\n                    });\r\n                    erd.listenTo(self.$els.item, function (element) {\r\n                        self.onWindowResize();\r\n                    });\r\n                });\r\n\r\n            };\r\n        },\r\n        watch: {\r\n            width: function () {\r\n                this.$nextTick(function () {\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                    this.updateHeight();\r\n                });\r\n            },\r\n            layout: function () {\r\n                if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {\r\n                    this.lastLayoutLength = this.layout.length;\r\n                    compact(this.layout, this.verticalCompact);\r\n\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                    this.updateHeight();\r\n                }\r\n            }\r\n        },\r\n        methods: {\r\n            updateHeight: function () {\r\n                this.mergedStyle = {\r\n                    height: this.containerHeight()\r\n                };\r\n            },\r\n            onWindowResize: function () {\r\n                if (this.$els !== null && this.$els.item !== null) {\r\n                    this.width = this.$els.item.offsetWidth;\r\n                }\r\n            },\r\n            containerHeight: function () {\r\n                if (!this.autoSize) return;\r\n                return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';\r\n            }\r\n        },\r\n        events: {\r\n            dragEvent: function (eventName, id, x, y, w, h) {\r\n                if (eventName == \"dragmove\" || eventName == \"dragstart\") {\r\n                    this.isDragging = true;\r\n                    this.placeholder.i = id;\r\n                    this.placeholder.x = x;\r\n                    this.placeholder.y = y;\r\n                    this.placeholder.w = w;\r\n                    this.placeholder.h = h;\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                } else {\r\n                    this.isDragging = false;\r\n                }\r\n                //console.log(eventName + \" id=\" + id + \", x=\" + x + \", y=\" + y);\r\n                var l = getLayoutItem(this.layout, id);\r\n                // Move the element to the dragged location.\r\n                this.layout = moveElement(this.layout, l, x, y, true);\r\n                compact(this.layout, this.verticalCompact);\r\n                // needed because vue can't detect changes on array element properties\r\n                this.$broadcast(\"compact\", this.layout);\r\n                this.updateHeight();\r\n            },\r\n            resizeEvent: function (eventName, id, x, y, h, w) {\r\n                if (eventName == \"resizestart\" || eventName == \"resizemove\") {\r\n                    this.isDragging = true;\r\n                    this.placeholder.i = id;\r\n                    this.placeholder.x = x;\r\n                    this.placeholder.y = y;\r\n                    this.placeholder.w = w;\r\n                    this.placeholder.h = h;\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                } else {\r\n                    this.isDragging = false;\r\n                }\r\n                compact(this.layout, this.verticalCompact);\r\n                this.$broadcast(\"compact\", this.layout);\r\n                this.updateHeight();\r\n            },\r\n        }\r\n    }\r\n</script>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
-/***/ },
+/***/ }),
 /* 52 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -8416,13 +8526,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.updateHeight();
 	        }
 	    }
+	    // </script>
+	    /* generated by vue-loader */
+	
 	};
-	// </script>
-	/* generated by vue-loader */
 
-/***/ },
+/***/ }),
 /* 53 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
@@ -8496,7 +8607,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // To maintain compatability with idHandler.get(element, readonly), make sure to wrap the given idHandler
 	        // so that readonly flag always is true when it's used here. This may be removed next major version bump.
 	        idHandler = {
-	            get: function (element) { options.idHandler.get(element, true); },
+	            get: function (element) { return options.idHandler.get(element, true); },
 	            set: options.idHandler.set
 	        };
 	    } else {
@@ -8558,7 +8669,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        throw new Error("Invalid strategy name: " + desiredStrategy);
 	    }
 	
-	    //Calls can be made to listenTo with elements that are still are being installed.
+	    //Calls can be made to listenTo with elements that are still being installed.
 	    //Also, same elements can occur in the elements list in the listenTo function.
 	    //With this map, the ready callbacks can be synchronized between the calls
 	    //so that the ready callback can always be called when an element is ready - even if
@@ -8664,10 +8775,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        // Since the element size might have changed since the call to "listenTo", we need to check for this change,
 	                        // so that a resize event may be emitted.
 	                        // Having the startSize object is optional (since it does not make sense in some cases such as unrendered elements), so check for its existance before.
-	                        if (stateHandler.getState(element).startSize) {
+	                        // Also, check the state existance before since the element may have been uninstalled in the installation process.
+	                        var state = stateHandler.getState(element);
+	                        if (state && state.startSize) {
 	                            var width = element.offsetWidth;
 	                            var height = element.offsetHeight;
-	                            if (stateHandler.getState(element).startSize.width !== width || stateHandler.getState(element).startSize.height !== height) {
+	                            if (state.startSize.width !== width || state.startSize.height !== height) {
 	                                onResizeCallback(element);
 	                            }
 	                        }
@@ -8745,9 +8858,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 
-/***/ },
+/***/ }),
 /* 54 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -8770,9 +8883,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 55 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -8828,9 +8941,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 56 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -8844,7 +8957,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @returns All listeners for the given element.
 	     */
 	    function getListeners(element) {
-	        return eventListeners[idHandler.get(element)] || [];
+	        var id = idHandler.get(element);
+	
+	        if (id === undefined) {
+	            return [];
+	        }
+	
+	        return eventListeners[id] || [];
 	    }
 	
 	    /**
@@ -8874,7 +8993,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    function removeAllListeners(element) {
-	      var listeners = eventListeners[idHandler.get(element)];
+	      var listeners = getListeners(element);
 	      if (!listeners) { return; }
 	      listeners.length = 0;
 	    }
@@ -8888,9 +9007,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 57 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -8912,9 +9031,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 58 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -8965,9 +9084,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 59 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -9013,9 +9132,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return reporter;
 	};
 
-/***/ },
+/***/ }),
 /* 60 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -9058,9 +9177,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 61 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
@@ -9202,9 +9321,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 
-/***/ },
+/***/ }),
 /* 62 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -9223,9 +9342,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 
-/***/ },
+/***/ }),
 /* 63 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -9251,9 +9370,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 64 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Resize detection strategy that injects objects to elements in order to detect resize events.
@@ -9408,6 +9527,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                //Add an object element as a child to the target element that will be listened to for resize events.
 	                var object = document.createElement("object");
 	                object.style.cssText = OBJECT_STYLE;
+	                object.tabIndex = -1;
 	                object.type = "text/html";
 	                object.onload = onObjectLoad;
 	
@@ -9470,9 +9590,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 65 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Resize detection strategy that injects divs to elements in order to detect resize events on scroll events.
@@ -9513,10 +9633,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var height = 500;
 	
 	        var child = document.createElement("div");
-	        child.style.cssText = "position: absolute; width: " + width*2 + "px; height: " + height*2 + "px; visibility: hidden;";
+	        child.style.cssText = "position: absolute; width: " + width*2 + "px; height: " + height*2 + "px; visibility: hidden; margin: 0; padding: 0;";
 	
 	        var container = document.createElement("div");
-	        container.style.cssText = "position: absolute; width: " + width + "px; height: " + height + "px; overflow: scroll; visibility: none; top: " + -width*3 + "px; left: " + -height*3 + "px; visibility: hidden;";
+	        container.style.cssText = "position: absolute; width: " + width + "px; height: " + height + "px; overflow: scroll; visibility: none; top: " + -width*3 + "px; left: " + -height*3 + "px; visibility: hidden; margin: 0; padding: 0;";
 	
 	        container.appendChild(child);
 	
@@ -9560,6 +9680,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    function addAnimationClass(element) {
 	        element.className += " " + detectionContainerClass + "_animation_active";
+	    }
+	
+	    function addEvent(el, name, cb) {
+	        if (el.addEventListener) {
+	            el.addEventListener(name, cb);
+	        } else if(el.attachEvent) {
+	            el.attachEvent("on" + name, cb);
+	        } else {
+	            return reporter.error("[scroll] Don't know how to add event listeners.");
+	        }
+	    }
+	
+	    function removeEvent(el, name, cb) {
+	        if (el.removeEventListener) {
+	            el.removeEventListener(name, cb);
+	        } else if(el.detachEvent) {
+	            el.detachEvent("on" + name, cb);
+	        } else {
+	            return reporter.error("[scroll] Don't know how to remove event listeners.");
+	        }
+	    }
+	
+	    function getExpandElement(element) {
+	        return getState(element).container.childNodes[0].childNodes[0].childNodes[0];
+	    }
+	
+	    function getShrinkElement(element) {
+	        return getState(element).container.childNodes[0].childNodes[0].childNodes[1];
 	    }
 	
 	    /**
@@ -9612,13 +9760,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	            function isInDocument(element) {
 	                return element === element.ownerDocument.body || element.ownerDocument.body.contains(element);
 	            }
-	            return !isInDocument(element);
+	
+	            if (!isInDocument(element)) {
+	                return true;
+	            }
+	
+	            // FireFox returns null style in hidden iframes. See https://github.com/wnr/element-resize-detector/issues/68 and https://bugzilla.mozilla.org/show_bug.cgi?id=795520
+	            if (getComputedStyle(element) === null) {
+	                return true;
+	            }
+	
+	            return false;
 	        }
 	
 	        function isUnrendered(element) {
 	            // Check the absolute positioned container since the top level container is display: inline.
 	            var container = getState(element).container.childNodes[0];
-	            return getComputedStyle(container).width.indexOf("px") === -1; //Can only compute pixel value when rendered.
+	            var style = getComputedStyle(container);
+	            return !style.width || style.width.indexOf("px") === -1; //Can only compute pixel value when rendered.
 	        }
 	
 	        function getStyle() {
@@ -9667,16 +9826,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            getState(element).lastHeight  = height;
 	        }
 	
-	        function getExpandElement(element) {
-	            return getState(element).container.childNodes[0].childNodes[0].childNodes[0];
-	        }
-	
 	        function getExpandChildElement(element) {
 	            return getExpandElement(element).childNodes[0];
-	        }
-	
-	        function getShrinkElement(element) {
-	            return getState(element).container.childNodes[0].childNodes[0].childNodes[1];
 	        }
 	
 	        function getWidthOffset() {
@@ -9716,30 +9867,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	            shrink.scrollTop    = shrinkHeight;
 	        }
 	
-	        function addEvent(el, name, cb) {
-	            if (el.addEventListener) {
-	                el.addEventListener(name, cb);
-	            } else if(el.attachEvent) {
-	                el.attachEvent("on" + name, cb);
-	            } else {
-	                return reporter.error("[scroll] Don't know how to add event listeners.");
-	            }
-	        }
-	
 	        function injectContainerElement() {
 	            var container = getState(element).container;
 	
 	            if (!container) {
 	                container                   = document.createElement("div");
 	                container.className         = detectionContainerClass;
-	                container.style.cssText     = "visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden;";
+	                container.style.cssText     = "visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden; margin: 0; padding: 0;";
 	                getState(element).container = container;
 	                addAnimationClass(container);
 	                element.appendChild(container);
 	
-	                addEvent(container, "animationstart", function onAnimationStart () {
+	                var onAnimationStart = function () {
 	                    getState(element).onRendered && getState(element).onRendered();
-	                });
+	                };
+	
+	                addEvent(container, "animationstart", onAnimationStart);
+	
+	                // Store the event handler here so that they may be removed when uninstall is called.
+	                // See uninstall function for an explanation why it is needed.
+	                getState(element).onAnimationStart = onAnimationStart;
 	            }
 	
 	            return container;
@@ -9774,7 +9921,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	
-	            function getTopBottomBottomRightCssText(left, top, bottom, right) {
+	            function getLeftTopBottomRightCssText(left, top, bottom, right) {
 	                left = (!left ? "0" : (left + "px"));
 	                top = (!top ? "0" : (top + "px"));
 	                bottom = (!bottom ? "0" : (bottom + "px"));
@@ -9808,10 +9955,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            var scrollbarWidth          = scrollbarSizes.width;
 	            var scrollbarHeight         = scrollbarSizes.height;
-	            var containerContainerStyle = "position: absolute; overflow: hidden; z-index: -1; visibility: hidden; width: 100%; height: 100%; left: 0px; top: 0px;";
-	            var containerStyle          = "position: absolute; overflow: hidden; z-index: -1; visibility: hidden; " + getTopBottomBottomRightCssText(-(1 + scrollbarWidth), -(1 + scrollbarHeight), -scrollbarHeight, -scrollbarWidth);
-	            var expandStyle             = "position: absolute; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;";
-	            var shrinkStyle             = "position: absolute; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;";
+	            var containerContainerStyle = "position: absolute; flex: none; overflow: hidden; z-index: -1; visibility: hidden; width: 100%; height: 100%; left: 0px; top: 0px;";
+	            var containerStyle          = "position: absolute; flex: none; overflow: hidden; z-index: -1; visibility: hidden; " + getLeftTopBottomRightCssText(-(1 + scrollbarWidth), -(1 + scrollbarHeight), -scrollbarHeight, -scrollbarWidth);
+	            var expandStyle             = "position: absolute; flex: none; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;";
+	            var shrinkStyle             = "position: absolute; flex: none; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;";
 	            var expandChildStyle        = "position: absolute; left: 0; top: 0;";
 	            var shrinkChildStyle        = "position: absolute; width: 200%; height: 200%;";
 	
@@ -9821,6 +9968,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var expandChild             = document.createElement("div");
 	            var shrink                  = document.createElement("div");
 	            var shrinkChild             = document.createElement("div");
+	
+	            // Some browsers choke on the resize system being rtl, so force it to ltr. https://github.com/wnr/element-resize-detector/issues/56
+	            // However, dir should not be set on the top level container as it alters the dimensions of the target element in some browsers.
+	            containerContainer.dir              = "ltr";
 	
 	            containerContainer.style.cssText    = containerContainerStyle;
 	            containerContainer.className        = detectionContainerClass;
@@ -9838,13 +9989,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	            containerContainer.appendChild(container);
 	            rootContainer.appendChild(containerContainer);
 	
-	            addEvent(expand, "scroll", function onExpandScroll() {
+	            function onExpandScroll() {
 	                getState(element).onExpand && getState(element).onExpand();
-	            });
+	            }
 	
-	            addEvent(shrink, "scroll", function onShrinkScroll() {
+	            function onShrinkScroll() {
 	                getState(element).onShrink && getState(element).onShrink();
-	            });
+	            }
+	
+	            addEvent(expand, "scroll", onExpandScroll);
+	            addEvent(shrink, "scroll", onShrinkScroll);
+	
+	            // Store the event handlers here so that they may be removed when uninstall is called.
+	            // See uninstall function for an explanation why it is needed.
+	            getState(element).onExpandScroll = onExpandScroll;
+	            getState(element).onShrinkScroll = onShrinkScroll;
 	        }
 	
 	        function registerListenersAndPositionElements() {
@@ -9866,7 +10025,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // Otherwise the if-check in handleScroll is useless.
 	                storeCurrentSize(element, width, height);
 	
+	                // Since we delay the processing of the batch, there is a risk that uninstall has been called before the batch gets to execute.
+	                // Since there is no way to cancel the fn executions, we need to add an uninstall guard to all fns of the batch.
+	
 	                batchProcessor.add(0, function performUpdateChildSizes() {
+	                    if (!getState(element)) {
+	                        debug("Aborting because element has been uninstalled");
+	                        return;
+	                    }
+	
+	                    if (!areElementsInjected()) {
+	                        debug("Aborting because element container has not been initialized");
+	                        return;
+	                    }
+	
 	                    if (options.debug) {
 	                        var w = element.offsetWidth;
 	                        var h = element.offsetHeight;
@@ -9880,11 +10052,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	                });
 	
 	                batchProcessor.add(1, function updateScrollbars() {
+	                    if (!getState(element)) {
+	                        debug("Aborting because element has been uninstalled");
+	                        return;
+	                    }
+	
+	                    if (!areElementsInjected()) {
+	                        debug("Aborting because element container has not been initialized");
+	                        return;
+	                    }
+	
 	                    positionScrollbars(element, width, height);
 	                });
 	
 	                if (done) {
-	                    batchProcessor.add(2, done);
+	                    batchProcessor.add(2, function () {
+	                        if (!getState(element)) {
+	                            debug("Aborting because element has been uninstalled");
+	                            return;
+	                        }
+	
+	                        if (!areElementsInjected()) {
+	                          debug("Aborting because element container has not been initialized");
+	                          return;
+	                        }
+	
+	                        done();
+	                    });
 	                }
 	            }
 	
@@ -10027,13 +10221,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return;
 	        }
 	
-	        if (state.busy) {
-	            // Uninstall has been called while the element is being prepared.
-	            // Right between the sync code and async batch.
-	            return;
-	        }
+	        // Uninstall may have been called in the following scenarios:
+	        // (1) Right between the sync code and async batch (here state.busy = true, but nothing have been registered or injected).
+	        // (2) In the ready callback of the last level of the batch by another element (here, state.busy = true, but all the stuff has been injected).
+	        // (3) After the installation process (here, state.busy = false and all the stuff has been injected).
+	        // So to be on the safe side, let's check for each thing before removing.
 	
-	        element.removeChild(state.container);
+	        // We need to remove the event listeners, because otherwise the event might fire on an uninstall element which results in an error when trying to get the state of the element.
+	        state.onExpandScroll && removeEvent(getExpandElement(element), "scroll", state.onExpandScroll);
+	        state.onShrinkScroll && removeEvent(getShrinkElement(element), "scroll", state.onShrinkScroll);
+	        state.onAnimationStart && removeEvent(state.container, "animationstart", state.onAnimationStart);
+	
+	        state.container && element.removeChild(state.container);
 	    }
 	
 	    return {
@@ -10044,34 +10243,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 66 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "\n<!--<pre>{{$data|json}}</pre>\n<br/>\n<br/>-->\n<div v-el:item class=\"vue-grid-layout\" :style=\"mergedStyle\">\n    <slot></slot>\n    <grid-item class=\"vue-grid-placeholder\"\n               v-if=\"isDragging\"\n               :x=\"placeholder.x\"\n               :y=\"placeholder.y\"\n               :w=\"placeholder.w\"\n               :h=\"placeholder.h\"\n               :i=\"placeholder.i\"></grid-item>\n</div>\n";
 
-/***/ },
+/***/ }),
 /* 67 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
 	__webpack_require__(68)
 	__vue_script__ = __webpack_require__(70)
-	if (__vue_script__ &&
-	    __vue_script__.__esModule &&
-	    Object.keys(__vue_script__).length > 1) {
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
 	  console.warn("[vue-loader] src\\ResponsiveGridLayout.vue: named exports in *.vue files are ignored.")}
 	__vue_template__ = __webpack_require__(72)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
 	if (__vue_template__) {
-	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	__vue_options__.template = __vue_template__
 	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "./ResponsiveGridLayout.vue"
+	  var id = "_v-595d3b15/ResponsiveGridLayout.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -10079,9 +10283,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	})()}
 
-/***/ },
+/***/ }),
 /* 68 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
@@ -10095,8 +10299,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ResponsiveGridLayout.vue", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ResponsiveGridLayout.vue");
+			module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ResponsiveGridLayout.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-rewriter.js!../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ResponsiveGridLayout.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -10105,23 +10309,23 @@ return /******/ (function(modules) { // webpackBootstrap
 		module.hot.dispose(function() { update(); });
 	}
 
-/***/ },
+/***/ }),
 /* 69 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n.vue-grid-layout {\n    position: relative;\n    -webkit-transition: height 200ms ease;\n    transition: height 200ms ease;\n}\n", "", {"version":3,"sources":["/./src/ResponsiveGridLayout.vue?75ac06a0"],"names":[],"mappings":";;;;;;;;;;;;;AAaA;IACA,mBAAA;IACA,sCAAA;IAAA,8BAAA;CACA","file":"ResponsiveGridLayout.vue","sourcesContent":["<template>\r\n    <!--<pre>{{lastLayoutLength|json}}</pre>\r\n    <pre>{{layout.length|json}}</pre>-->\r\n    <!--<pre>{{breakpoint|json}}</pre>\r\n    <pre>{{layouts|json}}</pre>-->\r\n    <!--<pre>{{layout|json}}</pre>-->\r\n    <!--<pre>width: {{width | json}}</pre>\r\n    <pre>mergedStyle: {{mergedStyle | json}}</pre>-->\r\n    <div v-el:item class=\"vue-grid-layout\" :style=\"mergedStyle\">\r\n        <slot></slot>\r\n    </div>\r\n</template>\r\n<style>\r\n    .vue-grid-layout {\r\n        position: relative;\r\n        transition: height 200ms ease;\r\n    }\r\n</style>\r\n<script>\r\n    var elementResizeDetectorMaker = require(\"element-resize-detector\");\r\n\r\n    import {bottom, compact, getLayoutItem, moveElement, validateLayout, findItemInArray, findAndRemove} from './utils';\r\n    import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout, generateResponsiveLayout} from './responsiveUtils';\r\n    import GridItem from './GridItem.vue'\r\n\r\n    export default {\r\n        name: \"ResponsiveGridLayout\",\r\n        components: {\r\n            GridItem,\r\n        },\r\n        props: {\r\n            autoSize: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            colNum: {\r\n                type: Number,\r\n                required: false,\r\n                default: 0\r\n            },\r\n            rowHeight: {\r\n                type: Number,\r\n                default: 150\r\n            },\r\n            maxRows: {\r\n                type: Number,\r\n                default: Infinity\r\n            },\r\n            // Margin between items [x, y] in px\r\n            margin: {\r\n                type: Array,\r\n                default: function () { return [10, 10]; }\r\n            },\r\n            isDraggable: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            isResizable: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            useCssTransforms: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            verticalCompact: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n\r\n            // Optional, but if you are managing width yourself you may want to set the breakpoint\r\n            // yourself as well.\r\n/*\r\n            breakpoint: {\r\n                type: String,\r\n                required: false,\r\n                default: \"lg\"\r\n            },\r\n*/\r\n            // {name: pxVal}, e.g. {lg: 1200, md: 996, sm: 768, xs: 480}\r\n/*\r\n            breakpoints: {\r\n                type: Object,\r\n                required: false,\r\n                default: function() {return {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}\r\n            },\r\n\r\n            // # of cols. This is a breakpoint -> cols map\r\n            cols: {\r\n                type: Object,\r\n                required: false,\r\n                default: function() {return {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}\r\n            },\r\n*/\r\n\r\n            layout: [],\r\n\r\n        },\r\n        data: function() {\r\n            return {\r\n                originalCols: null,\r\n                width: null,\r\n                mergedStyle: {},\r\n                lastLayoutLength: 0,\r\n            };\r\n        },\r\n        ready() {\r\n            validateLayout(this.layout);\r\n            this.originalCols = this.colNum;\r\n            var self = this;\r\n            window.onload = function() {\r\n                self.onWindowResize();\r\n                //self.width = self.$el.offsetWidth;\r\n                window.addEventListener('resize', self.onWindowResize);\r\n                compact(self.layout, self.verticalCompact);\r\n                self.updateHeight();\r\n                self.$nextTick(function() {\r\n//                    self.onWindowResize();\r\n                    var erd = elementResizeDetectorMaker({\r\n                        strategy: \"scroll\" //<- For ultra performance.\r\n                    });\r\n                    erd.listenTo(self.$els.item, function(element) {\r\n                        self.onWindowResize();\r\n                        /*var width = element.offsetWidth;\r\n                         var height = element.offsetHeight;\r\n                         console.log(\"Size: \" + width + \"x\" + height);*/\r\n                    });\r\n                });\r\n            }\r\n        },\r\n        watch: {\r\n            width: function() {\r\n                if (this.width > 768) {\r\n                    this.colNum = this.originalCols;\r\n                } else {\r\n                    this.colNum = 2;\r\n                }\r\n                this.$nextTick(function() {\r\n                    this.$broadcast(\"updateWidth\", this.width, this.colNum);\r\n                    this.updateHeight();\r\n                    compact(this.layout, this.verticalCompact);\r\n                });\r\n            },\r\n            layout: function() {\r\n                if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {\r\n                    this.lastLayoutLength = this.layout.length;\r\n                    compact(this.layout, this.verticalCompact);\r\n\r\n                    //this.$nextTick(function () {\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                    this.updateHeight();\r\n                    //});\r\n                }\r\n            }\r\n        },\r\n        methods: {\r\n            onWindowResize: function() {\r\n                if (this.$els !== null && this.$els.item !== null) {\r\n                    this.width = this.$els.item.offsetWidth;\r\n                }\r\n            },\r\n            updateHeight: function() {\r\n                this.mergedStyle = {\r\n                    height: this.containerHeight()\r\n                };\r\n            },\r\n            containerHeight: function() {\r\n                if (!this.autoSize) return;\r\n                return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';\r\n            },\r\n        },\r\n        events: {\r\n            dragEvent: function(eventName, id, x, y) {\r\n//                console.log(eventName + \" id=\" + id + \", x=\" + x + \", y=\" + y);\r\n                var l = getLayoutItem(this.layout, id);\r\n                // Move the element to the dragged location.\r\n                this.layout = moveElement(this.layout, l, x, y, true);\r\n                compact(this.layout, this.verticalCompact);\r\n                // needed because vue can't detect changes on array element properties\r\n                this.$broadcast(\"compact\", this.layout);\r\n                this.updateHeight();\r\n            },\r\n            resizeEvent: function(eventName, id, h, w) {\r\n                /*if (eventName === \"drag\" && h < -40 && w < -40) {\r\n                 return;\r\n                 }*/\r\n//                console.log(eventName + \" id=\" + id);\r\n                // Move the element to the dragged location.\r\n                compact(this.layout, this.verticalCompact);\r\n                this.$broadcast(\"compact\", this.layout);\r\n                this.updateHeight();\r\n            },\r\n        }\r\n    }\r\n</script>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n.vue-grid-layout {\n    position: relative;\n    transition: height 200ms ease;\n}\n", "", {"version":3,"sources":["/./src/ResponsiveGridLayout.vue?75ac06a0"],"names":[],"mappings":";;;;;;;;;;;;;AAaA;IACA,mBAAA;IACA,8BAAA;CACA","file":"ResponsiveGridLayout.vue","sourcesContent":["<template>\r\n    <!--<pre>{{lastLayoutLength|json}}</pre>\r\n    <pre>{{layout.length|json}}</pre>-->\r\n    <!--<pre>{{breakpoint|json}}</pre>\r\n    <pre>{{layouts|json}}</pre>-->\r\n    <!--<pre>{{layout|json}}</pre>-->\r\n    <!--<pre>width: {{width | json}}</pre>\r\n    <pre>mergedStyle: {{mergedStyle | json}}</pre>-->\r\n    <div v-el:item class=\"vue-grid-layout\" :style=\"mergedStyle\">\r\n        <slot></slot>\r\n    </div>\r\n</template>\r\n<style>\r\n    .vue-grid-layout {\r\n        position: relative;\r\n        transition: height 200ms ease;\r\n    }\r\n</style>\r\n<script>\r\n    var elementResizeDetectorMaker = require(\"element-resize-detector\");\r\n\r\n    import {bottom, compact, getLayoutItem, moveElement, validateLayout, findItemInArray, findAndRemove} from './utils';\r\n    import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout, generateResponsiveLayout} from './responsiveUtils';\r\n    import GridItem from './GridItem.vue'\r\n\r\n    export default {\r\n        name: \"ResponsiveGridLayout\",\r\n        components: {\r\n            GridItem,\r\n        },\r\n        props: {\r\n            autoSize: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            colNum: {\r\n                type: Number,\r\n                required: false,\r\n                default: 0\r\n            },\r\n            rowHeight: {\r\n                type: Number,\r\n                default: 150\r\n            },\r\n            maxRows: {\r\n                type: Number,\r\n                default: Infinity\r\n            },\r\n            // Margin between items [x, y] in px\r\n            margin: {\r\n                type: Array,\r\n                default: function () { return [10, 10]; }\r\n            },\r\n            isDraggable: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            isResizable: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            useCssTransforms: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n            verticalCompact: {\r\n                type: Boolean,\r\n                default: true\r\n            },\r\n\r\n            // Optional, but if you are managing width yourself you may want to set the breakpoint\r\n            // yourself as well.\r\n/*\r\n            breakpoint: {\r\n                type: String,\r\n                required: false,\r\n                default: \"lg\"\r\n            },\r\n*/\r\n            // {name: pxVal}, e.g. {lg: 1200, md: 996, sm: 768, xs: 480}\r\n/*\r\n            breakpoints: {\r\n                type: Object,\r\n                required: false,\r\n                default: function() {return {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}\r\n            },\r\n\r\n            // # of cols. This is a breakpoint -> cols map\r\n            cols: {\r\n                type: Object,\r\n                required: false,\r\n                default: function() {return {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}\r\n            },\r\n*/\r\n\r\n            layout: [],\r\n\r\n        },\r\n        data: function() {\r\n            return {\r\n                originalCols: null,\r\n                width: null,\r\n                mergedStyle: {},\r\n                lastLayoutLength: 0,\r\n            };\r\n        },\r\n        ready() {\r\n            validateLayout(this.layout);\r\n            this.originalCols = this.colNum;\r\n            var self = this;\r\n            window.onload = function() {\r\n                self.onWindowResize();\r\n                //self.width = self.$el.offsetWidth;\r\n                window.addEventListener('resize', self.onWindowResize);\r\n                compact(self.layout, self.verticalCompact);\r\n                self.updateHeight();\r\n                self.$nextTick(function() {\r\n//                    self.onWindowResize();\r\n                    var erd = elementResizeDetectorMaker({\r\n                        strategy: \"scroll\" //<- For ultra performance.\r\n                    });\r\n                    erd.listenTo(self.$els.item, function(element) {\r\n                        self.onWindowResize();\r\n                        /*var width = element.offsetWidth;\r\n                         var height = element.offsetHeight;\r\n                         console.log(\"Size: \" + width + \"x\" + height);*/\r\n                    });\r\n                });\r\n            }\r\n        },\r\n        watch: {\r\n            width: function() {\r\n                if (this.width > 768) {\r\n                    this.colNum = this.originalCols;\r\n                } else {\r\n                    this.colNum = 2;\r\n                }\r\n                this.$nextTick(function() {\r\n                    this.$broadcast(\"updateWidth\", this.width, this.colNum);\r\n                    this.updateHeight();\r\n                    compact(this.layout, this.verticalCompact);\r\n                });\r\n            },\r\n            layout: function() {\r\n                if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {\r\n                    this.lastLayoutLength = this.layout.length;\r\n                    compact(this.layout, this.verticalCompact);\r\n\r\n                    //this.$nextTick(function () {\r\n                    this.$broadcast(\"updateWidth\", this.width);\r\n                    this.updateHeight();\r\n                    //});\r\n                }\r\n            }\r\n        },\r\n        methods: {\r\n            onWindowResize: function() {\r\n                if (this.$els !== null && this.$els.item !== null) {\r\n                    this.width = this.$els.item.offsetWidth;\r\n                }\r\n            },\r\n            updateHeight: function() {\r\n                this.mergedStyle = {\r\n                    height: this.containerHeight()\r\n                };\r\n            },\r\n            containerHeight: function() {\r\n                if (!this.autoSize) return;\r\n                return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';\r\n            },\r\n        },\r\n        events: {\r\n            dragEvent: function(eventName, id, x, y) {\r\n//                console.log(eventName + \" id=\" + id + \", x=\" + x + \", y=\" + y);\r\n                var l = getLayoutItem(this.layout, id);\r\n                // Move the element to the dragged location.\r\n                this.layout = moveElement(this.layout, l, x, y, true);\r\n                compact(this.layout, this.verticalCompact);\r\n                // needed because vue can't detect changes on array element properties\r\n                this.$broadcast(\"compact\", this.layout);\r\n                this.updateHeight();\r\n            },\r\n            resizeEvent: function(eventName, id, h, w) {\r\n                /*if (eventName === \"drag\" && h < -40 && w < -40) {\r\n                 return;\r\n                 }*/\r\n//                console.log(eventName + \" id=\" + id);\r\n                // Move the element to the dragged location.\r\n                compact(this.layout, this.verticalCompact);\r\n                this.$broadcast(\"compact\", this.layout);\r\n                this.updateHeight();\r\n            },\r\n        }\r\n    }\r\n</script>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
-/***/ },
+/***/ }),
 /* 70 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -10331,13 +10535,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.updateHeight();
 	        }
 	    }
+	    // </script>
+	    /* generated by vue-loader */
+	
 	};
-	// </script>
-	/* generated by vue-loader */
 
-/***/ },
+/***/ }),
 /* 71 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -10460,13 +10665,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  });
 	}
 
-/***/ },
+/***/ }),
 /* 72 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "\n<!--<pre>{{lastLayoutLength|json}}</pre>\n<pre>{{layout.length|json}}</pre>-->\n<!--<pre>{{breakpoint|json}}</pre>\n<pre>{{layouts|json}}</pre>-->\n<!--<pre>{{layout|json}}</pre>-->\n<!--<pre>width: {{width | json}}</pre>\n<pre>mergedStyle: {{mergedStyle | json}}</pre>-->\n<div v-el:item class=\"vue-grid-layout\" :style=\"mergedStyle\">\n    <slot></slot>\n</div>\n";
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
