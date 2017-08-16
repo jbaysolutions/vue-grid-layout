@@ -309,7 +309,7 @@
             resizable: function() {
                 var self = this;
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item, {ignoreFrom: resizeIgnoreFrom});
+                    this.interactObj = interact(this.$refs.item, {ignoreFrom: this.resizeIgnoreFrom});
                 }
                 if (this.resizable) {
                     this.interactObj
