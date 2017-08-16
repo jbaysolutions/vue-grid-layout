@@ -101,6 +101,9 @@
 
                 self.updateHeight();
                 self.$nextTick(function () {
+                    if(!self.$els.item)
+                        return;
+
                     var erd = elementResizeDetectorMaker({
                         strategy: "scroll" //<- For ultra performance.
                     });
@@ -119,6 +122,8 @@
 
                 self.updateHeight();
                 self.$nextTick(function () {
+                    if(!self.$els.item)
+                        return;
                     var erd = elementResizeDetectorMaker({
                         strategy: "scroll" //<- For ultra performance.
                     });
