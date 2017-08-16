@@ -1,11 +1,12 @@
 <template>
     <div ref="item"
-             class="vue-grid-item"
-             :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
-             :style="style"
-        >
+         class="vue-grid-item"
+         :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
+         :style="style"
+    >
         <slot></slot>
         <span v-if="resizable" ref="handle" :class="resizableHandleClass"></span>
+        <span v-if="draggable" ref="dragHandle" class="vue-draggable-handle"></span>
     </div>
 </template>
 <style>
@@ -14,9 +15,11 @@
         transition-property: left, top, right;
         /* add right for rtl */
     }
+
     .vue-grid-item.cssTransforms {
         transition-property: transform;
     }
+
     .vue-grid-item.resizing {
         opacity: 0.6;
         z-index: 3;
@@ -37,6 +40,21 @@
         -ms-user-select: none;
         -o-user-select: none;
         user-select: none;
+    }
+
+    .vue-grid-item > .vue-draggable-handle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 0;
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='5' fill='#999999'/></svg>") no-repeat;
+        background-position: bottom right;
+        padding: 0 8px 8px 0;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        box-sizing: border-box;
+        cursor: pointer;
     }
 
     .vue-grid-item > .vue-resizable-handle {
@@ -69,34 +87,34 @@
 <script>
     import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from './utils';
     import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
-//    var eventBus = require('./eventBus');
+    //    var eventBus = require('./eventBus');
 
-    var interact = require("interact.js");
+    var interact = require("interactjs");
 
     export default {
         name: "GridItem",
         props: {
             /*cols: {
-                type: Number,
-                required: true
-            },*/
+             type: Number,
+             required: true
+             },*/
             /*containerWidth: {
-                type: Number,
-                required: true
+             type: Number,
+             required: true
 
-            },
-            rowHeight: {
-                type: Number,
-                required: true
-            },
-            margin: {
-                type: Array,
-                required: true
-            },
-            maxRows: {
-                type: Number,
-                required: true
-            },*/
+             },
+             rowHeight: {
+             type: Number,
+             required: true
+             },
+             margin: {
+             type: Array,
+             required: true
+             },
+             maxRows: {
+             type: Number,
+             required: true
+             },*/
             isDraggable: {
                 type: Boolean,
                 required: false,
@@ -108,15 +126,15 @@
                 default: null
             },
             /*useCssTransforms: {
-                type: Boolean,
-                required: true
-            },
-            static: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            */
+             type: Boolean,
+             required: true
+             },
+             static: {
+             type: Boolean,
+             required: false,
+             default: false
+             },
+             */
             minH: {
                 type: Number,
                 required: false,
@@ -168,7 +186,7 @@
             }
         },
         inject: ["eventBus"],
-        data: function() {
+        data: function () {
             return {
                 cols: 1,
                 containerWidth: 100,
@@ -203,27 +221,27 @@
             var self = this;
 
             // Accessible refernces of functions for removing in beforeDestroy
-            self.updateWidthHandler = function(width) {
+            self.updateWidthHandler = function (width) {
                 self.updateWidth(width);
             };
 
-            self.compactHandler = function(layout) {
+            self.compactHandler = function (layout) {
                 self.compact(layout);
             };
 
-            self.setDraggableHandler = function(isDraggable) {
+            self.setDraggableHandler = function (isDraggable) {
                 if (self.isDraggable === null) {
                     self.draggable = isDraggable;
                 }
             };
 
-            self.setResizableHandler = function(isResizable) {
+            self.setResizableHandler = function (isResizable) {
                 if (self.isResizable === null) {
                     self.resizable = isResizable;
                 }
             };
 
-            self.setRowHeightHandler = function(rowHeight) {
+            self.setRowHeightHandler = function (rowHeight) {
                 self.rowHeight = rowHeight;
             };
 
@@ -243,16 +261,15 @@
             this.eventBus.$on('directionchange', self.directionchangeHandler);
 
             /*this.eventBus.$on('setColNum', function(colNum) {
-                self.cols = colNum;
-            });*/
-            var direction = (document.dir !=undefined) ?
+             self.cols = colNum;
+             });*/
+            var direction = (document.dir != undefined) ?
                 document.dir :
                 document.getElementsByTagName("html")[0].getAttribute("dir");
             this.rtl = (direction == "rtl");
         },
         beforeDestroy: function(){
             var self = this;
-
             //Remove listeners
             this.eventBus.$off('updateWidth', self.updateWidthHandler);
             this.eventBus.$off('compact', self.compactHandler);
@@ -261,7 +278,7 @@
             this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$off('directionchange', self.directionchangeHandler);
         },
-        mounted: function() {
+        mounted: function () {
             this.cols = this.$parent.colNum;
             this.rowHeight = this.$parent.rowHeight;
             this.containerWidth = this.$parent.width !== null ? this.$parent.width : 100;
@@ -281,16 +298,16 @@
             this.createStyle();
         },
         watch: {
-            isDraggable: function() {
+            isDraggable: function () {
                 this.draggable = this.isDraggable;
             },
-            draggable: function() {
+            draggable: function () {
                 var self = this;
                 if (this.interactObj == null) {
                     this.interactObj = interact(this.$refs.item, {ignoreFrom: this.dragIgnoreFrom});
                 }
                 if (this.draggable) {
-                    this.interactObj.draggable({});
+                    this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});
                     if (!this.dragEventSet) {
                         this.dragEventSet = true;
                         this.interactObj.on('dragstart dragmove dragend', function (event) {
@@ -299,14 +316,14 @@
                     }
                 } else {
                     this.interactObj.draggable({
-                            enabled:false
-                        });
+                        enabled: false
+                    });
                 }
             },
-            isResizable: function() {
-               this.resizable = this.isResizable;
+            isResizable: function () {
+                this.resizable = this.isResizable;
             },
-            resizable: function() {
+            resizable: function () {
                 var self = this;
                 if (this.interactObj == null) {
                     this.interactObj = interact(this.$refs.item, {ignoreFrom: this.resizeIgnoreFrom});
@@ -326,29 +343,29 @@
                     }
                 } else {
                     this.interactObj.resizable({
-                        enabled:false
+                        enabled: false
                     });
                 }
             },
-            rowHeight: function() {
+            rowHeight: function () {
                 this.createStyle();
             },
-            cols: function() {
+            cols: function () {
                 this.createStyle();
             },
-            containerWidth: function() {
+            containerWidth: function () {
                 this.createStyle();
             },
-            x: function() {
+            x: function () {
                 this.createStyle();
             },
-            y: function() {
+            y: function () {
                 this.createStyle();
             },
-            h: function() {
+            h: function () {
                 this.createStyle();
             },
-            w: function() {
+            w: function () {
                 this.createStyle();
             }
         },
@@ -362,7 +379,7 @@
             }
         },
         methods: {
-            createStyle: function() {
+            createStyle: function () {
                 if (this.x + this.w > this.cols) {
                     this.x = 0;
                     this.w = this.cols;
@@ -407,7 +424,7 @@
                 this.style = style;
 
             },
-            handleResize: function(event) {
+            handleResize: function (event) {
                 const position = getControlPosition(event);
                 // Get the current drag point from the event. This is used as the offset.
                 if (position == null) return; // not possible but satisfies flow
@@ -559,7 +576,7 @@
                 }
                 this.eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.h, this.w);
             },
-            calcPosition: function(x, y, w, h) {
+            calcPosition: function (x, y, w, h) {
                 const colWidth = this.calcColWidth();
                 // add rtl support
                 if (this.rtl) {
@@ -640,13 +657,13 @@
                 h = Math.max(Math.min(h, this.maxRows - this.y), 0);
                 return {w, h};
             },
-            updateWidth: function(width, colNum) {
+            updateWidth: function (width, colNum) {
                 this.containerWidth = width;
                 if (colNum !== undefined && colNum !== null) {
                     this.cols = colNum;
                 }
             },
-            compact: function() {
+            compact: function () {
                 this.createStyle();
             }
         },

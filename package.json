@@ -25,7 +25,7 @@
   "author": "Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com)",
   "dependencies": {
     "element-resize-detector": "^1.1.10",
-    "interact.js": "^1.2.8"
+    "interact.js": "git://github.com/taye/interact.js.git#master"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
