@@ -169,7 +169,7 @@
         },
         events: {
             dragEvent: function (eventName, id, x, y, w, h) {
-                if (eventName == "dragmove" || eventName == "dragstart") {
+                if (eventName === "dragmove" || eventName === "dragstart") {
                     this.isDragging = true;
                     this.placeholder.i = id;
                     this.placeholder.x = x;
@@ -190,7 +190,7 @@
                 this.updateHeight();
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
-                if (eventName == "resizestart" || eventName == "resizemove") {
+                if (eventName === "resizestart" || eventName === "resizemove") {
                     this.isDragging = true;
                     this.placeholder.i = id;
                     this.placeholder.x = x;

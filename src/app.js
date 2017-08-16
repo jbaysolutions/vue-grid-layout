@@ -72,7 +72,19 @@ new Vue({
             var item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
             this.index++;
             this.layout.push(item);
-        }
+        } ,
+        move: function(i, newX, newY){
+            console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
+        },
+        resize: function(i, newH, newW){
+            console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
+        },
+        moved: function(i, newX, newY){
+            console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
+        },
+        resized: function(i, newH, newW){
+            console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW);
+        },
     },
 });
 

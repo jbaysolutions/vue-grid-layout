@@ -1,5 +1,11 @@
 # Changelog
 
+1.0.3 (Aug 16, 2017)
+
+* merged #85, support for dragIgnoreFrom and resizeIgnoreFrom
+* implemented #35, resize, resized, move and moved events
+ 
+
 1.0.2 (Apr 18, 2017)
 
 * fixed #40 properly 

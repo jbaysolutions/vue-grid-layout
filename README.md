@@ -118,6 +118,83 @@ npm install vue-grid-layout
 ```` 
 
 
+### Events
+
+Move and resize event listeners can be added to each grid-item, so that the parent Vue can be notified when a grid element is being moved or resized.
+Moved and resized event listeners can be added, if the only notification needed is when an item is finished moving or resizing.
+
+Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/02-events.html)   
+
+````html
+
+    <grid-layout
+            :layout="layout"
+            :col-num="12"
+            :row-height="30"
+            :is-draggable="true"
+            :is-resizable="true"
+            :vertical-compact="true"
+            :margin="[10, 10]"
+            :use-css-transforms="true"
+    >
+
+        <grid-item v-for="item in layout"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
+                   :i="item.i"
+                   @resize="resizeEvent"
+                   @move="moveEvent"
+                   @resized="resizedEvent"
+                   @moved="movedEvent">
+            {{item.i}}
+        </grid-item>
+    </grid-layout>
+```` 
+
+* Move event: every time an item is being moved and changes position
+
+```javascript
+    moveEvent: function(i, newX, newY){
+        console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
+    },
+```
+
+* Resize event: every time an item is being resized and changes size
+ 
+```javascript
+    resizeEvent: function(i, newH, newW){
+        console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
+    },
+``` 
+
+* Moved event: every time an item is finished being moved and changes position
+
+```javascript
+    movedEvent: function(i, newX, newY){
+        console.log("MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
+    },
+```
+
+* Resized event: every time an item is finished being resized and changes size
+ 
+```javascript
+    /**
+     * 
+     * @param i the item id/index
+     * @param newH new height in grid rows 
+     * @param newW new width in grid columns
+     * @param newHPx new height in pixels
+     * @param newWPx new width in pixels
+     * 
+     */
+    resizedEvent: function(i, newH, newW, newHPx, newWPx){
+        console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
+    },
+``` 
+
+
 ## Contribute
 
 If you have a feature request, please add it as an issue or make a pull request.

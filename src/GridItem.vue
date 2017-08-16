@@ -176,7 +176,12 @@
                 lastY: NaN,
                 lastW: NaN,
                 lastH: NaN,
-                style: {}
+                style: {} ,
+
+                previousW: null,
+                previousH: null,
+                previousX: null,
+                previousY: null,
             }
         },
         ready: function() {
@@ -191,7 +196,7 @@
 
             var self = this;
             if (this.isDraggable) {
-                if (this.interactObj == null) {
+                if (this.interactObj === null || this.interactObj === undefined) {
                     this.interactObj = interact(this.$els.item, {ignoreFrom: this.dragIgnoreFrom});
                 }
                 this.interactObj
@@ -202,7 +207,7 @@
                         });
             }
             if (this.isResizable) {
-                if (this.interactObj == null) {
+                if (this.interactObj === null) {
                     this.interactObj = interact(this.$els.item, {ignoreFrom: this.resizeIgnoreFrom});
                 }
                 this.interactObj
@@ -279,12 +284,15 @@
             handleResize: function(event) {
                 const position = getControlPosition(event);
                 // Get the current drag point from the event. This is used as the offset.
-                if (position == null) return; // not possible but satisfies flow
+                if (position === null) return; // not possible but satisfies flow
                 const {x, y} = position;
 
                 const newSize = {width: 0, height: 0};
                 switch (event.type) {
                     case "resizestart":
+                        this.previousW = this.w;
+                        this.previousH = this.h;
+
                         var pos = this.calcPosition(this.x, this.y, this.w, this.h);
                         newSize.width = pos.width;
                         newSize.height = pos.height;
@@ -341,6 +349,13 @@
                 this.lastW = x;
                 this.lastH = y;
 
+                if (this.w !== pos.w || this.h !== pos.h) {
+                    this.$dispatch("resize", this.i, pos.h, pos.w);
+                }
+                if (event.type === "resizeend" && (this.previousW !== this.w || this.previousH !== this.h)) {
+                    this.$dispatch("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
+                }
+
                 this.$dispatch("resizeEvent", event.type, this.i, this.x, this.y, this.h, this.w);
             },
             handleDrag(event) {
@@ -349,7 +364,7 @@
                 const position = getControlPosition(event);
 
                 // Get the current drag point from the event. This is used as the offset.
-                if (position == null) return; // not possible but satisfies flow
+                if (position === null) return; // not possible but satisfies flow
                 const {x, y} = position;
 
                 var shouldUpdate = false;
@@ -357,6 +372,9 @@
                 const newPosition = {top: 0, left: 0};
                 switch (event.type) {
                     case "dragstart":
+                        this.previousX = this.x;
+                        this.previousY = this.y;
+
                         var parentRect = event.target.offsetParent.getBoundingClientRect();
                         var clientRect = event.target.getBoundingClientRect();
                         newPosition.left = clientRect.left - parentRect.left;
@@ -394,6 +412,13 @@
 
                 this.lastX = x;
                 this.lastY = y;
+
+                if (this.x !== pos.x || this.y !== pos.y) {
+                    this.$dispatch("move", this.i, pos.x, pos.y);
+                }
+                if (event.type === "dragend" && (this.previousX !== this.x || this.previousY !== this.y)) {
+                    this.$dispatch("moved", this.i, pos.x, pos.y);
+                }
 
                 this.$dispatch("dragEvent", event.type, this.i, this.x, this.y, this.w, this.h);
             },

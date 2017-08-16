@@ -43,7 +43,12 @@
                            :h.sync="item.h"
                            :min-w="2"
                            :min-h="2"
-                           :i="item.i">
+                           :i="item.i"
+                           @resize="resize"
+                           @move="move"
+                           @resized="resized"
+                           @moved="moved"
+                >
                     <test-element :text="item.i"></test-element>
                 </grid-item>
             </grid-layout>
