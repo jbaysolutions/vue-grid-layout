@@ -268,7 +268,8 @@
                 document.getElementsByTagName("html")[0].getAttribute("dir");
             this.rtl = (direction == "rtl");
         },
-        beforeDestroy: function () {
+        beforeDestroy: function(){
+            var self = this;
             //Remove listeners
             this.eventBus.$off('updateWidth', self.updateWidthHandler);
             this.eventBus.$off('compact', self.compactHandler);
@@ -325,7 +326,7 @@
             resizable: function () {
                 var self = this;
                 if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item, {ignoreFrom: resizeIgnoreFrom});
+                    this.interactObj = interact(this.$refs.item, {ignoreFrom: this.resizeIgnoreFrom});
                 }
                 if (this.resizable) {
                     this.interactObj
