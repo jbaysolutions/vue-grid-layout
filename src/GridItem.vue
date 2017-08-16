@@ -207,7 +207,7 @@
                         });
             }
             if (this.isResizable) {
-                if (this.interactObj === null) {
+                if (this.interactObj === null || this.interactObj === undefined) {
                     this.interactObj = interact(this.$els.item, {ignoreFrom: this.resizeIgnoreFrom});
                 }
                 this.interactObj

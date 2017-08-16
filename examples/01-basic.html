@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Vue Grid Layout Example 1 - Basic Responsive</title>
+    <title>Vue Grid Layout Example 1 - Basic</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
     <h1>Vue Grid Layout Example 1 - Basic</h1>
+
+    <a href="https://github.com/jbaysolutions/vue-grid-layout">View project on Github</a>
+    <br/>
+    <a href="02-events.html">Next example: Move and resize events</a>
+
     <div id="app" style="width: 100%;">
         <!--<pre>{{ $data | json }}</pre>-->
         <div>
@@ -21,7 +26,12 @@
             </div>
         </div>
         <div id="content">
-            <grid-layout :layout.sync="layout" :col-num="12" :row-height="30" :is-draggable="true" :vertical-compact="true">
+            <grid-layout :layout.sync="layout"
+                         :col-num="12"
+                         :row-height="30"
+                         :is-draggable="true"
+                         :vertical-compact="true"
+            >
                 <grid-item v-for="item in layout"
                            :x.sync="item.x"
                            :y.sync="item.y"
