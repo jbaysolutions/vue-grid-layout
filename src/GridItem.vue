@@ -26,7 +26,7 @@
     }
 
     .vue-grid-item.vue-draggable-dragging {
-        /*transition:none;*/
+        transition:none;
         z-index: 3;
     }
 
@@ -41,21 +41,6 @@
         -o-user-select: none;
         user-select: none;
     }
-
-    /*.vue-grid-item > .vue-draggable-handle {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        top: 0;
-        left: 0;
-        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='5' fill='#999999'/></svg>") no-repeat;
-        background-position: bottom right;
-        padding: 0 8px 8px 0;
-        background-repeat: no-repeat;
-        background-origin: content-box;
-        box-sizing: border-box;
-        cursor: pointer;
-    }*/
 
     .vue-grid-item > .vue-resizable-handle {
         position: absolute;
@@ -516,7 +501,7 @@
                 const position = getControlPosition(event);
 
                 // Get the current drag point from the event. This is used as the offset.
-                if (position == null) return; // not possible but satisfies flow
+                if (position === null) return; // not possible but satisfies flow
                 const {x, y} = position;
 
                 var shouldUpdate = false;

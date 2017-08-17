@@ -48,13 +48,13 @@
                            :min-w="2"
                            :min-h="2"
                            :i="item.i"
-                           drag-allow-from=".vue-draggable-handle"
                            @resize="resize"
                            @move="move"
                            @resized="resized"
                            @moved="moved"
                 >
-                    <custom-drag-element :text="item.i"></custom-drag-element>
+                    <!--<custom-drag-element :text="item.i"></custom-drag-element>-->
+                    <test-element :text="item.i"></test-element>
                     <!--<button @click="clicked">CLICK ME!</button>-->
                 </grid-item>
             </grid-layout>

@@ -206,22 +206,26 @@
                 return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
             },
             dragEvent: function (eventName, id, x, y, h, w) {
-                if (eventName == "dragmove" || eventName == "dragstart") {
-                    this.isDragging = true;
+                if (eventName === "dragmove" || eventName === "dragstart") {
                     this.placeholder.i = id;
                     this.placeholder.x = x;
                     this.placeholder.y = y;
                     this.placeholder.w = w;
                     this.placeholder.h = h;
+                    this.$nextTick(function() {
+                        this.isDragging = true;
+                    });
                     //this.$broadcast("updateWidth", this.width);
                     this.eventBus.$emit("updateWidth", this.width);
                 } else {
-                    this.isDragging = false;
+                    this.$nextTick(function() {
+                        this.isDragging = false;
+                    });
                 }
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
-                if (l == null){
+                if (l === null){
                     l = {x:0, y:0}
                 }
                 l.x = x;
@@ -234,22 +238,26 @@
                 this.updateHeight();
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
-                if (eventName == "resizestart" || eventName == "resizemove") {
-                    this.isDragging = true;
+                if (eventName === "resizestart" || eventName === "resizemove") {
                     this.placeholder.i = id;
                     this.placeholder.x = x;
                     this.placeholder.y = y;
                     this.placeholder.w = w;
                     this.placeholder.h = h;
+                    this.$nextTick(function() {
+                        this.isDragging = true;
+                    });
                     //this.$broadcast("updateWidth", this.width);
                     this.eventBus.$emit("updateWidth", this.width);
 
                 } else {
-                    this.isDragging = false;
+                    this.$nextTick(function() {
+                        this.isDragging = false;
+                    });
                 }
                 var l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes return null object
-                if (l == null){
+                if (l === null){
                     l = {h:0, w:0}
                 }
                 l.h = h;

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.8 (Aug 17, 2017)
+
+* Fixed #61 and #37
+* Fixed #82
+
 ## 2.1.7 (Aug 17, 2017)
 
 * Fixed #59
