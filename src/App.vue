@@ -48,17 +48,18 @@
                            :min-w="2"
                            :min-h="2"
                            :i="item.i"
+                           drag-allow-from=".vue-draggable-handle"
                            @resize="resize"
                            @move="move"
                            @resized="resized"
                            @moved="moved"
                 >
-                    <test-element :text="item.i"></test-element>
+                    <custom-drag-element :text="item.i"></custom-drag-element>
                     <!--<button @click="clicked">CLICK ME!</button>-->
                 </grid-item>
             </grid-layout>
             <hr/>
-            <grid-layout
+            <!--<grid-layout
                     :layout="layout2"
                     :col-num="12"
                     :row-height="rowHeight"
@@ -80,7 +81,7 @@
                 >
                     <test-element :text="item.i"></test-element>
                 </grid-item>
-            </grid-layout>
+            </grid-layout>-->
         </div>
     </div>
 </template>
@@ -90,6 +91,7 @@
     import GridLayout from './GridLayout.vue';
     //import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
     import TestElement from './TestElement.vue';
+    import CustomDragElement from './CustomDragElement.vue';
     //var eventBus = require('./eventBus');
 
     var testLayout = [
@@ -122,6 +124,7 @@
             GridLayout,
             GridItem,
             TestElement,
+            CustomDragElement,
         },
         data () {
             return {

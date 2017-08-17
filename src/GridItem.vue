@@ -6,7 +6,7 @@
     >
         <slot></slot>
         <span v-if="resizable" ref="handle" :class="resizableHandleClass"></span>
-        <span v-if="draggable" ref="dragHandle" class="vue-draggable-handle"></span>
+        <!--<span v-if="draggable" ref="dragHandle" class="vue-draggable-handle"></span>-->
     </div>
 </template>
 <style>
@@ -42,7 +42,7 @@
         user-select: none;
     }
 
-    .vue-grid-item > .vue-draggable-handle {
+    /*.vue-grid-item > .vue-draggable-handle {
         position: absolute;
         width: 20px;
         height: 20px;
@@ -55,7 +55,7 @@
         background-origin: content-box;
         box-sizing: border-box;
         cursor: pointer;
-    }
+    }*/
 
     .vue-grid-item > .vue-resizable-handle {
         position: absolute;
@@ -179,11 +179,16 @@
                 required: false,
                 default: 'a, button'
             },
+            dragAllowFrom: {
+                type: String,
+                required: false,
+                default: null
+            },
             resizeIgnoreFrom: {
                 type: String,
                 required: false,
                 default: 'a, button'
-            }
+            },
         },
         inject: ["eventBus"],
         data: function () {
@@ -246,10 +251,10 @@
             };
 
             self.directionchangeHandler = (direction) => {
-                var direction = (document.dir != undefined) ?
+                var direction = (document.dir !== undefined) ?
                     document.dir :
                     document.getElementsByTagName("html")[0].getAttribute("dir");
-                this.rtl = (direction == "rtl");
+                this.rtl = (direction === "rtl");
                 this.compact();
             };
 
@@ -263,10 +268,10 @@
             /*this.eventBus.$on('setColNum', function(colNum) {
              self.cols = colNum;
              });*/
-            var direction = (document.dir != undefined) ?
+            var direction = (document.dir !== undefined) ?
                 document.dir :
                 document.getElementsByTagName("html")[0].getAttribute("dir");
-            this.rtl = (direction == "rtl");
+            this.rtl = (direction === "rtl");
         },
         beforeDestroy: function(){
             var self = this;
@@ -303,11 +308,16 @@
             },
             draggable: function () {
                 var self = this;
-                if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item, {ignoreFrom: this.dragIgnoreFrom});
+                if (this.interactObj === null || this.interactObj === undefined) {
+                    this.interactObj = interact(this.$refs.item);
                 }
                 if (this.draggable) {
-                    this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});
+                    var opts = {
+                        ignoreFrom: this.dragIgnoreFrom,
+                        allowFrom: this.dragAllowFrom
+                    }
+                    this.interactObj.draggable(opts);
+                    /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
                     if (!this.dragEventSet) {
                         this.dragEventSet = true;
                         this.interactObj.on('dragstart dragmove dragend', function (event) {
@@ -325,15 +335,17 @@
             },
             resizable: function () {
                 var self = this;
-                if (this.interactObj == null) {
-                    this.interactObj = interact(this.$refs.item, {ignoreFrom: this.resizeIgnoreFrom});
+                if (this.interactObj === null || this.interactObj === undefined) {
+                    this.interactObj = interact(this.$refs.item);
                 }
                 if (this.resizable) {
-                    this.interactObj
-                        .resizable({
-                            preserveAspectRatio: false,
-                            edges: {left: false, right: true, bottom: true, top: false}
-                        });
+                    var opts = {
+                        preserveAspectRatio: false,
+                        edges: {left: false, right: true, bottom: true, top: false},
+                        ignoreFrom: this.resizeIgnoreFrom
+                    };
+                    
+                    this.interactObj.resizable(opts);
                     if (!this.resizeEventSet) {
                         this.resizeEventSet = true;
                         this.interactObj
