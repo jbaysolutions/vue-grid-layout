@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.9 (Aug 17, 2017)
+
+* Fixed local module reference to interact.js
+
 ## 2.1.8 (Aug 17, 2017)
 
 * Fixed #61 and #37
