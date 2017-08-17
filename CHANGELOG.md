@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.7 (Aug 17, 2017)
+
+* Fixed #59
+* Fixed #83
+* Implemented support for dragAllowFrom and dragIgnoreFrom props on GridItem (thanks [ThePlastic](https://github.com/ThePlastic))
+
 ## 2.1.6 (Apr 6, 2017)
 
 * Fixed #43, configurable drag elements ignore on grid item contents (thanks [neithere](https://github.com/neithere)) 
