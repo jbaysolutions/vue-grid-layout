@@ -408,9 +408,7 @@
                         style = setTransform(pos.top, pos.left, pos.width, pos.height);
                     }
 
-                }
-                // top,left (slow)
-                else {
+                } else { // top,left (slow)
 //                    Add rtl support
                     if (this.rtl) {
                         style = setTopRight(pos.top, pos.right, pos.width, pos.height);
