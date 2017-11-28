@@ -390,8 +390,8 @@ export default {
   methods: {
     createStyle: function (flag = '') {
       if (this.x + this.w > this.cols) {
-        this.x = 0
-        this.w = this.cols
+        this.$emit('update:x', 0)
+        this.$emit('update:w', this.cols)
       }
 
       var pos = this.calcPosition(this.x, this.y, this.w, this.h)

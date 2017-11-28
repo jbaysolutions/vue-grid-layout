@@ -22,7 +22,7 @@
         Displayed as
         <code>[x, y, w, h]</code>:
         <div class="columns">
-          <div class="layoutItem" v-for="item in layout">
+          <div class="layoutItem" v-for="item in layout" :key="item.i">
             <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
           </div>
         </div>
@@ -37,7 +37,7 @@
       <br/>
       <grid-layout :layout="layout" :col-num="12" :row-height="30" :is-draggable="draggable" :is-resizable="resizable" :vertical-compact="true"
         :use-css-transforms="true">
-        <grid-item v-for="item in layout" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i">
+        <grid-item v-for="item in layout" :key="item.i" :x.sync="item.x" :y.sync="item.y" :w.sync="item.w" :h.sync="item.h" :i="item.i">
           <span class="text">{{item.i}}</span>
         </grid-item>
       </grid-layout>

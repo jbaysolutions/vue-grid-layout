@@ -2,11 +2,6 @@
 
 vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.1.9 (Supports Vue 2.2+)
-
-### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
-### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)**
-
 <br/>
 
 [**[Demo](https://jbaysolutions.github.io/vue-grid-layout/examples/01-basic.html) | [Changelog](/CHANGELOG.md)**]
@@ -26,12 +21,6 @@ vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.i
 
 TODO UPDATE DOCS
 -->
-
-#### Projects using vue-grid-layout
-
-- [Draxed](https://www.draxed.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
-
-*Know of others? Create a PR to let me know!*
 
 ## Features
 
@@ -114,10 +103,10 @@ new Vue({
   <grid-item
     v-for="item in layout"
     :key="item.i"
-    :x="item.x"
-    :y="item.y"
-    :w="item.w"
-    :h="item.h"
+    :x.sync="item.x"
+    :y.sync="item.y"
+    :w.sync="item.w"
+    :h.sync="item.h"
     :i="item.i">
       {{item.i}}
   </grid-item>
@@ -148,10 +137,10 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
   <grid-item
     v-for="item in layout"
     :key="item.i"
-    :x="item.x"
-    :y="item.y"
-    :w="item.w"
-    :h="item.h"
+    :x.sync="item.x"
+    :y.sync="item.y"
+    :w.sync="item.w"
+    :h.sync="item.h"
     :i="item.i"
     @init="initEvent"
     @resize="resizeEvent"
