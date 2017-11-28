@@ -15,7 +15,6 @@
   "main": "dist/vue-grid-layout.min.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "dist": "webpack --progress --hide-modules --config webpack.build.js && cross-env NODE_ENV=production webpack --progress --hide-modules --config  webpack.build.min.js"
   },
   "repository": {

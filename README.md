@@ -5,7 +5,7 @@ vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.i
 ### **Current version:** 2.1.9 (Supports Vue 2.2+)
 
 ### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
-### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
+### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)**
 
 <br/>
 
@@ -52,78 +52,77 @@ Install the vue-grid-layout [package](https://www.npmjs.org/package/vue-grid-lay
 
 ## Usage
 
-    npm install vue-grid-layout
+  npm install vue-grid-layout
 
 or include the script in your html (download from [releases](https://github.com/jbaysolutions/vue-grid-layout/releases)):
- 
+
 ```html
-    <script src="vue-grid-layout.min.js"></script>
-```` 
+  <script src="vue-grid-layout.min.js"></script>
+````
 
 ```javascript
+var testLayout = [
+  {"x":0,"y":0,"w":2,"h":2,"i":"0"},
+  {"x":2,"y":0,"w":2,"h":4,"i":"1"},
+  {"x":4,"y":0,"w":2,"h":5,"i":"2"},
+  {"x":6,"y":0,"w":2,"h":3,"i":"3"},
+  {"x":8,"y":0,"w":2,"h":3,"i":"4"},
+  {"x":10,"y":0,"w":2,"h":3,"i":"5"},
+  {"x":0,"y":5,"w":2,"h":5,"i":"6"},
+  {"x":2,"y":5,"w":2,"h":5,"i":"7"},
+  {"x":4,"y":5,"w":2,"h":5,"i":"8"},
+  {"x":6,"y":4,"w":2,"h":4,"i":"9"},
+  {"x":8,"y":4,"w":2,"h":4,"i":"10"},
+  {"x":10,"y":4,"w":2,"h":4,"i":"11"},
+  {"x":0,"y":10,"w":2,"h":5,"i":"12"},
+  {"x":2,"y":10,"w":2,"h":5,"i":"13"},
+  {"x":4,"y":8,"w":2,"h":4,"i":"14"},
+  {"x":6,"y":8,"w":2,"h":4,"i":"15"},
+  {"x":8,"y":10,"w":2,"h":5,"i":"16"},
+  {"x":10,"y":4,"w":2,"h":2,"i":"17"},
+  {"x":0,"y":9,"w":2,"h":3,"i":"18"},
+  {"x":2,"y":6,"w":2,"h":2,"i":"19"}
+];
 
-	var testLayout = [
-	    {"x":0,"y":0,"w":2,"h":2,"i":"0"},
-	    {"x":2,"y":0,"w":2,"h":4,"i":"1"},
-	    {"x":4,"y":0,"w":2,"h":5,"i":"2"},
-	    {"x":6,"y":0,"w":2,"h":3,"i":"3"},
-	    {"x":8,"y":0,"w":2,"h":3,"i":"4"},
-	    {"x":10,"y":0,"w":2,"h":3,"i":"5"},
-	    {"x":0,"y":5,"w":2,"h":5,"i":"6"},
-	    {"x":2,"y":5,"w":2,"h":5,"i":"7"},
-	    {"x":4,"y":5,"w":2,"h":5,"i":"8"},
-	    {"x":6,"y":4,"w":2,"h":4,"i":"9"},
-	    {"x":8,"y":4,"w":2,"h":4,"i":"10"},
-	    {"x":10,"y":4,"w":2,"h":4,"i":"11"},
-	    {"x":0,"y":10,"w":2,"h":5,"i":"12"},
-	    {"x":2,"y":10,"w":2,"h":5,"i":"13"},
-	    {"x":4,"y":8,"w":2,"h":4,"i":"14"},
-	    {"x":6,"y":8,"w":2,"h":4,"i":"15"},
-	    {"x":8,"y":10,"w":2,"h":5,"i":"16"},
-	    {"x":10,"y":4,"w":2,"h":2,"i":"17"},
-	    {"x":0,"y":9,"w":2,"h":3,"i":"18"},
-	    {"x":2,"y":6,"w":2,"h":2,"i":"19"}
-	];
-	
-	var GridLayout = VueGridLayout.GridLayout;
-	var GridItem = VueGridLayout.GridItem;
-	
-	new Vue({
-	    el: '#app',
-	    components: {
-	        GridLayout,
-	        GridItem,
-	    },
-	    data: {
-	        layout: testLayout,
-	    },
-	});
-```` 
+var GridLayout = VueGridLayout.GridLayout;
+var GridItem = VueGridLayout.GridItem;
+
+new Vue({
+    el: '#app',
+    components: {
+        GridLayout,
+        GridItem,
+    },
+    data: {
+        layout: testLayout,
+    },
+});
+````
 
 
 ````html
-
-    <grid-layout
-            :layout="layout"
-            :col-num="12"
-            :row-height="30"
-            :is-draggable="true"
-            :is-resizable="true"
-            :vertical-compact="true"
-            :margin="[10, 10]"
-            :use-css-transforms="true"
-    >
-
-        <grid-item v-for="item in layout"
-                   :x="item.x"
-                   :y="item.y"
-                   :w="item.w"
-                   :h="item.h"
-                   :i="item.i">
-            {{item.i}}
-        </grid-item>
-    </grid-layout>
-```` 
+<grid-layout
+  :layout="layout"
+  :col-num="12"
+  :row-height="30"
+  :is-draggable="true"
+  :is-resizable="true"
+  :vertical-compact="true"
+  :margin="[10, 10]"
+  :use-css-transforms="true"
+>
+  <grid-item
+    v-for="item in layout"
+    :key="item.i"
+    :x="item.x"
+    :y="item.y"
+    :w="item.w"
+    :h="item.h"
+    :i="item.i">
+      {{item.i}}
+  </grid-item>
+</grid-layout>
+````
 
 <!-- TODO DOCUMENTAR PROPS DE GridLayout E GridItem -->
 
@@ -133,77 +132,94 @@ or include the script in your html (download from [releases](https://github.com/
 Move and resize event listeners can be added to each grid-item, so that the parent Vue can be notified when a grid element is being moved or resized.
 Moved and resized event listeners can be added, if the only notification needed is when an item is finished moving or resizing.
 
-Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/02-events.html)   
+Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/02-events.html)
 
 ````html
+<grid-layout
+  :layout="layout"
+  :col-num="12"
+  :row-height="30"
+  :is-draggable="true"
+  :is-resizable="true"
+  :vertical-compact="true"
+  :margin="[10, 10]"
+  :use-css-transforms="true"
+>
+  <grid-item
+    v-for="item in layout"
+    :key="item.i"
+    :x="item.x"
+    :y="item.y"
+    :w="item.w"
+    :h="item.h"
+    :i="item.i"
+    @init="initEvent"
+    @resize="resizeEvent"
+    @move="moveEvent"
+    @resized="resizedEvent"
+    @moved="movedEvent">
+    {{item.i}}
+  </grid-item>
+</grid-layout>
+````
 
-    <grid-layout
-            :layout="layout"
-            :col-num="12"
-            :row-height="30"
-            :is-draggable="true"
-            :is-resizable="true"
-            :vertical-compact="true"
-            :margin="[10, 10]"
-            :use-css-transforms="true"
-    >
+* Initial event: an item is initialed
 
-        <grid-item v-for="item in layout"
-                   :x="item.x"
-                   :y="item.y"
-                   :w="item.w"
-                   :h="item.h"
-                   :i="item.i"
-                   @resize="resizeEvent"
-                   @move="moveEvent"
-                   @resized="resizedEvent"
-                   @moved="movedEvent">
-            {{item.i}}
-        </grid-item>
-    </grid-layout>
-```` 
+```javascript
+  /**
+   *
+   * @param i the item id/index
+   * @param H height in grid rows
+   * @param W width in grid columns
+   * @param HPx height in pixels
+   * @param WPx width in pixels
+   *
+   */
+  initEvent: function(i, H, W, HPx, WPx){
+      console.log("INITIALED i=" + i + ", H=" + H + ", W=" + W + ", H(px)=" + HPx + ", W(px)=" + WPx);
+  },
+```
 
 * Move event: every time an item is being moved and changes position
 
 ```javascript
-    moveEvent: function(i, newX, newY){
-        console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
-    },
+  moveEvent: function(i, newX, newY){
+      console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
+  },
 ```
 
 * Resize event: every time an item is being resized and changes size
- 
+
 ```javascript
-    resizeEvent: function(i, newH, newW){
-        console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
-    },
-``` 
+  resizeEvent: function(i, newH, newW){
+      console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
+  },
+```
 
 * Moved event: every time an item is finished being moved and changes position
 
 ```javascript
-    movedEvent: function(i, newX, newY){
-        console.log("MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
-    },
+  movedEvent: function(i, newX, newY){
+      console.log("MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
+  },
 ```
 
 * Resized event: every time an item is finished being resized and changes size
- 
-```javascript
-    /**
-     * 
-     * @param i the item id/index
-     * @param newH new height in grid rows 
-     * @param newW new width in grid columns
-     * @param newHPx new height in pixels
-     * @param newWPx new width in pixels
-     * 
-     */
-    resizedEvent: function(i, newH, newW, newHPx, newWPx){
-        console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
-    },
-``` 
 
+```javascript
+  /**
+   *
+   * @param i the item id/index
+   * @param newH new height in grid rows
+   * @param newW new width in grid columns
+   * @param newHPx new height in pixels
+   * @param newWPx new width in pixels
+   *
+   */
+  resizedEvent: function(i, newH, newW, newHPx, newWPx){
+      console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
+  },
+```
 
 ## Contribute
 

@@ -42,8 +42,16 @@
             <button @click="addItem">Add an item</button>-->
       <grid-layout :layout="layout" :col-num="12" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
         :use-css-transforms="true">
-        <grid-item v-for="item in layout" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" @resize="resizeEvent" @move="moveEvent"
-          @resized="resizedEvent" @moved="movedEvent">
+        <grid-item
+          v-for="item in layout"
+          :x="item.x" :y="item.y"
+          :w="item.w" :h="item.h"
+          :i="item.i"
+          @init="initEvent"
+          @resize="resizeEvent"
+          @move="moveEvent"
+          @resized="resizedEvent"
+          @moved="movedEvent">
           <span class="text">{{item.i}}</span>
         </grid-item>
       </grid-layout>
