@@ -116,6 +116,7 @@ export default {
     self.eventBus.$on('dragEvent', self.dragEventHandler)
   },
   beforeDestroy: function () {
+    var self = this
     // Remove listeners
     this.eventBus.$off('resizeEvent', self.resizeEventHandler)
     this.eventBus.$off('dragEvent', self.dragEventHandler)
