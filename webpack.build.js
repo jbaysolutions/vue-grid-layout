@@ -1,7 +1,7 @@
 var config = require('./webpack.config.js')
 
 config.entry = {
-  'vue-grid-layout': './src/index.js',
+  'vue-grid-layout': './src/index.js'
 }
 
 config.output = {
@@ -9,6 +9,5 @@ config.output = {
   library: 'VueGridLayout',
   libraryTarget: 'umd'
 }
-
 
 module.exports = config
