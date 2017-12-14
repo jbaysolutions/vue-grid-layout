@@ -64,6 +64,10 @@
                 type: Boolean,
                 default: true
             },
+            isMirrored: {
+                type: Boolean,
+                default: true
+            },
             useCssTransforms: {
                 type: Boolean,
                 default: true
