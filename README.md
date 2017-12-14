@@ -109,6 +109,7 @@ or include the script in your html (download from [releases](https://github.com/
             :row-height="30"
             :is-draggable="true"
             :is-resizable="true"
+            :is-mirrored="false"
             :vertical-compact="true"
             :margin="[10, 10]"
             :use-css-transforms="true"
