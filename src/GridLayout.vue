@@ -229,7 +229,7 @@
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
-                if (l === null){
+                if (l === undefined || l === null){
                     l = {x:0, y:0}
                 }
                 l.x = x;
@@ -261,7 +261,7 @@
                 }
                 var l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes return null object
-                if (l === null){
+                if (l === undefined || l === null){
                     l = {h:0, w:0}
                 }
                 l.h = h;
