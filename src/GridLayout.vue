@@ -240,7 +240,7 @@
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.$emit("compact");
                 this.updateHeight();
-                if (eventName === 'dragend') this.$emit('updated', this.layout);
+                if (eventName === 'dragend') this.$emit('layout-updated', this.layout);
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
                 if (eventName === "resizestart" || eventName === "resizemove") {
@@ -270,7 +270,7 @@
                 compact(this.layout, this.verticalCompact);
                 this.eventBus.$emit("compact");
                 this.updateHeight();
-                if (eventName === 'resizeend') this.$emit('updated', this.layout);
+                if (eventName === 'resizeend') this.$emit('layout-updated', this.layout);
             },
         },
     }

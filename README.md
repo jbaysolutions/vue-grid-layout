@@ -147,6 +147,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
             :vertical-compact="true"
             :margin="[10, 10]"
             :use-css-transforms="true"
+            @layout-updated="layoutUpdatedEvent"
     >
 
         <grid-item v-for="item in layout"
@@ -163,6 +164,14 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
         </grid-item>
     </grid-layout>
 ```` 
+
+* Layout updated event: every time the layout has finished updating and positions of all grid-items are recalculated
+
+```javascript
+    layoutUpdatedEvent: function(newLayout){
+      console.log("Updated layout: ", newLayout)
+    }
+```
 
 * Move event: every time an item is being moved and changes position
 
