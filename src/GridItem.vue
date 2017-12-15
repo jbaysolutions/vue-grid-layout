@@ -1,7 +1,7 @@
 <template>
     <div ref="item"
          class="vue-grid-item"
-         :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms }"
+         :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl }"
          :style="style"
     >
         <slot></slot>
@@ -18,6 +18,13 @@
 
     .vue-grid-item.cssTransforms {
         transition-property: transform;
+        left: 0;
+        right: auto;
+    }
+
+    .vue-grid-item.cssTransforms.render-rtl {
+        left: auto;
+        right: 0;
     }
 
     .vue-grid-item.resizing {
@@ -364,11 +371,17 @@
             },
             w: function () {
                 this.createStyle();
+            },
+            renderRtl: function () {
+                this.createStyle();
             }
         },
         computed: {
+            renderRtl() {
+                return (this.$parent.isMirrored) ? !this.rtl : this.rtl;
+            },
             resizableHandleClass() {
-                if (this.rtl) {
+                if (this.renderRtl) {
                     return 'vue-resizable-handle vue-rtl-resizable-handle';
                 } else {
                     return 'vue-resizable-handle';
@@ -387,7 +400,7 @@
                 if (this.isDragging) {
                     pos.top = this.dragging.top;
 //                    Add rtl support
-                    if (this.rtl) {
+                    if (this.renderRtl) {
                         pos.right = this.dragging.left;
                     } else {
                         pos.left = this.dragging.left;
@@ -402,7 +415,7 @@
                 // CSS Transforms support (default)
                 if (this.useCssTransforms) {
 //                    Add rtl support
-                    if (this.rtl) {
+                    if (this.renderRtl) {
                         style = setTransformRtl(pos.top, pos.right, pos.width, pos.height);
                     } else {
                         style = setTransform(pos.top, pos.left, pos.width, pos.height);
@@ -410,7 +423,7 @@
 
                 } else { // top,left (slow)
 //                    Add rtl support
-                    if (this.rtl) {
+                    if (this.renderRtl) {
                         style = setTopRight(pos.top, pos.right, pos.width, pos.height);
                     } else {
                         style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
@@ -439,7 +452,7 @@
                     case "resizemove":
 //                        console.log("### resize => " + event.type + ", lastW=" + this.lastW + ", lastH=" + this.lastH);
                         const coreEvent = createCoreData(this.lastW, this.lastH, x, y);
-                        if (this.rtl) {
+                        if (this.renderRtl) {
                             newSize.width = this.resizing.width - coreEvent.deltaX;
                         } else {
                             newSize.width = this.resizing.width + coreEvent.deltaX;
@@ -511,7 +524,7 @@
 
                         var parentRect = event.target.offsetParent.getBoundingClientRect();
                         var clientRect = event.target.getBoundingClientRect();
-                        if (this.rtl) {
+                        if (this.renderRtl) {
                             newPosition.left = (clientRect.right - parentRect.right) * -1;
                         } else {
                             newPosition.left = clientRect.left - parentRect.left;
@@ -525,7 +538,7 @@
                         parentRect = event.target.offsetParent.getBoundingClientRect();
                         clientRect = event.target.getBoundingClientRect();
 //                        Add rtl support
-                        if (this.rtl) {
+                        if (this.renderRtl) {
                             newPosition.left = (clientRect.right - parentRect.right) * -1;
                         } else {
                             newPosition.left = clientRect.left - parentRect.left;
@@ -540,7 +553,7 @@
                     case "dragmove":
                         const coreEvent = createCoreData(this.lastX, this.lastY, x, y);
 //                        Add rtl support
-                        if (this.rtl) {
+                        if (this.renderRtl) {
                             newPosition.left = this.dragging.left - coreEvent.deltaX;
                         } else {
                             newPosition.left = this.dragging.left + coreEvent.deltaX;
@@ -554,7 +567,7 @@
                 }
 
                 // Get new XY
-                if (this.rtl) {
+                if (this.renderRtl) {
                     var pos = this.calcXY(newPosition.top, newPosition.left);
                 } else {
                     var pos = this.calcXY(newPosition.top, newPosition.left);
@@ -574,7 +587,7 @@
             calcPosition: function (x, y, w, h) {
                 const colWidth = this.calcColWidth();
                 // add rtl support
-                if (this.rtl) {
+                if (this.renderRtl) {
                     var out = {
                         right: Math.round(colWidth * x + (x + 1) * this.margin[0]),
                         top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),

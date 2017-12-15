@@ -28,6 +28,7 @@
             <button @click="changeDirection">Change Direction</button>
             <input type="checkbox" v-model="draggable"/> Draggable
             <input type="checkbox" v-model="resizable"/> Resizable
+            <input type="checkbox" v-model="mirrored"/> Mirrored
             <br/>
             Row Height: <input type="number" v-model="rowHeight"/>
             <br/>
@@ -37,6 +38,7 @@
                     :row-height="rowHeight"
                     :is-draggable="draggable"
                     :is-resizable="resizable"
+                    :is-mirrored="mirrored"
                     :vertical-compact="true"
                     :use-css-transforms="true"
             >
@@ -132,6 +134,7 @@
                 layout2: JSON.parse(JSON.stringify(testLayout)),
                 draggable: true,
                 resizable: true,
+                mirrored: false,
                 rowHeight: 30,
                 colNum: 0,
                 index: 0
