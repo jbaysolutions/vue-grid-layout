@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.10 (Dec 15, 2017)
+
+* Fixed possible bug related with #119
+* Changed css translate to translate3d (#96)
+* Added is-mirrored config, allowing the grid items to be rendered from right to left (horizontal flip) (thanks [kweij](https://github.com/kweij))
+* Added grid updated event for easier integration with vuex (thanks [SergeyKhval](https://github.com/SergeyKhval))
+
 ## 2.1.9 (Aug 17, 2017)
 
 * Fixed local module reference to interact.js
