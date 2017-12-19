@@ -133,6 +133,103 @@ or include the script in your html (download from [releases](https://github.com/
 
 #### Properties
 
+##### GridLayout
+
+* **layout**
+    
+    * type: `Array`
+    * required: `true`
+
+    This is the initial layout of the grid.
+
+    The value must be an `Array` of `Object` items. Each item must have `i`, `x`, `y`, `w` and `h` proprties. Please refer to `GridItem` documentation below for more informations.
+
+* **colNum**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `12`
+
+    Says how many columns the grid has.
+
+    The value should be a _natural number_. 
+
+* **rowHeight**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `150`
+
+    Says what is a height of a single row in pixels.
+
+* **maxRows**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `Infinity`
+
+    Says what is a maximal number of rows in the grid.
+
+* **margin**
+    
+    * type: `Array`
+    * required: `false`
+    * default: `[10, 10]`
+
+    Says what are the margins of elements inside the grid.
+
+    The value must be a two-element `Array` of `Number`. Each value is expressed in pixels. The first element is a margin horizontally, the second element is a vertical margin.
+
+* **isDraggable**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `true`
+
+    Says if the grids items are draggable.
+
+* **isResizable**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `true`
+
+    Says if the grids items are resizable.
+
+* **isMirrored**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `false`
+
+    Says if the RTL/LTR should be reversed.
+
+* **autoSize**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `true`
+
+    Says if the container height should swells and contracts to fit contents.
+
+* **verticalCompact**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `true`
+
+    Says if the layout should be compact vertically.
+
+* **useCssTransforms**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `true`
+
+    Says if the CSS `transition-property: transform;` should be used.
+
+
+
 ##### GridItem
 
 * **i**
