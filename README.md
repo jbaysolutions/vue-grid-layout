@@ -126,8 +126,6 @@ or include the script in your html (download from [releases](https://github.com/
     </grid-layout>
 ```` 
 
-<!-- TODO DOCUMENTAR PROPS DE GridLayout E GridItem -->
-
 
 ### Documentation
 
@@ -411,7 +409,11 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
     </grid-layout>
 ```` 
 
-* Layout updated event: every time the layout has finished updating and positions of all grid-items are recalculated
+* **layoutUpdatedEvent**
+
+    Layout updated event
+
+    Every time the layout has finished updating and positions of all grid-items are recalculated
 
 ```javascript
     layoutUpdatedEvent: function(newLayout){
@@ -419,7 +421,11 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
     }
 ```
 
-* Move event: every time an item is being moved and changes position
+* **moveEvent**
+
+    Move event
+
+    Every time an item is being moved and changes position
 
 ```javascript
     moveEvent: function(i, newX, newY){
@@ -427,7 +433,11 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
     },
 ```
 
-* Resize event: every time an item is being resized and changes size
+* **resizeEvent**
+
+    Resize event
+
+    Every time an item is being resized and changes size
  
 ```javascript
     resizeEvent: function(i, newH, newW){
@@ -435,7 +445,11 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
     },
 ``` 
 
-* Moved event: every time an item is finished being moved and changes position
+* **movedEvent**
+
+    Moved event
+
+    Every time an item is finished being moved and changes position
 
 ```javascript
     movedEvent: function(i, newX, newY){
@@ -443,7 +457,11 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
     },
 ```
 
-* Resized event: every time an item is finished being resized and changes size
+* **resizedEvent**
+
+    Resized event
+
+    Every time an item is finished being resized and changes size
  
 ```javascript
     /**
