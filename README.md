@@ -43,14 +43,16 @@ TODO UPDATE DOCS
 * Automatic RTL support
 
 
-## Installation
+## Getting Started
+
+### Installation
 
 Install the vue-grid-layout [package](https://www.npmjs.org/package/vue-grid-layout) package using [npm](https://www.npmjs.com/):
 
 	npm install vue-grid-layout
 
 
-## Usage
+### Usage
 
     npm install vue-grid-layout
 
