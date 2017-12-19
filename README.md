@@ -129,7 +129,156 @@ or include the script in your html (download from [releases](https://github.com/
 <!-- TODO DOCUMENTAR PROPS DE GridLayout E GridItem -->
 
 
-### Events
+### Documentation
+
+#### Properties
+
+##### GridItem
+
+* **i**
+    
+    * type: `String`
+    * required: `true`
+
+    This is the unique identifier of the item.
+
+* **x**
+    
+    * type: `Number`
+    * required: `true`
+
+    Says what is a initial horizontal position of the item (in which column it should be placed).
+
+    The value must be a _whole number_. 
+
+* **y**
+    
+    * type: `Number`
+    * required: `true`
+
+    Says what is a initial vertical position of the item (in which row it should be placed).
+
+    The value must be a _whole number_. 
+
+* **w**
+    
+    * type: `Number`
+    * required: `true`
+
+    Says what is a initial width of the item.
+
+    The value is a number that is multiplied by `colWidth`.
+
+* **h**
+    
+    * type: `Number`
+    * required: `true`
+
+    Says what is a initial height of the item.
+
+    The value is a number that is multiplied by `rowHeight`.
+
+* **minW**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `1`
+
+    Says what is a minimal width of the item. If `w` will be smaller then `minW` then `w` will be set to `minW`.
+
+    The value is a number that is multiplied by `colWidth`.
+
+* **minH**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `1`
+
+    Says what is a minimal hieght of the item. If `h` will be smaller then `minH` then `h` will be set to `minH`.
+
+    The value is a number that is multiplied by `rowHeight`.
+
+* **maxW**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `Infinity`
+
+    Says what is a maximal width of the item. If `w` will be bigger then `maxW` then `w` will be set to `maxW`.
+
+    The value is a number that is multiplied by `colWidth`.
+
+* **maxH**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `Infinity`
+
+    Says what is a maximal height of the item. If `h` will be bigger then `maxH` then `h` will be set to `maxH`.
+
+    The value is a number that is multiplied by `rowHeight`
+
+* **isDraggable**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `null`
+
+    Says if item is draggable.
+
+    If default value is `null` then it's inherited from parent.
+
+* **isResizable**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `null`
+
+    Says if item is resizable.
+
+    If default value is `null` then it's inherited from parent.
+
+* **dragIgnoreFrom**
+    
+    * type: `String`
+    * required: `false`
+    * default: `'a, button'`
+
+    Says which elements of the item shouldn't trigger drag event of the item.
+
+    The value is `css-like` selector string.
+
+    For more info please refer to `ignoreFrom` in [interact.js docs](http://interactjs.io/docs/#ignorable-selectors).
+
+* **dragAllowFrom**
+    
+    * type: `String`
+    * required: `false`
+    * default: `null`
+
+    Says which elements of the item should trigger drag event of the item.
+
+    The value is `css-like` selector string.
+    
+    If `null` then one can drag by any (excluding `dragIgnoreFrom`) element of the item.
+
+    For more info please refer to `allowFrom` in [interact.js docs](http://interactjs.io/docs/#ignorable-selectors).
+
+* **resizeIgnoreFrom**
+    
+    * type: `String`
+    * required: `false`
+    * default: `'a, button'`
+
+    Says which elements of the item shouldn't trigger resize event of the item.
+
+    The value is `css-like` selector string.
+
+    For more info please refer to `ignoreFrom` in [interact.js docs](http://interactjs.io/docs/#ignorable-selectors).
+
+
+
+#### Events
 
 Move and resize event listeners can be added to each grid-item, so that the parent Vue can be notified when a grid element is being moved or resized.
 Moved and resized event listeners can be added, if the only notification needed is when an item is finished moving or resizing.
