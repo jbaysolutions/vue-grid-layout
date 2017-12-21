@@ -188,12 +188,11 @@
                 if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {
 //                    console.log("### LAYOUT UPDATE!");
                     this.lastLayoutLength = this.layout.length;
-                    compact(this.layout, this.verticalCompact);
-
                     //this.$broadcast("updateWidth", this.width);
-                    this.eventBus.$emit("updateWidth", this.width);
-                    this.updateHeight();
                 }
+                compact(this.layout, this.verticalCompact);
+                this.eventBus.$emit("updateWidth", this.width);
+                this.updateHeight();
             },
             updateHeight: function () {
                 this.mergedStyle = {
