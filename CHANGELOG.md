@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.11 (Jan 5, 2018)
+
+* Fixed issue with multiple grids on same vm (#134) (thanks [Suen](https://github.com/sunzongzheng))
+* Fixed issue with layout update on reassignment (#130) (thanks [daizengyu](https://github.com/daizengyu123))
+
 ## 2.1.10 (Dec 15, 2017)
 
 * Fixed possible bug related with #119
