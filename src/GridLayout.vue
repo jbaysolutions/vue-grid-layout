@@ -26,8 +26,10 @@
 
     export default {
         name: "GridLayout",
-        provide: {
-            eventBus: null
+        provide() {
+            return {
+                eventBus: null
+            }
         },
         components: {
             GridItem,
