@@ -134,6 +134,9 @@
 
             };
         },
+        beforeDestroy() {
+            window.removeEventListener('resize', this.onWindowResize);
+        },
         watch: {
             width: function () {
                 this.$nextTick(function () {
