@@ -1,5 +1,9 @@
 # Changelog
 
+1.0.4 (Jan 23, 2018)
+
+* removed event listener in beforeDestroy (thanks [Tinoooo](https://github.com/Tinoooo))
+
 1.0.3 (Aug 16, 2017)
 
 * merged #85, support for dragIgnoreFrom and resizeIgnoreFrom
