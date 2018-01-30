@@ -1,7 +1,7 @@
 {
   "presets": [
-    "es2015-loose",
-    "stage-1"
+    "env",
+    "stage-2"
   ],
   "plugins": [
     "transform-flow-comments"
