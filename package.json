@@ -24,23 +24,23 @@
   "author": "Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com)",
   "dependencies": {
     "element-resize-detector": "^1.1.12",
-    "interactjs": "https://github.com/taye/interact.js.git#v1.3.0"
+    "interactjs": "^1.3.3"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^7.1.1",
-    "babel-plugin-transform-runtime": "^6.22.0",
     "babel-plugin-transform-flow-comments": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
     "cross-env": "^3.0.0",
     "css-loader": "^0.28.0",
     "file-loader": "^1.1.4",
+    "vue": "^2.5.2",
     "vue-loader": "^13.3.0",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1",
-    "vue": "^2.5.2"
+    "webpack-dev-server": "^2.9.1"
   },
   "license": "MIT"
 }
