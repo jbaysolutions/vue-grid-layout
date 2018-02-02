@@ -212,6 +212,10 @@
                 previousH: null,
                 previousX: null,
                 previousY: null,
+                innerX: this.x,
+                innerY: this.y,
+                innerW: this.w,
+                innerH: this.h
             }
         },
         created () {
@@ -250,16 +254,18 @@
                 this.compact();
             };
 
+            self.setColNum = (colNum) => {
+               self.cols = parseInt(colNum);
+            }
+
             this.eventBus.$on('updateWidth', self.updateWidthHandler);
             this.eventBus.$on('compact', self.compactHandler);
             this.eventBus.$on('setDraggable', self.setDraggableHandler);
             this.eventBus.$on('setResizable', self.setResizableHandler);
             this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$on('directionchange', self.directionchangeHandler);
+            this.eventBus.$on('setColNum', self.setColNum)
 
-            /*this.eventBus.$on('setColNum', function(colNum) {
-             self.cols = colNum;
-             });*/
             var direction = (document.dir !== undefined) ?
                 document.dir :
                 document.getElementsByTagName("html")[0].getAttribute("dir");
@@ -274,6 +280,7 @@
             this.eventBus.$off('setResizable', self.setResizableHandler);
             this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$off('directionchange', self.directionchangeHandler);
+            this.eventBus.$off('setColNum', self.setColNum);
         },
         mounted: function () {
             this.cols = this.$parent.colNum;
@@ -336,7 +343,7 @@
                         edges: {left: false, right: true, bottom: true, top: false},
                         ignoreFrom: this.resizeIgnoreFrom
                     };
-                    
+
                     this.interactObj.resizable(opts);
                     if (!this.resizeEventSet) {
                         this.resizeEventSet = true;
@@ -360,16 +367,20 @@
             containerWidth: function () {
                 this.createStyle();
             },
-            x: function () {
+            x: function (newVal) {
+                this.innerX = newVal;
                 this.createStyle();
             },
-            y: function () {
+            y: function (newVal) {
+                this.innerY = newVal;
                 this.createStyle();
             },
-            h: function () {
+            h: function (newVal) {
+                this.innerH = newVal
                 this.createStyle();
             },
-            w: function () {
+            w: function (newVal) {
+                this.innerW = newVal;
                 this.createStyle();
             },
             renderRtl: function () {
@@ -391,11 +402,14 @@
         methods: {
             createStyle: function () {
                 if (this.x + this.w > this.cols) {
-                    this.x = 0;
-                    this.w = this.cols;
+                    this.innerX = 0;
+                    this.innerW = (this.w > this.cols) ? this.cols : this.w
+                } else {
+                  this.innerX = this.x;
+                  this.innerW = this.w;
                 }
+                var pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
 
-                var pos = this.calcPosition(this.x, this.y, this.w, this.h);
 
                 if (this.isDragging) {
                     pos.top = this.dragging.top;
@@ -441,9 +455,9 @@
                 const newSize = {width: 0, height: 0};
                 switch (event.type) {
                     case "resizestart":
-                        this.previousW = this.w;
-                        this.previousH = this.h;
-                        var pos = this.calcPosition(this.x, this.y, this.w, this.h);
+                        this.previousW = this.innerW;
+                        this.previousH = this.innerH;
+                        var pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
                         newSize.width = pos.width;
                         newSize.height = pos.height;
                         this.resizing = newSize;
@@ -463,8 +477,8 @@
                         this.resizing = newSize;
                         break;
                     case "resizeend":
-                        //console.log("### resize end => x=" +this.x + " y=" + this.y + " w=" + this.w + " h=" + this.h);
-                        var pos = this.calcPosition(this.x, this.y, this.w, this.h);
+                        //console.log("### resize end => x=" +this.innerX + " y=" + this.innerY + " w=" + this.innerW + " h=" + this.innerH);
+                        var pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
                         newSize.width = pos.width;
                         newSize.height = pos.height;
 //                        console.log("### resize end => " + JSON.stringify(newSize));
@@ -498,13 +512,13 @@
                 this.lastW = x;
                 this.lastH = y;
 
-                if (this.w !== pos.w || this.h !== pos.h) {
+                if (this.innerW !== pos.w || this.innerH !== pos.h) {
                     this.$emit("resize", this.i, pos.h, pos.w);
                 }
-                if (event.type === "resizeend" && (this.previousW !== this.w || this.previousH !== this.h)) {
+                if (event.type === "resizeend" && (this.previousW !== this.innerW || this.previousH !== this.innerH)) {
                     this.$emit("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
                 }
-                this.eventBus.$emit("resizeEvent", event.type, this.i, this.x, this.y, pos.h, pos.w);
+                this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
             },
             handleDrag(event) {
                 if (this.isResizing) return;
@@ -519,8 +533,8 @@
                 const newPosition = {top: 0, left: 0};
                 switch (event.type) {
                     case "dragstart":
-                        this.previousX = this.x;
-                        this.previousY = this.y;
+                        this.previousX = this.innerX;
+                        this.previousY = this.innerY;
 
                         var parentRect = event.target.offsetParent.getBoundingClientRect();
                         var clientRect = event.target.getBoundingClientRect();
@@ -576,13 +590,13 @@
                 this.lastX = x;
                 this.lastY = y;
 
-                if (this.x !== pos.x || this.y !== pos.y) {
+                if (this.innerX !== pos.x || this.innerY !== pos.y) {
                     this.$emit("move", this.i, pos.x, pos.y);
                 }
-                if (event.type === "dragend" && (this.previousX !== this.x || this.previousY !== this.y)) {
+                if (event.type === "dragend" && (this.previousX !== this.innerX || this.previousY !== this.innerY)) {
                     this.$emit("moved", this.i, pos.x, pos.y);
                 }
-                this.eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.h, this.w);
+                this.eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.innerH, this.innerW);
             },
             calcPosition: function (x, y, w, h) {
                 const colWidth = this.calcColWidth();
@@ -633,15 +647,15 @@
                 let y = Math.round((top - this.margin[1]) / (this.rowHeight + this.margin[1]));
 
                 // Capping
-                x = Math.max(Math.min(x, this.cols - this.w), 0);
-                y = Math.max(Math.min(y, this.maxRows - this.h), 0);
+                x = Math.max(Math.min(x, this.cols - this.innerW), 0);
+                y = Math.max(Math.min(y, this.maxRows - this.innerH), 0);
 
                 return {x, y};
             },
             // Helper for generating column width
             calcColWidth() {
                 var colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
-//                console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth);
+               // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
                 return colWidth;
             },
 
@@ -661,8 +675,8 @@
                 let h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
 
                 // Capping
-                w = Math.max(Math.min(w, this.cols - this.x), 0);
-                h = Math.max(Math.min(h, this.maxRows - this.y), 0);
+                w = Math.max(Math.min(w, this.cols - this.innerX), 0);
+                h = Math.max(Math.min(h, this.maxRows - this.innerY), 0);
                 return {w, h};
             },
             updateWidth: function (width, colNum) {

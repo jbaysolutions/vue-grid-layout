@@ -30,11 +30,11 @@
             <input type="checkbox" v-model="resizable"/> Resizable
             <input type="checkbox" v-model="mirrored"/> Mirrored
             <br/>
-            Row Height: <input type="number" v-model="rowHeight"/>
+            Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
             <br/>
             <grid-layout
                     :layout="layout"
-                    :col-num="12"
+                    :col-num="parseInt(colNum)"
                     :row-height="rowHeight"
                     :is-draggable="draggable"
                     :is-resizable="resizable"
@@ -136,7 +136,7 @@
                 resizable: true,
                 mirrored: false,
                 rowHeight: 30,
-                colNum: 0,
+                colNum: 12,
                 index: 0
             }
         },
@@ -174,7 +174,7 @@
             },
             resize: function(i, newH, newW){
                 console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
-            },         
+            },
             moved: function(i, newX, newY){
                 console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
             },
