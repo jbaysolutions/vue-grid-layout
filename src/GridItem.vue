@@ -337,7 +337,12 @@
                 if (this.resizable) {
                     var opts = {
                         preserveAspectRatio: false,
-                        edges: {left: false, right: true, bottom: true, top: false},
+                        edges: {
+                            left: false,
+                            right: "." + this.resizableHandleClass,
+                            bottom: "." + this.resizableHandleClass,
+                            top: false
+                        },
                         ignoreFrom: this.resizeIgnoreFrom
                     };
                     
