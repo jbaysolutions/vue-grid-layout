@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.12 (Fev 27, 2018)
+
+* Updated interact.js to 1.3.3 (#144) 
+
 ## 2.1.11 (Jan 5, 2018)
 
 * Fixed issue with multiple grids on same vm (#134) (thanks [Suen](https://github.com/sunzongzheng))
