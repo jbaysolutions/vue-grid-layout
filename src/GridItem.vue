@@ -1,7 +1,7 @@
 <template>
     <div ref="item"
          class="vue-grid-item"
-         :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl }"
+         :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl, 'disable-userselect': isDragging }"
          :style="style"
     >
         <slot></slot>
@@ -74,6 +74,10 @@
         background-origin: content-box;
         cursor: sw-resize;
         right: auto;
+    }
+    
+    .vue-grid-item.disable-userselect {
+        user-select: none;
     }
 </style>
 <script>
