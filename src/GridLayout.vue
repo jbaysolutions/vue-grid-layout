@@ -175,6 +175,9 @@
             layout: function () {
                 this.layoutUpdate();
             },
+            colNum: function (val) {
+                this.eventBus.$emit("setColNum", val);
+            },
             rowHeight: function() {
                 this.eventBus.$emit("setRowHeight", this.rowHeight);
             },
