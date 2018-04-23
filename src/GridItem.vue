@@ -522,7 +522,7 @@
                 this.lastH = y;
 
                 if (this.innerW !== pos.w || this.innerH !== pos.h) {
-                    this.$emit("resize", this.i, pos.h, pos.w);
+                    this.$emit("resize", this.i, pos.h, pos.w, newSize.height, newSize.width);
                 }
                 if (event.type === "resizeend" && (this.previousW !== this.innerW || this.previousH !== this.innerH)) {
                     this.$emit("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
