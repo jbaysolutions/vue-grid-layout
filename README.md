@@ -442,8 +442,8 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
     Every time an item is being resized and changes size
  
 ```javascript
-    resizeEvent: function(i, newH, newW){
-        console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
+    resizeEvent: function(i, newH, newW, newHPx, newWPx){
+        console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
     },
 ``` 
 
