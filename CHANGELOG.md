@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.13 (May 2, 2018)
+
+* Resize event now also emits dimensions in pixels (thanks [buremba](https://github.com/buremba)) 
+* Support for dynamic col-num (#121) (thanks [ittus](https://github.com/ittus)) 
+
 ## 2.1.12 (Fev 27, 2018)
 
 * Updated interact.js to 1.3.3 (#144) 
