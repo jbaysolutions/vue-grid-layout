@@ -453,7 +453,8 @@ export function validateLayout(layout: Layout, contextName: string): void {
       }
     }
     if (item.i && typeof item.i !== 'string') {
-      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
+      // number is also ok, so comment the error
+      // throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
     }
     if (item.static !== undefined && typeof item.static !== 'boolean') {
       throw new Error('VueGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');
