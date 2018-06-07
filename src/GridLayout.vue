@@ -26,8 +26,10 @@
 
     export default {
         name: "GridLayout",
-        provide: {
-            eventBus: null
+        provide() {
+            return {
+                eventBus: null
+            }
         },
         components: {
             GridItem,
@@ -64,6 +66,10 @@
                 type: Boolean,
                 default: true
             },
+            isMirrored: {
+                type: Boolean,
+                default: false
+            },
             useCssTransforms: {
                 type: Boolean,
                 default: true
@@ -88,7 +94,7 @@
                     y: 0,
                     w: 0,
                     h: 0,
-                    i: 0
+                    i: -1
                 },
             };
         },
@@ -169,6 +175,9 @@
             layout: function () {
                 this.layoutUpdate();
             },
+            colNum: function (val) {
+                this.eventBus.$emit("setColNum", val);
+            },
             rowHeight: function() {
                 this.eventBus.$emit("setRowHeight", this.rowHeight);
             },
@@ -181,12 +190,12 @@
         },
         methods: {
             layoutUpdate() {
-                if (this.layout !== undefined && this.layout.length !== this.lastLayoutLength) {
-//                    console.log("### LAYOUT UPDATE!");
-                    this.lastLayoutLength = this.layout.length;
+                if (this.layout !== undefined) {
+                    if (this.layout.length !== this.lastLayoutLength) {
+                        //console.log("### LAYOUT UPDATE!");
+                        this.lastLayoutLength = this.layout.length;
+                    }
                     compact(this.layout, this.verticalCompact);
-
-                    //this.$broadcast("updateWidth", this.width);
                     this.eventBus.$emit("updateWidth", this.width);
                     this.updateHeight();
                 }
@@ -206,22 +215,26 @@
                 return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
             },
             dragEvent: function (eventName, id, x, y, h, w) {
-                if (eventName == "dragmove" || eventName == "dragstart") {
-                    this.isDragging = true;
+                if (eventName === "dragmove" || eventName === "dragstart") {
                     this.placeholder.i = id;
                     this.placeholder.x = x;
                     this.placeholder.y = y;
                     this.placeholder.w = w;
                     this.placeholder.h = h;
+                    this.$nextTick(function() {
+                        this.isDragging = true;
+                    });
                     //this.$broadcast("updateWidth", this.width);
                     this.eventBus.$emit("updateWidth", this.width);
                 } else {
-                    this.isDragging = false;
+                    this.$nextTick(function() {
+                        this.isDragging = false;
+                    });
                 }
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 var l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
-                if (l == null){
+                if (l === undefined || l === null){
                     l = {x:0, y:0}
                 }
                 l.x = x;
@@ -232,24 +245,29 @@
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.$emit("compact");
                 this.updateHeight();
+                if (eventName === 'dragend') this.$emit('layout-updated', this.layout);
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
-                if (eventName == "resizestart" || eventName == "resizemove") {
-                    this.isDragging = true;
+                if (eventName === "resizestart" || eventName === "resizemove") {
                     this.placeholder.i = id;
                     this.placeholder.x = x;
                     this.placeholder.y = y;
                     this.placeholder.w = w;
                     this.placeholder.h = h;
+                    this.$nextTick(function() {
+                        this.isDragging = true;
+                    });
                     //this.$broadcast("updateWidth", this.width);
                     this.eventBus.$emit("updateWidth", this.width);
 
                 } else {
-                    this.isDragging = false;
+                    this.$nextTick(function() {
+                        this.isDragging = false;
+                    });
                 }
                 var l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes return null object
-                if (l == null){
+                if (l === undefined || l === null){
                     l = {h:0, w:0}
                 }
                 l.h = h;
@@ -257,6 +275,7 @@
                 compact(this.layout, this.verticalCompact);
                 this.eventBus.$emit("compact");
                 this.updateHeight();
+                if (eventName === 'resizeend') this.$emit('layout-updated', this.layout);
             },
         },
     }

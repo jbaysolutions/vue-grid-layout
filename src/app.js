@@ -28,6 +28,7 @@ import GridItem from './GridItem.vue';
 import GridLayout from './GridLayout.vue';
 //import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
 import TestElement from './TestElement.vue';
+import CustomDragElement from './CustomDragElement.vue';
 
 new Vue({
     el: '#app',
@@ -36,6 +37,7 @@ new Vue({
         GridLayout,
         GridItem,
         TestElement,
+        CustomDragElement,
     },
     data: {
         layout: JSON.parse(JSON.stringify(testLayout)),
