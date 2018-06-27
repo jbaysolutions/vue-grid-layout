@@ -268,7 +268,7 @@
             this.eventBus.$on('setResizable', self.setResizableHandler);
             this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$on('directionchange', self.directionchangeHandler);
-            this.eventBus.$on('setColNum', self.setColNum)
+            this.eventBus.$on('setColNum', self.setColNum);
 
             var direction = (document.dir !== undefined) ?
                 document.dir :

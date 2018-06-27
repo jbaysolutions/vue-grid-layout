@@ -32,8 +32,33 @@
             <br/>
             Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
             <br/>
-            <grid-layout
+            <responsive-grid-layout
                     :layout="layout"
+                    :col-num="12"
+                    :row-height="rowHeight"
+                    :is-draggable="draggable"
+                    :is-resizable="resizable"
+                    :is-mirrored="mirrored"
+                    :use-css-transforms="true">
+                <grid-item slot-scope="{item}"
+                           :x="item.x"
+                           :y="item.y"
+                           :w="item.w"
+                           :h="item.h"
+                           :min-w="2"
+                           :min-h="2"
+                           :i="item.i"
+                           @resize="resize"
+                           @move="move"
+                           @resized="resized"
+                           @moved="moved"
+                >
+                    <test-element :text="item.i"></test-element>
+                </grid-item>
+            </responsive-grid-layout>
+            <hr/>
+            <grid-layout
+                    :layout="layout2"
                     :col-num="parseInt(colNum)"
                     :row-height="rowHeight"
                     :is-draggable="draggable"
@@ -60,30 +85,6 @@
                     <!--<button @click="clicked">CLICK ME!</button>-->
                 </grid-item>
             </grid-layout>
-            <hr/>
-            <!--<grid-layout
-                    :layout="layout2"
-                    :col-num="12"
-                    :row-height="rowHeight"
-                    :is-draggable="draggable"
-                    :is-resizable="resizable"
-                    :vertical-compact="true"
-                    :use-css-transforms="true"
-            >
-                <grid-item v-for="item in layout2" :key="item.i"
-                           :x="item.x"
-                           :y="item.y"
-                           :w="item.w"
-                           :h="item.h"
-                           :min-w="2"
-                           :min-h="2"
-                           :i="item.i"
-                           :is-draggable="item.draggable"
-                           :is-resizable="item.resizable"
-                >
-                    <test-element :text="item.i"></test-element>
-                </grid-item>
-            </grid-layout>-->
         </div>
     </div>
 </template>
@@ -91,7 +92,7 @@
 <script>
     import GridItem from './GridItem.vue';
     import GridLayout from './GridLayout.vue';
-    //import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
+    import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
     import TestElement from './TestElement.vue';
     import CustomDragElement from './CustomDragElement.vue';
     //var eventBus = require('./eventBus');
@@ -122,7 +123,7 @@
     export default {
         name: 'app',
         components: {
-            //ResponsiveGridLayout,
+            ResponsiveGridLayout,
             GridLayout,
             GridItem,
             TestElement,
