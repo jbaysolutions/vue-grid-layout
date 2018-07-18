@@ -285,6 +285,7 @@
             this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$off('directionchange', self.directionchangeHandler);
             this.eventBus.$off('setColNum', self.setColNum);
+            this.interactObj.unset() // destroy interact intance
         },
         mounted: function () {
             this.cols = this.$parent.colNum;
