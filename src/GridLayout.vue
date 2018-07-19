@@ -117,9 +117,9 @@
         },
         beforeDestroy: function(){
             //Remove listeners
-            this.eventBus.$off('resizeEvent', self.resizeEventHandler);
-            this.eventBus.$off('dragEvent', self.dragEventHandler);
-            window.removeEventListener("resize", self.onWindowResize)
+            this.eventBus.$off('resizeEvent', this.resizeEventHandler);
+            this.eventBus.$off('dragEvent', this.dragEventHandler);
+            window.removeEventListener("resize", this.onWindowResize)
         },
         mounted: function() {
             this.$nextTick(function () {
