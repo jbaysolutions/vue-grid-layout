@@ -54,7 +54,7 @@ Install the vue-grid-layout [package](https://www.npmjs.org/package/vue-grid-lay
 
 ### Usage
 
-    npm install vue-grid-layout
+    import VueGridLayout from 'vue-grid-layout'
 
 or include the script in your html (download from [releases](https://github.com/jbaysolutions/vue-grid-layout/releases)):
  
