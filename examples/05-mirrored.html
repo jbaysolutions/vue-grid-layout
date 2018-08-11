@@ -32,6 +32,7 @@
         <input type="checkbox" v-model="draggable"/> Draggable
         <input type="checkbox" v-model="resizable"/> Resizable
         <input type="checkbox" v-model="mirrored"/> Mirrored
+        <input type="checkbox" v-model="fixedWidth"/> FixedWidth
         <br/>
         <grid-layout :layout="layout"
                      :col-num="12"
@@ -42,6 +43,7 @@
                      :vertical-compact="true"
                      :use-css-transforms="true"
                      :right-to-left="true"
+                     :fixed-width="fixedWidth"
         >
             <grid-item v-for="item in layout"
                        :x="item.x"
@@ -99,6 +101,7 @@
             draggable: true,
             resizable: true,
             mirrored: true,
+            fixedWidth: false,
             index: 0
         },
     });

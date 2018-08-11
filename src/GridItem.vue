@@ -197,6 +197,7 @@
                 draggable: null,
                 resizable: null,
                 useCssTransforms: true,
+                fixedWidth: false,
 
                 isDragging: false,
                 dragging: null,
@@ -262,13 +263,18 @@
                self.cols = parseInt(colNum);
             }
 
+            self.setFixedWidth = (hasFixedWidth) => {
+               self.fixedWidth = hasFixedWidth;
+            }
+
             this.eventBus.$on('updateWidth', self.updateWidthHandler);
             this.eventBus.$on('compact', self.compactHandler);
             this.eventBus.$on('setDraggable', self.setDraggableHandler);
             this.eventBus.$on('setResizable', self.setResizableHandler);
             this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$on('directionchange', self.directionchangeHandler);
-            this.eventBus.$on('setColNum', self.setColNum)
+            this.eventBus.$on('setColNum', self.setColNum);
+            this.eventBus.$on('setFixedWidth', self.setFixedWidth);
 
             var direction = (document.dir !== undefined) ?
                 document.dir :
@@ -285,10 +291,12 @@
             this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$off('directionchange', self.directionchangeHandler);
             this.eventBus.$off('setColNum', self.setColNum);
+            this.eventBus.$off('setFixedWidth', self.setFixedWidth);
             this.interactObj.unset() // destroy interact intance
         },
         mounted: function () {
             this.cols = this.$parent.colNum;
+            this.fixedWidth = this.$parent.fixedWidth;
             this.rowHeight = this.$parent.rowHeight;
             this.containerWidth = this.$parent.width !== null ? this.$parent.width : 100;
             this.margin = this.$parent.margin !== undefined ? this.$parent.margin : [10, 10];
@@ -372,6 +380,9 @@
                 this.createStyle();
             },
             cols: function () {
+                this.createStyle();
+            },
+            fixedWidth: function () {
                 this.createStyle();
             },
             containerWidth: function () {
@@ -664,7 +675,11 @@
             },
             // Helper for generating column width
             calcColWidth() {
-                var colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
+                if (this.fixedWidth) {
+                    var colWidth = this.rowHeight;
+                } else {
+                    var colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
+                }
                // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
                 return colWidth;
             },

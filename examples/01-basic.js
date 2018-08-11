@@ -39,6 +39,7 @@ new Vue({
         layout: testLayout,
         draggable: true,
         resizable: true,
+        fixedWidth: false,
         index: 0
     },
 /*

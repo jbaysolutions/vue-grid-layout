@@ -115,6 +115,7 @@ or include the script in your html (download from [releases](https://github.com/
             :vertical-compact="true"
             :margin="[10, 10]"
             :use-css-transforms="true"
+            :fixed-width="false"
     >
 
         <grid-item v-for="item in layout"
@@ -228,6 +229,13 @@ or include the script in your html (download from [releases](https://github.com/
 
     Says if the CSS `transition-property: transform;` should be used.
 
+* **fixedWidth**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `false`
+
+    Says if the elements should have fixed width. If true the width will be same as rowHeight.
 
 
 ##### GridItem

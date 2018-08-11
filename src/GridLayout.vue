@@ -44,6 +44,10 @@
                 type: Number,
                 default: 12
             },
+            fixedWidth: {
+                type: Boolean,
+                default: false
+            },
             rowHeight: {
                 type: Number,
                 default: 150
@@ -177,6 +181,9 @@
             },
             colNum: function (val) {
                 this.eventBus.$emit("setColNum", val);
+            },
+            fixedWidth: function (val) {
+                this.eventBus.$emit("setFixedWidth", val);
             },
             rowHeight: function() {
                 this.eventBus.$emit("setRowHeight", this.rowHeight);
