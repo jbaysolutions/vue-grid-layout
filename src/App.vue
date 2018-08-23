@@ -33,7 +33,7 @@
             Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
             <br/>
             <responsive-grid-layout
-                    :layout="layout"
+                    :layout.sync="layout"
                     :col-num="12"
                     :row-height="rowHeight"
                     :is-draggable="draggable"

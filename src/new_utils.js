@@ -256,7 +256,9 @@ export function correctBounds(
     for (let i = 0, len = layout.length; i < len; i++) {
         const l = layout[i];
         // Overflows right
-        if (l.x + l.w > bounds.cols) l.x = bounds.cols - l.w;
+        if (l.x + l.w > bounds.cols){
+            l.x = 0;
+        }
         // Overflows left
         if (l.x < 0) {
             l.x = 0;
@@ -267,7 +269,12 @@ export function correctBounds(
             // If this is static and collides with other statics, we must move it down.
             // We have to do something nicer than just letting them overlap.
             while (getFirstCollision(collidesWith, l)) {
-                l.y++;
+                if (l.x + l.w > bounds.cols){
+                    l.x = 0;
+                    l.y++;
+                }else {
+                    l.x++;
+                }
             }
         }
     }
