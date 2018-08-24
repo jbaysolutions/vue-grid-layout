@@ -338,43 +338,17 @@
                 this.resizable = this.isResizable;
             },
             resizable: function () {
-                var self = this;
-                if (this.interactObj === null || this.interactObj === undefined) {
-                    this.interactObj = interact(this.$refs.item);
-                }
-                if (this.resizable) {
-                    var opts = {
-                        preserveAspectRatio: false,
-                        edges: {
-                            left: false,
-                            right: "." + this.resizableHandleClass,
-                            bottom: "." + this.resizableHandleClass,
-                            top: false
-                        },
-                        ignoreFrom: this.resizeIgnoreFrom
-                    };
-
-                    this.interactObj.resizable(opts);
-                    if (!this.resizeEventSet) {
-                        this.resizeEventSet = true;
-                        this.interactObj
-                            .on('resizestart resizemove resizeend', function (event) {
-                                self.handleResize(event);
-                            });
-                    }
-                } else {
-                    this.interactObj.resizable({
-                        enabled: false
-                    });
-                }
+                this.tryMakeResizable();
             },
             rowHeight: function () {
                 this.createStyle();
             },
             cols: function () {
+                this.tryMakeResizable();
                 this.createStyle();
             },
             containerWidth: function () {
+                this.tryMakeResizable();
                 this.createStyle();
             },
             x: function (newVal) {
@@ -697,6 +671,50 @@
             },
             compact: function () {
                 this.createStyle();
+            },
+            tryMakeResizable: function(){
+                var self = this;
+                if (this.interactObj === null || this.interactObj === undefined) {
+                    this.interactObj = interact(this.$refs.item);
+                }
+                if (this.resizable) {
+                    let maximum = this.calcPosition(0,0,this.maxW, this.maxH);
+                    let minimum = this.calcPosition(0,0, this.minW, this.minH);
+
+                    var opts = {
+                        preserveAspectRatio: false,
+                        edges: {
+                            left: false,
+                            right: "." + this.resizableHandleClass,
+                            bottom: "." + this.resizableHandleClass,
+                            top: false
+                        },
+                        ignoreFrom: this.resizeIgnoreFrom,
+                        restrictSize: {
+                            min: {
+                                height: minimum.height,
+                                width: minimum.width
+                            },
+                            max: {
+                                height: maximum.height,
+                                width: maximum.width
+                            }
+                        }
+                    };
+
+                    this.interactObj.resizable(opts);
+                    if (!this.resizeEventSet) {
+                        this.resizeEventSet = true;
+                        this.interactObj
+                            .on('resizestart resizemove resizeend', function (event) {
+                                self.handleResize(event);
+                            });
+                    }
+                } else {
+                    this.interactObj.resizable({
+                        enabled: false
+                    });
+                }
             }
         },
     }
