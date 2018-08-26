@@ -1,3 +1,11 @@
+function hasDocument(){
+    return (typeof document !== "undefined");
+}
+
+function hasWindow(){
+    return (typeof window !== "undefined");
+}
+
 export function getDocumentDir(){
     if(!hasDocument()){
         return "auto";
@@ -7,7 +15,6 @@ export function getDocumentDir(){
         document.getElementsByTagName("html")[0].getAttribute("dir");
     return direction;
 }
-
 
 export function setDocumentDir(dir: "ltr" | "rtl" | "auto"){
     if(!hasDocument){
@@ -32,12 +39,5 @@ export function removeWindowEventListener(event:string, callback: () => mixed){
     window.removeEventListener(event, callback);
 }
 
-function hasDocument(){
-    return (typeof document !== undefined)
-}
-
-function hasWindow(){
-    return (typeof window !== undefined)
-}
 
 
