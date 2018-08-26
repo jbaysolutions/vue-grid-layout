@@ -10,7 +10,7 @@ export function getDocumentDir(){
     if(!hasDocument()){
         return "auto";
     }
-    const  direction = (document.dir !== undefined) ?
+    const  direction = (typeof document.dir !== "undefined") ?
         document.dir :
         document.getElementsByTagName("html")[0].getAttribute("dir");
     return direction;
@@ -21,8 +21,8 @@ export function setDocumentDir(dir: "ltr" | "rtl" | "auto"){
         return;
     }
 
-    var html = document.getElementsByTagName("html")[0];
-    html.setAttribute("dir", toggle);
+    const html = document.getElementsByTagName("html")[0];
+    html.setAttribute("dir", dir);
 }
 
 export function addWindowEventListener(event:string, callback: () => mixed){
