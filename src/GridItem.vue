@@ -83,6 +83,7 @@
 <script>
     import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from './utils';
     import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
+    import {getDocumentDir} from "./DOM";
     //    var eventBus = require('./eventBus');
 
     var interact = require("interactjs");
@@ -251,10 +252,7 @@
             };
 
             self.directionchangeHandler = (direction) => {
-                var direction = (document.dir !== undefined) ?
-                    document.dir :
-                    document.getElementsByTagName("html")[0].getAttribute("dir");
-                this.rtl = (direction === "rtl");
+                this.rtl = getDocumentDir();
                 this.compact();
             };
 
@@ -270,10 +268,7 @@
             this.eventBus.$on('directionchange', self.directionchangeHandler);
             this.eventBus.$on('setColNum', self.setColNum)
 
-            var direction = (document.dir !== undefined) ?
-                document.dir :
-                document.getElementsByTagName("html")[0].getAttribute("dir");
-            this.rtl = (direction === "rtl");
+            this.rtl = getDocumentDir();
         },
         beforeDestroy: function(){
             var self = this;

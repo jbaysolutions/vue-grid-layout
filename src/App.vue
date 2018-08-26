@@ -94,6 +94,7 @@
     //import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
     import TestElement from './TestElement.vue';
     import CustomDragElement from './CustomDragElement.vue';
+    import {getDocumentDir, setDocumentDir} from "./DOM";
     //var eventBus = require('./eventBus');
 
     var testLayout = [
@@ -185,17 +186,14 @@
              * Add change direction button
              */
             changeDirection() {
-                let documentDirection = (document.dir !=undefined) ?
-                    document.dir :
-                    document.getElementsByTagName("html")[0].getAttribute("dir");
+                let documentDirection = getDocumentDir();
                 let toggle = "";
                 if (documentDirection == "rtl") {
                     toggle = "ltr"
                 } else {
                     toggle = "rtl"
                 }
-                var html = document.getElementsByTagName("html")[0];
-                html.setAttribute("dir", toggle);
+                setDocumentDir(toggle);
                 //eventBus.$emit('directionchange');
             }
         },

@@ -23,6 +23,7 @@
     import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
     //var eventBus = require('./eventBus');
     import GridItem from './GridItem.vue'
+    import {addWindowEventListener, removeWindowEventListener} from "./DOM";
 
     export default {
         name: "GridLayout",
@@ -119,7 +120,7 @@
             //Remove listeners
             this.eventBus.$off('resizeEvent', this.resizeEventHandler);
             this.eventBus.$off('dragEvent', this.dragEventHandler);
-            window.removeEventListener("resize", this.onWindowResize)
+            removeWindowEventListener("resize", this.onWindowResize);
         },
         mounted: function() {
             this.$nextTick(function () {
@@ -129,7 +130,7 @@
                     if (self.width === null) {
                         self.onWindowResize();
                         //self.width = self.$el.offsetWidth;
-                        window.addEventListener('resize', self.onWindowResize);
+                        addWindowEventListener('resize', self.onWindowResize);
                     }
                     compact(self.layout, self.verticalCompact);
 
@@ -143,25 +144,8 @@
                         });
                     });
                 });
-                window.onload = function() {
-                    if (self.width === null) {
-                        self.onWindowResize();
-                        //self.width = self.$el.offsetWidth;
-                        window.addEventListener('resize', self.onWindowResize);
-                    }
-                    compact(self.layout, self.verticalCompact);
 
-                    self.updateHeight();
-                    self.$nextTick(function () {
-                        var erd = elementResizeDetectorMaker({
-                            strategy: "scroll" //<- For ultra performance.
-                        });
-                        erd.listenTo(self.$refs.item, function (element) {
-                            self.onWindowResize();
-                        });
-                    });
-
-                };
+                addWindowEventListener("load", self.onWindowLoad.bind(this));
             });
         },
         watch: {
@@ -189,6 +173,26 @@
             }
         },
         methods: {
+            onWindowLoad: function(){
+                var self = this;
+
+                if (self.width === null) {
+                    self.onWindowResize();
+                    //self.width = self.$el.offsetWidth;
+                    addWindowEventListener('resize', self.onWindowResize);
+                }
+                compact(self.layout, self.verticalCompact);
+
+                self.updateHeight();
+                self.$nextTick(function () {
+                    var erd = elementResizeDetectorMaker({
+                        strategy: "scroll" //<- For ultra performance.
+                    });
+                    erd.listenTo(self.$refs.item, function (element) {
+                        self.onWindowResize();
+                    });
+                });
+            },
             layoutUpdate() {
                 if (this.layout !== undefined) {
                     if (this.layout.length !== this.lastLayoutLength) {
