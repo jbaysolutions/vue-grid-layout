@@ -97,7 +97,7 @@
     import {getDocumentDir, setDocumentDir} from "./DOM";
     //var eventBus = require('./eventBus');
 
-    var testLayout = [
+    let testLayout = [
         {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true},
         {"x":2,"y":0,"w":2,"h":4,"i":"1", resizable: null, draggable: null},
         {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false},
@@ -188,7 +188,7 @@
             changeDirection() {
                 let documentDirection = getDocumentDir();
                 let toggle = "";
-                if (documentDirection == "rtl") {
+                if (documentDirection === "rtl") {
                     toggle = "ltr"
                 } else {
                     toggle = "rtl"
