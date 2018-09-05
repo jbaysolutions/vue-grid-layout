@@ -4,12 +4,14 @@
     </div>
 </template>
 <style>
-    .vue-grid-layout {
-        position: relative;
-        transition: height 200ms ease;
-    }
+.vue-grid-layout {
+  position: relative;
+  transition: height 200ms ease;
+}
 </style>
 <script>
+    import {addWindowEventListener, removeWindowEventListener} from "./DOM";
+
     var elementResizeDetectorMaker = require("element-resize-detector");
 
     import {bottom, compact, getLayoutItem, moveElement, validateLayout, findItemInArray, findAndRemove} from './utils';
@@ -99,32 +101,14 @@
         },
         beforeDestroy: function(){
             //Remove listeners
-            window.removeEventListener("resize", self.onWindowResize)
+            removeWindowEventListener("resize", self.onWindowResize)
         },
         mounted() {
             this.$nextTick(function () {
                 validateLayout(this.layout);
                 this.originalCols = this.colNum;
-                var self = this;
-                window.onload = function() {
-                    self.onWindowResize();
-                    //self.width = self.$el.offsetWidth;
-                    window.addEventListener('resize', self.onWindowResize);
-                    compact(self.layout, self.verticalCompact);
-                    self.updateHeight();
-                    self.$nextTick(function() {
-//                    self.onWindowResize();
-                        var erd = elementResizeDetectorMaker({
-                            strategy: "scroll" //<- For ultra performance.
-                        });
-                        erd.listenTo(self.$refs.item, function(element) {
-                            self.onWindowResize();
-                            /*var width = element.offsetWidth;
-                             var height = element.offsetHeight;
-                             console.log("Size: " + width + "x" + height);*/
-                        });
-                    });
-                }
+                addWindowEventListener("load", self.onWindowLoad.bind(this));
+                
             });
         },
         watch: {
@@ -162,6 +146,27 @@
             }
         },
         methods: {
+            onWindowLoad: function(){
+                var self = this;
+                this.onWindowResize();
+                //self.width = self.$el.offsetWidth;
+                addWindowEventListener('resize', self.onWindowResize);
+                compact(self.layout, self.verticalCompact);
+                self.updateHeight();
+                self.$nextTick(function() {
+                    //self.onWindowResize();
+                    var erd = elementResizeDetectorMaker({
+                        strategy: "scroll" //<- For ultra performance.
+                    });
+                    erd.listenTo(self.$refs.item, function(element) {
+                        self.onWindowResize();
+                        /*var width = element.offsetWidth;
+                        var height = element.offsetHeight;
+                        console.log("Size: " + width + "x" + height);*/
+                    });
+                });
+                
+            },
             onWindowResize: function() {
                 if (this.$refs !== null && this.$refs.item !== null) {
                     this.width = this.$refs.item.offsetWidth;
