@@ -1,5 +1,5 @@
 <template>
-    <span class="text">
+    <span class="text" style="height: 20px;">
         {{text}}
     </span>
 </template>
@@ -20,6 +20,7 @@
         },
         mounted: function() {
             console.log("### " + this.text + " ready!");
+            this.$parent.autoSize();
         },
     }
 </script>
