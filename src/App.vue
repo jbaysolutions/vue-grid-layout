@@ -47,8 +47,6 @@
                            :y="item.y"
                            :w="item.w"
                            :h="item.h"
-                           :min-w="2"
-                           :min-h="2"
                            :i="item.i"
                            @resize="resize"
                            @move="move"
@@ -164,17 +162,17 @@
                 this.layout.splice(this.layout.indexOf(item), 1);
             },
             addItem: function() {
-                var self = this;
+                let self = this;
                 //console.log("### LENGTH: " + this.layout.length);
-                var item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
+                let item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
                 this.index++;
                 this.layout.push(item);
             },
             move: function(i, newX, newY){
-                console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
+                // console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
             },
-            resize: function(i, newH, newW){
-                console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
+            resize: function(i, newH, newW, newHPx, newWPx){
+                console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
             },
             moved: function(i, newX, newY){
                 console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);

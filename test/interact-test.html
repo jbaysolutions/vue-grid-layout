@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Interact TEST</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        .resize-drag {
+            background-color: #29e;
+            color: white;
+            font-size: 20px;
+            font-family: sans-serif;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 20px;
+
+            width: 120px;
+
+            /* This makes things *much* easier */
+            box-sizing: border-box;
+        }
+
+        .resize-container {
+            display: inline-block;
+            background-color: #cccccc;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div class="resize-container">
+    <div class="resize-drag">
+        Resize from any edge or corner
+    </div>
+</div>
+<script src="../node_modules/interactjs/dist/interact.js"></script>
+<script src="interact-test.js"></script>
+</body>
+</html>

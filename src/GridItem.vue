@@ -86,7 +86,7 @@
     import {getDocumentDir} from "./DOM";
     //    var eventBus = require('./eventBus');
 
-    var interact = require("interactjs");
+    let interact = require("interactjs");
 
     export default {
         name: "GridItem",
@@ -224,7 +224,7 @@
             }
         },
         created () {
-            var self = this;
+            let self = this;
 
             // Accessible refernces of functions for removing in beforeDestroy
             self.updateWidthHandler = function (width) {
@@ -271,7 +271,7 @@
             this.rtl = getDocumentDir();
         },
         beforeDestroy: function(){
-            var self = this;
+            let self = this;
             //Remove listeners
             this.eventBus.$off('updateWidth', self.updateWidthHandler);
             this.eventBus.$off('compact', self.compactHandler);
@@ -363,7 +363,7 @@
                 this.createStyle();
             },
             renderRtl: function () {
-                console.log("### renderRtl");
+                // console.log("### renderRtl");
                 this.tryMakeResizable();
                 this.createStyle();
             }
@@ -389,7 +389,7 @@
                   this.innerX = this.x;
                   this.innerW = this.w;
                 }
-                var pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
+                let pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
 
 
                 if (this.isDragging) {
@@ -434,11 +434,12 @@
                 const {x, y} = position;
 
                 const newSize = {width: 0, height: 0};
+                let pos;
                 switch (event.type) {
                     case "resizestart":
                         this.previousW = this.innerW;
                         this.previousH = this.innerH;
-                        var pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
+                        pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
                         newSize.width = pos.width;
                         newSize.height = pos.height;
                         this.resizing = newSize;
@@ -459,7 +460,7 @@
                         break;
                     case "resizeend":
                         //console.log("### resize end => x=" +this.innerX + " y=" + this.innerY + " w=" + this.innerW + " h=" + this.innerH);
-                        var pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
+                        pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
                         newSize.width = pos.width;
                         newSize.height = pos.height;
 //                        console.log("### resize end => " + JSON.stringify(newSize));
@@ -469,7 +470,7 @@
                 }
 
                 // Get new WH
-                var pos = this.calcWH(newSize.height, newSize.width);
+                pos = this.calcWH(newSize.height, newSize.width);
                 if (pos.w < this.minW) {
                     pos.w = this.minW;
                 }
@@ -684,7 +685,8 @@
                     // console.log("### MIN " + JSON.stringify(minimum));
 
                     const opts = {
-                        preserveAspectRatio: false,
+                        preserveAspectRatio: true,
+                        // allowFrom: "." + this.resizableHandleClass,
                         edges: {
                             left: false,
                             right: "." + this.resizableHandleClass,

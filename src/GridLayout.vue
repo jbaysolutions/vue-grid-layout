@@ -100,7 +100,7 @@
             };
         },
         created () {
-            var self = this;
+            const self = this;
 
             // Accessible refernces of functions for removing in beforeDestroy
             self.resizeEventHandler = function(eventType, i, x, y, h, w) {
@@ -125,7 +125,7 @@
         mounted: function() {
             this.$nextTick(function () {
                 validateLayout(this.layout);
-                var self = this;
+                const self = this;
                 this.$nextTick(function() {
                     if (self.width === null) {
                         self.onWindowResize();
@@ -136,7 +136,7 @@
 
                     self.updateHeight();
                     self.$nextTick(function () {
-                        var erd = elementResizeDetectorMaker({
+                        const erd = elementResizeDetectorMaker({
                             strategy: "scroll" //<- For ultra performance.
                         });
                         erd.listenTo(self.$refs.item, function (element) {
@@ -174,7 +174,7 @@
         },
         methods: {
             onWindowLoad: function(){
-                var self = this;
+                const self = this;
 
                 if (self.width === null) {
                     self.onWindowResize();
@@ -185,7 +185,7 @@
 
                 self.updateHeight();
                 self.$nextTick(function () {
-                    var erd = elementResizeDetectorMaker({
+                    const erd = elementResizeDetectorMaker({
                         strategy: "scroll" //<- For ultra performance.
                     });
                     erd.listenTo(self.$refs.item, function (element) {
@@ -236,7 +236,7 @@
                     });
                 }
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
-                var l = getLayoutItem(this.layout, id);
+                let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
                 if (l === undefined || l === null){
                     l = {x:0, y:0}
@@ -269,7 +269,7 @@
                         this.isDragging = false;
                     });
                 }
-                var l = getLayoutItem(this.layout, id);
+                let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes return null object
                 if (l === undefined || l === null){
                     l = {h:0, w:0}
