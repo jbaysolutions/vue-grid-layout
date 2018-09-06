@@ -81,9 +81,9 @@
     }
 </style>
 <script>
-    import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from './utils';
-    import {getControlPosition, offsetXYFromParentOf, createCoreData} from './draggableUtils';
-    import {getDocumentDir} from "./DOM";
+    import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from '../helpers/utils';
+    import {getControlPosition, offsetXYFromParentOf, createCoreData} from '../helpers/draggableUtils';
+    import {getDocumentDir} from "../helpers/DOM";
     //    var eventBus = require('./eventBus');
 
     let interact = require("interactjs");

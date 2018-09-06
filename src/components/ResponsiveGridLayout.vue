@@ -10,12 +10,12 @@
 }
 </style>
 <script>
-    import {addWindowEventListener, removeWindowEventListener} from "./DOM";
+    import {addWindowEventListener, removeWindowEventListener} from "../helpers/DOM";
 
-    var elementResizeDetectorMaker = require("element-resize-detector");
+    let elementResizeDetectorMaker = require("element-resize-detector");
 
-    import {bottom, compact, getLayoutItem, moveElement, validateLayout, findItemInArray, findAndRemove} from './utils';
-    import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout, generateResponsiveLayout} from './responsiveUtils';
+    import {bottom, compact, getLayoutItem, moveElement, validateLayout, findItemInArray, findAndRemove} from '../helpers/utils';
+    import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout, generateResponsiveLayout} from '../helpers/responsiveUtils';
     import GridItem from './GridItem.vue'
 
     export default {

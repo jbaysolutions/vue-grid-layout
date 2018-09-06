@@ -16,7 +16,7 @@ export type DragEvent = {e: Event} & DragCallbackData;
 export type Size = {width: number, height: number};
 export type ResizeEvent = {e: Event, node: HTMLElement, size: Size};
 
-const isProduction = process.env.NODE_ENV === 'production';
+// const isProduction = process.env.NODE_ENV === 'production';
 /**
  * Return the bottom coordinate of the layout.
  *
