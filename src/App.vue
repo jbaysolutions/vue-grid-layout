@@ -6,7 +6,7 @@
             <div class="layoutJSON">
                 Displayed as <code>[x, y, w, h]</code>:
                 <div class="columns">
-                    <div class="layoutItem" v-for="item in layout">
+                    <div class="layoutItem" v-for="item in layout" :key="item.i">
                         <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
                     </div>
                 </div>
@@ -146,14 +146,13 @@
             clicked: function() {
                 window.alert("CLICK!");
             },
-            increaseWidth: function(item) {
-                var width = document.getElementById("content").offsetWidth;
+            increaseWidth: function() {
+                let width = document.getElementById("content").offsetWidth;
                 width += 20;
                 document.getElementById("content").style.width = width+"px";
             },
-            decreaseWidth: function(item) {
-
-                var width = document.getElementById("content").offsetWidth;
+            decreaseWidth: function() {
+                let width = document.getElementById("content").offsetWidth;
                 width -= 20;
                 document.getElementById("content").style.width = width+"px";
             },
@@ -162,14 +161,14 @@
                 this.layout.splice(this.layout.indexOf(item), 1);
             },
             addItem: function() {
-                let self = this;
+                // let self = this;
                 //console.log("### LENGTH: " + this.layout.length);
                 let item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
                 this.index++;
                 this.layout.push(item);
             },
             move: function(i, newX, newY){
-                // console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
+                console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
             },
             resize: function(i, newH, newW, newHPx, newWPx){
                 console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);

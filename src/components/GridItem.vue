@@ -81,8 +81,8 @@
     }
 </style>
 <script>
-    import {setTopLeft, setTopRight, setTransformRtl, setTransform, createMarkup, getLayoutItem} from '../helpers/utils';
-    import {getControlPosition, offsetXYFromParentOf, createCoreData} from '../helpers/draggableUtils';
+    import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '../helpers/utils';
+    import {getControlPosition, createCoreData} from '../helpers/draggableUtils';
     import {getDocumentDir} from "../helpers/DOM";
     //    var eventBus = require('./eventBus');
 
@@ -251,7 +251,7 @@
                 self.rowHeight = rowHeight;
             };
 
-            self.directionchangeHandler = (direction) => {
+            self.directionchangeHandler = () => {
                 this.rtl = getDocumentDir();
                 this.compact();
             };
@@ -436,7 +436,7 @@
                 const newSize = {width: 0, height: 0};
                 let pos;
                 switch (event.type) {
-                    case "resizestart":
+                    case "resizestart": {
                         this.previousW = this.innerW;
                         this.previousH = this.innerH;
                         pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
@@ -445,7 +445,8 @@
                         this.resizing = newSize;
                         this.isResizing = true;
                         break;
-                    case "resizemove":
+                    }
+                    case "resizemove": {
 //                        console.log("### resize => " + event.type + ", lastW=" + this.lastW + ", lastH=" + this.lastH);
                         const coreEvent = createCoreData(this.lastW, this.lastH, x, y);
                         if (this.renderRtl) {
@@ -458,7 +459,8 @@
                         ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
                         this.resizing = newSize;
                         break;
-                    case "resizeend":
+                    }
+                    case "resizeend": {
                         //console.log("### resize end => x=" +this.innerX + " y=" + this.innerY + " w=" + this.innerW + " h=" + this.innerH);
                         pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
                         newSize.width = pos.width;
@@ -467,6 +469,7 @@
                         this.resizing = null;
                         this.isResizing = false;
                         break;
+                    }
                 }
 
                 // Get new WH
@@ -511,10 +514,10 @@
                 if (position === null) return; // not possible but satisfies flow
                 const {x, y} = position;
 
-                let shouldUpdate = false;
-                const newPosition = {top: 0, left: 0};
+                // let shouldUpdate = false;
+                let newPosition = {top: 0, left: 0};
                 switch (event.type) {
-                    case "dragstart":
+                    case "dragstart": {
                         this.previousX = this.innerX;
                         this.previousY = this.innerY;
 
@@ -529,10 +532,11 @@
                         this.dragging = newPosition;
                         this.isDragging = true;
                         break;
-                    case "dragend":
+                    }
+                    case "dragend": {
                         if (!this.isDragging) return;
-                        parentRect = event.target.offsetParent.getBoundingClientRect();
-                        clientRect = event.target.getBoundingClientRect();
+                        let parentRect = event.target.offsetParent.getBoundingClientRect();
+                        let clientRect = event.target.getBoundingClientRect();
 //                        Add rtl support
                         if (this.renderRtl) {
                             newPosition.left = (clientRect.right - parentRect.right) * -1;
@@ -544,9 +548,10 @@
 //                        console.log("### DROP: " + JSON.stringify(newPosition));
                         this.dragging = null;
                         this.isDragging = false;
-                        shouldUpdate = true;
+                        // shouldUpdate = true;
                         break;
-                    case "dragmove":
+                    }
+                    case "dragmove": {
                         const coreEvent = createCoreData(this.lastX, this.lastY, x, y);
 //                        Add rtl support
                         if (this.renderRtl) {
@@ -560,6 +565,7 @@
 //                        console.log("### drag end => " + JSON.stringify(newPosition));
                         this.dragging = newPosition;
                         break;
+                    }
                 }
 
                 // Get new XY

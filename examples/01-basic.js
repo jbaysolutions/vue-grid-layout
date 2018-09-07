@@ -26,15 +26,8 @@ var testLayout = [
 Vue.config.debug = true;
 Vue.config.devtools = true;
 
-var GridLayout = VueGridLayout.GridLayout;
-var GridItem = VueGridLayout.GridItem;
-
 new Vue({
     el: '#app',
-    components: {
-		"GridLayout": GridLayout,
-		"GridItem": GridItem
-    },
     data: {
         layout: testLayout,
         draggable: true,

@@ -139,7 +139,7 @@
                         const erd = elementResizeDetectorMaker({
                             strategy: "scroll" //<- For ultra performance.
                         });
-                        erd.listenTo(self.$refs.item, function (element) {
+                        erd.listenTo(self.$refs.item, function () {
                             self.onWindowResize();
                         });
                     });
@@ -188,7 +188,7 @@
                     const erd = elementResizeDetectorMaker({
                         strategy: "scroll" //<- For ultra performance.
                     });
-                    erd.listenTo(self.$refs.item, function (element) {
+                    erd.listenTo(self.$refs.item, function () {
                         self.onWindowResize();
                     });
                 });

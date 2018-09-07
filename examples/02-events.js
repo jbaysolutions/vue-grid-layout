@@ -26,15 +26,8 @@ var testLayout = [
 Vue.config.debug = true;
 Vue.config.devtools = true;
 
-var GridLayout = VueGridLayout.GridLayout;
-var GridItem = VueGridLayout.GridItem;
-
 new Vue({
     el: '#app',
-    components: {
-        "GridLayout": GridLayout,
-        "GridItem": GridItem
-    },
     data: {
         layout: testLayout,
         index: 0,
@@ -53,13 +46,19 @@ new Vue({
             console.log(msg);
 
         },
-        resizeEvent: function(i, newH, newW){
-            var msg = "RESIZE i=" + i + ", H=" + newH + ", W=" + newW;
+        movedEvent: function(i, newX, newY){
+            var msg = "MOVED i=" + i + ", X=" + newX + ", Y=" + newY;
+            this.eventLog.push(msg);
+            console.log(msg);
+
+        },
+        resizeEvent: function(i, newH, newW, newHPx, newWPx){
+            var msg = "RESIZE i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx;
             this.eventLog.push(msg);
             console.log(msg);
         },
-        movedEvent: function(i, newX, newY){
-            var msg = "MOVED i=" + i + ", X=" + newX + ", Y=" + newY;
+        resizedEvent: function(i, newX, newY, newHPx, newWPx){
+            var msg = "RESIZED i=" + i + ", X=" + newX + ", Y=" + newY + ", H(px)=" + newHPx + ", W(px)=" + newWPx;
             this.eventLog.push(msg);
             console.log(msg);
 
