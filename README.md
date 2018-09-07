@@ -1,8 +1,12 @@
-# vue-grid-layout
+<h1 align="center">vue-grid-layout</h>
+
+<p align="center">
+<a href="https://www.npmjs.com/package/vue-grid-layout"><img src="https://img.shields.io/npm/v/vue-grid-layout.svg"/> <img src="https://img.shields.io/npm/dm/vue-grid-layout.svg"/></a> <a href="https://vuejs.org/"><img src="https://img.shields.io/badge/vue-2.2.x-brightgreen.svg"/></a>
+</p>
 
 vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.1.13 (Supports Vue 2.2+)
+### **Current version:** 2.2.0 (Supports Vue 2.2+)
 
 ### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
 ### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
@@ -25,6 +29,10 @@ vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.i
 
 
 TODO UPDATE DOCS
+
+Used guide for vue cli build: https://medium.com/justfrontendthings/how-to-create-and-publish-your-own-vuejs-component-library-on-npm-using-vue-cli-28e60943eed3
+Also check https://cli.vuejs.org/guide/build-targets.html#library
+
 -->
 
 #### Projects using vue-grid-layout
@@ -40,30 +48,42 @@ TODO UPDATE DOCS
 * Bounds checking for dragging and resizing
 * Widgets may be added or removed without rebuilding grid
 * Layout can be serialized and restored
-* Automatic RTL support
+* Automatic RTL support (resizing not working with RTL on 2.2.0)
 
 
 ## Getting Started
 
 ### Installation
 
-Install the vue-grid-layout [package](https://www.npmjs.org/package/vue-grid-layout) package using [npm](https://www.npmjs.com/):
+#### npm
 
-	npm install vue-grid-layout
+    # install with npm    
+	npm install vue-grid-layout --save
+    
+    # install with yarn    
+    yarn add vue-grid-layout
+
+
+Import the library
+
+```javascript
+    import VueGridLayout from 'vue-grid-layout';
+```
+
+    
+
+#### browser
+
+Include the browser-ready bundle (download from [releases](https://github.com/jbaysolutions/vue-grid-layout/releases)) in your page. The components will be automatically available.
+
+```html
+    <script src="vue-grid-layout.umd.min.js"></script>
+```` 
 
 
 ### Usage
 
-    npm install vue-grid-layout
-
-or include the script in your html (download from [releases](https://github.com/jbaysolutions/vue-grid-layout/releases)):
- 
-```html
-    <script src="vue-grid-layout.min.js"></script>
-```` 
-
 ```javascript
-
 	var testLayout = [
 	    {"x":0,"y":0,"w":2,"h":2,"i":"0"},
 	    {"x":2,"y":0,"w":2,"h":4,"i":"1"},
@@ -87,15 +107,8 @@ or include the script in your html (download from [releases](https://github.com/
 	    {"x":2,"y":6,"w":2,"h":2,"i":"19"}
 	];
 	
-	var GridLayout = VueGridLayout.GridLayout;
-	var GridItem = VueGridLayout.GridItem;
-	
 	new Vue({
 	    el: '#app',
-	    components: {
-	        GridLayout,
-	        GridItem,
-	    },
 	    data: {
 	        layout: testLayout,
 	    },

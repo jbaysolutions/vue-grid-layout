@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.0 (Sep X, 2018)
+
+* changed project structure and build using Vue CLI
+* TODO 
+
 ## 2.1.13 (May 2, 2018)
 
 * Resize event now also emits dimensions in pixels (thanks [buremba](https://github.com/buremba)) 
