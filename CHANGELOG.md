@@ -1,9 +1,13 @@
 # Changelog
 
-## 2.2.0 (Sep X, 2018)
+## 2.2.0 (Sep 10, 2018)
 
 * changed project structure and build using Vue CLI
-* TODO 
+* GridItem new autosize method. For now, need to be called from child component with this.$parent.autoSize() (thanks[mech01nc01](https://github.com/mech01nc01)) 
+* Abstract DOM related calls for initial SSR Support (thanks[Kukks](https://github.com/Kukks)) 
+* GridItem.i can now be a number or a string (thanks[xch1029](https://github.com/xch1029)) 
+* Use interactjs size restrictions to limit resizing (thanks[LuisCarreras](https://github.com/LuisCarreras)) 
+* Fixed interactjs instance leak on instance release (thanks[zzuligy](https://github.com/zzuligy)) 
 
 ## 2.1.13 (May 2, 2018)
 
