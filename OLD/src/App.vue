@@ -1,24 +1,24 @@
 <template>
     <div id="app">
-        <h1 style="text-align: center">Vue Grid Layout</h1>
+        <h1>Vue Grid Layout</h1>
         <!--<pre>{{ layout | json }}</pre>-->
         <div>
             <div class="layoutJSON">
                 Displayed as <code>[x, y, w, h]</code>:
                 <div class="columns">
-                    <div class="layoutItem" v-for="item in layout" :key="item.i">
+                    <div class="layoutItem" v-for="item in layout">
                         <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
                     </div>
                 </div>
             </div>
-            <!--<div class="layoutJSON">
+            <div class="layoutJSON">
                 Displayed as <code>[x, y, w, h]</code>:
                 <div class="columns">
                     <div class="layoutItem" v-for="item in layout2">
                         <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
                     </div>
                 </div>
-            </div>-->
+            </div>
         </div>
         <div id="content">
             <button @click="decreaseWidth">Decrease Width</button>
@@ -29,9 +29,9 @@
             <input type="checkbox" v-model="draggable"/> Draggable
             <input type="checkbox" v-model="resizable"/> Resizable
             <input type="checkbox" v-model="mirrored"/> Mirrored
-            <div style="margin-top: 10px;margin-bottom: 10px;">
-                Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
-            </div>
+            <br/>
+            Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
+            <br/>
             <grid-layout
                     :layout="layout"
                     :col-num="parseInt(colNum)"
@@ -87,12 +87,12 @@
 </template>
 
 <script>
-    import GridItem from './components/GridItem.vue';
-    import GridLayout from './components/GridLayout.vue';
+    import GridItem from './GridItem.vue';
+    import GridLayout from './GridLayout.vue';
     //import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
-    import TestElement from './components/TestElement.vue';
-    import CustomDragElement from './components/CustomDragElement.vue';
-    import {getDocumentDir, setDocumentDir} from "./helpers/DOM";
+    import TestElement from './TestElement.vue';
+    import CustomDragElement from './CustomDragElement.vue';
+    import {getDocumentDir, setDocumentDir} from "./DOM";
     //var eventBus = require('./eventBus');
 
     let testLayout = [
@@ -146,13 +146,14 @@
             clicked: function() {
                 window.alert("CLICK!");
             },
-            increaseWidth: function() {
-                let width = document.getElementById("content").offsetWidth;
+            increaseWidth: function(item) {
+                var width = document.getElementById("content").offsetWidth;
                 width += 20;
                 document.getElementById("content").style.width = width+"px";
             },
-            decreaseWidth: function() {
-                let width = document.getElementById("content").offsetWidth;
+            decreaseWidth: function(item) {
+
+                var width = document.getElementById("content").offsetWidth;
                 width -= 20;
                 document.getElementById("content").style.width = width+"px";
             },
@@ -161,14 +162,14 @@
                 this.layout.splice(this.layout.indexOf(item), 1);
             },
             addItem: function() {
-                // let self = this;
+                let self = this;
                 //console.log("### LENGTH: " + this.layout.length);
                 let item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
                 this.index++;
                 this.layout.push(item);
             },
             move: function(i, newX, newY){
-                console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
+                // console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
             },
             resize: function(i, newH, newW, newHPx, newWPx){
                 console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
@@ -198,41 +199,30 @@
 </script>
 
 <style>
-    /*    #app {
-            font-family: 'Avenir', Helvetica, Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-align: center;
-            color: #2c3e50;
-            margin-top: 60px;
-        }
+/*    #app {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
 
-        h1, h2 {
-            font-weight: normal;
-        }
+    h1, h2 {
+        font-weight: normal;
+    }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-        li {
-            display: inline-block;
-            margin: 0 10px;
-        }
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
 
-        a {
-            color: #42b983;
-        }*/
-</style>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /*text-align: center;*/
-  color: #2c3e50;
-  /*margin-top: 60px;*/
-}
+    a {
+        color: #42b983;
+    }*/
 </style>

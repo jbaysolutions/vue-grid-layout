@@ -20,10 +20,10 @@
     import Vue from 'vue';
     var elementResizeDetectorMaker = require("element-resize-detector");
 
-    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
+    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from '../helpers/utils';
     //var eventBus = require('./eventBus');
     import GridItem from './GridItem.vue'
-    import {addWindowEventListener, removeWindowEventListener} from "./DOM";
+    import {addWindowEventListener, removeWindowEventListener} from "../helpers/DOM";
 
     export default {
         name: "GridLayout",
@@ -139,7 +139,7 @@
                         const erd = elementResizeDetectorMaker({
                             strategy: "scroll" //<- For ultra performance.
                         });
-                        erd.listenTo(self.$refs.item, function (element) {
+                        erd.listenTo(self.$refs.item, function () {
                             self.onWindowResize();
                         });
                     });
@@ -188,7 +188,7 @@
                     const erd = elementResizeDetectorMaker({
                         strategy: "scroll" //<- For ultra performance.
                     });
-                    erd.listenTo(self.$refs.item, function (element) {
+                    erd.listenTo(self.$refs.item, function () {
                         self.onWindowResize();
                     });
                 });
