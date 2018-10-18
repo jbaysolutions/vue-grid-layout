@@ -20,8 +20,10 @@
     import Vue from 'vue';
     var elementResizeDetectorMaker = require("element-resize-detector");
 
-    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from '../helpers/utils';
+    import {bottom, compact, getLayoutItem, moveElement, validateLayout, cloneLayout} from '../helpers/utils';
+    import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout} from "../helpers/responsiveUtils";
     //var eventBus = require('./eventBus');
+
     import GridItem from './GridItem.vue'
     import {addWindowEventListener, removeWindowEventListener} from "../helpers/DOM";
 
@@ -83,6 +85,18 @@
                 type: Array,
                 required: true,
             },
+            responsive: {
+                type: Boolean,
+                default: false
+            },
+            breakpoints:{
+                type: Object,
+                default: function(){return{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+            },
+            cols:{
+                type: Object,
+                default: function(){return{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }},
+            },
         },
         data: function () {
             return {
@@ -97,6 +111,9 @@
                     h: 0,
                     i: -1
                 },
+                layouts: {}, // array to store all layouts from different breakpoints
+                lastBreakpoint: null, // store last active breakpoint
+                originalLayout: null, // store original Layout
             };
         },
         created () {
@@ -125,10 +142,15 @@
         mounted: function() {
             this.$nextTick(function () {
                 validateLayout(this.layout);
+
+                this.originalLayout = this.layout;
                 const self = this;
                 this.$nextTick(function() {
                     if (self.width === null) {
                         self.onWindowResize();
+
+                        self.initResponsiveFeatures();
+
                         //self.width = self.$el.offsetWidth;
                         addWindowEventListener('resize', self.onWindowResize);
                     }
@@ -195,10 +217,27 @@
             },
             layoutUpdate() {
                 if (this.layout !== undefined) {
-                    if (this.layout.length !== this.lastLayoutLength) {
-                        //console.log("### LAYOUT UPDATE!");
+                    if (this.layout.length !== this.originalLayout.length) {
+                        console.log("### LAYOUT UPDATE!", this.layout.length, this.originalLayout.length);
+
+                        let diff = this.findDifference(this.layout, this.originalLayout);
+                        if (diff.length > 0){
+                            console.log(diff);
+                            if(this.layout.length > this.originalLayout.length){
+                                this.originalLayout = this.originalLayout.concat(diff);
+                            }else{
+                                this.originalLayout = this.originalLayout.filter(obj => {
+                                    return !diff.some(obj2 => {
+                                        return obj.i == obj2.i;
+                                    });
+                                });
+                            }
+                        }
+
                         this.lastLayoutLength = this.layout.length;
+                        this.initResponsiveFeatures();
                     }
+
                     compact(this.layout, this.verticalCompact);
                     this.eventBus.$emit("updateWidth", this.width);
                     this.updateHeight();
@@ -213,6 +252,7 @@
                 if (this.$refs !== null && this.$refs.item !== null && this.$refs.item !== undefined) {
                     this.width = this.$refs.item.offsetWidth;
                 }
+                this.eventBus.$emit("resizeEvent");
             },
             containerHeight: function () {
                 if (!this.autoSize) return;
@@ -276,11 +316,75 @@
                 }
                 l.h = h;
                 l.w = w;
-                compact(this.layout, this.verticalCompact);
-                this.eventBus.$emit("compact");
-                this.updateHeight();
+            
+                if(this.responsive){
+                    this.responsiveGridLayout();
+                }else{
+                    compact(this.layout, this.verticalCompact);
+                    this.eventBus.$emit("compact");
+                    this.updateHeight();
+                }
+
                 if (eventName === 'resizeend') this.$emit('layout-updated', this.layout);
             },
+            
+            // finds or generates new layouts for set breakpoints
+            responsiveGridLayout(){
+
+                let newBreakpoint = getBreakpointFromWidth(this.breakpoints, this.width);
+                let newCols = getColsFromBreakpoint(newBreakpoint, this.cols);
+
+                // save actual layout in layouts
+                if(this.lastBreakpoint != null && !this.layouts[this.lastBreakpoint])
+                    this.layouts[this.lastBreakpoint] = cloneLayout(this.layout);
+
+                // Find or generate a new layout. 
+                let layout = findOrGenerateResponsiveLayout( 
+                    this.originalLayout,
+                    this.layouts,
+                    this.breakpoints,
+                    newBreakpoint,
+                    this.lastBreakpoint,
+                    newCols,
+                    this.verticalCompact
+                );
+                
+                // Store the new layout.
+                this.layouts[newBreakpoint] = layout;
+
+                // new prop sync
+                this.$emit('update:layout', layout);
+
+                this.lastBreakpoint = newBreakpoint;
+                this.eventBus.$emit("setColNum", getColsFromBreakpoint(newBreakpoint, this.cols));
+            },
+
+            // clear all responsive layouts
+            initResponsiveFeatures(){
+                // clear layouts
+                this.layouts = {};
+            },
+
+            // find difference in layouts 
+            findDifference(layout, originalLayout){
+
+                //Find values that are in result1 but not in result2
+                var uniqueResultOne = layout.filter(function(obj) {
+                    return !originalLayout.some(function(obj2) {
+                        return obj.i == obj2.i;
+                    });
+                });
+
+                //Find values that are in result2 but not in result1
+                var uniqueResultTwo = originalLayout.filter(function(obj) {
+                    return !layout.some(function(obj2) {
+                        return obj.i == obj2.i;
+                    });
+                });
+
+                //Combine the two arrays of unique entries#
+                return uniqueResultOne.concat(uniqueResultTwo);
+            }
         },
     }
 </script>

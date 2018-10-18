@@ -29,11 +29,12 @@
             <input type="checkbox" v-model="draggable"/> Draggable
             <input type="checkbox" v-model="resizable"/> Resizable
             <input type="checkbox" v-model="mirrored"/> Mirrored
+            <input type="checkbox" v-model="responsive"/> Responsive
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
             </div>
             <grid-layout
-                    :layout="layout"
+                    :layout.sync="layout"
                     :col-num="parseInt(colNum)"
                     :row-height="rowHeight"
                     :is-draggable="draggable"
@@ -41,6 +42,7 @@
                     :is-mirrored="mirrored"
                     :vertical-compact="true"
                     :use-css-transforms="true"
+                    :responsive="responsive"
             >
                 <grid-item v-for="item in layout" :key="item.i"
                            :x="item.x"
@@ -89,7 +91,7 @@
 <script>
     import GridItem from './components/GridItem.vue';
     import GridLayout from './components/GridLayout.vue';
-    //import ResponsiveGridLayout from './ResponsiveGridLayout.vue';
+    import ResponsiveGridLayout from './components/ResponsiveGridLayout.vue';
     import TestElement from './components/TestElement.vue';
     import CustomDragElement from './components/CustomDragElement.vue';
     import {getDocumentDir, setDocumentDir} from "./helpers/DOM";
@@ -121,7 +123,7 @@
     export default {
         name: 'app',
         components: {
-            //ResponsiveGridLayout,
+            ResponsiveGridLayout,
             GridLayout,
             GridItem,
             TestElement,
@@ -134,6 +136,7 @@
                 draggable: true,
                 resizable: true,
                 mirrored: false,
+                responsive: true,
                 rowHeight: 30,
                 colNum: 12,
                 index: 0
