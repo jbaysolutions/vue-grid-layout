@@ -49,6 +49,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 * Widgets may be added or removed without rebuilding grid
 * Layout can be serialized and restored
 * Automatic RTL support (resizing not working with RTL on 2.2.0)
+* Responsive Layout
 
 
 ## Getting Started
@@ -241,6 +242,29 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
     Says if the CSS `transition-property: transform;` should be used.
 
+* **responsive**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `false`
+
+    Says if the layout should be responsive to window width
+
+* **breakpoints**
+
+    * type: `Object`
+    * required: `false`
+    * default: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }
+
+    Breakpoints defined for responsive layout. Sets widths on wich column number changes
+
+* **cols**
+
+    * type: `Object`
+    * required: `false`
+    * default: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }
+
+    Defines columns foreach breakpoint width
 
 
 ##### GridItem
@@ -502,7 +526,7 @@ If you have a feature request, please add it as an issue or make a pull request.
 ## TODO List
 
 - [x] Basic grid layout
-- [ ] Responsive
+- [x] Responsive
 - [x] Draggable grid items
 - [x] Resizable grid items
 - [ ] Static elements
