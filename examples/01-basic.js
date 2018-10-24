@@ -21,20 +21,15 @@ var testLayout = [
     {"x":2,"y":6,"w":2,"h":2,"i":"19"}
 ];
 
-//var Vue = require('vue');
-
-Vue.config.debug = true;
-Vue.config.devtools = true;
-
-var GridLayout = VueGridLayout.GridLayout;
-var GridItem = VueGridLayout.GridItem;
+// var GridLayout = VueGridLayout.GridLayout;
+// var GridItem = VueGridLayout.GridItem;
 
 new Vue({
     el: '#app',
-    components: {
-		"GridLayout": GridLayout,
-		"GridItem": GridItem
-    },
+    // components: {
+    //     "GridLayout": GridLayout,
+    //     "GridItem": GridItem
+    // },
     data: {
         layout: testLayout,
         draggable: true,

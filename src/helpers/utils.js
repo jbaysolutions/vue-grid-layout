@@ -5,18 +5,20 @@ export type LayoutItem = LayoutItemRequired &
                           moved?: boolean, static?: boolean,
                           isDraggable?: ?boolean, isResizable?: ?boolean};
 export type Layout = Array<LayoutItem>;
-export type Position = {left: number, top: number, width: number, height: number};
+// export type Position = {left: number, top: number, width: number, height: number};
+/*
 export type DragCallbackData = {
   node: HTMLElement,
   x: number, y: number,
   deltaX: number, deltaY: number,
   lastX: number, lastY: number
 };
-export type DragEvent = {e: Event} & DragCallbackData;
+*/
+// export type DragEvent = {e: Event} & DragCallbackData;
 export type Size = {width: number, height: number};
-export type ResizeEvent = {e: Event, node: HTMLElement, size: Size};
+// export type ResizeEvent = {e: Event, node: HTMLElement, size: Size};
 
-const isProduction = process.env.NODE_ENV === 'production';
+// const isProduction = process.env.NODE_ENV === 'production';
 /**
  * Return the bottom coordinate of the layout.
  *
@@ -453,7 +455,9 @@ export function validateLayout(layout: Layout, contextName: string): void {
       }
     }
     if (item.i && typeof item.i !== 'string') {
-      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
+      // number is also ok, so comment the error
+        // TODO confirm if commenting the line below doesn't cause unexpected problems
+      // throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
     }
     if (item.static !== undefined && typeof item.static !== 'boolean') {
       throw new Error('VueGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');

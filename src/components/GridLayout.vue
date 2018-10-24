@@ -20,9 +20,10 @@
     import Vue from 'vue';
     var elementResizeDetectorMaker = require("element-resize-detector");
 
-    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from './utils';
+    import {bottom, compact, getLayoutItem, moveElement, validateLayout} from '../helpers/utils';
     //var eventBus = require('./eventBus');
     import GridItem from './GridItem.vue'
+    import {addWindowEventListener, removeWindowEventListener} from "../helpers/DOM";
 
     export default {
         name: "GridLayout",
@@ -99,7 +100,7 @@
             };
         },
         created () {
-            var self = this;
+            const self = this;
 
             // Accessible refernces of functions for removing in beforeDestroy
             self.resizeEventHandler = function(eventType, i, x, y, h, w) {
@@ -117,51 +118,34 @@
         },
         beforeDestroy: function(){
             //Remove listeners
-            this.eventBus.$off('resizeEvent', self.resizeEventHandler);
-            this.eventBus.$off('dragEvent', self.dragEventHandler);
-            window.removeEventListener("resize", self.onWindowResize)
+            this.eventBus.$off('resizeEvent', this.resizeEventHandler);
+            this.eventBus.$off('dragEvent', this.dragEventHandler);
+            removeWindowEventListener("resize", this.onWindowResize);
         },
         mounted: function() {
             this.$nextTick(function () {
                 validateLayout(this.layout);
-                var self = this;
+                const self = this;
                 this.$nextTick(function() {
                     if (self.width === null) {
                         self.onWindowResize();
                         //self.width = self.$el.offsetWidth;
-                        window.addEventListener('resize', self.onWindowResize);
+                        addWindowEventListener('resize', self.onWindowResize);
                     }
                     compact(self.layout, self.verticalCompact);
 
                     self.updateHeight();
                     self.$nextTick(function () {
-                        var erd = elementResizeDetectorMaker({
+                        const erd = elementResizeDetectorMaker({
                             strategy: "scroll" //<- For ultra performance.
                         });
-                        erd.listenTo(self.$refs.item, function (element) {
+                        erd.listenTo(self.$refs.item, function () {
                             self.onWindowResize();
                         });
                     });
                 });
-                window.onload = function() {
-                    if (self.width === null) {
-                        self.onWindowResize();
-                        //self.width = self.$el.offsetWidth;
-                        window.addEventListener('resize', self.onWindowResize);
-                    }
-                    compact(self.layout, self.verticalCompact);
 
-                    self.updateHeight();
-                    self.$nextTick(function () {
-                        var erd = elementResizeDetectorMaker({
-                            strategy: "scroll" //<- For ultra performance.
-                        });
-                        erd.listenTo(self.$refs.item, function (element) {
-                            self.onWindowResize();
-                        });
-                    });
-
-                };
+                addWindowEventListener("load", self.onWindowLoad.bind(this));
             });
         },
         watch: {
@@ -189,6 +173,26 @@
             }
         },
         methods: {
+            onWindowLoad: function(){
+                const self = this;
+
+                if (self.width === null) {
+                    self.onWindowResize();
+                    //self.width = self.$el.offsetWidth;
+                    addWindowEventListener('resize', self.onWindowResize);
+                }
+                compact(self.layout, self.verticalCompact);
+
+                self.updateHeight();
+                self.$nextTick(function () {
+                    const erd = elementResizeDetectorMaker({
+                        strategy: "scroll" //<- For ultra performance.
+                    });
+                    erd.listenTo(self.$refs.item, function () {
+                        self.onWindowResize();
+                    });
+                });
+            },
             layoutUpdate() {
                 if (this.layout !== undefined) {
                     if (this.layout.length !== this.lastLayoutLength) {
@@ -232,7 +236,7 @@
                     });
                 }
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
-                var l = getLayoutItem(this.layout, id);
+                let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
                 if (l === undefined || l === null){
                     l = {x:0, y:0}
@@ -265,7 +269,7 @@
                         this.isDragging = false;
                     });
                 }
-                var l = getLayoutItem(this.layout, id);
+                let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes return null object
                 if (l === undefined || l === null){
                     l = {h:0, w:0}

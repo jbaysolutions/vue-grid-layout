@@ -1,6 +1,7 @@
 /*** EXAMPLE ***/
 #content {
     width: 100%;
+    margin-top:10px;
 }
 
 .vue-grid-layout {
@@ -31,7 +32,7 @@
 
 
 
-/*.vue-resizable-handle {
+.vue-resizable-handle {
     z-index: 5000;
     position: absolute;
     width: 20px;
@@ -45,7 +46,7 @@
     background-origin: content-box;
     box-sizing: border-box;
     cursor: se-resize;
-}*/
+}
 
 .vue-grid-item:not(.vue-grid-placeholder) {
     background: #ccc;
