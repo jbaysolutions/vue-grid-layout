@@ -43,6 +43,7 @@ export function getColsFromBreakpoint(breakpoint: Breakpoint, cols: Breakpoints)
  *
  * This finds the layout above the new one and generates from it, if it exists.
  *
+ * @param  {Array} orgLayout     Original layout.
  * @param  {Object} layouts     Existing layouts.
  * @param  {Array} breakpoints All breakpoints.
  * @param  {String} breakpoint New breakpoint.
@@ -52,13 +53,14 @@ export function getColsFromBreakpoint(breakpoint: Breakpoint, cols: Breakpoints)
  *   vertically.
  * @return {Array}             New layout.
  */
-export function findOrGenerateResponsiveLayout(layouts: ResponsiveLayout, breakpoints: Breakpoints,
+export function findOrGenerateResponsiveLayout(orgLayout: Layout, layouts: ResponsiveLayout, breakpoints: Breakpoints,
                                                breakpoint: Breakpoint, lastBreakpoint: Breakpoint,
                                                cols: number, verticalCompact: boolean): Layout {
   // If it already exists, just return it.
   if (layouts[breakpoint]) return cloneLayout(layouts[breakpoint]);
   // Find or generate the next layout
-  let layout = layouts[lastBreakpoint];
+  let layout = orgLayout;
+
   const breakpointsSorted = sortBreakpoints(breakpoints);
   const breakpointsAbove = breakpointsSorted.slice(breakpointsSorted.indexOf(breakpoint));
   for (let i = 0, len = breakpointsAbove.length; i < len; i++) {
