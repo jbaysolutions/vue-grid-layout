@@ -79,7 +79,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
 ```html
     <script src="vue-grid-layout.umd.min.js"></script>
-```` 
+``` 
 
 
 ### Usage
@@ -114,7 +114,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 	        layout: testLayout,
 	    },
 	});
-```` 
+``` 
 
 
 ````html
@@ -140,7 +140,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
             {{item.i}}
         </grid-item>
     </grid-layout>
-```` 
+```
 
 
 ### Documentation
