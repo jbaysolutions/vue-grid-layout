@@ -77,11 +77,7 @@ Import the library
 
 Include the browser-ready bundle (download from [releases](https://github.com/jbaysolutions/vue-grid-layout/releases)) in your page. The components will be automatically available.
 
-<!--
-```html
-    <script src="vue-grid-layout.umd.min.js"></script>
-```
--->
+
 
 ### Usage
 
