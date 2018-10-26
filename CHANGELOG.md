@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.0 (Oct 25, 2018)
+
+* Responsive layout support (thanks [shpfive](https://github.com/shpfive))
+
 ## 2.2.0 (Sep 10, 2018)
 
 * changed project structure and build using Vue CLI
