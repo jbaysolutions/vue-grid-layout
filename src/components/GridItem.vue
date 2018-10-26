@@ -13,6 +13,8 @@
     .vue-grid-item {
         transition: all 200ms ease;
         transition-property: left, top, right;
+         -ms-touch-action: none;
+         touch-action: none;
         /* add right for rtl */
     }
 
