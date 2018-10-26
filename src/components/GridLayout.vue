@@ -192,6 +192,13 @@
             },
             isResizable: function() {
                 this.eventBus.$emit("setResizable", this.isResizable);
+            },
+            responsive() {
+                if (!this.responsive) {
+                    this.$emit('update:layout', this.originalLayout);
+                    this.eventBus.$emit("setColNum", this.colNum);
+                }
+                this.onWindowResize();
             }
         },
         methods: {
@@ -218,17 +225,17 @@
             layoutUpdate() {
                 if (this.layout !== undefined) {
                     if (this.layout.length !== this.originalLayout.length) {
-                        console.log("### LAYOUT UPDATE!", this.layout.length, this.originalLayout.length);
+                        // console.log("### LAYOUT UPDATE!", this.layout.length, this.originalLayout.length);
 
                         let diff = this.findDifference(this.layout, this.originalLayout);
                         if (diff.length > 0){
-                            console.log(diff);
-                            if(this.layout.length > this.originalLayout.length){
+                            // console.log(diff);
+                            if (this.layout.length > this.originalLayout.length) {
                                 this.originalLayout = this.originalLayout.concat(diff);
-                            }else{
+                            } else {
                                 this.originalLayout = this.originalLayout.filter(obj => {
                                     return !diff.some(obj2 => {
-                                        return obj.i == obj2.i;
+                                        return obj.i === obj2.i;
                                     });
                                 });
                             }
@@ -317,7 +324,7 @@
                 l.h = h;
                 l.w = w;
             
-                if(this.responsive){
+                if (this.responsive){
                     this.responsiveGridLayout();
                 }else{
                     compact(this.layout, this.verticalCompact);
@@ -369,16 +376,16 @@
             findDifference(layout, originalLayout){
 
                 //Find values that are in result1 but not in result2
-                var uniqueResultOne = layout.filter(function(obj) {
+                let uniqueResultOne = layout.filter(function(obj) {
                     return !originalLayout.some(function(obj2) {
-                        return obj.i == obj2.i;
+                        return obj.i === obj2.i;
                     });
                 });
 
                 //Find values that are in result2 but not in result1
-                var uniqueResultTwo = originalLayout.filter(function(obj) {
+                let uniqueResultTwo = originalLayout.filter(function(obj) {
                     return !layout.some(function(obj2) {
-                        return obj.i == obj2.i;
+                        return obj.i === obj2.i;
                     });
                 });
 

@@ -1,8 +1,9 @@
 # Changelog
 
-## 2.3.0 (Oct 25, 2018)
+## 2.3.0 (Oct 26, 2018)
 
 * Responsive layout support (thanks [shpfive](https://github.com/shpfive))
+* Fix for touch dragging on Android (thanks [pbabey](https://github.com/pbabey))
 
 ## 2.2.0 (Sep 10, 2018)
 

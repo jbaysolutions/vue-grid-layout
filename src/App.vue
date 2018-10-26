@@ -91,7 +91,7 @@
 <script>
     import GridItem from './components/GridItem.vue';
     import GridLayout from './components/GridLayout.vue';
-    import ResponsiveGridLayout from './components/ResponsiveGridLayout.vue';
+    // import ResponsiveGridLayout from './components/ResponsiveGridLayout.vue';
     import TestElement from './components/TestElement.vue';
     import CustomDragElement from './components/CustomDragElement.vue';
     import {getDocumentDir, setDocumentDir} from "./helpers/DOM";
@@ -123,7 +123,7 @@
     export default {
         name: 'app',
         components: {
-            ResponsiveGridLayout,
+            // ResponsiveGridLayout,
             GridLayout,
             GridItem,
             TestElement,
