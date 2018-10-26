@@ -79,7 +79,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
 ```html
     <script src="vue-grid-layout.umd.min.js"></script>
-``` 
+```
 
 
 ### Usage
