@@ -116,7 +116,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 ``` 
 
 
-````html
+```html
 
     <grid-layout
             :layout.sync="layout"
