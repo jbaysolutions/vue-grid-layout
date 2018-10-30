@@ -1,6 +1,6 @@
 <template>
     <div ref="item"
-         :class="gridItemClass"
+         class="vue-grid-item"
          :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl, 'disable-userselect': isDragging }"
          :style="style"
     >
@@ -13,11 +13,9 @@
     .vue-grid-item {
         transition: all 200ms ease;
         transition-property: left, top, right;
+         -ms-touch-action: none;
+         touch-action: none;
         /* add right for rtl */
-    }
-    .vue-grid-item.remove-touch {
-        -ms-touch-action: none;
-        touch-action: none;
     }
 
     .vue-grid-item.cssTransforms {
@@ -79,7 +77,7 @@
         cursor: sw-resize;
         right: auto;
     }
-
+    
     .vue-grid-item.disable-userselect {
         user-select: none;
     }
@@ -373,9 +371,6 @@
             }
         },
         computed: {
-            gridItemClass () {
-                return 'vue-grid-item' + navigator.userAgent.toLowerCase().indexOf('android') !== -1 && 'remove-touch'
-            },
             renderRtl() {
                 return (this.$parent.isMirrored) ? !this.rtl : this.rtl;
             },
@@ -771,6 +766,6 @@
                     this.eventBus.$emit("resizeEvent", "resizeend", this.i, this.innerX, this.innerY, pos.h, pos.w);
                 }
             }
-        }
+        },
     }
 </script>
