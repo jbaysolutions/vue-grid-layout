@@ -155,7 +155,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
     This is the initial layout of the grid.
 
-    The value must be an `Array` of `Object` items. Each item must have `i`, `x`, `y`, `w` and `h` proprties. Please refer to `GridItem` documentation below for more informations.
+    The value must be an `Array` of `Object` items. Each item must have `i`, `x`, `y`, `w` and `h` properties. Please refer to `GridItem` documentation below for more informations.
 
 * **colNum**
     
