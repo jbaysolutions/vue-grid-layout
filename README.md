@@ -71,7 +71,18 @@ Import the library
     import VueGridLayout from 'vue-grid-layout';
 ```
 
+Add to other Vue components 
+
+ ```javascript
+    export default {
+        components: {
+            GridLayout: VueGridLayout.GridLayout,
+            GridItem: VueGridLayout.GridItem
+        },
+    // ... data, methods, mounted (), etc.
+    }
     
+```    
 
 #### browser
 
