@@ -1,7 +1,7 @@
 <template>
     <div ref="item"
          class="vue-grid-item"
-         :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl, 'disable-userselect': isDragging }"
+         :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl, 'disable-userselect': isDragging, 'no-touch': isAndroid }"
          :style="style"
     >
         <slot></slot>
@@ -13,9 +13,12 @@
     .vue-grid-item {
         transition: all 200ms ease;
         transition-property: left, top, right;
-         -ms-touch-action: none;
-         touch-action: none;
         /* add right for rtl */
+    }
+
+    .vue-grid-item.no-touch {
+        -ms-touch-action: none;
+        touch-action: none;
     }
 
     .vue-grid-item.cssTransforms {
@@ -371,6 +374,9 @@
             }
         },
         computed: {
+            isAndroid() {
+                return navigator.userAgent.toLowerCase().indexOf("android") !== -1;
+            },
             renderRtl() {
                 return (this.$parent.isMirrored) ? !this.rtl : this.rtl;
             },
