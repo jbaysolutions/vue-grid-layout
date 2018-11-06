@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.1 (Nov 6, 2018)
+
+* Previous fix for touch dragging on Android broke dragging on other mobile browsers (thanks [onx2](https://github.com/onx2))
+
+
 ## 2.3.0 (Oct 26, 2018)
 
 * Responsive layout support (thanks [shpfive](https://github.com/shpfive))
