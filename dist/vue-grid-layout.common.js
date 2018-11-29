@@ -3664,7 +3664,9 @@ function cloneLayoutItem(layoutItem
     // These can be null
     isDraggable: layoutItem.isDraggable, isResizable: layoutItem.isResizable
   };*/
-  return JSON.parse(JSON.stringify(layoutItem));
+  //return JSON.parse(JSON.stringify(layoutItem));
+  /** avoid problems with circular references in objects **/
+  return Object.assign({}, layoutItem)
 }
 /**
  * Given two layoutitems, check if they collide.
