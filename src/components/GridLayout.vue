@@ -324,13 +324,11 @@
                 l.h = h;
                 l.w = w;
             
-                if (this.responsive){
-                    this.responsiveGridLayout();
-                }else{
-                    compact(this.layout, this.verticalCompact);
-                    this.eventBus.$emit("compact");
-                    this.updateHeight();
-                }
+                if (this.responsive) this.responsiveGridLayout();
+                    
+                compact(this.layout, this.verticalCompact);
+                this.eventBus.$emit("compact");
+                this.updateHeight();
 
                 if (eventName === 'resizeend') this.$emit('layout-updated', this.layout);
             },
