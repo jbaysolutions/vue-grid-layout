@@ -296,7 +296,7 @@ export function perc(num: number): string {
 
 export function setTransform(top, left, width, height): Object {
   // Replace unitless items with px
-  const translate = "translate3d(" + left + "px," + top + "px, 0)";
+  const translate = "translate(" + left + "px," + top + "px)";
   return {
     transform: translate,
     WebkitTransform: translate,
@@ -319,7 +319,7 @@ export function setTransform(top, left, width, height): Object {
  */
 export function setTransformRtl(top, right, width, height): Object {
     // Replace unitless items with px
-    const translate = "translate3d(" + right * -1 + "px," + top + "px, 0)";
+    const translate = "translate(" + right * -1 + "px," + top + "px)";
     return {
         transform: translate,
         WebkitTransform: translate,
