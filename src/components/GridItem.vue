@@ -257,7 +257,7 @@
             };
 
             self.directionchangeHandler = () => {
-                this.rtl = getDocumentDir();
+                this.rtl = getDocumentDir() === 'rtl';
                 this.compact();
             };
 
@@ -273,7 +273,7 @@
             this.eventBus.$on('directionchange', self.directionchangeHandler);
             this.eventBus.$on('setColNum', self.setColNum)
 
-            this.rtl = getDocumentDir();
+            this.rtl = getDocumentDir() === 'rtl';
         },
         beforeDestroy: function(){
             let self = this;
