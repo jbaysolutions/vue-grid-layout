@@ -131,12 +131,12 @@
              type: Boolean,
              required: true
              },
-             static: {
+             */
+            static: {
              type: Boolean,
              required: false,
              default: false
              },
-             */
             minH: {
                 type: Number,
                 required: false,
@@ -514,6 +514,7 @@
                 this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
             },
             handleDrag(event) {
+                if (this.static) return;
                 if (this.isResizing) return;
 
                 const position = getControlPosition(event);
