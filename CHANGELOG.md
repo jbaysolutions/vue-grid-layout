@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.3 (Dec 26, 2018)
+
+* Reverted adding vue as external, which caused problems loading umd.
+
 ## 2.3.2 (Dec 13, 2018)
 
 * Added vue as externals webpack config to fix startup problems (thanks [Micene9](https://github.com/Micene09))
