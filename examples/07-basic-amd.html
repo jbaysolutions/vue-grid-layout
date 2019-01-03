@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Vue Grid Layout Example 1 - Basic Responsive</title>
+    <title>Vue Grid Layout Example 1 - Basic</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="app.css">
     <!--<link rel="stylesheet" href="../dist/vue-grid-layout.css">-->
 </head>
 <body>
-    <h1>Vue Grid Layout Example 6 - Responsive</h1>
+    <h1>Vue Grid Layout Example 7 - Basic AMD Style (Require.js)</h1>
 
     <a href="https://github.com/jbaysolutions/vue-grid-layout">View project on Github</a>
     <br/>
-    <a href="07-basic-amd.html">Next example: Basic AMD Style (Require.js)</a>
+    <a href="06-responsive.html">Previous example: Responsive</a>
 
     <div id="app" style="width: 100%;">
         <!--<pre>{{ $data | json }}</pre>-->
@@ -27,21 +27,16 @@
             </div>
         </div>
         <div id="content">
-            <!--<button @click="decreaseWidth">Decrease Width</button>
-            <button @click="increaseWidth">Increase Width</button>
-            <button @click="addItem">Add an item</button>-->
             <input type="checkbox" v-model="draggable"/> Draggable
             <input type="checkbox" v-model="resizable"/> Resizable
-            <input type="checkbox" v-model="responsive"/> Responsive
             <br/>
-            <grid-layout :layout.sync="layout"
+            <grid-layout :layout="layout"
                          :col-num="12"
                          :row-height="30"
                          :is-draggable="draggable"
                          :is-resizable="resizable"
                          :vertical-compact="true"
                          :use-css-transforms="true"
-                         :responsive="responsive"
             >
                 <grid-item v-for="item in layout"
                            :x="item.x"
@@ -56,8 +51,16 @@
         </div>
 
     </div>
-    <script src="vue.min.js"></script>
-    <script src="../dist/vue-grid-layout.umd.min.js"></script>
-    <script src="06-responsive.js"></script>
+    <script>
+        window.require = {
+            baseUrl: ".",
+            paths: {
+                "vue": "./vue.min",
+                "vue-grid-layout": "../dist/vue-grid-layout.umd.min"
+            }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script src="07-basic-amd.js"></script>
 </body>
 </html>
