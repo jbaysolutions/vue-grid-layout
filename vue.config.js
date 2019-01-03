@@ -4,6 +4,11 @@ module.exports = {
             library: "VueGridLayout",
             libraryExport: 'default'
         },
+        externals : {
+            vue : {
+              amd: 'vue'
+            }
+        }
     },
     css: {
         extract: false
