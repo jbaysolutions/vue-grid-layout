@@ -266,10 +266,17 @@
                 return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
             },
             dragEvent: function (eventName, id, x, y, h, w) {
+                //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                let l = getLayoutItem(this.layout, id);
+                //GetLayoutItem sometimes returns null object
+                if (l === undefined || l === null){
+                    l = {x:0, y:0}
+                }
+                
                 if (eventName === "dragmove" || eventName === "dragstart") {
                     this.placeholder.i = id;
-                    this.placeholder.x = x;
-                    this.placeholder.y = y;
+                    this.placeholder.x = l.x;
+                    this.placeholder.y = l.y;
                     this.placeholder.w = w;
                     this.placeholder.h = h;
                     this.$nextTick(function() {
@@ -282,12 +289,8 @@
                         this.isDragging = false;
                     });
                 }
-                //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
-                let l = getLayoutItem(this.layout, id);
-                //GetLayoutItem sometimes returns null object
-                if (l === undefined || l === null){
-                    l = {x:0, y:0}
-                }
+                
+                // set layout element coordinates to dragged position
                 l.x = x;
                 l.y = y;
                 // Move the element to the dragged location.
@@ -324,13 +327,11 @@
                 l.h = h;
                 l.w = w;
             
-                if (this.responsive){
-                    this.responsiveGridLayout();
-                }else{
-                    compact(this.layout, this.verticalCompact);
-                    this.eventBus.$emit("compact");
-                    this.updateHeight();
-                }
+                if (this.responsive) this.responsiveGridLayout();
+                    
+                compact(this.layout, this.verticalCompact);
+                this.eventBus.$emit("compact");
+                this.updateHeight();
 
                 if (eventName === 'resizeend') this.$emit('layout-updated', this.layout);
             },
