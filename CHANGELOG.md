@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.4.0_beta (Jan 21, 2018)
+* Made items overlappable, needs a lot of fixing tho
+
 ## 2.3.3 (Dec 26, 2018)
 
 * Reverted adding vue as external, which caused problems loading umd.
