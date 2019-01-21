@@ -33,18 +33,18 @@
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
             </div>
-            <grid-layout
+            <grid-layout class="grid-1"
                     :layout.sync="layout"
                     :col-num="parseInt(colNum)"
                     :row-height="rowHeight"
-                    :is-draggable="draggable"
-                    :is-resizable="resizable"
+                    :is-draggable="true"
+                    :is-resizable="true"
                     :is-mirrored="mirrored"
                     :vertical-compact="true"
                     :use-css-transforms="true"
                     :responsive="responsive"
             >
-                <grid-item v-for="item in layout" :key="item.i"
+                <grid-item v-for="item in layout" :key="item.i" class="item-1"
                            :x="item.x"
                            :y="item.y"
                            :w="item.w"
@@ -56,21 +56,19 @@
                            @moved="moved"
                 >
                     <!--<custom-drag-element :text="item.i"></custom-drag-element>-->
-                    <test-element :text="item.i"></test-element>
+                    <!-- <test-element :text="item.i"></test-element> -->
                     <!--<button @click="clicked">CLICK ME!</button>-->
-                </grid-item>
-            </grid-layout>
-            <hr/>
-            <!--<grid-layout
+                                <grid-layout class="grid-2"
                     :layout="layout2"
-                    :col-num="12"
+                    :col-num="24"
+                    :is-overlappable="true"
                     :row-height="rowHeight"
                     :is-draggable="draggable"
                     :is-resizable="resizable"
-                    :vertical-compact="true"
+                    :vertical-compact="false"
                     :use-css-transforms="true"
             >
-                <grid-item v-for="item in layout2" :key="item.i"
+                <grid-item v-for="item in layout2" :key="item.i" class="item-2"
                            :x="item.x"
                            :y="item.y"
                            :w="item.w"
@@ -78,12 +76,16 @@
                            :min-w="2"
                            :min-h="2"
                            :i="item.i"
-                           :is-draggable="item.draggable"
+                           :vertical-compact="false"
+                           :is-draggable="true"
                            :is-resizable="item.resizable"
                 >
                     <test-element :text="item.i"></test-element>
                 </grid-item>
-            </grid-layout>-->
+            </grid-layout>
+                </grid-item>
+            </grid-layout>
+            <hr/>
         </div>
     </div>
 </template>
@@ -98,9 +100,32 @@
     //var eventBus = require('./eventBus');
 
     let testLayout = [
-        {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true},
+        {"x":0,"y":0,"w":12,"h":30,"i":"0", resizable: true, draggable: true},
         {"x":2,"y":0,"w":2,"h":4,"i":"1", resizable: null, draggable: null},
         {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false},
+        {"x":6,"y":0,"w":2,"h":3,"i":"3", resizable: false, draggable: false},
+        {"x":8,"y":0,"w":2,"h":3,"i":"4", resizable: false, draggable: false},
+        // {"x":10,"y":0,"w":2,"h":3,"i":"5", resizable: false, draggable: false},
+        // {"x":0,"y":5,"w":2,"h":5,"i":"6", resizable: false, draggable: false},
+        // {"x":2,"y":5,"w":2,"h":5,"i":"7", resizable: false, draggable: false},
+        // {"x":4,"y":5,"w":2,"h":5,"i":"8", resizable: false, draggable: false},
+        // {"x":6,"y":4,"w":2,"h":4,"i":"9", resizable: false, draggable: false},
+        // {"x":8,"y":4,"w":2,"h":4,"i":"10", resizable: false, draggable: false},
+        // {"x":10,"y":4,"w":2,"h":4,"i":"11", resizable: false, draggable: false},
+        // {"x":0,"y":10,"w":2,"h":5,"i":"12", resizable: false, draggable: false},
+        // {"x":2,"y":10,"w":2,"h":5,"i":"13", resizable: false, draggable: false},
+        // {"x":4,"y":8,"w":2,"h":4,"i":"14", resizable: false, draggable: false},
+        // {"x":6,"y":8,"w":2,"h":4,"i":"15", resizable: false, draggable: false},
+        // {"x":8,"y":10,"w":2,"h":5,"i":"16", resizable: false, draggable: false},
+        // {"x":10,"y":4,"w":2,"h":2,"i":"17", resizable: false, draggable: false},
+        // {"x":0,"y":9,"w":2,"h":3,"i":"18", resizable: false, draggable: false},
+        // {"x":2,"y":6,"w":2,"h":2,"i":"19", resizable: false, draggable: false}
+    ];
+
+    let testLayout2 = [
+        {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true},
+        {"x":2,"y":0,"w":2,"h":4,"i":"1", resizable: true, draggable: null},
+        {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: true, draggable: false},
         {"x":6,"y":0,"w":2,"h":3,"i":"3", resizable: false, draggable: false},
         {"x":8,"y":0,"w":2,"h":3,"i":"4", resizable: false, draggable: false},
         {"x":10,"y":0,"w":2,"h":3,"i":"5", resizable: false, draggable: false},
@@ -111,14 +136,7 @@
         {"x":8,"y":4,"w":2,"h":4,"i":"10", resizable: false, draggable: false},
         {"x":10,"y":4,"w":2,"h":4,"i":"11", resizable: false, draggable: false},
         {"x":0,"y":10,"w":2,"h":5,"i":"12", resizable: false, draggable: false},
-        {"x":2,"y":10,"w":2,"h":5,"i":"13", resizable: false, draggable: false},
-        {"x":4,"y":8,"w":2,"h":4,"i":"14", resizable: false, draggable: false},
-        {"x":6,"y":8,"w":2,"h":4,"i":"15", resizable: false, draggable: false},
-        {"x":8,"y":10,"w":2,"h":5,"i":"16", resizable: false, draggable: false},
-        {"x":10,"y":4,"w":2,"h":2,"i":"17", resizable: false, draggable: false},
-        {"x":0,"y":9,"w":2,"h":3,"i":"18", resizable: false, draggable: false},
-        {"x":2,"y":6,"w":2,"h":2,"i":"19", resizable: false, draggable: false}
-    ];
+    ]
 
     export default {
         name: 'app',
@@ -132,7 +150,7 @@
         data () {
             return {
                 layout: JSON.parse(JSON.stringify(testLayout)),
-                layout2: JSON.parse(JSON.stringify(testLayout)),
+                layout2: JSON.parse(JSON.stringify(testLayout2)),
                 draggable: true,
                 resizable: true,
                 mirrored: false,
@@ -237,5 +255,14 @@
   /*text-align: center;*/
   color: #2c3e50;
   /*margin-top: 60px;*/
+}
+.grid-1{
+    background: green;
+}
+
+.grid-2{
+    height: 1200px;
+    background: red;
+    z-index: 10;
 }
 </style>

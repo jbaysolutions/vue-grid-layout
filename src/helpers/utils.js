@@ -73,17 +73,21 @@ export function collides(l1: LayoutItem, l2: LayoutItem): boolean {
  * between items.
  *
  * @param  {Array} layout Layout.
- * @param  {Boolean} verticalCompact Whether or not to compact the layout
- *   vertically.
+ * @param  {Boolean} verticalCompact Whether or not to compact the layout vertically.
+ * @param  {Boolean} isOverlappable If true, items overlap each other
  * @return {Array}       Compacted Layout.
  */
-export function compact(layout: Layout, verticalCompact: Boolean): Layout {
+export function compact(layout: Layout, verticalCompact: Boolean, isOverlappable: Boolean): Layout {
     // Statics go in the compareWith array right away so items flow around them.
   const compareWith = getStatics(layout);
   // We go through the items by row and column.
   const sorted = sortLayoutItemsByRowCol(layout);
   // Holding for new items.
   const out = Array(layout.length);
+
+  console.log(isOverlappable)
+  // Items can overlap each other, do nothing
+  if(isOverlappable) return out;
 
   for (let i = 0, len = sorted.length; i < len; i++) {
     let l = sorted[i];
@@ -203,11 +207,14 @@ export function getStatics(layout: Layout): Array<LayoutItem> {
  * @param  {LayoutItem} l      element to move.
  * @param  {Number}     [x]    X position in grid units.
  * @param  {Number}     [y]    Y position in grid units.
- * @param  {Boolean}    [isUserAction] If true, designates that the item we're moving is
- *                                     being dragged/resized by th euser.
+ * @param  {Boolean}    [isUserAction] If true, designates that the item we're moving is being dragged/resized by th euser.
+ * @param  {Boolean}    [isOverlappable] If true, items won't move each other
  */
-export function moveElement(layout: Layout, l: LayoutItem, x: Number, y: Number, isUserAction: Boolean): Layout {
+export function moveElement(layout: Layout, l: LayoutItem, x: Number, y: Number, isUserAction: Boolean, isOverlappable: Boolean): Layout {
   if (l.static) return layout;
+
+  //Items can overlap each other, do nothing
+  if(isOverlappable) return layout;
 
   // Short-circuit if nothing to do.
   //if (l.y === y && l.x === x) return layout;

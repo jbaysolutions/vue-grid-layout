@@ -60,6 +60,10 @@
                     return [10, 10];
                 }
             },
+            isOverlappable: {
+                type: Boolean,
+                default: false
+            },
             isDraggable: {
                 type: Boolean,
                 default: true
@@ -165,6 +169,9 @@
             },
             rowHeight: function() {
                 this.eventBus.$emit("setRowHeight", this.rowHeight);
+            },
+            isOverlappable: function() {
+                this.eventBus.$emit("setOverlappable", this.isOverlappable)
             },
             isDraggable: function() {
                 this.eventBus.$emit("setDraggable", this.isDraggable);

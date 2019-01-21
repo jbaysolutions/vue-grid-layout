@@ -117,6 +117,11 @@
              type: Number,
              required: true
              },*/
+            isOverlappable: {
+                type: Boolean,
+                required: false,
+                default: null
+            },
             isDraggable: {
                 type: Boolean,
                 required: false,
@@ -201,6 +206,7 @@
                 margin: [10, 10],
                 maxRows: Infinity,
                 draggable: null,
+                overlappable: null,
                 resizable: null,
                 useCssTransforms: true,
 
@@ -246,6 +252,12 @@
                 }
             };
 
+            self.setOverlappableHandler = function (isOverlappable) {
+                if (self.isOverlappable === null) {
+                    self.overlappable = isOverlappable;
+                }
+            };
+
             self.setResizableHandler = function (isResizable) {
                 if (self.isResizable === null) {
                     self.resizable = isResizable;
@@ -267,6 +279,7 @@
 
             this.eventBus.$on('updateWidth', self.updateWidthHandler);
             this.eventBus.$on('compact', self.compactHandler);
+            this.eventBus.$on('setOverlappable', self.setOverlappableHandler);
             this.eventBus.$on('setDraggable', self.setDraggableHandler);
             this.eventBus.$on('setResizable', self.setResizableHandler);
             this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
@@ -280,6 +293,7 @@
             //Remove listeners
             this.eventBus.$off('updateWidth', self.updateWidthHandler);
             this.eventBus.$off('compact', self.compactHandler);
+            this.eventBus.$of('setOverlappable', self.setOverlappableHandler);
             this.eventBus.$off('setDraggable', self.setDraggableHandler);
             this.eventBus.$off('setResizable', self.setResizableHandler);
             this.eventBus.$off('setRowHeight', self.setRowHeightHandler);

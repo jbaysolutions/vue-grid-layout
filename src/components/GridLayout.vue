@@ -8,6 +8,7 @@
                    :w="placeholder.w"
                    :h="placeholder.h"
                    :i="placeholder.i"></grid-item>
+                   {{isOverlappable}}
     </div>
 </template>
 <style>
@@ -60,6 +61,10 @@
                 default: function () {
                     return [10, 10];
                 }
+            },
+            isOverlappable: {
+                type: Boolean,
+                default: false,
             },
             isDraggable: {
                 type: Boolean,
@@ -138,6 +143,7 @@
             this.eventBus.$off('resizeEvent', this.resizeEventHandler);
             this.eventBus.$off('dragEvent', this.dragEventHandler);
             removeWindowEventListener("resize", this.onWindowResize);
+                this.erd.uninstall(this.$refs.item);
         },
         mounted: function() {
             this.$nextTick(function () {
@@ -154,20 +160,18 @@
                         //self.width = self.$el.offsetWidth;
                         addWindowEventListener('resize', self.onWindowResize);
                     }
-                    compact(self.layout, self.verticalCompact);
+                    compact(self.layout, self.verticalCompact, self.isOverlappable);
 
                     self.updateHeight();
                     self.$nextTick(function () {
-                        const erd = elementResizeDetectorMaker({
+                        this.erd = elementResizeDetectorMaker({
                             strategy: "scroll" //<- For ultra performance.
                         });
-                        erd.listenTo(self.$refs.item, function () {
+                        this.erd.listenTo(self.$refs.item, function () {
                             self.onWindowResize();
                         });
                     });
                 });
-
-                addWindowEventListener("load", self.onWindowLoad.bind(this));
             });
         },
         watch: {
@@ -187,6 +191,9 @@
             rowHeight: function() {
                 this.eventBus.$emit("setRowHeight", this.rowHeight);
             },
+            isOverlappable: function() {
+                this.eventBus.$emit('setOverlappable', this.isOverlappable)
+            },
             isDraggable: function() {
                 this.eventBus.$emit("setDraggable", this.isDraggable);
             },
@@ -202,26 +209,6 @@
             }
         },
         methods: {
-            onWindowLoad: function(){
-                const self = this;
-
-                if (self.width === null) {
-                    self.onWindowResize();
-                    //self.width = self.$el.offsetWidth;
-                    addWindowEventListener('resize', self.onWindowResize);
-                }
-                compact(self.layout, self.verticalCompact);
-
-                self.updateHeight();
-                self.$nextTick(function () {
-                    const erd = elementResizeDetectorMaker({
-                        strategy: "scroll" //<- For ultra performance.
-                    });
-                    erd.listenTo(self.$refs.item, function () {
-                        self.onWindowResize();
-                    });
-                });
-            },
             layoutUpdate() {
                 if (this.layout !== undefined) {
                     if (this.layout.length !== this.originalLayout.length) {
@@ -245,7 +232,7 @@
                         this.initResponsiveFeatures();
                     }
 
-                    compact(this.layout, this.verticalCompact);
+                    compact(this.layout, this.verticalCompact, this.isOverlappable);
                     this.eventBus.$emit("updateWidth", this.width);
                     this.updateHeight();
                 }
@@ -272,7 +259,7 @@
                 if (l === undefined || l === null){
                     l = {x:0, y:0}
                 }
-                
+
                 if (eventName === "dragmove" || eventName === "dragstart") {
                     this.placeholder.i = id;
                     this.placeholder.x = l.x;
@@ -289,13 +276,14 @@
                         this.isDragging = false;
                     });
                 }
-                
+
                 // set layout element coordinates to dragged position
                 l.x = x;
                 l.y = y;
-                // Move the element to the dragged location.
-                this.layout = moveElement(this.layout, l, x, y, true);
-                compact(this.layout, this.verticalCompact);
+                // If items cannot be overlapped // Move the element to the dragged location.
+                    this.layout = moveElement(this.layout, l, x, y, true);
+                
+                compact(this.layout, this.verticalCompact, this.isOverlappable);
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.$emit("compact");
                 this.updateHeight();
@@ -326,10 +314,10 @@
                 }
                 l.h = h;
                 l.w = w;
-            
+
                 if (this.responsive) this.responsiveGridLayout();
-                    
-                compact(this.layout, this.verticalCompact);
+
+                compact(this.layout, this.verticalCompact, true);
                 this.eventBus.$emit("compact");
                 this.updateHeight();
 
