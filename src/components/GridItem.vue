@@ -191,6 +191,7 @@
                 required: false,
                 default: 'a, button'
             },
+            resizeHandleClass: String,
         },
         inject: ["eventBus"],
         data: function () {
@@ -381,6 +382,9 @@
                 return (this.$parent.isMirrored) ? !this.rtl : this.rtl;
             },
             resizableHandleClass() {
+                if(this.resizeHandleClass) {
+                    return this.resizableHandleClass;
+                }
                 if (this.renderRtl) {
                     return 'vue-resizable-handle vue-rtl-resizable-handle';
                 } else {
