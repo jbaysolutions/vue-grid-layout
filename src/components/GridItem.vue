@@ -383,7 +383,7 @@
             },
             resizableHandleClass() {
                 if(this.resizeHandleClass) {
-                    return this.resizableHandleClass;
+                    return this.resizeHandleClass;
                 }
                 if (this.renderRtl) {
                     return 'vue-resizable-handle vue-rtl-resizable-handle';
