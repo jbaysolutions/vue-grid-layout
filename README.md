@@ -38,6 +38,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 #### Projects using vue-grid-layout
 
 - [Draxed](https://www.draxed.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
+- [cryptotiles](https://www.cryptotiles.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 
 *Know of others? Create a PR to let me know!*
 
