@@ -13,7 +13,7 @@
 <style>
     .vue-grid-layout {
         position: relative;
-        transition: height 200ms ease;
+        /*transition: height 200ms ease;*/
     }
 </style>
 <script>
@@ -132,6 +132,7 @@
             self.eventBus = self._provided.eventBus;
             self.eventBus.$on('resizeEvent', self.resizeEventHandler);
             self.eventBus.$on('dragEvent', self.dragEventHandler);
+            self.$emit('layout-created', this.layout);
         },
         beforeDestroy: function(){
             //Remove listeners
@@ -139,7 +140,11 @@
             this.eventBus.$off('dragEvent', this.dragEventHandler);
             removeWindowEventListener("resize", this.onWindowResize);
         },
+        beforeMount: function() {
+            this.$emit('layout-before-mount', this.layout);
+        },
         mounted: function() {
+            this.$emit('layout-mounted', this.layout);
             this.$nextTick(function () {
                 validateLayout(this.layout);
 
@@ -164,6 +169,8 @@
                         erd.listenTo(self.$refs.item, function () {
                             self.onWindowResize();
                         });
+
+                        self.$emit('layout-ready', this.layout);
                     });
                 });
 
