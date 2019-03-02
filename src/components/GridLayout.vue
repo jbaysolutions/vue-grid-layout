@@ -128,7 +128,7 @@
                 self.dragEvent(eventType, i, x, y, h, w);
             };
 
-            self._provided.eventBus =  new Vue();
+            self._provided.eventBus = new Vue();
             self.eventBus = self._provided.eventBus;
             self.eventBus.$on('resizeEvent', self.resizeEventHandler);
             self.eventBus.$on('dragEvent', self.dragEventHandler);
@@ -137,7 +137,9 @@
             //Remove listeners
             this.eventBus.$off('resizeEvent', this.resizeEventHandler);
             this.eventBus.$off('dragEvent', this.dragEventHandler);
+			this.eventBus.$destroy();
             removeWindowEventListener("resize", this.onWindowResize);
+			this.erd.uninstall(this.$refs.item);
         },
         mounted: function() {
             this.$nextTick(function () {
@@ -158,16 +160,14 @@
 
                     self.updateHeight();
                     self.$nextTick(function () {
-                        const erd = elementResizeDetectorMaker({
+                        this.erd = elementResizeDetectorMaker({
                             strategy: "scroll" //<- For ultra performance.
                         });
-                        erd.listenTo(self.$refs.item, function () {
+                        this.erd.listenTo(self.$refs.item, function () {
                             self.onWindowResize();
                         });
                     });
                 });
-
-                addWindowEventListener("load", self.onWindowLoad.bind(this));
             });
         },
         watch: {
@@ -202,26 +202,6 @@
             }
         },
         methods: {
-            onWindowLoad: function(){
-                const self = this;
-
-                if (self.width === null) {
-                    self.onWindowResize();
-                    //self.width = self.$el.offsetWidth;
-                    addWindowEventListener('resize', self.onWindowResize);
-                }
-                compact(self.layout, self.verticalCompact);
-
-                self.updateHeight();
-                self.$nextTick(function () {
-                    const erd = elementResizeDetectorMaker({
-                        strategy: "scroll" //<- For ultra performance.
-                    });
-                    erd.listenTo(self.$refs.item, function () {
-                        self.onWindowResize();
-                    });
-                });
-            },
             layoutUpdate() {
                 if (this.layout !== undefined) {
                     if (this.layout.length !== this.originalLayout.length) {
