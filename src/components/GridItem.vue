@@ -1,7 +1,7 @@
 <template>
     <div ref="item"
          class="vue-grid-item"
-         :class="{ 'vue-resizable' : resizable, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl, 'disable-userselect': isDragging, 'no-touch': isAndroid }"
+         :class="{ 'vue-resizable' : showResizeIcon,'vue-unresizable' : !showResizeIcon, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl, 'disable-userselect': isDragging, 'no-touch': isAndroid }"
          :style="style"
     >
         <slot></slot>
@@ -131,12 +131,12 @@
              type: Boolean,
              required: true
              },
-             static: {
+             */
+            static: {
              type: Boolean,
              required: false,
              default: false
              },
-             */
             minH: {
                 type: Number,
                 required: false,
@@ -374,6 +374,9 @@
             }
         },
         computed: {
+            showResizeIcon(){
+                return this.resizable&&!this.static
+            },  
             isAndroid() {
                 return navigator.userAgent.toLowerCase().indexOf("android") !== -1;
             },
@@ -436,6 +439,7 @@
 
             },
             handleResize: function (event) {
+                if (this.static) return;
                 const position = getControlPosition(event);
                 // Get the current drag point from the event. This is used as the offset.
                 if (position == null) return; // not possible but satisfies flow
@@ -514,6 +518,7 @@
                 this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
             },
             handleDrag(event) {
+                if (this.static) return;
                 if (this.isResizing) return;
 
                 const position = getControlPosition(event);
