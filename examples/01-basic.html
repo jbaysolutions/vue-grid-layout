@@ -42,13 +42,14 @@
                          :use-css-transforms="true"
             >
                 <grid-item v-for="item in layout"
+                           :static="item.static"
                            :x="item.x"
                            :y="item.y"
                            :w="item.w"
                            :h="item.h"
                            :i="item.i"
                         >
-                    <span class="text">{{item.i}}</span>
+                    <span class="text">{{itemTitle(item)}}</span>
                 </grid-item>
             </grid-layout>
         </div>

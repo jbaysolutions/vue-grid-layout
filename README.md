@@ -46,6 +46,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 
 * Draggable widgets
 * Resizable widgets
+* Static widgets
 * Bounds checking for dragging and resizing
 * Widgets may be added or removed without rebuilding grid
 * Layout can be serialized and restored
@@ -106,7 +107,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 	    {"x":0,"y":5,"w":2,"h":5,"i":"6"},
 	    {"x":2,"y":5,"w":2,"h":5,"i":"7"},
 	    {"x":4,"y":5,"w":2,"h":5,"i":"8"},
-	    {"x":6,"y":4,"w":2,"h":4,"i":"9"},
+	    {"x":6,"y":3,"w":2,"h":4,"i":"9"},
 	    {"x":8,"y":4,"w":2,"h":4,"i":"10"},
 	    {"x":10,"y":4,"w":2,"h":4,"i":"11"},
 	    {"x":0,"y":10,"w":2,"h":5,"i":"12"},
@@ -383,6 +384,15 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
     If default value is `null` then it's inherited from parent.
 
+* **static**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `false`
+
+    Says if item is static (won't be draggable, resizable or moved by other items).
+
+
 * **dragIgnoreFrom**
     
     * type: `String`
@@ -540,5 +550,5 @@ If you have a feature request, please add it as an issue or make a pull request.
 - [x] Responsive
 - [x] Draggable grid items
 - [x] Resizable grid items
-- [ ] Static elements
+- [x] Static elements
 - [x] Min/max w/h per item

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.4 (UNRELEASED)
+
+* Support for static items (thanks [panjiangyi](https://github.com/panjiangyi)).
+* RTL bugfix (thanks [irvingwa](https://github.com/irvingwa)).
+* Memory leak fixes (thanks [aiankile](https://github.com/aiankile)).
+* Fixed exception on grid layout mount (thanks [BenoitZugmeyer](https://github.com/BenoitZugmeyer)).
+* Fixed overlapping and resizing bugs on responsive mode (thanks [shpfive](https://github.com/shpfive)).
+
 ## 2.3.3 (Dec 26, 2018)
 
 * Reverted adding vue as external, which caused problems loading umd.

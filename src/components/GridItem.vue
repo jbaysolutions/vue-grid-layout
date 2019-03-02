@@ -1,11 +1,11 @@
 <template>
     <div ref="item"
          class="vue-grid-item"
-         :class="{ 'vue-resizable' : showResizeIcon,'vue-unresizable' : !showResizeIcon, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl, 'disable-userselect': isDragging, 'no-touch': isAndroid }"
+         :class="{ 'vue-resizable' : resizableAndNotStatic, 'static': static, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl, 'disable-userselect': isDragging, 'no-touch': isAndroid }"
          :style="style"
     >
         <slot></slot>
-        <span v-if="resizable" ref="handle" :class="resizableHandleClass"></span>
+        <span v-if="resizableAndNotStatic" ref="handle" :class="resizableHandleClass"></span>
         <!--<span v-if="draggable" ref="dragHandle" class="vue-draggable-handle"></span>-->
     </div>
 </template>
@@ -80,7 +80,7 @@
         cursor: sw-resize;
         right: auto;
     }
-    
+
     .vue-grid-item.disable-userselect {
         user-select: none;
     }
@@ -133,10 +133,10 @@
              },
              */
             static: {
-             type: Boolean,
-             required: false,
-             default: false
-             },
+                type: Boolean,
+                required: false,
+                default: false
+            },
             minH: {
                 type: Number,
                 required: false,
@@ -310,29 +310,12 @@
             isDraggable: function () {
                 this.draggable = this.isDraggable;
             },
+            static: function () {
+                this.tryMakeDraggable();
+                this.tryMakeResizable();
+            },
             draggable: function () {
-                const self = this;
-                if (this.interactObj === null || this.interactObj === undefined) {
-                    this.interactObj = interact(this.$refs.item);
-                }
-                if (this.draggable) {
-                    const opts = {
-                        ignoreFrom: this.dragIgnoreFrom,
-                        allowFrom: this.dragAllowFrom
-                    };
-                    this.interactObj.draggable(opts);
-                    /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
-                    if (!this.dragEventSet) {
-                        this.dragEventSet = true;
-                        this.interactObj.on('dragstart dragmove dragend', function (event) {
-                            self.handleDrag(event);
-                        });
-                    }
-                } else {
-                    this.interactObj.draggable({
-                        enabled: false
-                    });
-                }
+                this.tryMakeDraggable();
             },
             isResizable: function () {
                 this.resizable = this.isResizable;
@@ -374,9 +357,9 @@
             }
         },
         computed: {
-            showResizeIcon(){
-                return this.resizable&&!this.static
-            },  
+            resizableAndNotStatic(){
+                return this.resizable && !this.static;
+            },
             isAndroid() {
                 return navigator.userAgent.toLowerCase().indexOf("android") !== -1;
             },
@@ -691,12 +674,36 @@
             compact: function () {
                 this.createStyle();
             },
+            tryMakeDraggable: function(){
+                const self = this;
+                if (this.interactObj === null || this.interactObj === undefined) {
+                    this.interactObj = interact(this.$refs.item);
+                }
+                if (this.draggable && !this.static) {
+                    const opts = {
+                        ignoreFrom: this.dragIgnoreFrom,
+                        allowFrom: this.dragAllowFrom
+                    };
+                    this.interactObj.draggable(opts);
+                    /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
+                    if (!this.dragEventSet) {
+                        this.dragEventSet = true;
+                        this.interactObj.on('dragstart dragmove dragend', function (event) {
+                            self.handleDrag(event);
+                        });
+                    }
+                } else {
+                    this.interactObj.draggable({
+                        enabled: false
+                    });
+                }
+            },
             tryMakeResizable: function(){
                 const self = this;
                 if (this.interactObj === null || this.interactObj === undefined) {
                     this.interactObj = interact(this.$refs.item);
                 }
-                if (this.resizable) {
+                if (this.resizable && !this.static) {
                     let maximum = this.calcPosition(0,0,this.maxW, this.maxH);
                     let minimum = this.calcPosition(0,0, this.minW, this.minH);
 
