@@ -6420,12 +6420,12 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var GridItem = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3028f95f-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=ba4fc54e&
-var GridLayoutvue_type_template_id_ba4fc54e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
-var GridLayoutvue_type_template_id_ba4fc54e_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3028f95f-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=16f9e7c6&
+var GridLayoutvue_type_template_id_16f9e7c6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
+var GridLayoutvue_type_template_id_16f9e7c6_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=ba4fc54e&
+// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=16f9e7c6&
 
 // CONCATENATED MODULE: ./src/helpers/responsiveUtils.js
 
@@ -6750,6 +6750,7 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
     self.eventBus = self._provided.eventBus;
     self.eventBus.$on('resizeEvent', self.resizeEventHandler);
     self.eventBus.$on('dragEvent', self.dragEventHandler);
+    self.$emit('layout-created', self.layout);
   },
   beforeDestroy: function beforeDestroy() {
     //Remove listeners
@@ -6759,7 +6760,11 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
     removeWindowEventListener("resize", this.onWindowResize);
     this.erd.uninstall(this.$refs.item);
   },
+  beforeMount: function beforeMount() {
+    this.$emit('layout-before-mount', this.layout);
+  },
   mounted: function mounted() {
+    this.$emit('layout-mounted', this.layout);
     this.$nextTick(function () {
       validateLayout(this.layout);
       this.originalLayout = this.layout;
@@ -6783,6 +6788,7 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
             self.onWindowResize();
           });
         });
+        self.$emit('layout-ready', self.layout);
       });
     });
   },
@@ -6942,7 +6948,7 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       var newBreakpoint = getBreakpointFromWidth(this.breakpoints, this.width);
       var newCols = getColsFromBreakpoint(newBreakpoint, this.cols); // save actual layout in layouts
 
-      if (this.lastBreakpoint != null && !this.layouts[this.lastBreakpoint]) this.layouts[this.lastBreakpoint] = cloneLayout(this.layout); // Find or generate a new layout. 
+      if (this.lastBreakpoint != null && !this.layouts[this.lastBreakpoint]) this.layouts[this.lastBreakpoint] = cloneLayout(this.layout); // Find or generate a new layout.
 
       var layout = findOrGenerateResponsiveLayout(this.originalLayout, this.layouts, this.breakpoints, newBreakpoint, this.lastBreakpoint, newCols, this.verticalCompact); // Store the new layout.
 
@@ -6957,7 +6963,7 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       // clear layouts
       this.layouts = {};
     },
-    // find difference in layouts 
+    // find difference in layouts
     findDifference: function findDifference(layout, originalLayout) {
       //Find values that are in result1 but not in result2
       var uniqueResultOne = layout.filter(function (obj) {
@@ -6992,8 +6998,8 @@ var GridLayoutvue_type_style_index_0_lang_css_ = __webpack_require__("e279");
 
 var GridLayout_component = normalizeComponent(
   components_GridLayoutvue_type_script_lang_js_,
-  GridLayoutvue_type_template_id_ba4fc54e_render,
-  GridLayoutvue_type_template_id_ba4fc54e_staticRenderFns,
+  GridLayoutvue_type_template_id_16f9e7c6_render,
+  GridLayoutvue_type_template_id_16f9e7c6_staticRenderFns,
   false,
   null,
   null,

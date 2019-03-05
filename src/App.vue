@@ -43,6 +43,11 @@
                     :vertical-compact="true"
                     :use-css-transforms="true"
                     :responsive="responsive"
+                    @layout-created="layoutCreatedEvent"
+                    @layout-before-mount="layoutBeforeMountEvent"
+                    @layout-mounted="layoutMountedEvent"
+                    @layout-ready="layoutReadyEvent"
+                    @layout-updated="layoutUpdatedEvent"
             >
                 <grid-item v-for="item in layout" :key="item.i"
                            :static="item.static"
@@ -196,7 +201,24 @@
                 }
                 setDocumentDir(toggle);
                 //eventBus.$emit('directionchange');
-            }
+            },
+
+            layoutCreatedEvent: function(newLayout){
+                console.log("Created layout: ", newLayout)
+            },
+            layoutBeforeMountEvent: function(newLayout){
+                console.log("beforeMount layout: ", newLayout)
+            },
+            layoutMountedEvent: function(newLayout){
+                console.log("Mounted layout: ", newLayout)
+            },
+            layoutReadyEvent: function(newLayout){
+                console.log("Ready layout: ", newLayout)
+            },
+            layoutUpdatedEvent: function(newLayout){
+                console.log("Updated layout: ", newLayout)
+            },
+
         },
     }
 </script>

@@ -45,6 +45,11 @@
                          :is-resizable="true"
                          :vertical-compact="true"
                          :use-css-transforms="true"
+                         @layout-created="layoutCreatedEvent"
+                         @layout-before-mount="layoutBeforeMountEvent"
+                         @layout-mounted="layoutMountedEvent"
+                         @layout-ready="layoutReadyEvent"
+                         @layout-updated="layoutUpdatedEvent"
             >
                 <grid-item v-for="item in layout"
                            :x="item.x"

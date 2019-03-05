@@ -1,12 +1,13 @@
 # Changelog
 
-## 2.3.4 (UNRELEASED)
+## 2.3.4 (Mar 5, 2019)
 
 * Support for static items (thanks [panjiangyi](https://github.com/panjiangyi)).
 * RTL bugfix (thanks [irvingwa](https://github.com/irvingwa)).
 * Memory leak fixes (thanks [aiankile](https://github.com/aiankile)).
 * Fixed exception on grid layout mount (thanks [BenoitZugmeyer](https://github.com/BenoitZugmeyer)).
 * Fixed overlapping and resizing bugs on responsive mode (thanks [shpfive](https://github.com/shpfive)).
+* Added new events emited by GridLayout (layout-created, layout-before-mount, layout-mounted, layout-ready) (thanks [samuelmolinski](https://github.com/samuelmolinski)).
 
 ## 2.3.3 (Dec 26, 2018)
 

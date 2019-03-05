@@ -6,7 +6,7 @@
 
 vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.3.3 (Supports Vue 2.2+)
+### **Current version:** 2.3.4 (Supports Vue 2.2+)
 
 ### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
 ### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
@@ -451,6 +451,10 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
             :vertical-compact="true"
             :margin="[10, 10]"
             :use-css-transforms="true"
+            @layout-created="layoutCreatedEvent"
+            @layout-before-mount="layoutBeforeMountEvent"
+            @layout-mounted="layoutMountedEvent"
+            @layout-ready="layoutReadyEvent"
             @layout-updated="layoutUpdatedEvent"
     >
 
@@ -468,6 +472,54 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
         </grid-item>
     </grid-layout>
 ```` 
+
+* **layoutCreatedEvent**
+
+    Layout created event
+
+    Emited on the component created lifecycle hook
+
+```javascript
+    layoutCreatedEvent: function(newLayout){
+      console.log("Created layout: ", newLayout)
+    }
+```
+
+* **layoutBeforeMountEvent**
+
+    Layout beforeMount event
+
+    Emited on the component beforeMount lifecycle hook
+
+```javascript
+    layoutBeforeMountEvent: function(newLayout){
+      console.log("beforeMount layout: ", newLayout)
+    }
+```
+
+* **layoutMountedEvent**
+
+    Layout mounted event
+
+    Emited on the component mounted lifecycle hook
+
+```javascript
+    layoutMountedEvent: function(newLayout){
+      console.log("Mounted layout: ", newLayout)
+    }
+```
+
+* **layoutReadyEvent**
+
+    Layout ready event
+
+    Emited when all the operations on the mount hook finish
+
+```javascript
+    layoutReadyEvent: function(newLayout){
+      console.log("Ready layout: ", newLayout)
+    }
+```
 
 * **layoutUpdatedEvent**
 

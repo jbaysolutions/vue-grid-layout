@@ -72,6 +72,27 @@ new Vue({
             this.eventLog.push(msg);
             console.log(msg);
         },
+
+        layoutCreatedEvent: function(newLayout){
+            this.eventLog.push("Created layout");
+            console.log("Created layout: ", newLayout)
+        },
+        layoutBeforeMountEvent: function(newLayout){
+            this.eventLog.push("beforeMount layout");
+            console.log("beforeMount layout: ", newLayout)
+        },
+        layoutMountedEvent: function(newLayout){
+            this.eventLog.push("Mounted layout");
+            console.log("Mounted layout: ", newLayout)
+        },
+        layoutReadyEvent: function(newLayout){
+            this.eventLog.push("Ready layout");
+            console.log("Ready layout: ", newLayout)
+        },
+        layoutUpdatedEvent: function(newLayout){
+            this.eventLog.push("Updated layout");
+            console.log("Updated layout: ", newLayout)
+        },
     }
 });
 
