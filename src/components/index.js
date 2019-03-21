@@ -12,9 +12,9 @@ const VueGridLayout = {
 
 // module.exports = VueGridLayout;
 
-Object.keys(VueGridLayout).forEach(name => {
-    Vue.component(name, VueGridLayout[name]);
-});
+// Object.keys(VueGridLayout).forEach(name => {
+//     Vue.component(name, VueGridLayout[name]);
+// });
 
 export default VueGridLayout;
 export { GridLayout, GridItem };
