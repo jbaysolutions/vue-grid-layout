@@ -153,14 +153,13 @@
                 this.originalLayout = this.layout;
                 const self = this;
                 this.$nextTick(function() {
-                    if (self.width === null) {
-                        self.onWindowResize();
+                    self.onWindowResize();
 
-                        self.initResponsiveFeatures();
+                    self.initResponsiveFeatures();
 
-                        //self.width = self.$el.offsetWidth;
-                        addWindowEventListener('resize', self.onWindowResize);
-                    }
+                    //self.width = self.$el.offsetWidth;
+                    addWindowEventListener('resize', self.onWindowResize);
+
                     compact(self.layout, self.verticalCompact);
 
                     self.updateHeight();
