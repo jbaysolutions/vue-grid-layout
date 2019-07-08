@@ -165,7 +165,9 @@
                     self.updateHeight();
                     self.$nextTick(function () {
                         this.erd = elementResizeDetectorMaker({
-                            strategy: "scroll" //<- For ultra performance.
+                            strategy: "scroll", //<- For ultra performance.
+                            // See https://github.com/wnr/element-resize-detector/issues/110 about callOnAdd.
+                            callOnAdd: false,
                         });
                         this.erd.listenTo(self.$refs.item, function () {
                             self.onWindowResize();
