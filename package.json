@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "element-resize-detector": "^1.1.10",
-    "interactjs": "^1.3.4"
+    "interactjs": "^1.5.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.1",
