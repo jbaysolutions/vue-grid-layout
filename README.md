@@ -149,7 +149,8 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
                    :y="item.y"
                    :w="item.w"
                    :h="item.h"
-                   :i="item.i">
+                   :i="item.i"
+                   :key="item.i">
             {{item.i}}
         </grid-item>
     </grid-layout>
@@ -465,6 +466,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
                    :w="item.w"
                    :h="item.h"
                    :i="item.i"
+                   :key="item.i"
                    @resize="resizeEvent"
                    @move="moveEvent"
                    @resized="resizedEvent"

@@ -773,7 +773,7 @@
                     pos.w = 1;
                 }
 
-                // this.lastW = x; // basicly, this is copied from resizehandler, but shouldn't be needed
+                // this.lastW = x; // basically, this is copied from resizehandler, but shouldn't be needed
                 // this.lastH = y;
 
                 if (this.innerW !== pos.w || this.innerH !== pos.h) {
