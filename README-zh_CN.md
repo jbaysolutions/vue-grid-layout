@@ -4,28 +4,28 @@
 <a href="https://www.npmjs.com/package/vue-grid-layout"><img src="https://img.shields.io/npm/v/vue-grid-layout.svg"/> <img src="https://img.shields.io/npm/dm/vue-grid-layout.svg"/></a> <a href="https://vuejs.org/"><img src="https://img.shields.io/badge/vue-2.2.x-brightgreen.svg"/></a>
 </p>
 
-vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
+vue-grid-layout是一个类似于[Gridster](http://dsmorse.github.io/gridster.js/)的栅格布局系统, 适用于Vue.js。 **灵感源自于 [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.3.4 (Supports Vue 2.2+)
+### **当前版本:** 2.3.4 (支持 Vue 2.2+)
 
-### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
-### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
+### **Vue 2.1.10 及以下请使用 [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
+### **Vue 1 请使用 [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
 
 <br/>
 
-[**[Demo](https://jbaysolutions.github.io/vue-grid-layout/examples/01-basic.html) | [Changelog](/CHANGELOG.md)**]
+[**[在线演示](https://jbaysolutions.github.io/vue-grid-layout/examples/01-basic.html) | [更新日志](/CHANGELOG.md)**]
 
-English | [简体中文](./README-zh_CN.md) 
+[English](./README.md) | 简体中文
 
 <!--
 ## Table of Contents
 
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
+- [特性](#%e7%89%b9%e6%80%a7)
+- [入门指南](#%e5%85%a5%e9%97%a8%e6%8c%87%e5%8d%97)
+  - [安装](#%e5%ae%89%e8%a3%85)
     - [npm](#npm)
-- [Contribute](#contribute)
-- [TODO List](#todo-list)
+- [如果贡献](#%e5%a6%82%e6%9e%9c%e8%b4%a1%e7%8c%ae)
+- [待办事项](#%e5%be%85%e5%8a%9e%e4%ba%8b%e9%a1%b9)
 
 ## Demos
 
@@ -37,46 +37,46 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 
 -->
 
-#### Projects using vue-grid-layout
+#### 成功案例
 
 - [Draxed](https://www.draxed.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 - [cryptotiles](https://www.cryptotiles.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 - [Data Providers](https://www.dataproviders.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 
-*Know of others? Create a PR to let me know!*
+*您还知悉其他项目? 请创建一个PR，谢谢!*
 
-## Features
+## 特性
 
-* Draggable widgets
-* Resizable widgets
-* Static widgets
-* Bounds checking for dragging and resizing
-* Widgets may be added or removed without rebuilding grid
-* Layout can be serialized and restored
-* Automatic RTL support (resizing not working with RTL on 2.2.0)
-* Responsive
+* 可拖拽
+* 可调整大小
+* 静态部件（不可拖拽、调整大小）
+* 拖拽和调整大小时进行边界检查
+* 增减部件时避免重建栅格
+* 可序列化和还原的布局
+* 自动化 RTL 支持
+* 响应式
 
 
-## Getting Started
+## 入门指南
 
-### Installation
+### 安装
 
 #### npm
 
-    # install with npm    
+    # 使用 npm    
 	npm install vue-grid-layout --save
     
-    # install with yarn    
+    # 使用 yarn    
     yarn add vue-grid-layout
 
 
-Import the library
+引入
 
 ```javascript
     import VueGridLayout from 'vue-grid-layout';
 ```
 
-Add to other Vue components 
+加入到 Vue 组件 
 
  ```javascript
     export default {
@@ -89,15 +89,15 @@ Add to other Vue components
     
 ```    
 
-#### browser
+#### 浏览器
 
-Include the browser-ready bundle (download from [releases](https://github.com/jbaysolutions/vue-grid-layout/releases)) in your page. The components will be automatically available.
+在页面中使用已打包好的 [文件](https://github.com/jbaysolutions/vue-grid-layout/releases)。 此时组件已为可用状态。
 
 ```html
     <script src="vue-grid-layout.umd.min.js"></script>
 ```
 
-### Usage
+### 使用
 
 ```javascript
 	var testLayout = [
@@ -159,7 +159,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 ```
 
 
-### Documentation
+### 文档
 
 #### Properties
 
@@ -170,9 +170,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * type: `Array`
     * required: `true`
 
-    This is the initial layout of the grid.
-
-    The value must be an `Array` of `Object` items. Each item must have `i`, `x`, `y`, `w` and `h` properties. Please refer to `GridItem` documentation below for more informations.
+    数据源。值必须为 `Array`，其数据项为 `Object`。 每条数据项必须有 `i`, `x`, `y`, `w` 和 `h` 属性。 请参考下面的 `GridItem`。
 
 * **colNum**
     
@@ -180,9 +178,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `12`
 
-    Says how many columns the grid has.
-
-    The value should be a _natural number_. 
+    定义栅格系统的列数，其值需为自然数。
 
 * **rowHeight**
     
@@ -190,7 +186,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `150`
 
-    Says what is a height of a single row in pixels.
+    每行的高度，单位像素。
 
 * **maxRows**
     
@@ -198,7 +194,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `Infinity`
 
-    Says what is a maximal number of rows in the grid.
+    定义最大行数。
 
 * **margin**
     
@@ -206,9 +202,9 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `[10, 10]`
 
-    Says what are the margins of elements inside the grid.
+    定义栅格中的元素边距。
 
-    The value must be a two-element `Array` of `Number`. Each value is expressed in pixels. The first element is a margin horizontally, the second element is a vertical margin.
+    值必须是包含两个 `Number`的数组，数组中第一个元素表示水平边距，第二个表示垂直边距，单位为像素。
 
 * **isDraggable**
     
@@ -216,7 +212,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `true`
 
-    Says if the grids items are draggable.
+    标识栅格中的元素是否可拖拽。
 
 * **isResizable**
     
@@ -224,7 +220,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `true`
 
-    Says if the grids items are resizable.
+    标识栅格中的元素是否可调整大小。
 
 * **isMirrored**
     
@@ -232,7 +228,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `false`
 
-    Says if the RTL/LTR should be reversed.
+    标识栅格中的元素是否可镜像反转。
 
 * **autoSize**
     
@@ -240,7 +236,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `true`
 
-    Says if the container height should swells and contracts to fit contents.
+    标识容器是否自动调整大小。
 
 * **verticalCompact**
     
@@ -248,7 +244,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `true`
 
-    Says if the layout should be compact vertically.
+    标识布局是否垂直压缩。
 
 * **useCssTransforms**
     
@@ -256,7 +252,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `true`
 
-    Says if the CSS `transition-property: transform;` should be used.
+    标识是否使用CSS属性 `transition-property: transform;`。
 
 * **responsive**
     
@@ -264,7 +260,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `false`
 
-    Says if the layout should be responsive to window width
+    标识布局是否为响应式。
 
 * **breakpoints**
 
@@ -272,7 +268,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }
 
-    Breakpoints defined for responsive layout. Sets widths on wich column number changes
+    为响应式布局设置断点。
 
 * **cols**
 
@@ -280,7 +276,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }
 
-    Defines number of columns for each breakpoint
+    设置每个断点对应的列数。
 
 
 ##### GridItem
@@ -290,43 +286,35 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * type: `String`
     * required: `true`
 
-    This is the unique identifier of the item.
+    栅格中元素的ID。
 
 * **x**
     
     * type: `Number`
     * required: `true`
 
-    Says what is a initial horizontal position of the item (in which column it should be placed).
-
-    The value must be a _whole number_. 
+    标识栅格元素位于第几列，需为自然数。
 
 * **y**
     
     * type: `Number`
     * required: `true`
 
-    Says what is a initial vertical position of the item (in which row it should be placed).
-
-    The value must be a _whole number_. 
+    标识栅格元素位于第几行，需为自然数。
 
 * **w**
     
     * type: `Number`
     * required: `true`
 
-    Says what is a initial width of the item.
-
-    The value is a number that is multiplied by `colWidth`.
+    标识栅格元素的初始宽度，值为`colWidth`的倍数。
 
 * **h**
     
     * type: `Number`
     * required: `true`
 
-    Says what is a initial height of the item.
-
-    The value is a number that is multiplied by `rowHeight`.
+    标识栅格元素的初始高度，值为`rowHeight`的倍数。
 
 * **minW**
     
@@ -334,9 +322,9 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `1`
 
-    Says what is a minimal width of the item. If `w` will be smaller then `minW` then `w` will be set to `minW`.
-
-    The value is a number that is multiplied by `colWidth`.
+    栅格元素的最小宽度，值为`colWidth`的倍数。
+    
+    如果`w`小于`minW`，则`minW`的值会被`w`覆盖。
 
 * **minH**
     
@@ -344,9 +332,9 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `1`
 
-    Says what is a minimal hieght of the item. If `h` will be smaller then `minH` then `h` will be set to `minH`.
-
-    The value is a number that is multiplied by `rowHeight`.
+    栅格元素的最小高度，值为`rowHeight`的倍数。
+    
+    如果`h`小于`minH`，则`minH`的值会被`h`覆盖。
 
 * **maxW**
     
@@ -354,9 +342,9 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `Infinity`
 
-    Says what is a maximal width of the item. If `w` will be bigger then `maxW` then `w` will be set to `maxW`.
-
-    The value is a number that is multiplied by `colWidth`.
+    栅格元素的最大宽度，值为`colWidth`的倍数。
+    
+    如果`w`大于`maxW`，则`maxW`的值会被`w`覆盖。
 
 * **maxH**
     
@@ -364,9 +352,9 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `Infinity`
 
-    Says what is a maximal height of the item. If `h` will be bigger then `maxH` then `h` will be set to `maxH`.
-
-    The value is a number that is multiplied by `rowHeight`
+    栅格元素的最大高度，值为`rowHeight`的倍数。
+    
+    如果`h`大于`maxH`，则`maxH`的值会被`h`覆盖。
 
 * **isDraggable**
     
@@ -374,9 +362,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `null`
 
-    Says if item is draggable.
-
-    If default value is `null` then it's inherited from parent.
+    标识栅格元素是否可拖拽。如果值为`null`则取决于父容器。
 
 * **isResizable**
     
@@ -384,9 +370,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `null`
 
-    Says if item is resizable.
-
-    If default value is `null` then it's inherited from parent.
+    标识栅格元素是否可调整大小。如果值为`null`则取决于父容器。
 
 * **static**
     
@@ -394,8 +378,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `false`
 
-    Says if item is static (won't be draggable, resizable or moved by other items).
-
+    标识栅格元素是否为静态的（无法拖拽、调整大小或被其他元素移动）。
 
 * **dragIgnoreFrom**
     
@@ -403,11 +386,9 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `'a, button'`
 
-    Says which elements of the item shouldn't trigger drag event of the item.
+    标识栅格元素中哪些子元素无法触发拖拽事件，值为`css-like`选择器。
 
-    The value is `css-like` selector string.
-
-    For more info please refer to `ignoreFrom` in [interact.js docs](http://interactjs.io/docs/#ignorable-selectors).
+    请参考 [interact.js docs](http://interactjs.io/docs/#ignorable-selectors)中的`ignoreFrom`。
 
 * **dragAllowFrom**
     
@@ -415,13 +396,11 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `null`
 
-    Says which elements of the item should trigger drag event of the item.
+    标识栅格元素中哪些子元素可以触发拖拽事件，值为`css-like`选择器。
 
-    The value is `css-like` selector string.
-    
-    If `null` then one can drag by any (excluding `dragIgnoreFrom`) element of the item.
+    如果值为`null`则表示所有子元素（`dragIgnoreFrom`的除外）。
 
-    For more info please refer to `allowFrom` in [interact.js docs](http://interactjs.io/docs/#ignorable-selectors).
+    请参考 [interact.js docs](http://interactjs.io/docs/#ignorable-selectors)中的`allowFrom`。
 
 * **resizeIgnoreFrom**
     
@@ -429,20 +408,17 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * required: `false`
     * default: `'a, button'`
 
-    Says which elements of the item shouldn't trigger resize event of the item.
+    标识栅格元素中哪些子元素无法触发调整大小的事件，值为`css-like`选择器。
 
-    The value is `css-like` selector string.
-
-    For more info please refer to `ignoreFrom` in [interact.js docs](http://interactjs.io/docs/#ignorable-selectors).
+    请参考 [interact.js docs](http://interactjs.io/docs/#ignorable-selectors)中的`ignoreFrom`。
 
 
 
-#### Events
+#### 事件
 
-Move and resize event listeners can be added to each grid-item, so that the parent Vue can be notified when a grid element is being moved or resized.
-Moved and resized event listeners can be added, if the only notification needed is when an item is finished moving or resizing.
+每一个栅格元素`grid-item`上都可以添加监听器，用于监听移动和调整大小事件，这样父级Vue对象就可以收到通知。
 
-Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/02-events.html)   
+ [示例](https://jbaysolutions.github.io/vue-grid-layout/examples/02-events.html)   
 
 ````html
 
@@ -480,9 +456,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
 * **layoutCreatedEvent**
 
-    Layout created event
-
-    Emited on the component created lifecycle hook
+    对应Vue生命周期的`created`
 
 ```javascript
     layoutCreatedEvent: function(newLayout){
@@ -492,9 +466,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
 * **layoutBeforeMountEvent**
 
-    Layout beforeMount event
-
-    Emited on the component beforeMount lifecycle hook
+    对应Vue生命周期的`beforeMount`
 
 ```javascript
     layoutBeforeMountEvent: function(newLayout){
@@ -504,9 +476,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
 * **layoutMountedEvent**
 
-    Layout mounted event
-
-    Emited on the component mounted lifecycle hook
+    对应Vue生命周期的`mounted`
 
 ```javascript
     layoutMountedEvent: function(newLayout){
@@ -516,9 +486,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
 * **layoutReadyEvent**
 
-    Layout ready event
-
-    Emited when all the operations on the mount hook finish
+    当完成mount中的所有操作时生成的事件
 
 ```javascript
     layoutReadyEvent: function(newLayout){
@@ -528,9 +496,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
 * **layoutUpdatedEvent**
 
-    Layout updated event
-
-    Every time the layout has finished updating and positions of all grid-items are recalculated
+    更新事件（布局更新或栅格元素的位置重新计算）
 
 ```javascript
     layoutUpdatedEvent: function(newLayout){
@@ -540,9 +506,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
 * **moveEvent**
 
-    Move event
-
-    Every time an item is being moved and changes position
+    移动时的事件
 
 ```javascript
     moveEvent: function(i, newX, newY){
@@ -552,9 +516,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
 * **resizeEvent**
 
-    Resize event
-
-    Every time an item is being resized and changes size
+    调整大小时的事件
  
 ```javascript
     resizeEvent: function(i, newH, newW, newHPx, newWPx){
@@ -564,9 +526,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
 * **movedEvent**
 
-    Moved event
-
-    Every time an item is finished being moved and changes position
+    移动后的事件
 
 ```javascript
     movedEvent: function(i, newX, newY){
@@ -576,9 +536,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
 * **resizedEvent**
 
-    Resized event
-
-    Every time an item is finished being resized and changes size
+    调整大小后的事件
  
 ```javascript
     /**
@@ -596,16 +554,16 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 ``` 
 
 
-## Contribute
+## 如果贡献
 
-If you have a feature request, please add it as an issue or make a pull request.
+请提交issue或PR。
 
 
-## TODO List
+## 待办事项
 
-- [x] Basic grid layout
-- [x] Responsive
-- [x] Draggable grid items
-- [x] Resizable grid items
-- [x] Static elements
-- [x] Min/max w/h per item
+- [x] 基础栅格布局
+- [x] 响应式
+- [x] 可拖拽的栅格元素
+- [x] 可调整大小的栅格元素
+- [x] 静态元素
+- [x] 每个元素的Min/max w/h
