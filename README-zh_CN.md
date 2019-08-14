@@ -24,7 +24,7 @@ vue-grid-layout是一个类似于[Gridster](http://dsmorse.github.io/gridster.js
 - [入门指南](#%e5%85%a5%e9%97%a8%e6%8c%87%e5%8d%97)
   - [安装](#%e5%ae%89%e8%a3%85)
     - [npm](#npm)
-- [如果贡献](#%e5%a6%82%e6%9e%9c%e8%b4%a1%e7%8c%ae)
+- [如何贡献](#%e5%a6%82%e4%bd%95%e8%b4%a1%e7%8c%ae)
 - [待办事项](#%e5%be%85%e5%8a%9e%e4%ba%8b%e9%a1%b9)
 
 ## Demos
@@ -161,7 +161,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 
 ### 文档
 
-#### Properties
+#### 属性
 
 ##### GridLayout
 
@@ -554,7 +554,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 ``` 
 
 
-## 如果贡献
+## 如何贡献
 
 请提交issue或PR。
 
