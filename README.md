@@ -248,6 +248,14 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
     Says if the layout should be compact vertically.
 
+* **preventCollision**
+    
+    * type: `Boolean`
+    * required: `false`
+    * default: `false`
+
+    Says if grid items will move when being dragged over.
+
 * **useCssTransforms**
     
     * type: `Boolean`
