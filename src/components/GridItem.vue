@@ -657,8 +657,8 @@
                 // width = colWidth * w - (margin * (w - 1))
                 // ...
                 // w = (width + margin) / (colWidth + margin)
-                let w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));
-                let h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                let w = Math.ceil((width + this.margin[0]) / (colWidth + this.margin[0]));
+                let h = Math.ceil((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
 
                 // Capping
                 w = Math.max(Math.min(w, this.cols - this.innerX), 0);
