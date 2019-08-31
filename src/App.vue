@@ -30,6 +30,7 @@
             <input type="checkbox" v-model="resizable"/> Resizable
             <input type="checkbox" v-model="mirrored"/> Mirrored
             <input type="checkbox" v-model="responsive"/> Responsive
+            <input type="checkbox" v-model="preventCollision"/> Prevent Collision
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
             </div>
@@ -40,6 +41,7 @@
                     :is-draggable="draggable"
                     :is-resizable="resizable"
                     :is-mirrored="mirrored"
+                    :prevent-collision="preventCollision"
                     :vertical-compact="true"
                     :use-css-transforms="true"
                     :responsive="responsive"
@@ -143,6 +145,7 @@
                 resizable: true,
                 mirrored: false,
                 responsive: true,
+                preventCollision: false,
                 rowHeight: 30,
                 colNum: 12,
                 index: 0
