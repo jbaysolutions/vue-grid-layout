@@ -153,35 +153,59 @@
                 this.originalLayout = this.layout;
                 const self = this;
                 this.$nextTick(function() {
-                    if (self.width === null) {
-                        self.onWindowResize();
+                    self.onWindowResize();
 
-                        self.initResponsiveFeatures();
+                    self.initResponsiveFeatures();
 
-                        //self.width = self.$el.offsetWidth;
-                        addWindowEventListener('resize', self.onWindowResize);
-                    }
+                    //self.width = self.$el.offsetWidth;
+                    addWindowEventListener('resize', self.onWindowResize);
+
                     compact(self.layout, self.verticalCompact);
 
                     self.updateHeight();
                     self.$nextTick(function () {
                         this.erd = elementResizeDetectorMaker({
-                            strategy: "scroll" //<- For ultra performance.
+                            strategy: "scroll", //<- For ultra performance.
+                            // See https://github.com/wnr/element-resize-detector/issues/110 about callOnAdd.
+                            callOnAdd: false,
                         });
                         this.erd.listenTo(self.$refs.item, function () {
                             self.onWindowResize();
                         });
                     });
-
-                    self.$emit('layout-ready', self.layout);
                 });
             });
         },
         watch: {
-            width: function () {
+            width: function (newval, oldval) {
                 this.$nextTick(function () {
                     //this.$broadcast("updateWidth", this.width);
                     this.eventBus.$emit("updateWidth", this.width);
+                    if (oldval === null) {
+                        /*
+                            If oldval == null is when the width has never been
+                            set before. That only occurs when mouting is
+                            finished, and onWindowResize has been called and
+                            this.width has been changed the first time after it
+                            got set to null in the constructor. It is now time
+                            to issue layout-ready events as the GridItems have
+                            their sizes configured properly.
+
+                            The reason for emitting the layout-ready events on
+                            the next tick is to allow for the newly-emitted
+                            updateWidth event (above) to have reached the
+                            children GridItem-s and had their effect, so we're
+                            sure that they have the final size before we emit
+                            layout-ready (for this GridLayout) and
+                            item-layout-ready (for the GridItem-s).
+
+                            This way any client event handlers can reliably
+                            invistigate stable sizes of GridItem-s.
+                        */
+                        this.$nextTick(() => {
+                            this.$emit('layout-ready', self.layout);
+                        });
+                    }
                     this.updateHeight();
                 });
             },
