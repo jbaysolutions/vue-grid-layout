@@ -354,6 +354,18 @@
                 // console.log("### renderRtl");
                 this.tryMakeResizable();
                 this.createStyle();
+            },
+            minH: function () {
+                this.tryMakeResizable();
+            },
+            maxH: function () {
+                this.tryMakeResizable();
+            },
+            minW: function () {
+                this.tryMakeResizable();
+            },
+            maxW: function () {
+                this.tryMakeResizable();
             }
         },
         computed: {
