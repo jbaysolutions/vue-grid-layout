@@ -256,6 +256,10 @@
                 self.rowHeight = rowHeight;
             };
 
+            self.setMaxRowsHandler = function (maxRows) {
+                self.maxRows = maxRows;
+            };
+
             self.directionchangeHandler = () => {
                 this.rtl = getDocumentDir() === 'rtl';
                 this.compact();
@@ -270,6 +274,7 @@
             this.eventBus.$on('setDraggable', self.setDraggableHandler);
             this.eventBus.$on('setResizable', self.setResizableHandler);
             this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
+            this.eventBus.$on('setMaxRows', self.setMaxRowsHandler);
             this.eventBus.$on('directionchange', self.directionchangeHandler);
             this.eventBus.$on('setColNum', self.setColNum)
 
@@ -283,6 +288,7 @@
             this.eventBus.$off('setDraggable', self.setDraggableHandler);
             this.eventBus.$off('setResizable', self.setResizableHandler);
             this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
+            this.eventBus.$off('setMaxRows', self.setMaxRowsHandler);
             this.eventBus.$off('directionchange', self.directionchangeHandler);
             this.eventBus.$off('setColNum', self.setColNum);
             this.interactObj.unset() // destroy interact intance
