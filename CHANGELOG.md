@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.3.5 (Sep 7, 2019)
+
+* Fix: no-touch on mobile and only if item is draggable or resizable (thanks [DGoms](https://github.com/DGoms)).
+* Prevent collision feature (thanks [SheanDe](https://github.com/SheanDe)).
+* Simplified Chinese README (thanks [harrywangchina](https://github.com/harrywangchina)).
+* 'resized' event now emitted if grid item is resized due to changes other than a manual resize (e.g. browser window resize) (thanks [pmorch](https://github.com/pmorch)).
+* Improvement on 'layout-ready' event emit (thanks [pmorch](https://github.com/pmorch)).
+* Added watchers for min/max height and width (thanks [grinat](https://github.com/grinat)).
+* Improvement: make sure the size of grid-item is bigger than the slot-item (thanks [ywmail](https://github.com/ywmail)).
+
 ## 2.3.4 (Mar 5, 2019)
 
 * Support for static items (thanks [panjiangyi](https://github.com/panjiangyi)).
