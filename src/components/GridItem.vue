@@ -1,7 +1,7 @@
 <template>
     <div ref="item"
          class="vue-grid-item"
-         :class="{ 'vue-resizable' : resizableAndNotStatic, 'static': static, 'resizing' : isResizing, 'vue-draggable-dragging' : isDragging, 'cssTransforms' : useCssTransforms, 'render-rtl' : renderRtl, 'disable-userselect': isDragging, 'no-touch': isAndroid }"
+         :class="classObj"
          :style="style"
     >
         <slot></slot>
@@ -380,8 +380,23 @@
             }
         },
         computed: {
+            classObj() {
+                return {
+                    'vue-resizable' : this.resizableAndNotStatic,
+                    'static': this.static,
+                    'resizing' : this.isResizing,
+                    'vue-draggable-dragging' : this.isDragging,
+                    'cssTransforms' : this.useCssTransforms,
+                    'render-rtl' : this.renderRtl,
+                    'disable-userselect': this.isDragging,
+                    'no-touch': this.isAndroid && this.draggableOrResizableAndNotStatic
+                }
+            },
             resizableAndNotStatic(){
                 return this.resizable && !this.static;
+            },
+            draggableOrResizableAndNotStatic(){
+                return (this.draggable || this.resizable) && !this.static;
             },
             isAndroid() {
                 return navigator.userAgent.toLowerCase().indexOf("android") !== -1;
