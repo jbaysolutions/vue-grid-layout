@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.6 (Sep 11, 2019)
+
+* reverted grid item w and h previous rounding change, fixes #355
+
 ## 2.3.5 (Sep 7, 2019)
 
 * Fix: no-touch on mobile and only if item is draggable or resizable (thanks [DGoms](https://github.com/DGoms)).
