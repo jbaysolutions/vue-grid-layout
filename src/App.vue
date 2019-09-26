@@ -58,6 +58,7 @@
                            :w="item.w"
                            :h="item.h"
                            :i="item.i"
+                           :specific-sizes="item && item.specificSizes"
                            @resize="resize"
                            @move="move"
                            @resized="resized"
@@ -120,7 +121,7 @@
         {"x":10,"y":4,"w":2,"h":4,"i":"11", resizable: false, draggable: false, static: false},
         {"x":0,"y":10,"w":2,"h":5,"i":"12", resizable: false, draggable: false, static: false},
         {"x":2,"y":10,"w":2,"h":5,"i":"13", resizable: false, draggable: false, static: false},
-        {"x":4,"y":8,"w":2,"h":4,"i":"14", resizable: false, draggable: false, static: false},
+        {"x":4,"y":8,"w":2,"h":4,"i":"14", resizable: false, draggable: false, static: false, specificSizes: [{w: 1, h: 4}, {w: 2, h: 4}, {w: 4, h: 4}, {w: 6, h: 4}]},
         {"x":6,"y":8,"w":2,"h":4,"i":"15", resizable: false, draggable: false, static: false},
         {"x":8,"y":10,"w":2,"h":5,"i":"16", resizable: false, draggable: false, static: false},
         {"x":10,"y":4,"w":2,"h":2,"i":"17", resizable: false, draggable: false, static: false},

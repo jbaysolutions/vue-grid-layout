@@ -191,6 +191,10 @@
                 required: false,
                 default: 'a, button'
             },
+            specificSizes: {
+                type: Array,
+                required: false,
+            },
         },
         inject: ["eventBus"],
         data: function () {
@@ -480,6 +484,7 @@
 
                 const newSize = {width: 0, height: 0};
                 let pos;
+
                 switch (event.type) {
                     case "resizestart": {
                         this.previousW = this.innerW;
@@ -513,6 +518,32 @@
 //                        console.log("### resize end => " + JSON.stringify(newSize));
                         this.resizing = null;
                         this.isResizing = false;
+
+                        if (this.specificSizes) {
+                            //TODO: For now just compare by width and keep height, we will research to dynamic width and height together later
+                            this.specificSizes = this.specificSizes.sort((a, b) => {
+                                return a.w < b.w;
+                            });
+
+                            const findItemIndex = this.specificSizes.findIndex(item => {
+                                return item.w === this.previousW;
+                            });
+
+                            let nextItemBySpecificSizes = null;
+                            if (this.previousW < this.innerW && this.specificSizes[findItemIndex + 1]) {
+                                nextItemBySpecificSizes = this.specificSizes[findItemIndex + 1];
+                            } else if (this.previousW > this.innerW && this.specificSizes[findItemIndex - 1]) {
+                                nextItemBySpecificSizes = this.specificSizes[findItemIndex - 1];
+                            } else {
+                                nextItemBySpecificSizes = {w: this.previousW, h: this.previousH};
+                            }
+
+                            if (nextItemBySpecificSizes) {
+                                pos = this.calcPosition(this.innerX, this.innerY, nextItemBySpecificSizes.w, nextItemBySpecificSizes.h);
+                                newSize.width = pos.width;
+                                newSize.height = pos.height;
+                            }
+                        }
                         break;
                     }
                 }

@@ -215,6 +215,57 @@ module.exports = function (it, key) {
 
 /***/ }),
 
+/***/ "0a49":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 0 -> Array#forEach
+// 1 -> Array#map
+// 2 -> Array#filter
+// 3 -> Array#some
+// 4 -> Array#every
+// 5 -> Array#find
+// 6 -> Array#findIndex
+var ctx = __webpack_require__("9b43");
+var IObject = __webpack_require__("626a");
+var toObject = __webpack_require__("4bf8");
+var toLength = __webpack_require__("9def");
+var asc = __webpack_require__("cd1c");
+module.exports = function (TYPE, $create) {
+  var IS_MAP = TYPE == 1;
+  var IS_FILTER = TYPE == 2;
+  var IS_SOME = TYPE == 3;
+  var IS_EVERY = TYPE == 4;
+  var IS_FIND_INDEX = TYPE == 6;
+  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
+  var create = $create || asc;
+  return function ($this, callbackfn, that) {
+    var O = toObject($this);
+    var self = IObject(O);
+    var f = ctx(callbackfn, that, 3);
+    var length = toLength(self.length);
+    var index = 0;
+    var result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
+    var val, res;
+    for (;length > index; index++) if (NO_HOLES || index in self) {
+      val = self[index];
+      res = f(val, index, O);
+      if (TYPE) {
+        if (IS_MAP) result[index] = res;   // map
+        else if (res) switch (TYPE) {
+          case 3: return true;             // some
+          case 5: return val;              // find
+          case 6: return index;            // findIndex
+          case 2: result.push(val);        // filter
+        } else if (IS_EVERY) return false; // every
+      }
+    }
+    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
+  };
+};
+
+
+/***/ }),
+
 /***/ "0bfb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -262,6 +313,18 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__("499e").default
 var update = add("c1ec597e", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
+/***/ "1169":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.2.2 IsArray(argument)
+var cof = __webpack_require__("2d95");
+module.exports = Array.isArray || function isArray(arg) {
+  return cof(arg) == 'Array';
+};
+
 
 /***/ }),
 
@@ -607,6 +670,28 @@ var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
   return is ? document.createElement(it) : {};
 };
+
+
+/***/ }),
+
+/***/ "20d6":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
+var $export = __webpack_require__("5ca1");
+var $find = __webpack_require__("0a49")(6);
+var KEY = 'findIndex';
+var forced = true;
+// Shouldn't skip holes
+if (KEY in []) Array(1)[KEY](function () { forced = false; });
+$export($export.P + $export.F * forced, 'Array', {
+  findIndex: function findIndex(callbackfn /* , that = undefined */) {
+    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+__webpack_require__("9c6c")(KEY);
 
 
 /***/ }),
@@ -3789,6 +3874,19 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "cd1c":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
+var speciesConstructor = __webpack_require__("e853");
+
+module.exports = function (original, length) {
+  return new (speciesConstructor(original))(length);
+};
+
+
+/***/ }),
+
 /***/ "ce10":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3967,6 +4065,29 @@ var global = module.exports = typeof window != 'undefined' && window.Math == Mat
   // eslint-disable-next-line no-new-func
   : Function('return this')();
 if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "e853":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("d3f4");
+var isArray = __webpack_require__("1169");
+var SPECIES = __webpack_require__("2b4c")('species');
+
+module.exports = function (original) {
+  var C;
+  if (isArray(original)) {
+    C = original.constructor;
+    // cross-realm fallback
+    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
+    if (isObject(C)) {
+      C = C[SPECIES];
+      if (C === null) C = undefined;
+    }
+  } return C === undefined ? Array : C;
+};
 
 
 /***/ }),
@@ -4425,12 +4546,18 @@ var web_dom_iterable = __webpack_require__("ac6a");
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4e668661-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=1dcc0fd5&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"f42bee50-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=6f4c3b29&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-item",class:_vm.classObj,style:(_vm.style)},[_vm._t("default"),(_vm.resizableAndNotStatic)?_c('span',{ref:"handle",class:_vm.resizableHandleClass}):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=1dcc0fd5&
+// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=6f4c3b29&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find-index.js
+var es6_array_find_index = __webpack_require__("20d6");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.sort.js
+var es6_array_sort = __webpack_require__("55dd");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
 var es6_regexp_match = __webpack_require__("4917");
@@ -4441,11 +4568,7 @@ var es6_number_constructor = __webpack_require__("c5f6");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.sort.js
-var es6_array_sort = __webpack_require__("55dd");
-
 // CONCATENATED MODULE: ./src/helpers/utils.js
-
 
 
 
@@ -5270,6 +5393,8 @@ function removeWindowEventListener(event
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=script&lang=js&
 
 
+
+
 //
 //
 //
@@ -5461,6 +5586,10 @@ var interact = __webpack_require__("fb3a");
       type: String,
       required: false,
       default: 'a, button'
+    },
+    specificSizes: {
+      type: Array,
+      required: false
     }
   },
   inject: ["eventBus"],
@@ -5748,6 +5877,8 @@ var interact = __webpack_require__("fb3a");
       this.$emit("resized", this.i, this.h, this.w, styleProps.height, styleProps.width);
     },
     handleResize: function handleResize(event) {
+      var _this2 = this;
+
       if (this.static) return;
       var position = getControlPosition(event); // Get the current drag point from the event. This is used as the offset.
 
@@ -5800,6 +5931,35 @@ var interact = __webpack_require__("fb3a");
 
             this.resizing = null;
             this.isResizing = false;
+
+            if (this.specificSizes) {
+              //TODO: For now just compare by width and keep height, we will research to dynamic width and height together later
+              this.specificSizes = this.specificSizes.sort(function (a, b) {
+                return a.w < b.w;
+              });
+              var findItemIndex = this.specificSizes.findIndex(function (item) {
+                return item.w === _this2.previousW;
+              });
+              var nextItemBySpecificSizes = null;
+
+              if (this.previousW < this.innerW && this.specificSizes[findItemIndex + 1]) {
+                nextItemBySpecificSizes = this.specificSizes[findItemIndex + 1];
+              } else if (this.previousW > this.innerW && this.specificSizes[findItemIndex - 1]) {
+                nextItemBySpecificSizes = this.specificSizes[findItemIndex - 1];
+              } else {
+                nextItemBySpecificSizes = {
+                  w: this.previousW,
+                  h: this.previousH
+                };
+              }
+
+              if (nextItemBySpecificSizes) {
+                pos = this.calcPosition(this.innerX, this.innerY, nextItemBySpecificSizes.w, nextItemBySpecificSizes.h);
+                newSize.width = pos.width;
+                newSize.height = pos.height;
+              }
+            }
+
             break;
           }
       } // Get new WH
@@ -6277,12 +6437,12 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var GridItem = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4e668661-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=336c4f92&
-var GridLayoutvue_type_template_id_336c4f92_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
-var GridLayoutvue_type_template_id_336c4f92_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"f42bee50-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=60e82dfc&
+var GridLayoutvue_type_template_id_60e82dfc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
+var GridLayoutvue_type_template_id_60e82dfc_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=336c4f92&
+// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=60e82dfc&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
@@ -6311,7 +6471,6 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 // CONCATENATED MODULE: ./src/helpers/responsiveUtils.js
-
 
 
 
@@ -6483,7 +6642,6 @@ function sortBreakpoints(breakpoints
   });
 }
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=script&lang=js&
-
 
 
 
@@ -6950,8 +7108,8 @@ var GridLayoutvue_type_style_index_0_lang_css_ = __webpack_require__("e279");
 
 var GridLayout_component = normalizeComponent(
   components_GridLayoutvue_type_script_lang_js_,
-  GridLayoutvue_type_template_id_336c4f92_render,
-  GridLayoutvue_type_template_id_336c4f92_staticRenderFns,
+  GridLayoutvue_type_template_id_60e82dfc_render,
+  GridLayoutvue_type_template_id_60e82dfc_staticRenderFns,
   false,
   null,
   null,
@@ -6972,9 +7130,9 @@ var GridLayout_component = normalizeComponent(
 var VueGridLayout = {
   // ResponsiveGridLayout,
   GridLayout: GridLayout,
-  GridItem: GridItem // module.exports = VueGridLayout;
+  GridItem: GridItem
+}; // module.exports = VueGridLayout;
 
-};
 Object.keys(VueGridLayout).forEach(function (name) {
   external_commonjs_vue_commonjs2_vue_root_Vue_default.a.component(name, VueGridLayout[name]);
 });
@@ -6995,7 +7153,7 @@ Object.keys(VueGridLayout).forEach(function (name) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * interact.js 1.5.4
+ * interact.js 1.6.2
  *
  * Copyright (c) 2012-2019 Taye Adeyemi <dev@taye.me>
  * Released under the MIT License.
@@ -8541,7 +8699,7 @@ var ___domObjects_51 = ___interopRequireDefault_51(_$domObjects_50);
 
 var __is_51 = ___interopRequireWildcard_51(_$is_57);
 
-var ___window_51 = ___interopRequireDefault_51(_$window_66);
+var ___window_51 = ___interopRequireWildcard_51(_$window_66);
 
 function ___interopRequireWildcard_51(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
@@ -8603,17 +8761,13 @@ var getParent = function getParent(el) {
 
 function indexOfDeepestElement(elements) {
   var deepestZoneParents = [];
-  var dropzoneParents = [];
-  var dropzone;
   var deepestZone = elements[0];
   var index = deepestZone ? 0 : -1;
-  var parent;
-  var child;
   var i;
   var n;
 
   for (i = 1; i < elements.length; i++) {
-    dropzone = elements[i]; // an element might belong to multiple selector dropzones
+    var dropzone = elements[i]; // an element might belong to multiple selector dropzones
 
     if (!dropzone || dropzone === deepestZone) {
       continue;
@@ -8634,18 +8788,34 @@ function indexOfDeepestElement(elements) {
         deepestZone = dropzone;
         index = i;
         continue;
+      } // compare zIndex of siblings
+
+
+    if (dropzone.parentNode === deepestZone.parentNode) {
+      var deepestZIndex = parseInt((0, ___window_51.getWindow)(deepestZone).getComputedStyle(deepestZone).zIndex, 10) || 0;
+      var dropzoneZIndex = parseInt((0, ___window_51.getWindow)(dropzone).getComputedStyle(dropzone).zIndex, 10) || 0;
+
+      if (dropzoneZIndex >= deepestZIndex) {
+        deepestZone = dropzone;
+        index = i;
       }
+
+      continue;
+    } // populate the ancestry array for the latest deepest dropzone
+
 
     if (!deepestZoneParents.length) {
-      parent = deepestZone;
+      var _parent = deepestZone;
+      var parentParent = void 0;
 
-      while (getParent(parent) && getParent(parent) !== parent.ownerDocument) {
-        deepestZoneParents.unshift(parent);
-        parent = getParent(parent);
+      while ((parentParent = getParent(_parent)) && parentParent !== _parent.ownerDocument) {
+        deepestZoneParents.unshift(_parent);
+        _parent = parentParent;
       }
-    } // if this element is an svg element and the current deepest is
-    // an HTMLElement
+    }
 
+    var parent = void 0; // if this element is an svg element and the current deepest is an
+    // HTMLElement
 
     if (deepestZone instanceof ___domObjects_51["default"].HTMLElement && dropzone instanceof ___domObjects_51["default"].SVGElement && !(dropzone instanceof ___domObjects_51["default"].SVGSVGElement)) {
       if (dropzone === deepestZone.parentNode) {
@@ -8657,7 +8827,7 @@ function indexOfDeepestElement(elements) {
       parent = dropzone;
     }
 
-    dropzoneParents = [];
+    var dropzoneParents = [];
 
     while (parent.parentNode !== parent.ownerDocument) {
       dropzoneParents.unshift(parent);
@@ -8671,13 +8841,13 @@ function indexOfDeepestElement(elements) {
     }
 
     var parents = [dropzoneParents[n - 1], dropzoneParents[n], deepestZoneParents[n]];
-    child = parents[0].lastChild;
+    var child = parents[0].lastChild;
 
     while (child) {
       if (child === parents[1]) {
         deepestZone = dropzone;
         index = i;
-        deepestZoneParents = [];
+        deepestZoneParents = dropzoneParents;
         break;
       } else if (child === parents[2]) {
         break;
@@ -8827,7 +8997,8 @@ function pointerExtend(dest, source) {
 }
 
 pointerExtend.prefixedPropREs = {
-  webkit: /(Movement[XY]|Radius[XY]|RotationAngle|Force)$/
+  webkit: /(Movement[XY]|Radius[XY]|RotationAngle|Force)$/,
+  moz: /(Pressure)$/
 };
 var ___default_60 = pointerExtend;
 _$pointerExtend_60["default"] = ___default_60;
@@ -12211,6 +12382,7 @@ function __install_6(scope) {
   });
   interactions.signals.on('action-start', start);
   interactions.signals.on('action-move', __move_6);
+  interactions.signals.on('action-end', end);
   interactions.signals.on('action-start', updateEventAxes);
   interactions.signals.on('action-move', updateEventAxes);
   resize.cursors = initCursors(browser);
@@ -12490,7 +12662,7 @@ function start(_ref2) {
     return;
   }
 
-  var startRect = interaction.rect;
+  var startRect = (0, ___extend_6["default"])({}, interaction.rect);
   var resizeOptions = interaction.interactable.options.resize;
   /*
    * When using the `resizable.square` or `resizable.preserveAspectRatio` options, resizing from one edge
@@ -12517,7 +12689,12 @@ function start(_ref2) {
 
   interaction.resizeRects = {
     start: startRect,
-    current: (0, ___extend_6["default"])({}, startRect),
+    current: {
+      left: startRect.left,
+      right: startRect.right,
+      top: startRect.top,
+      bottom: startRect.bottom
+    },
     inverted: (0, ___extend_6["default"])({}, startRect),
     previous: (0, ___extend_6["default"])({}, startRect),
     delta: {
@@ -12529,6 +12706,7 @@ function start(_ref2) {
       height: 0
     }
   };
+  iEvent.edges = interaction.prepared.edges;
   iEvent.rect = interaction.resizeRects.inverted;
   iEvent.deltaRect = interaction.resizeRects.delta;
 }
@@ -12625,12 +12803,25 @@ function __move_6(_ref3) {
   iEvent.deltaRect = deltaRect;
 }
 
-function updateEventAxes(_ref4) {
-  var interaction = _ref4.interaction,
-      iEvent = _ref4.iEvent,
-      action = _ref4.action;
+function end(_ref4) {
+  var iEvent = _ref4.iEvent,
+      interaction = _ref4.interaction;
 
-  if (action !== 'resize' || !interaction.resizeAxes) {
+  if (interaction.prepared.name !== 'resize' || !interaction.prepared.edges) {
+    return;
+  }
+
+  iEvent.edges = interaction.prepared.edges;
+  iEvent.rect = interaction.resizeRects.inverted;
+  iEvent.deltaRect = interaction.resizeRects.delta;
+}
+
+function updateEventAxes(_ref5) {
+  var iEvent = _ref5.iEvent,
+      interaction = _ref5.interaction,
+      action = _ref5.action;
+
+  if (action !== ___scope_6.ActionName.Resize || !interaction.resizeAxes) {
     return;
   }
 
@@ -13230,6 +13421,7 @@ function __install_9(scope) {
         interaction.stop();
       } else {
         interaction.start(interaction.prepared, interactable, interaction.element);
+        setInteractionCursor(interaction, scope);
       }
     }
   });
@@ -13350,7 +13542,9 @@ function prepare(interaction, _ref4, scope) {
   var action = _ref4.action,
       interactable = _ref4.interactable,
       element = _ref4.element;
-  action = action || {};
+  action = action || {
+    name: null
+  }; // clear previous target element cursor
 
   if (interaction.interactable && interaction.interactable.options.styleCursor) {
     setCursor(interaction.element, '', scope);
@@ -13360,23 +13554,7 @@ function prepare(interaction, _ref4, scope) {
   interaction.element = element;
   __utils_9.copyAction(interaction.prepared, action);
   interaction.rect = interactable && action.name ? interactable.getRect(element) : null;
-
-  if (interaction.pointerType === 'mouse' && interactable && interactable.options.styleCursor) {
-    var cursor = '';
-
-    if (action) {
-      var cursorChecker = interactable.options[action.name].cursorChecker;
-
-      if (__utils_9.is.func(cursorChecker)) {
-        cursor = cursorChecker(action, interactable, element);
-      } else {
-        cursor = scope.actions[action.name].getCursor(action);
-      }
-    }
-
-    setCursor(interaction.element, cursor || '', scope);
-  }
-
+  setInteractionCursor(interaction, scope);
   scope.autoStart.signals.fire('prepared', {
     interaction: interaction
   });
@@ -13451,6 +13629,30 @@ function setCursor(element, cursor, scope) {
   element.ownerDocument.documentElement.style.cursor = cursor;
   element.style.cursor = cursor;
   scope.autoStart.cursorElement = cursor ? element : null;
+}
+
+function setInteractionCursor(interaction, scope) {
+  var interactable = interaction.interactable,
+      element = interaction.element,
+      prepared = interaction.prepared;
+
+  if (!(interaction.pointerType === 'mouse' && interactable && interactable.options.styleCursor)) {
+    return;
+  }
+
+  var cursor = '';
+
+  if (prepared.name) {
+    var cursorChecker = interactable.options[prepared.name].cursorChecker;
+
+    if (__utils_9.is.func(cursorChecker)) {
+      cursor = cursorChecker(prepared, interactable, element, interaction._interacting);
+    } else {
+      cursor = scope.actions[prepared.name].getCursor(prepared);
+    }
+  }
+
+  setCursor(interaction.element, cursor || '', scope);
 }
 
 var ___default_9 = {
@@ -16732,7 +16934,7 @@ function __init_27(window) {
 } // eslint-disable-next-line no-undef
 
 
-_interact["default"].version = "1.5.4";
+_interact["default"].version = "1.6.2";
 var ___default_27 = _interact["default"];
 _$interact_27["default"] = ___default_27;
 
@@ -16910,4 +17112,4 @@ module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u20
 /***/ })
 
 /******/ })["default"];
-//# sourceMappingURL=vue-grid-layout.common.js.map
+//# sourceMappingURL=vue-grid-layout-specific-configs-to-resize.common.js.map

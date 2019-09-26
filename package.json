@@ -1,6 +1,6 @@
 {
-  "name": "vue-grid-layout",
-  "version": "2.3.6",
+  "name": "vue-grid-layout-specific-configs-to-resize",
+  "version": "2.3.9",
   "description": "A draggable and resizable grid layout, as a Vue component.",
   "keywords": [
     "grid",
@@ -14,11 +14,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/jbaysolutions/vue-grid-layout.git"
+    "url": "git+https://github.com/jbaysolutions/vue-grid-layout.git"
   },
-  "author": "Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com)",
-  "main": "dist/vue-grid-layout.common.js",
-  "unpkg": "dist/vue-grid-layout.umd.min.js",
+  "author": "Gustavo Santos <gustavo.santos@jbaysolutions.com> (JBay Solutions)",
+  "main": "dist/vue-grid-layout-specific-configs-to-resize.umd.js",
+  "unpkg": "dist/vue-grid-layout-specific-configs-to-resize.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "rimraf dist && vue-cli-service build",
@@ -41,5 +41,15 @@
     "vue": "^2.6.8",
     "vue-template-compiler": "^2.5.17",
     "webpack-bundle-analyzer": "^3.4.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/jbaysolutions/vue-grid-layout/issues"
+  },
+  "homepage": "https://github.com/jbaysolutions/vue-grid-layout#readme",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "license": "ISC"
 }
