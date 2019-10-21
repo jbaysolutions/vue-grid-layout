@@ -1764,7 +1764,7 @@ $export($export.P + $export.F * (fails(function () {
 /***/ "584a":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.9' };
+var core = module.exports = { version: '2.6.10' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -2207,7 +2207,7 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
 /***/ "8378":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.9' };
+var core = module.exports = { version: '2.6.10' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -4425,12 +4425,15 @@ var web_dom_iterable = __webpack_require__("ac6a");
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4e668661-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=1dcc0fd5&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"7ad1bac8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=1deb95c9&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-item",class:_vm.classObj,style:(_vm.style)},[_vm._t("default"),(_vm.resizableAndNotStatic)?_c('span',{ref:"handle",class:_vm.resizableHandleClass}):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=1dcc0fd5&
+// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=1deb95c9&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
+var es6_regexp_replace = __webpack_require__("a481");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
 var es6_regexp_match = __webpack_require__("4917");
@@ -4438,14 +4441,10 @@ var es6_regexp_match = __webpack_require__("4917");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
-var es6_regexp_replace = __webpack_require__("a481");
-
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.sort.js
 var es6_array_sort = __webpack_require__("55dd");
 
 // CONCATENATED MODULE: ./src/helpers/utils.js
-
 
 
 
@@ -5270,6 +5269,7 @@ function removeWindowEventListener(event
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=script&lang=js&
 
 
+
 //
 //
 //
@@ -6079,11 +6079,11 @@ var interact = __webpack_require__("fb3a");
 
         var opts = {
           preserveAspectRatio: true,
-          // allowFrom: "." + this.resizableHandleClass,
+          // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
           edges: {
             left: false,
-            right: "." + this.resizableHandleClass,
-            bottom: "." + this.resizableHandleClass,
+            right: "." + this.resizableHandleClass.trim().replace(" ", "."),
+            bottom: "." + this.resizableHandleClass.trim().replace(" ", "."),
             top: false
           },
           ignoreFrom: this.resizeIgnoreFrom,
@@ -6277,7 +6277,7 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var GridItem = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4e668661-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=336c4f92&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"7ad1bac8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=336c4f92&
 var GridLayoutvue_type_template_id_336c4f92_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
 var GridLayoutvue_type_template_id_336c4f92_staticRenderFns = []
 
@@ -6311,7 +6311,6 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 // CONCATENATED MODULE: ./src/helpers/responsiveUtils.js
-
 
 
 
@@ -6483,7 +6482,6 @@ function sortBreakpoints(breakpoints
   });
 }
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=script&lang=js&
-
 
 
 
@@ -6972,9 +6970,9 @@ var GridLayout_component = normalizeComponent(
 var VueGridLayout = {
   // ResponsiveGridLayout,
   GridLayout: GridLayout,
-  GridItem: GridItem // module.exports = VueGridLayout;
+  GridItem: GridItem
+}; // module.exports = VueGridLayout;
 
-};
 Object.keys(VueGridLayout).forEach(function (name) {
   external_commonjs_vue_commonjs2_vue_root_Vue_default.a.component(name, VueGridLayout[name]);
 });
@@ -6995,7 +6993,7 @@ Object.keys(VueGridLayout).forEach(function (name) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * interact.js 1.5.4
+ * interact.js 1.6.2
  *
  * Copyright (c) 2012-2019 Taye Adeyemi <dev@taye.me>
  * Released under the MIT License.
@@ -8541,7 +8539,7 @@ var ___domObjects_51 = ___interopRequireDefault_51(_$domObjects_50);
 
 var __is_51 = ___interopRequireWildcard_51(_$is_57);
 
-var ___window_51 = ___interopRequireDefault_51(_$window_66);
+var ___window_51 = ___interopRequireWildcard_51(_$window_66);
 
 function ___interopRequireWildcard_51(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
@@ -8603,17 +8601,13 @@ var getParent = function getParent(el) {
 
 function indexOfDeepestElement(elements) {
   var deepestZoneParents = [];
-  var dropzoneParents = [];
-  var dropzone;
   var deepestZone = elements[0];
   var index = deepestZone ? 0 : -1;
-  var parent;
-  var child;
   var i;
   var n;
 
   for (i = 1; i < elements.length; i++) {
-    dropzone = elements[i]; // an element might belong to multiple selector dropzones
+    var dropzone = elements[i]; // an element might belong to multiple selector dropzones
 
     if (!dropzone || dropzone === deepestZone) {
       continue;
@@ -8634,18 +8628,34 @@ function indexOfDeepestElement(elements) {
         deepestZone = dropzone;
         index = i;
         continue;
+      } // compare zIndex of siblings
+
+
+    if (dropzone.parentNode === deepestZone.parentNode) {
+      var deepestZIndex = parseInt((0, ___window_51.getWindow)(deepestZone).getComputedStyle(deepestZone).zIndex, 10) || 0;
+      var dropzoneZIndex = parseInt((0, ___window_51.getWindow)(dropzone).getComputedStyle(dropzone).zIndex, 10) || 0;
+
+      if (dropzoneZIndex >= deepestZIndex) {
+        deepestZone = dropzone;
+        index = i;
       }
+
+      continue;
+    } // populate the ancestry array for the latest deepest dropzone
+
 
     if (!deepestZoneParents.length) {
-      parent = deepestZone;
+      var _parent = deepestZone;
+      var parentParent = void 0;
 
-      while (getParent(parent) && getParent(parent) !== parent.ownerDocument) {
-        deepestZoneParents.unshift(parent);
-        parent = getParent(parent);
+      while ((parentParent = getParent(_parent)) && parentParent !== _parent.ownerDocument) {
+        deepestZoneParents.unshift(_parent);
+        _parent = parentParent;
       }
-    } // if this element is an svg element and the current deepest is
-    // an HTMLElement
+    }
 
+    var parent = void 0; // if this element is an svg element and the current deepest is an
+    // HTMLElement
 
     if (deepestZone instanceof ___domObjects_51["default"].HTMLElement && dropzone instanceof ___domObjects_51["default"].SVGElement && !(dropzone instanceof ___domObjects_51["default"].SVGSVGElement)) {
       if (dropzone === deepestZone.parentNode) {
@@ -8657,7 +8667,7 @@ function indexOfDeepestElement(elements) {
       parent = dropzone;
     }
 
-    dropzoneParents = [];
+    var dropzoneParents = [];
 
     while (parent.parentNode !== parent.ownerDocument) {
       dropzoneParents.unshift(parent);
@@ -8671,13 +8681,13 @@ function indexOfDeepestElement(elements) {
     }
 
     var parents = [dropzoneParents[n - 1], dropzoneParents[n], deepestZoneParents[n]];
-    child = parents[0].lastChild;
+    var child = parents[0].lastChild;
 
     while (child) {
       if (child === parents[1]) {
         deepestZone = dropzone;
         index = i;
-        deepestZoneParents = [];
+        deepestZoneParents = dropzoneParents;
         break;
       } else if (child === parents[2]) {
         break;
@@ -8827,7 +8837,8 @@ function pointerExtend(dest, source) {
 }
 
 pointerExtend.prefixedPropREs = {
-  webkit: /(Movement[XY]|Radius[XY]|RotationAngle|Force)$/
+  webkit: /(Movement[XY]|Radius[XY]|RotationAngle|Force)$/,
+  moz: /(Pressure)$/
 };
 var ___default_60 = pointerExtend;
 _$pointerExtend_60["default"] = ___default_60;
@@ -12211,6 +12222,7 @@ function __install_6(scope) {
   });
   interactions.signals.on('action-start', start);
   interactions.signals.on('action-move', __move_6);
+  interactions.signals.on('action-end', end);
   interactions.signals.on('action-start', updateEventAxes);
   interactions.signals.on('action-move', updateEventAxes);
   resize.cursors = initCursors(browser);
@@ -12490,7 +12502,7 @@ function start(_ref2) {
     return;
   }
 
-  var startRect = interaction.rect;
+  var startRect = (0, ___extend_6["default"])({}, interaction.rect);
   var resizeOptions = interaction.interactable.options.resize;
   /*
    * When using the `resizable.square` or `resizable.preserveAspectRatio` options, resizing from one edge
@@ -12517,7 +12529,12 @@ function start(_ref2) {
 
   interaction.resizeRects = {
     start: startRect,
-    current: (0, ___extend_6["default"])({}, startRect),
+    current: {
+      left: startRect.left,
+      right: startRect.right,
+      top: startRect.top,
+      bottom: startRect.bottom
+    },
     inverted: (0, ___extend_6["default"])({}, startRect),
     previous: (0, ___extend_6["default"])({}, startRect),
     delta: {
@@ -12529,6 +12546,7 @@ function start(_ref2) {
       height: 0
     }
   };
+  iEvent.edges = interaction.prepared.edges;
   iEvent.rect = interaction.resizeRects.inverted;
   iEvent.deltaRect = interaction.resizeRects.delta;
 }
@@ -12625,12 +12643,25 @@ function __move_6(_ref3) {
   iEvent.deltaRect = deltaRect;
 }
 
-function updateEventAxes(_ref4) {
-  var interaction = _ref4.interaction,
-      iEvent = _ref4.iEvent,
-      action = _ref4.action;
+function end(_ref4) {
+  var iEvent = _ref4.iEvent,
+      interaction = _ref4.interaction;
 
-  if (action !== 'resize' || !interaction.resizeAxes) {
+  if (interaction.prepared.name !== 'resize' || !interaction.prepared.edges) {
+    return;
+  }
+
+  iEvent.edges = interaction.prepared.edges;
+  iEvent.rect = interaction.resizeRects.inverted;
+  iEvent.deltaRect = interaction.resizeRects.delta;
+}
+
+function updateEventAxes(_ref5) {
+  var iEvent = _ref5.iEvent,
+      interaction = _ref5.interaction,
+      action = _ref5.action;
+
+  if (action !== ___scope_6.ActionName.Resize || !interaction.resizeAxes) {
     return;
   }
 
@@ -13230,6 +13261,7 @@ function __install_9(scope) {
         interaction.stop();
       } else {
         interaction.start(interaction.prepared, interactable, interaction.element);
+        setInteractionCursor(interaction, scope);
       }
     }
   });
@@ -13350,7 +13382,9 @@ function prepare(interaction, _ref4, scope) {
   var action = _ref4.action,
       interactable = _ref4.interactable,
       element = _ref4.element;
-  action = action || {};
+  action = action || {
+    name: null
+  }; // clear previous target element cursor
 
   if (interaction.interactable && interaction.interactable.options.styleCursor) {
     setCursor(interaction.element, '', scope);
@@ -13360,23 +13394,7 @@ function prepare(interaction, _ref4, scope) {
   interaction.element = element;
   __utils_9.copyAction(interaction.prepared, action);
   interaction.rect = interactable && action.name ? interactable.getRect(element) : null;
-
-  if (interaction.pointerType === 'mouse' && interactable && interactable.options.styleCursor) {
-    var cursor = '';
-
-    if (action) {
-      var cursorChecker = interactable.options[action.name].cursorChecker;
-
-      if (__utils_9.is.func(cursorChecker)) {
-        cursor = cursorChecker(action, interactable, element);
-      } else {
-        cursor = scope.actions[action.name].getCursor(action);
-      }
-    }
-
-    setCursor(interaction.element, cursor || '', scope);
-  }
-
+  setInteractionCursor(interaction, scope);
   scope.autoStart.signals.fire('prepared', {
     interaction: interaction
   });
@@ -13451,6 +13469,30 @@ function setCursor(element, cursor, scope) {
   element.ownerDocument.documentElement.style.cursor = cursor;
   element.style.cursor = cursor;
   scope.autoStart.cursorElement = cursor ? element : null;
+}
+
+function setInteractionCursor(interaction, scope) {
+  var interactable = interaction.interactable,
+      element = interaction.element,
+      prepared = interaction.prepared;
+
+  if (!(interaction.pointerType === 'mouse' && interactable && interactable.options.styleCursor)) {
+    return;
+  }
+
+  var cursor = '';
+
+  if (prepared.name) {
+    var cursorChecker = interactable.options[prepared.name].cursorChecker;
+
+    if (__utils_9.is.func(cursorChecker)) {
+      cursor = cursorChecker(prepared, interactable, element, interaction._interacting);
+    } else {
+      cursor = scope.actions[prepared.name].getCursor(prepared);
+    }
+  }
+
+  setCursor(interaction.element, cursor || '', scope);
 }
 
 var ___default_9 = {
@@ -16732,7 +16774,7 @@ function __init_27(window) {
 } // eslint-disable-next-line no-undef
 
 
-_interact["default"].version = "1.5.4";
+_interact["default"].version = "1.6.2";
 var ___default_27 = _interact["default"];
 _$interact_27["default"] = ___default_27;
 

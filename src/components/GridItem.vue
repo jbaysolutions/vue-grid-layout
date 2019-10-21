@@ -762,11 +762,11 @@
 
                     const opts = {
                         preserveAspectRatio: true,
-                        // allowFrom: "." + this.resizableHandleClass,
+                        // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
                         edges: {
                             left: false,
-                            right: "." + this.resizableHandleClass,
-                            bottom: "." + this.resizableHandleClass,
+                            right: "." + this.resizableHandleClass.trim().replace(" ", "."),
+                            bottom: "." + this.resizableHandleClass.trim().replace(" ", "."),
                             top: false
                         },
                         ignoreFrom: this.resizeIgnoreFrom,
