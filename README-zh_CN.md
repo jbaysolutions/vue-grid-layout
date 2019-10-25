@@ -42,6 +42,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 - [Draxed](https://www.draxed.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 - [cryptotiles](https://www.cryptotiles.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 - [Data Providers](https://www.dataproviders.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
+- [Cataholic](https://cataholic.glitch.me/)
 
 *您还知悉其他项目? 请创建一个PR，谢谢!*
 
