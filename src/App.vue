@@ -61,6 +61,7 @@
                            @resize="resize"
                            @move="move"
                            @resized="resized"
+                           @container-resized="containerResized"
                            @moved="moved"
                 >
                     <!--<custom-drag-element :text="item.i"></custom-drag-element>-->
@@ -190,6 +191,9 @@
             },
             resized: function(i, newH, newW, newHPx, newWPx){
                 console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
+            },
+            containerResized: function(i, newH, newW, newHPx, newWPx){
+                console.log("### CONTAINER RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
             },
             /**
              * Add change direction button

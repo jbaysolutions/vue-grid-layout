@@ -331,17 +331,17 @@
             },
             rowHeight: function () {
                 this.createStyle();
-                this.emitResized();
+                this.emitContainerResized();
             },
             cols: function () {
                 this.tryMakeResizable();
                 this.createStyle();
-                this.emitResized();
+                this.emitContainerResized();
             },
             containerWidth: function () {
                 this.tryMakeResizable();
                 this.createStyle();
-                this.emitResized();
+                this.emitContainerResized();
             },
             x: function (newVal) {
                 this.innerX = newVal;
@@ -354,12 +354,12 @@
             h: function (newVal) {
                 this.innerH = newVal
                 this.createStyle();
-                this.emitResized();
+                // this.emitContainerResized();
             },
             w: function (newVal) {
                 this.innerW = newVal;
                 this.createStyle();
-                this.emitResized();
+                // this.emitContainerResized();
             },
             renderRtl: function () {
                 // console.log("### renderRtl");
@@ -458,7 +458,7 @@
                 }
                 this.style = style;
             },
-            emitResized() {
+            emitContainerResized() {
                 // this.style has width and height with trailing 'px'. The
                 // resized event is without them
                 let styleProps = {};
@@ -469,7 +469,7 @@
                         return;
                     styleProps[prop] = matches[1];
                 }
-                this.$emit("resized", this.i, this.h, this.w, styleProps.height, styleProps.width);
+                this.$emit("container-resized", this.i, this.h, this.w, styleProps.height, styleProps.width);
             },
             handleResize: function (event) {
                 if (this.static) return;
