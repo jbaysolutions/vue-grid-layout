@@ -1773,7 +1773,7 @@ $export($export.P + $export.F * (fails(function () {
 /***/ "584a":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.9' };
+var core = module.exports = { version: '2.6.10' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -2216,7 +2216,7 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
 /***/ "8378":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.9' };
+var core = module.exports = { version: '2.6.10' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -4434,12 +4434,12 @@ var web_dom_iterable = __webpack_require__("ac6a");
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4e668661-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=1dcc0fd5&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0156aa68-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=e827a502&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-item",class:_vm.classObj,style:(_vm.style)},[_vm._t("default"),(_vm.resizableAndNotStatic)?_c('span',{ref:"handle",class:_vm.resizableHandleClass}):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=1dcc0fd5&
+// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=e827a502&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
 var es6_regexp_match = __webpack_require__("4917");
@@ -5612,17 +5612,17 @@ var interact = __webpack_require__("fb3a");
     },
     rowHeight: function rowHeight() {
       this.createStyle();
-      this.emitResized();
+      this.emitContainerResized();
     },
     cols: function cols() {
       this.tryMakeResizable();
       this.createStyle();
-      this.emitResized();
+      this.emitContainerResized();
     },
     containerWidth: function containerWidth() {
       this.tryMakeResizable();
       this.createStyle();
-      this.emitResized();
+      this.emitContainerResized();
     },
     x: function x(newVal) {
       this.innerX = newVal;
@@ -5634,13 +5634,11 @@ var interact = __webpack_require__("fb3a");
     },
     h: function h(newVal) {
       this.innerH = newVal;
-      this.createStyle();
-      this.emitResized();
+      this.createStyle(); // this.emitContainerResized();
     },
     w: function w(newVal) {
       this.innerW = newVal;
-      this.createStyle();
-      this.emitResized();
+      this.createStyle(); // this.emitContainerResized();
     },
     renderRtl: function renderRtl() {
       // console.log("### renderRtl");
@@ -5741,7 +5739,7 @@ var interact = __webpack_require__("fb3a");
 
       this.style = style;
     },
-    emitResized: function emitResized() {
+    emitContainerResized: function emitContainerResized() {
       // this.style has width and height with trailing 'px'. The
       // resized event is without them
       var styleProps = {};
@@ -5754,7 +5752,7 @@ var interact = __webpack_require__("fb3a");
         styleProps[prop] = matches[1];
       }
 
-      this.$emit("resized", this.i, this.h, this.w, styleProps.height, styleProps.width);
+      this.$emit("container-resized", this.i, this.h, this.w, styleProps.height, styleProps.width);
     },
     handleResize: function handleResize(event) {
       if (this.static) return;
@@ -6286,12 +6284,12 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var GridItem = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4e668661-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=336c4f92&
-var GridLayoutvue_type_template_id_336c4f92_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
-var GridLayoutvue_type_template_id_336c4f92_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0156aa68-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=bff27f1c&
+var GridLayoutvue_type_template_id_bff27f1c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
+var GridLayoutvue_type_template_id_bff27f1c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=336c4f92&
+// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=bff27f1c&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
@@ -6700,6 +6698,7 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
   },
   watch: {
     width: function width(newval, oldval) {
+      var self = this;
       this.$nextTick(function () {
         var _this = this;
 
@@ -6959,8 +6958,8 @@ var GridLayoutvue_type_style_index_0_lang_css_ = __webpack_require__("e279");
 
 var GridLayout_component = normalizeComponent(
   components_GridLayoutvue_type_script_lang_js_,
-  GridLayoutvue_type_template_id_336c4f92_render,
-  GridLayoutvue_type_template_id_336c4f92_staticRenderFns,
+  GridLayoutvue_type_template_id_bff27f1c_render,
+  GridLayoutvue_type_template_id_bff27f1c_staticRenderFns,
   false,
   null,
   null,
@@ -6981,9 +6980,9 @@ var GridLayout_component = normalizeComponent(
 var VueGridLayout = {
   // ResponsiveGridLayout,
   GridLayout: GridLayout,
-  GridItem: GridItem // module.exports = VueGridLayout;
+  GridItem: GridItem
+}; // module.exports = VueGridLayout;
 
-};
 Object.keys(VueGridLayout).forEach(function (name) {
   external_commonjs_vue_commonjs2_vue_root_Vue_default.a.component(name, VueGridLayout[name]);
 });
@@ -7004,7 +7003,7 @@ Object.keys(VueGridLayout).forEach(function (name) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * interact.js 1.5.4
+ * interact.js 1.6.3
  *
  * Copyright (c) 2012-2019 Taye Adeyemi <dev@taye.me>
  * Released under the MIT License.
@@ -7040,7 +7039,9 @@ var _interactions = _interopRequireDefault(_$interactions_23({}));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -7316,7 +7317,7 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -7343,7 +7344,10 @@ function install(scope) {
   var listeners = {};
 
   for (var _i = 0; _i < methodNames.length; _i++) {
-    var method = methodNames[_i];
+    var _ref;
+
+    _ref = methodNames[_i];
+    var method = _ref;
     listeners[method] = doOnInteractions(method, scope);
   }
 
@@ -7399,10 +7403,10 @@ function install(scope) {
     type: 'blur',
     listener: function listener(event) {
       for (var _i2 = 0; _i2 < scope.interactions.list.length; _i2++) {
-        var _ref;
+        var _ref2;
 
-        _ref = scope.interactions.list[_i2];
-        var interaction = _ref;
+        _ref2 = scope.interactions.list[_i2];
+        var interaction = _ref2;
         interaction.documentBlur(event);
       }
     }
@@ -7459,10 +7463,10 @@ function install(scope) {
   function releasePointersOnRemovedEls() {
     // for all inactive touch interactions with pointers down
     for (var _i3 = 0; _i3 < scope.interactions.list.length; _i3++) {
-      var _ref2;
+      var _ref3;
 
-      _ref2 = scope.interactions.list[_i3];
-      var interaction = _ref2;
+      _ref3 = scope.interactions.list[_i3];
+      var interaction = _ref3;
 
       if (!interaction.pointerIsDown || interaction.pointerType !== 'touch' || interaction._interacting) {
         continue;
@@ -7470,11 +7474,11 @@ function install(scope) {
 
 
       var _loop = function _loop() {
-        _ref3 = interaction.pointers[_i4];
-        var pointer = _ref3;
+        _ref4 = interaction.pointers[_i4];
+        var pointer = _ref4;
 
-        if (!scope.documents.some(function (_ref4) {
-          var doc = _ref4.doc;
+        if (!scope.documents.some(function (_ref5) {
+          var doc = _ref5.doc;
           return (0, _$domUtils_51.nodeContains)(doc, pointer.downTarget);
         })) {
           // remove the pointer from the interaction
@@ -7483,7 +7487,7 @@ function install(scope) {
       };
 
       for (var _i4 = 0; _i4 < interaction.pointers.length; _i4++) {
-        var _ref3;
+        var _ref4;
 
         _loop();
       }
@@ -7508,10 +7512,10 @@ function doOnInteractions(method, scope) {
       scope.prevTouchTime = scope.now();
 
       for (var _i5 = 0; _i5 < event.changedTouches.length; _i5++) {
-        var _ref5;
+        var _ref6;
 
-        _ref5 = event.changedTouches[_i5];
-        var changedTouch = _ref5;
+        _ref6 = event.changedTouches[_i5];
+        var changedTouch = _ref6;
         var pointer = changedTouch;
 
         var pointerId = _pointerUtils["default"].getPointerId(pointer);
@@ -7589,10 +7593,10 @@ function getInteraction(searchDetails) {
   });
 }
 
-function onDocSignal(_ref6, signalName) {
-  var doc = _ref6.doc,
-      scope = _ref6.scope,
-      options = _ref6.options;
+function onDocSignal(_ref7, signalName) {
+  var doc = _ref7.doc,
+      scope = _ref7.scope,
+      options = _ref7.options;
   var docEvents = scope.interactions.docEvents;
   var eventMethod = signalName.indexOf('add') === 0 ? _events["default"].add : _events["default"].remove;
 
@@ -7611,12 +7615,12 @@ function onDocSignal(_ref6, signalName) {
   var eventOptions = options && options.events;
 
   for (var _i7 = 0; _i7 < docEvents.length; _i7++) {
-    var _ref7;
+    var _ref8;
 
-    _ref7 = docEvents[_i7];
-    var _ref8 = _ref7,
-        type = _ref8.type,
-        listener = _ref8.listener;
+    _ref8 = docEvents[_i7];
+    var _ref9 = _ref8,
+        type = _ref9.type,
+        listener = _ref9.listener;
     eventMethod(doc, type, listener, eventOptions);
   }
 }
@@ -7655,7 +7659,9 @@ var _scope = _$scope_24({});
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7765,16 +7771,16 @@ function () {
       _loop(key);
     }
 
-    var _loop2 = function _loop2(key) {
-      Object.defineProperty(_this._proxy, key, {
+    var _loop2 = function _loop2(_key) {
+      Object.defineProperty(_this._proxy, _key, {
         value: function value() {
-          return that[key].apply(that, arguments);
+          return that[_key].apply(that, arguments);
         }
       });
     };
 
-    for (var key in _ProxyMethods) {
-      _loop2(key);
+    for (var _key in _ProxyMethods) {
+      _loop2(_key);
     }
 
     this._signals.fire('new', {
@@ -8471,7 +8477,9 @@ var is = _interopRequireWildcard(_$is_57);
 
 var _window = ___interopRequireDefault_48(_$window_66);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_48(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -8550,9 +8558,11 @@ var ___domObjects_51 = ___interopRequireDefault_51(_$domObjects_50);
 
 var __is_51 = ___interopRequireWildcard_51(_$is_57);
 
-var ___window_51 = ___interopRequireDefault_51(_$window_66);
+var ___window_51 = ___interopRequireWildcard_51(_$window_66);
 
-function ___interopRequireWildcard_51(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_51() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_51 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_51(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_51(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_51(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -8612,17 +8622,13 @@ var getParent = function getParent(el) {
 
 function indexOfDeepestElement(elements) {
   var deepestZoneParents = [];
-  var dropzoneParents = [];
-  var dropzone;
   var deepestZone = elements[0];
   var index = deepestZone ? 0 : -1;
-  var parent;
-  var child;
   var i;
   var n;
 
   for (i = 1; i < elements.length; i++) {
-    dropzone = elements[i]; // an element might belong to multiple selector dropzones
+    var dropzone = elements[i]; // an element might belong to multiple selector dropzones
 
     if (!dropzone || dropzone === deepestZone) {
       continue;
@@ -8643,18 +8649,34 @@ function indexOfDeepestElement(elements) {
         deepestZone = dropzone;
         index = i;
         continue;
+      } // compare zIndex of siblings
+
+
+    if (dropzone.parentNode === deepestZone.parentNode) {
+      var deepestZIndex = parseInt((0, ___window_51.getWindow)(deepestZone).getComputedStyle(deepestZone).zIndex, 10) || 0;
+      var dropzoneZIndex = parseInt((0, ___window_51.getWindow)(dropzone).getComputedStyle(dropzone).zIndex, 10) || 0;
+
+      if (dropzoneZIndex >= deepestZIndex) {
+        deepestZone = dropzone;
+        index = i;
       }
+
+      continue;
+    } // populate the ancestry array for the latest deepest dropzone
+
 
     if (!deepestZoneParents.length) {
-      parent = deepestZone;
+      var _parent = deepestZone;
+      var parentParent = void 0;
 
-      while (getParent(parent) && getParent(parent) !== parent.ownerDocument) {
-        deepestZoneParents.unshift(parent);
-        parent = getParent(parent);
+      while ((parentParent = getParent(_parent)) && parentParent !== _parent.ownerDocument) {
+        deepestZoneParents.unshift(_parent);
+        _parent = parentParent;
       }
-    } // if this element is an svg element and the current deepest is
-    // an HTMLElement
+    }
 
+    var parent = void 0; // if this element is an svg element and the current deepest is an
+    // HTMLElement
 
     if (deepestZone instanceof ___domObjects_51["default"].HTMLElement && dropzone instanceof ___domObjects_51["default"].SVGElement && !(dropzone instanceof ___domObjects_51["default"].SVGSVGElement)) {
       if (dropzone === deepestZone.parentNode) {
@@ -8666,7 +8688,7 @@ function indexOfDeepestElement(elements) {
       parent = dropzone;
     }
 
-    dropzoneParents = [];
+    var dropzoneParents = [];
 
     while (parent.parentNode !== parent.ownerDocument) {
       dropzoneParents.unshift(parent);
@@ -8680,13 +8702,13 @@ function indexOfDeepestElement(elements) {
     }
 
     var parents = [dropzoneParents[n - 1], dropzoneParents[n], deepestZoneParents[n]];
-    child = parents[0].lastChild;
+    var child = parents[0].lastChild;
 
     while (child) {
       if (child === parents[1]) {
         deepestZone = dropzone;
         index = i;
-        deepestZoneParents = [];
+        deepestZoneParents = dropzoneParents;
         break;
       } else if (child === parents[2]) {
         break;
@@ -8787,7 +8809,9 @@ var arr = ___interopRequireWildcard_49(_$arr_47);
 
 var __is_49 = ___interopRequireWildcard_49(_$is_57);
 
-function ___interopRequireWildcard_49(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_49() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_49 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_49(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_49(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function clone(source) {
   var dest = {};
@@ -8836,7 +8860,8 @@ function pointerExtend(dest, source) {
 }
 
 pointerExtend.prefixedPropREs = {
-  webkit: /(Movement[XY]|Radius[XY]|RotationAngle|Force)$/
+  webkit: /(Movement[XY]|Radius[XY]|RotationAngle|Force)$/,
+  moz: /(Pressure)$/
 };
 var ___default_60 = pointerExtend;
 _$pointerExtend_60["default"] = ___default_60;
@@ -8875,7 +8900,9 @@ var __is_61 = ___interopRequireWildcard_61(_$is_57);
 
 var _pointerExtend = ___interopRequireDefault_61(_$pointerExtend_60);
 
-function ___interopRequireWildcard_61(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_61() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_61 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_61(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_61(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_61(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -9149,7 +9176,9 @@ var _pointerUtils = ___interopRequireDefault_52(_$pointerUtils_61);
 
 function ___interopRequireDefault_52(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_52(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_52() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_52 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_52(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_52(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9161,7 +9190,7 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -9256,7 +9285,10 @@ function addDelegate(selector, context, type, listener, optionalArg) {
     }; // add delegate listener functions
 
     for (var _i2 = 0; _i2 < documents.length; _i2++) {
-      var doc = documents[_i2];
+      var _ref;
+
+      _ref = documents[_i2];
+      var doc = _ref;
       add(doc, type, delegateListener);
       add(doc, type, delegateUseCapture, true);
     }
@@ -9359,15 +9391,15 @@ function delegateListener(event, optionalArg) {
         fakeEvent.currentTarget = element;
 
         for (var _i3 = 0; _i3 < listeners.length; _i3++) {
-          var _ref;
+          var _ref2;
 
-          _ref = listeners[_i3];
+          _ref2 = listeners[_i3];
 
-          var _ref2 = _ref,
-              _ref3 = _slicedToArray(_ref2, 3),
-              fn = _ref3[0],
-              capture = _ref3[1],
-              passive = _ref3[2];
+          var _ref3 = _ref2,
+              _ref4 = _slicedToArray(_ref3, 3),
+              fn = _ref4[0],
+              capture = _ref4[1],
+              passive = _ref4[2];
 
           if (capture === !!options.capture && passive === options.passive) {
             fn(fakeEvent);
@@ -9486,7 +9518,9 @@ var _extend = ___interopRequireDefault_63(_$extend_53);
 
 var __is_63 = ___interopRequireWildcard_63(_$is_57);
 
-function ___interopRequireWildcard_63(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_63() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_63 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_63(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_63(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_63(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -9498,21 +9532,21 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-function getStringOptionResult(value, interactable, element) {
+function getStringOptionResult(value, target, element) {
   if (value === 'parent') {
     return (0, _$domUtils_51.parentNode)(element);
   }
 
   if (value === 'self') {
-    return interactable.getRect(element);
+    return target.getRect(element);
   }
 
   return (0, _$domUtils_51.closest)(element, value);
 }
 
-function resolveRectLike(value, interactable, element, functionArgs) {
+function resolveRectLike(value, target, element, functionArgs) {
   if (__is_63.string(value)) {
-    value = getStringOptionResult(value, interactable, element);
+    value = getStringOptionResult(value, target, element);
   } else if (__is_63.func(value)) {
     value = value.apply(void 0, _toConsumableArray(functionArgs));
   }
@@ -9597,7 +9631,9 @@ var ___extend_59 = ___interopRequireDefault_59(_$extend_53);
 
 var __is_59 = ___interopRequireWildcard_59(_$is_57);
 
-function ___interopRequireWildcard_59(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_59() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_59 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_59(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_59(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_59(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -9900,7 +9936,9 @@ var _Signals = ___interopRequireDefault_56(_$Signals_46);
 
 function ___interopRequireDefault_56(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_56(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_56() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_56 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_56(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_56(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function warnOnce(method, message) {
   var warned = false; // eslint-disable-next-line no-shadow
@@ -9984,7 +10022,9 @@ var ___normalizeListeners_14 = ___interopRequireDefault_14(_$normalizeListeners_
 
 function ___interopRequireDefault_14(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_14(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_14() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_14 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_14(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_14(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___classCallCheck_14(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10069,6 +10109,11 @@ function () {
         }
       }
     }
+  }, {
+    key: "getRect",
+    value: function getRect(_element) {
+      return null;
+    }
   }]);
 
   return Eventable;
@@ -10107,7 +10152,9 @@ var _Eventable = ___interopRequireDefault_16(_$Eventable_14);
 
 function ___interopRequireDefault_16(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_16(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_16() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_16 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_16(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_16(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___classCallCheck_16(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10394,7 +10441,7 @@ function () {
           } // delegated event
           else if (__is_16.string(this.target)) {
               ___events_16["default"]["".concat(addRemove, "Delegate")](this.target, this._context, type, listener, options);
-            } // remove listener from this Interatable's element
+            } // remove listener from this Interactable's element
             else {
                 ___events_16["default"][addRemove](this.target, type, listener, options);
               }
@@ -10541,7 +10588,9 @@ var ___Signals_17 = ___interopRequireDefault_17(_$Signals_46);
 
 function ___interopRequireDefault_17(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_17(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_17() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_17 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_17(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_17(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___classCallCheck_17(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11020,7 +11069,9 @@ _$interactionFinder_22["default"] = void 0;
 
 var __dom_22 = ___interopRequireWildcard_22(_$domUtils_51);
 
-function ___interopRequireWildcard_22(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_22() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_22 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_22(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_22(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var finder = {
   methodOrder: ['simulationResume', 'mouseOrPen', 'hasPointer', 'idle'],
@@ -11201,7 +11252,9 @@ var __arr_1 = ___interopRequireWildcard_1(_$arr_47);
 
 var __is_1 = ___interopRequireWildcard_1(_$is_57);
 
-function ___interopRequireWildcard_1(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_1() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_1 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_1(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_1(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 ___scope_1.ActionName.Drag = 'drag';
 
@@ -11363,7 +11416,9 @@ var ___BaseEvent2_2 = ___interopRequireDefault_2(_$BaseEvent_13);
 
 var __arr_2 = ___interopRequireWildcard_2(_$arr_47);
 
-function ___interopRequireWildcard_2(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_2() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_2 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_2(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_2(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_2(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -11503,7 +11558,9 @@ var _DropEvent = ___interopRequireDefault_3(_$DropEvent_2);
 
 function ___interopRequireDefault_3(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_3(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_3() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_3 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_3(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_3(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function __install_3(scope) {
   var actions = scope.actions,
@@ -12040,7 +12097,9 @@ var ___scope_4 = _$scope_24({});
 
 var __utils_4 = ___interopRequireWildcard_4(_$utils_56);
 
-function ___interopRequireWildcard_4(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_4() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_4 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_4(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_4(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_4(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -12204,7 +12263,9 @@ var __is_6 = ___interopRequireWildcard_6(_$is_57);
 
 function ___interopRequireDefault_6(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_6(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_6() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_6 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_6(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_6(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 ___scope_6.ActionName.Resize = 'resize';
 
@@ -12220,6 +12281,7 @@ function __install_6(scope) {
   });
   interactions.signals.on('action-start', start);
   interactions.signals.on('action-move', __move_6);
+  interactions.signals.on('action-end', end);
   interactions.signals.on('action-start', updateEventAxes);
   interactions.signals.on('action-move', updateEventAxes);
   resize.cursors = initCursors(browser);
@@ -12499,7 +12561,7 @@ function start(_ref2) {
     return;
   }
 
-  var startRect = interaction.rect;
+  var startRect = (0, ___extend_6["default"])({}, interaction.rect);
   var resizeOptions = interaction.interactable.options.resize;
   /*
    * When using the `resizable.square` or `resizable.preserveAspectRatio` options, resizing from one edge
@@ -12526,7 +12588,12 @@ function start(_ref2) {
 
   interaction.resizeRects = {
     start: startRect,
-    current: (0, ___extend_6["default"])({}, startRect),
+    current: {
+      left: startRect.left,
+      right: startRect.right,
+      top: startRect.top,
+      bottom: startRect.bottom
+    },
     inverted: (0, ___extend_6["default"])({}, startRect),
     previous: (0, ___extend_6["default"])({}, startRect),
     delta: {
@@ -12538,6 +12605,7 @@ function start(_ref2) {
       height: 0
     }
   };
+  iEvent.edges = interaction.prepared.edges;
   iEvent.rect = interaction.resizeRects.inverted;
   iEvent.deltaRect = interaction.resizeRects.delta;
 }
@@ -12634,12 +12702,25 @@ function __move_6(_ref3) {
   iEvent.deltaRect = deltaRect;
 }
 
-function updateEventAxes(_ref4) {
-  var interaction = _ref4.interaction,
-      iEvent = _ref4.iEvent,
-      action = _ref4.action;
+function end(_ref4) {
+  var iEvent = _ref4.iEvent,
+      interaction = _ref4.interaction;
 
-  if (action !== 'resize' || !interaction.resizeAxes) {
+  if (interaction.prepared.name !== 'resize' || !interaction.prepared.edges) {
+    return;
+  }
+
+  iEvent.edges = interaction.prepared.edges;
+  iEvent.rect = interaction.resizeRects.inverted;
+  iEvent.deltaRect = interaction.resizeRects.delta;
+}
+
+function updateEventAxes(_ref5) {
+  var iEvent = _ref5.iEvent,
+      interaction = _ref5.interaction,
+      action = _ref5.action;
+
+  if (action !== ___scope_6.ActionName.Resize || !interaction.resizeAxes) {
     return;
   }
 
@@ -12744,7 +12825,9 @@ var ___raf_7 = ___interopRequireDefault_7(_$raf_62);
 
 function ___interopRequireDefault_7(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_7(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_7() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_7 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_7(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_7(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function __install_7(scope) {
   var interactions = scope.interactions,
@@ -12988,7 +13071,9 @@ _$InteractableMethods_8["default"] = void 0;
 
 var __is_8 = ___interopRequireWildcard_8(_$is_57);
 
-function ___interopRequireWildcard_8(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_8() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_8 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_8(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_8(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function __install_8(scope) {
   var Interactable = scope.Interactable,
@@ -13188,7 +13273,9 @@ var _InteractableMethods = ___interopRequireDefault_9(_$InteractableMethods_8);
 
 function ___interopRequireDefault_9(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_9(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_9() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_9 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_9(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_9(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function __install_9(scope) {
   var interact = scope.interact,
@@ -13239,6 +13326,7 @@ function __install_9(scope) {
         interaction.stop();
       } else {
         interaction.start(interaction.prepared, interactable, interaction.element);
+        setInteractionCursor(interaction, scope);
       }
     }
   });
@@ -13359,7 +13447,9 @@ function prepare(interaction, _ref4, scope) {
   var action = _ref4.action,
       interactable = _ref4.interactable,
       element = _ref4.element;
-  action = action || {};
+  action = action || {
+    name: null
+  }; // clear previous target element cursor
 
   if (interaction.interactable && interaction.interactable.options.styleCursor) {
     setCursor(interaction.element, '', scope);
@@ -13369,23 +13459,7 @@ function prepare(interaction, _ref4, scope) {
   interaction.element = element;
   __utils_9.copyAction(interaction.prepared, action);
   interaction.rect = interactable && action.name ? interactable.getRect(element) : null;
-
-  if (interaction.pointerType === 'mouse' && interactable && interactable.options.styleCursor) {
-    var cursor = '';
-
-    if (action) {
-      var cursorChecker = interactable.options[action.name].cursorChecker;
-
-      if (__utils_9.is.func(cursorChecker)) {
-        cursor = cursorChecker(action, interactable, element);
-      } else {
-        cursor = scope.actions[action.name].getCursor(action);
-      }
-    }
-
-    setCursor(interaction.element, cursor || '', scope);
-  }
-
+  setInteractionCursor(interaction, scope);
   scope.autoStart.signals.fire('prepared', {
     interaction: interaction
   });
@@ -13462,6 +13536,30 @@ function setCursor(element, cursor, scope) {
   scope.autoStart.cursorElement = cursor ? element : null;
 }
 
+function setInteractionCursor(interaction, scope) {
+  var interactable = interaction.interactable,
+      element = interaction.element,
+      prepared = interaction.prepared;
+
+  if (!(interaction.pointerType === 'mouse' && interactable && interactable.options.styleCursor)) {
+    return;
+  }
+
+  var cursor = '';
+
+  if (prepared.name) {
+    var cursorChecker = interactable.options[prepared.name].cursorChecker;
+
+    if (__utils_9.is.func(cursorChecker)) {
+      cursor = cursorChecker(prepared, interactable, element, interaction._interacting);
+    } else {
+      cursor = scope.actions[prepared.name].getCursor(prepared);
+    }
+  }
+
+  setCursor(interaction.element, cursor || '', scope);
+}
+
 var ___default_9 = {
   id: 'auto-start/base',
   install: __install_9,
@@ -13489,7 +13587,9 @@ var _base = ___interopRequireDefault_10(_$base_9);
 
 function ___interopRequireDefault_10(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_10(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_10() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_10 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_10(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_10(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function __install_10(scope) {
   scope.autoStart.signals.on('before-start', function (_ref) {
@@ -13695,7 +13795,9 @@ var __is_21 = ___interopRequireWildcard_21(_$is_57);
 
 /* removed: var _$window_66 = require("@interactjs/utils/window"); */;
 
-function ___interopRequireWildcard_21(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_21() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_21 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_21(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_21(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_21(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -13830,7 +13932,9 @@ var __is_25 = ___interopRequireWildcard_25(_$is_57);
 
 var ___window_25 = ___interopRequireDefault_25(_$window_66);
 
-function ___interopRequireWildcard_25(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_25() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_25 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_25(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_25(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_25(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -13973,6 +14077,8 @@ Object.defineProperty(_$base_30, "__esModule", {
 _$base_30.startAll = startAll;
 _$base_30.setAll = setAll;
 _$base_30.prepareStates = prepareStates;
+_$base_30.setCoords = setCoords;
+_$base_30.restoreCoords = restoreCoords;
 _$base_30.makeModifier = makeModifier;
 _$base_30["default"] = void 0;
 
@@ -13984,7 +14090,7 @@ function ___slicedToArray_30(arr, i) { return ___arrayWithHoles_30(arr) || ___it
 
 function ___nonIterableRest_30() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function ___iterableToArrayLimit_30(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function ___iterableToArrayLimit_30(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function ___arrayWithHoles_30(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -14008,11 +14114,11 @@ function __install_30(scope) {
     };
   });
   interactions.signals.on('before-action-start', function (arg) {
-    __start_30(arg, arg.interaction.coords.start.page);
+    __start_30(arg, arg.interaction.coords.start.page, arg.interaction.coords.prev.page);
   });
   interactions.signals.on('action-resume', function (arg) {
     stop(arg);
-    __start_30(arg, arg.interaction.coords.cur.page);
+    __start_30(arg, arg.interaction.coords.cur.page, arg.interaction.modifiers.result.coords);
     __beforeMove_30(arg);
   });
   interactions.signals.on('after-action-move', restoreCoords);
@@ -14023,7 +14129,7 @@ function __install_30(scope) {
   interactions.signals.on('stop', stop);
 }
 
-function __start_30(_ref2, pageCoords) {
+function __start_30(_ref2, pageCoords, prevCoords) {
   var interaction = _ref2.interaction,
       phase = _ref2.phase;
   var interactable = interaction.interactable,
@@ -14056,12 +14162,12 @@ function __start_30(_ref2, pageCoords) {
     startOffset: startOffset,
     states: states,
     preEnd: false,
-    requireEndOnly: false
+    requireEndOnly: false,
+    prevCoords: prevCoords || (interaction.modifiers.result ? interaction.modifiers.result.coords : interaction.coords.prev.page)
   };
   interaction.modifiers.states = states;
   interaction.modifiers.result = null;
   startAll(arg);
-  arg.pageCoords = (0, ___extend_30["default"])({}, interaction.coords.start.page);
   var result = interaction.modifiers.result = setAll(arg);
   return result;
 }
@@ -14083,17 +14189,12 @@ function startAll(arg) {
 }
 
 function setAll(arg) {
-  var interaction = arg.interaction,
-      _arg$modifiersState = arg.modifiersState,
-      modifiersState = _arg$modifiersState === void 0 ? interaction.modifiers : _arg$modifiersState,
-      _arg$prevCoords = arg.prevCoords,
-      prevCoords = _arg$prevCoords === void 0 ? modifiersState.result ? modifiersState.result.coords : interaction.coords.prev.page : _arg$prevCoords,
+  var prevCoords = arg.prevCoords,
       phase = arg.phase,
       preEnd = arg.preEnd,
       requireEndOnly = arg.requireEndOnly,
       rect = arg.rect,
-      skipModifiers = arg.skipModifiers;
-  var states = skipModifiers ? arg.states.slice(skipModifiers) : arg.states;
+      states = arg.states;
   arg.coords = (0, ___extend_30["default"])({}, arg.pageCoords);
   arg.rect = (0, ___extend_30["default"])({}, rect);
   var result = {
@@ -14138,7 +14239,7 @@ function setAll(arg) {
     rectChanged = result.rectDelta.left !== 0 || result.rectDelta.right !== 0 || result.rectDelta.top !== 0 || result.rectDelta.bottom !== 0;
   }
 
-  result.changed = prevCoords.x !== result.coords.x || prevCoords.y !== result.coords.y || rectChanged;
+  result.changed = !prevCoords || prevCoords.x !== result.coords.x || prevCoords.y !== result.coords.y || rectChanged;
   return result;
 }
 
@@ -14149,23 +14250,37 @@ function __beforeMove_30(arg) {
       skipModifiers = arg.skipModifiers;
   var interactable = interaction.interactable,
       element = interaction.element;
+  var states = skipModifiers ? interaction.modifiers.states.slice(skipModifiers) : interaction.modifiers.states;
+  var prevCoords = arg.prevCoords || (interaction.modifiers.result ? interaction.modifiers.result.coords : interaction.coords.prev.page);
   var modifierResult = setAll({
     interaction: interaction,
     interactable: interactable,
     element: element,
     preEnd: preEnd,
     phase: phase,
-    pageCoords: interaction.coords.cur.page,
+    pageCoords: arg.modifiedCoords || interaction.coords.cur.page,
+    prevCoords: prevCoords,
     rect: interaction.rect,
-    states: interaction.modifiers.states,
-    requireEndOnly: false,
-    skipModifiers: skipModifiers
+    states: states,
+    requireEndOnly: false
   });
   interaction.modifiers.result = modifierResult; // don't fire an action move if a modifier would keep the event in the same
   // cordinates as before
 
   if (!modifierResult.changed && interaction.interacting()) {
     return false;
+  }
+
+  if (arg.modifiedCoords) {
+    var page = interaction.coords.cur.page;
+    var adjustment = {
+      x: arg.modifiedCoords.x - page.x,
+      y: arg.modifiedCoords.y - page.y
+    };
+    modifierResult.coords.x += adjustment.x;
+    modifierResult.coords.y += adjustment.y;
+    modifierResult.delta.x += adjustment.x;
+    modifierResult.delta.y += adjustment.y;
   }
 
   setCoords(arg);
@@ -14221,9 +14336,9 @@ function stop(arg) {
   var modifierArg = (0, ___extend_30["default"])({
     states: states,
     interactable: interaction.interactable,
-    element: interaction.element
+    element: interaction.element,
+    rect: null
   }, arg);
-  restoreCoords(arg);
 
   for (var _i4 = 0; _i4 < states.length; _i4++) {
     var _ref6;
@@ -14289,8 +14404,8 @@ function prepareStates(modifierList) {
 function setCoords(arg) {
   var interaction = arg.interaction,
       phase = arg.phase;
-  var curCoords = arg.curCoords || interaction.coords.cur;
-  var startCoords = arg.startCoords || interaction.coords.start;
+  var curCoords = interaction.coords.cur;
+  var startCoords = interaction.coords.start;
   var _interaction$modifier = interaction.modifiers,
       result = _interaction$modifier.result,
       startDelta = _interaction$modifier.startDelta;
@@ -14437,15 +14552,17 @@ _$inertia_26["default"] = void 0;
 
 /* removed: var _$InteractEvent_15 = require("@interactjs/core/InteractEvent"); */;
 
-var ___base_26 = ___interopRequireDefault_26(_$base_30);
+var ___base_26 = ___interopRequireWildcard_26(_$base_30);
 
 var __utils_26 = ___interopRequireWildcard_26(_$utils_56);
 
 var ___raf_26 = ___interopRequireDefault_26(_$raf_62);
 
-function ___interopRequireWildcard_26(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
-
 function ___interopRequireDefault_26(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function ___getRequireWildcardCache_26() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_26 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_26(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_26(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 _$InteractEvent_15.EventPhase.Resume = 'resume';
 _$InteractEvent_15.EventPhase.InertiaStart = 'inertiastart';
@@ -14462,17 +14579,14 @@ function __install_26(scope) {
       upCoords: {},
       timeout: null
     };
-  }); // FIXME proper signal typing
-
+  });
   interactions.signals.on('before-action-end', function (arg) {
     return release(arg, scope);
   });
   interactions.signals.on('down', function (arg) {
     return resume(arg, scope);
   });
-  interactions.signals.on('stop', function (arg) {
-    return __stop_26(arg);
-  });
+  interactions.signals.on('stop', __stop_26);
   defaults.perAction.inertia = {
     enabled: false,
     resistance: 10,
@@ -14509,7 +14623,8 @@ function resume(_ref2, scope) {
         }), interaction._now()); // fire appropriate signals
 
         var signalArg = {
-          interaction: interaction
+          interaction: interaction,
+          phase: _$InteractEvent_15.EventPhase.Resume
         };
         scope.interactions.signals.fire('action-resume', signalArg); // fire a reume event
 
@@ -14549,17 +14664,18 @@ function release(_ref3, scope) {
   var inertia = inertiaPossible && now - interaction.coords.cur.timeStamp < 50 && pointerSpeed > options.minSpeed && pointerSpeed > options.endSpeed;
   var modifierArg = {
     interaction: interaction,
-    pageCoords: __utils_26.extend({}, interaction.coords.cur.page),
+    pageCoords: interaction.coords.cur.page,
     states: inertiaPossible && interaction.modifiers.states.map(function (modifierStatus) {
       return __utils_26.extend({}, modifierStatus);
     }),
     preEnd: true,
-    prevCoords: undefined,
-    requireEndOnly: null
+    prevCoords: null,
+    requireEndOnly: null,
+    phase: _$InteractEvent_15.EventPhase.InertiaStart
   }; // smoothEnd
 
   if (inertiaPossible && !inertia) {
-    modifierArg.prevCoords = interaction.prevEvent.page;
+    modifierArg.prevCoords = interaction.modifiers.result ? interaction.modifiers.result.coords : interaction.prevEvent.page;
     modifierArg.requireEndOnly = false;
     modifierResult = ___base_26["default"].setAll(modifierArg);
 
@@ -14573,8 +14689,10 @@ function release(_ref3, scope) {
   }
 
   __utils_26.pointer.copyCoords(state.upCoords, interaction.coords.cur);
+  (0, ___base_26.setCoords)(modifierArg);
   interaction.pointers[0].pointer = state.startEvent = new scope.InteractEvent(interaction, event, // FIXME add proper typing Action.name
   interaction.prepared.name, _$InteractEvent_15.EventPhase.InertiaStart, interaction.element);
+  (0, ___base_26.restoreCoords)(modifierArg);
   state.t0 = now;
   state.active = true;
   state.allowResume = options.allowResume;
@@ -14589,7 +14707,7 @@ function release(_ref3, scope) {
     __utils_26.extend(modifierArg.pageCoords, interaction.coords.cur.page);
     modifierArg.pageCoords.x += state.xe;
     modifierArg.pageCoords.y += state.ye;
-    modifierArg.prevCoords = undefined;
+    modifierArg.prevCoords = null;
     modifierArg.requireEndOnly = true;
     modifierResult = ___base_26["default"].setAll(modifierArg);
     state.modifiedXe += modifierResult.delta.x;
@@ -14746,7 +14864,9 @@ var __is_33 = ___interopRequireWildcard_33(_$is_57);
 
 var ___rect_33 = ___interopRequireDefault_33(_$rect_63);
 
-function ___interopRequireWildcard_33(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_33() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_33 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_33(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_33(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_33(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -15090,7 +15210,9 @@ _$pointer_37["default"] = void 0;
 
 var __utils_37 = ___interopRequireWildcard_37(_$utils_56);
 
-function ___interopRequireWildcard_37(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_37() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_37 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_37(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_37(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function __start_37(arg) {
   var interaction = arg.interaction,
@@ -15239,8 +15361,9 @@ function __set_37(arg) {
 }
 
 function getOrigin(arg) {
-  var optionsOrigin = __utils_37.rect.rectToXY(__utils_37.rect.resolveRectLike(arg.state.options.origin, [arg.interaction.element]));
-  var origin = optionsOrigin || __utils_37.getOriginXY(arg.interactable, arg.interaction.element, arg.interaction.prepared.name);
+  var element = arg.interaction.element;
+  var optionsOrigin = __utils_37.rect.rectToXY(__utils_37.rect.resolveRectLike(arg.state.options.origin, null, null, [element]));
+  var origin = optionsOrigin || __utils_37.getOriginXY(arg.interactable, element, arg.interaction.prepared.name);
   return origin;
 }
 
@@ -15276,7 +15399,9 @@ var __is_38 = ___interopRequireWildcard_38(_$is_57);
 
 var ___pointer_38 = ___interopRequireDefault_38(_$pointer_37);
 
-function ___interopRequireWildcard_38(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_38() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_38 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_38(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_38(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___interopRequireDefault_38(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -15284,7 +15409,7 @@ function ___slicedToArray_38(arr, i) { return ___arrayWithHoles_38(arr) || ___it
 
 function ___nonIterableRest_38() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function ___iterableToArrayLimit_38(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function ___iterableToArrayLimit_38(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function ___arrayWithHoles_38(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -15628,7 +15753,9 @@ var _PointerEvent = ___interopRequireDefault_40(_$PointerEvent_39);
 
 function ___interopRequireDefault_40(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_40(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_40() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_40 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_40(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_40(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var signals = new __utils_40.Signals();
 var simpleSignals = ['down', 'up', 'cancel'];
@@ -16317,7 +16444,9 @@ var ___events_28 = ___interopRequireDefault_28(_$events_52);
 
 function ___interopRequireDefault_28(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_28(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_28() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_28 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_28(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_28(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 /** @module interact */
 var globalEvents = {};
@@ -16697,7 +16826,9 @@ var _interact = ___interopRequireWildcard_27(_$interact_28);
 
 function ___interopRequireDefault_27(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_27(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_27() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_27 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_27(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_27(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function __init_27(window) {
   _interact.scope.init(window);
@@ -16741,7 +16872,7 @@ function __init_27(window) {
 } // eslint-disable-next-line no-undef
 
 
-_interact["default"].version = "1.5.4";
+_interact["default"].version = "1.6.3";
 var ___default_27 = _interact["default"];
 _$interact_27["default"] = ___default_27;
 
@@ -16761,7 +16892,7 @@ function ___slicedToArray_64(arr, i) { return ___arrayWithHoles_64(arr) || ___it
 
 function ___nonIterableRest_64() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function ___iterableToArrayLimit_64(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function ___iterableToArrayLimit_64(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function ___arrayWithHoles_64(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -16852,7 +16983,9 @@ var snappers = ___interopRequireWildcard_29(_$snappers_65);
 
 function ___interopRequireDefault_29(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function ___interopRequireWildcard_29(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function ___getRequireWildcardCache_29() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); ___getRequireWildcardCache_29 = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function ___interopRequireWildcard_29(obj) { if (obj && obj.__esModule) { return obj; } var cache = ___getRequireWildcardCache_29(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ___typeof_29(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ___typeof_29 = function _typeof(obj) { return typeof obj; }; } else { ___typeof_29 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ___typeof_29(obj); }
 
@@ -16874,9 +17007,9 @@ function __init_29(win) {
 
 var ___default_29 = ___interact_29["default"];
 _$index_29.exports["default"] = ___default_29;
-___interact_29["default"]['default'] = ___interact_29["default"]; // tslint:disable-line no-string-literal
-
-___interact_29["default"]['init'] = __init_29; // tslint:disable-line no-string-literal
+___interact_29["default"]["default"] = ___interact_29["default"] // tslint:disable-line no-string-literal
+;
+___interact_29["default"].init = __init_29; // tslint:disable-line no-string-literal
 
 if (( false ? undefined : ___typeof_29(_$index_29)) === 'object' && !!_$index_29) {
   _$index_29.exports = ___interact_29["default"];

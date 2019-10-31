@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.7 (Oct 31, 2019)
+
+* renamed 'resized' event emitted when the container changes size (browser window or other), introduced in #337, fixes #358 
+* bugfix on layout-ready event
+
 ## 2.3.6 (Sep 11, 2019)
 
 * reverted grid item w and h previous rounding change, fixes #355

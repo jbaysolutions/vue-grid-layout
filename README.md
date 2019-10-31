@@ -6,7 +6,7 @@
 
 vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired in [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.3.6 (Supports Vue 2.2+)
+### **Current version:** 2.3.7 (Supports Vue 2.2+)
 
 ### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
 ### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
@@ -481,6 +481,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
                    @resize="resizeEvent"
                    @move="moveEvent"
                    @resized="resizedEvent"
+                   @container-resized="containerResizedEvent"
                    @moved="movedEvent">
             {{item.i}}
         </grid-item>
@@ -601,6 +602,27 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
      */
     resizedEvent: function(i, newH, newW, newHPx, newWPx){
         console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
+    },
+``` 
+
+* **containerResizedEvent**
+
+    Container Resized event
+
+    Every time the grid item/layout container changes size (browser window or other)
+ 
+```javascript
+    /**
+     * 
+     * @param i the item id/index
+     * @param newH new height in grid rows 
+     * @param newW new width in grid columns
+     * @param newHPx new height in pixels
+     * @param newWPx new width in pixels
+     * 
+     */
+    containerResizedEvent: function(i, newH, newW, newHPx, newWPx){
+        console.log("CONTAINER RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
     },
 ``` 
 
