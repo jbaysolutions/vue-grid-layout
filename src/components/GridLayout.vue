@@ -182,6 +182,7 @@
         },
         watch: {
             width: function (newval, oldval) {
+                const self = this;
                 this.$nextTick(function () {
                     //this.$broadcast("updateWidth", this.width);
                     this.eventBus.$emit("updateWidth", this.width);
