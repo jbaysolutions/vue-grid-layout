@@ -91,7 +91,18 @@
     import {getDocumentDir} from "../helpers/DOM";
     //    var eventBus = require('./eventBus');
 
-    let interact = require("interactjs");
+    // let interact = require("interactjs");
+    // import interactablePreventDefault from "@interactjs/core/interactablePreventDefault";
+    // import inertia from '@interactjs/inertia'
+    import * as autoStart from '@interactjs/auto-start'
+    // import * as modifiers from '@interactjs/modifiers'
+    // import modifiersBase from '@interactjs/modifiers/base'
+
+    import * as actions from "@interactjs/actions";
+
+    // import * as pointerEvents from "@interactjs/pointer-events";
+    import interact from "@interactjs/interact";
+    import { scope } from "@interactjs/interact/interact";
 
     export default {
         name: "GridItem",
@@ -294,6 +305,25 @@
             this.interactObj.unset() // destroy interact intance
         },
         mounted: function () {
+            scope.init(window)
+
+            // interact.use(interactablePreventDefault)
+
+            // pointerEvents
+            // interact.use(pointerEvents)
+
+            // inertia
+            // interact.use(inertia)
+
+            // autoStart, hold
+            interact.use(autoStart);
+
+            // drag and drop, resize, gesture
+            interact.use(actions);
+
+            // snap, resize, etc.
+            // interact.use(modifiersBase);
+
             this.cols = this.$parent.colNum;
             this.rowHeight = this.$parent.rowHeight;
             this.containerWidth = this.$parent.width !== null ? this.$parent.width : 100;
