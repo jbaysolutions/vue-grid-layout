@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.8 (Dec 31, 2019)
+
+* add 'layout-drop' event emitted when the container drag.
+* add 'layout-active' event emitted when the item actived of the container.
+* add 'active' state of the grid item.
+
 ## 2.3.7 (Oct 31, 2019)
 
 * renamed 'resized' event emitted when the container changes size (browser window or other), introduced in #337, fixes #358 
