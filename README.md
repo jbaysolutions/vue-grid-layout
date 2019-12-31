@@ -6,7 +6,7 @@
 
 vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired by [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.3.7 (Supports Vue 2.2+)
+### **Current version:** 2.3.8 (Supports Vue 2.2+)
 
 ### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
 ### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
@@ -56,6 +56,8 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 * Layout can be serialized and restored
 * Automatic RTL support (resizing not working with RTL on 2.2.0)
 * Responsive
+* Support state of actived
+* Support for drag-and-drop input events
 
 
 ## Getting Started
