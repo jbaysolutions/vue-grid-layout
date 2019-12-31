@@ -53,6 +53,7 @@
             >
                 <grid-item v-for="item in layout" :key="item.i"
                            :static="item.static"
+                           :active="item.active"
                            :x="item.x"
                            :y="item.y"
                            :w="item.w"
@@ -153,6 +154,9 @@
             }
         },
         mounted: function () {
+            this.layout.forEach(item => {
+                item.active = false;
+            })
             this.index = this.layout.length;
         },
         methods: {

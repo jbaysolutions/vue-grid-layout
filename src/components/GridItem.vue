@@ -2,8 +2,7 @@
     <div ref="item"
          class="vue-grid-item"
          :class="classObj"
-         :style="style"
-    >
+         :style="style">
         <slot></slot>
         <span v-if="resizableAndNotStatic" ref="handle" :class="resizableHandleClass"></span>
         <!--<span v-if="draggable" ref="dragHandle" class="vue-draggable-handle"></span>-->
@@ -15,6 +14,19 @@
         transition-property: left, top, right;
         /* add right for rtl */
     }
+
+    /* 
+    .vue-grid-item.active:before{
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        outline: 1px dashed black;
+    } 
+    */
 
     .vue-grid-item.no-touch {
         -ms-touch-action: none;
@@ -191,6 +203,11 @@
                 required: false,
                 default: 'a, button'
             },
+            active: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
         },
         inject: ["eventBus"],
         data: function () {
@@ -276,8 +293,7 @@
             this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$on('setMaxRows', self.setMaxRowsHandler);
             this.eventBus.$on('directionchange', self.directionchangeHandler);
-            this.eventBus.$on('setColNum', self.setColNum)
-
+            this.eventBus.$on('setColNum', self.setColNum);
             this.rtl = getDocumentDir() === 'rtl';
         },
         beforeDestroy: function(){
@@ -319,6 +335,9 @@
             static: function () {
                 this.tryMakeDraggable();
                 this.tryMakeResizable();
+            },
+            active: function() {
+                this.tryMakeDraggable();
             },
             draggable: function () {
                 this.tryMakeDraggable();
@@ -377,7 +396,7 @@
             },
             maxW: function () {
                 this.tryMakeResizable();
-            }
+            },
         },
         computed: {
             classObj() {
@@ -389,7 +408,8 @@
                     'cssTransforms' : this.useCssTransforms,
                     'render-rtl' : this.renderRtl,
                     'disable-userselect': this.isDragging,
-                    'no-touch': this.isAndroid && this.draggableOrResizableAndNotStatic
+                    'no-touch': this.isAndroid && this.draggableOrResizableAndNotStatic,
+                    'active': this.active,
                 }
             },
             resizableAndNotStatic(){
@@ -563,6 +583,11 @@
                 // let shouldUpdate = false;
                 let newPosition = {top: 0, left: 0};
                 switch (event.type) {
+                    case "mousedown": 
+                        if (!this.active) {
+                            this.eventBus.$emit("active", this.i);
+                        }
+                        return;
                     case "dragstart": {
                         this.previousX = this.innerX;
                         this.previousY = this.innerY;
@@ -738,7 +763,7 @@
                     /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
                     if (!this.dragEventSet) {
                         this.dragEventSet = true;
-                        this.interactObj.on('dragstart dragmove dragend', function (event) {
+                        this.interactObj.on('dragstart dragmove dragend mousedown', function (event) {
                             self.handleDrag(event);
                         });
                     }

@@ -1,5 +1,5 @@
 <template>
-    <div ref="item" class="vue-grid-layout" :style="mergedStyle">
+    <div ref="item" class="vue-grid-layout" :style="mergedStyle" @drop="handleDropDone" @dragover="handleAllowDrop">
         <slot></slot>
         <grid-item class="vue-grid-placeholder"
                    v-show="isDragging"
@@ -136,12 +136,14 @@
             self.eventBus = self._provided.eventBus;
             self.eventBus.$on('resizeEvent', self.resizeEventHandler);
             self.eventBus.$on('dragEvent', self.dragEventHandler);
+            self.eventBus.$on('active', self.activeHandler);
             self.$emit('layout-created', self.layout);
         },
         beforeDestroy: function(){
             //Remove listeners
             this.eventBus.$off('resizeEvent', this.resizeEventHandler);
             this.eventBus.$off('dragEvent', this.dragEventHandler);
+            this.eventBus.$off('active', this.activeHandler);
 			this.eventBus.$destroy();
             removeWindowEventListener("resize", this.onWindowResize);
 			this.erd.uninstall(this.$refs.item);
@@ -215,6 +217,15 @@
                 });
             },
             layout: function () {
+                for(let i=0; i < this.layout.length; i++) {
+                    let item = this.layout[i];
+                    if (i === this.layout.length - 1) {
+                        item.active = true;
+                        this.$emit('layout-active', item);
+                        continue;
+                    }
+                    item.active = false;
+                }
                 this.layoutUpdate();
             },
             colNum: function (val) {
@@ -241,6 +252,24 @@
             },
         },
         methods: {
+            handleAllowDrop(event) {
+                event.preventDefault();
+                this.$emit('layout-over', event);
+            },
+            handleDropDone(event) {
+                this.$emit('layout-drop', event);
+            },
+            activeHandler(id) {
+                for (let i = 0;i < this.layout.length; i++) {
+                    let item = this.layout[i];
+                    if (item.i === id) {
+                        item.active = true;
+                        this.$emit('layout-active', item);
+                        continue;
+                    }
+                    item.active = false;
+                }
+            },
             layoutUpdate() {
                 if (this.layout !== undefined && this.originalLayout !== null) {
                     if (this.layout.length !== this.originalLayout.length) {
