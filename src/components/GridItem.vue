@@ -382,7 +382,7 @@
                 if (!margin || (margin[0] == this.margin[0] && margin[1] == this.margin[1])) {
                     return;
                 }
-                this.margin = margin.map(m => parseInt(m));
+                this.margin = margin.map(m => Number(m));
                 this.createStyle();
                 this.emitContainerResized();
             },
