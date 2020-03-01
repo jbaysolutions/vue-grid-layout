@@ -191,6 +191,16 @@
                 required: false,
                 default: 'a, button'
             },
+            resizeAxis: {
+                type: String,
+                default: 'xy',
+                validator: (val) => ['x', 'y', 'xy'].includes(val)
+            },
+            dragAxis: {
+                type: String,
+                default: 'xy',
+                validator: (val) => ['x', 'y', 'xy'].includes(val)
+            },
         },
         inject: ["eventBus"],
         data: function () {
@@ -377,6 +387,12 @@
             },
             maxW: function () {
                 this.tryMakeResizable();
+            },
+            resizeAxis: function () {
+                this.tryMakeResizable();
+            },
+            dragAxis: function () {
+                this.tryMakeDraggable();
             }
         },
         computed: {
@@ -494,6 +510,11 @@
                     case "resizemove": {
 //                        console.log("### resize => " + event.type + ", lastW=" + this.lastW + ", lastH=" + this.lastH);
                         const coreEvent = createCoreData(this.lastW, this.lastH, x, y);
+                        if (this.resizeAxis === "x") {
+                           coreEvent.deltaY = 0;
+                        } else if (this.resizeAxis === "y") {
+                           coreEvent.deltaX = 0;
+                        }
                         if (this.renderRtl) {
                             newSize.width = this.resizing.width - coreEvent.deltaX;
                         } else {
@@ -731,6 +752,8 @@
                 }
                 if (this.draggable && !this.static) {
                     const opts = {
+                        startAxis: this.dragAxis,
+                        lockAxis: this.dragAxis,
                         ignoreFrom: this.dragIgnoreFrom,
                         allowFrom: this.dragAllowFrom
                     };
@@ -761,6 +784,7 @@
                     // console.log("### MIN " + JSON.stringify(minimum));
 
                     const opts = {
+                        axis: this.resizeAxis,
                         preserveAspectRatio: true,
                         // allowFrom: "." + this.resizableHandleClass,
                         edges: {

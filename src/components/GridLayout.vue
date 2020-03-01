@@ -100,6 +100,10 @@
             preventCollision: {
                 type: Boolean,
                 default: false
+            },
+            dragTransform: {
+                type: Function,
+                default: function(){return function(x, y, h, w){return { x, y, h, w }};}
             }
         },
         data: function () {
@@ -286,6 +290,15 @@
             },
             dragEvent: function (eventName, id, x, y, h, w) {
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                let result = this.dragTransform(x,y,h,w);
+                x = result.x;
+                y = result.y;
+                if (result.h !== h || result.w !== w) {
+                    h = result.h;
+                    w = result.w;
+                    this.resizeEvent(eventName, id, x, y, h, w);
+                }
+                
                 let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
                 if (l === undefined || l === null){
