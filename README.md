@@ -291,6 +291,12 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
     Defines number of columns for each breakpoint
 
+* **dragTransform**
+    * type: `Function`
+    * required: `false`
+    * default: `function(x, y, h, w) { return { x, y, h, w } }`
+
+    A hook function of dragEvent, you can customize the size and location of `GridItem` according to your business when you drag it.
 
 ##### GridItem
 
@@ -444,7 +450,23 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
     For more info please refer to `ignoreFrom` in [interact.js docs](http://interactjs.io/docs/#ignorable-selectors).
 
+* **resizeAxis**
 
+    * type: `String`
+    * required: `false`
+    * default: `'xy'`
+
+    Says which axis of the item can be resized.
+    The value must be one of `'x'`,`'y'`,`'xy'`.
+
+* **dragAxis**
+
+    * type: `String`
+    * required: `false`
+    * default: `'xy'`
+
+    Says which axis of the item can be dragged.
+    The value must be one of `'x'`,`'y'`,`'xy'`.
 
 #### Events
 

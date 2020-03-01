@@ -279,6 +279,12 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 
     设置每个断点对应的列数。
 
+* **dragTransform**
+    * type: `Function`
+    * required: `false`
+    * default: `function(x, y, h, w) { return { x, y, h, w } }`
+
+    拖拽事件的钩子函数，可以在拖拽时根据业务定制`GridItem`的位置和大小，比如固定两列按照1:2的宽度布局。
 
 ##### GridItem
 
@@ -413,6 +419,23 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 
     请参考 [interact.js docs](http://interactjs.io/docs/#ignorable-selectors)中的`ignoreFrom`。
 
+* **resizeAxis**
+
+    * type: `String`
+    * required: `false`
+    * default: `'xy'`
+
+    标识可以横向、纵向或者横纵皆可改变大小。
+    值必须是`'x'`,`'y'`,`'xy'`。
+
+* **dragAxis**
+
+    * type: `String`
+    * required: `false`
+    * default: `'xy'`
+
+    标识可以横向、纵向或者横纵皆可拖动。
+    值必须是`'x'`,`'y'`,`'xy'`。
 
 
 #### 事件
