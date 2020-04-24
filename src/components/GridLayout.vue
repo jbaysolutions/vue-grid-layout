@@ -413,8 +413,7 @@
                 this.layouts[newBreakpoint] = layout;
 
                 if (this.lastBreakpoint !== newBreakpoint) {
-                    this.$emit('update:')
-                    this.$emit('breakpoint-changed', newBreakpoint)
+                    this.$emit('breakpoint-changed', newBreakpoint, layout);
                 }
 
                 // new prop sync

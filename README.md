@@ -647,10 +647,11 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
     /**
      * 
      * @param newBreakpoint the breakpoint name
+     * @param newLayout the chosen layout for the breakpoint
      * 
      */
-    breakpointChangedEvent: function(newBreakpoint){
-        console.log("BREAKPOINT CHANGED B=" + newBreakpoint);
+    breakpointChangedEvent: function(newBreakpoint, newLayout){
+        console.log("BREAKPOINT CHANGED breakpoint=", newBreakpoint, ", layout: ", newLayout );
     },
 ``` 
 
