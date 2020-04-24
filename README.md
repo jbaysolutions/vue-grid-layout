@@ -175,6 +175,16 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
     The value must be an `Array` of `Object` items. Each item must have `i`, `x`, `y`, `w` and `h` properties. Please refer to the documentation for `GridItem` below for more information.
 
+* **responsiveLayouts**
+
+    * type: `Object`
+    * required: `false`
+    * default : `{}`
+
+    This is the initial layouts of the grid per breakpoint if `responsive` is set to `true`.
+    The `Object` keys are breakpoint names and each values is an `Array` of `Object` items as defined by `layout` prop. eg:{ lg:[layout items], md:[layout items] }.
+    If it is set after the layout creation, it replaces the layout configuration in all breakpoints
+
 * **colNum**
     
     * type: `Number`
@@ -469,6 +479,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
             @layout-mounted="layoutMountedEvent"
             @layout-ready="layoutReadyEvent"
             @layout-updated="layoutUpdatedEvent"
+            @breakpoint-changed="breakpointChangedEvent"
     >
 
         <grid-item v-for="item in layout"
@@ -623,6 +634,23 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
      */
     containerResizedEvent: function(i, newH, newW, newHPx, newWPx){
         console.log("CONTAINER RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
+    },
+``` 
+
+* **breakpointChangedEvent**
+
+    Breakpoint Changed event
+
+    Every time the breakpoint value changed due to window resize
+ 
+```javascript
+    /**
+     * 
+     * @param newBreakpoint the breakpoint name
+     * 
+     */
+    breakpointChangedEvent: function(newBreakpoint){
+        console.log("BREAKPOINT CHANGED B=" + newBreakpoint);
     },
 ``` 
 
