@@ -223,9 +223,6 @@
             layout: function () {
                 this.layoutUpdate();
             },
-            responsiveLayouts: function() {
-                this.layoutUpdate();
-            },
             colNum: function (val) {
                 this.eventBus.$emit("setColNum", val);
             },
@@ -390,7 +387,7 @@
 
             // finds or generates new layouts for set breakpoints
             responsiveGridLayout(){
-
+                
                 let newBreakpoint = getBreakpointFromWidth(this.breakpoints, this.width);
                 let newCols = getColsFromBreakpoint(newBreakpoint, this.cols);
 
