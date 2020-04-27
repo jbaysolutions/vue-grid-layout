@@ -50,6 +50,7 @@
                     @layout-mounted="layoutMountedEvent"
                     @layout-ready="layoutReadyEvent"
                     @layout-updated="layoutUpdatedEvent"
+                    @breakpoint-changed="breakpointChangedEvent"
             >
                 <grid-item v-for="item in layout" :key="item.i"
                            :static="item.static"
@@ -225,6 +226,9 @@
             layoutUpdatedEvent: function(newLayout){
                 console.log("Updated layout: ", newLayout)
             },
+            breakpointChangedEvent: function(newBreakpoint, newLayout){
+                console.log("breakpoint changed breakpoint=", newBreakpoint, ", layout: ", newLayout );
+            }
 
         },
     }
