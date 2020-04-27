@@ -182,8 +182,8 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     * default : `{}`
 
     This is the initial layouts of the grid per breakpoint if `responsive` is set to `true`.
-    The `Object` keys are breakpoint names and each values is an `Array` of `Object` items as defined by `layout` prop. eg:{ lg:[layout items], md:[layout items] }.
-    If it is set after the layout creation, it replaces the layout configuration in all breakpoints
+    The keys of the `Object` are breakpoint names and each value is an `Array` of `Object` items as defined by `layout` prop. eg:{ lg:[layout items], md:[layout items] }.
+    Setting the prop after the creation of the GridLayout has no effect.
 
 * **colNum**
     
@@ -641,7 +641,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 
     Breakpoint Changed event
 
-    Every time the breakpoint value changed due to window resize
+    Every time the breakpoint value changes due to window resize
  
 ```javascript
     /**

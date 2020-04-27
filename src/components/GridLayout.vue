@@ -387,7 +387,6 @@
 
             // finds or generates new layouts for set breakpoints
             responsiveGridLayout(){
-                
                 let newBreakpoint = getBreakpointFromWidth(this.breakpoints, this.width);
                 let newCols = getColsFromBreakpoint(newBreakpoint, this.cols);
 
