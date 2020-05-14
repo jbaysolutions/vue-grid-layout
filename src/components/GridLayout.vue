@@ -100,7 +100,11 @@
             preventCollision: {
                 type: Boolean,
                 default: false
-            }
+            },
+            isCompactable: {
+                type: Boolean,
+                default: true
+            },
         },
         data: function () {
             return {
@@ -163,9 +167,9 @@
 
                     //self.width = self.$el.offsetWidth;
                     addWindowEventListener('resize', self.onWindowResize);
-
-                    compact(self.layout, self.verticalCompact);
-
+                    if(isCompactable){
+                      compact(self.layout, self.verticalCompact);
+                    }
                     self.updateHeight();
                     self.$nextTick(function () {
                         this.erd = elementResizeDetectorMaker({
@@ -263,8 +267,9 @@
                         this.lastLayoutLength = this.layout.length;
                         this.initResponsiveFeatures();
                     }
-
-                    compact(this.layout, this.verticalCompact);
+                    if(isCompactable){
+                      compact(this.layout, this.verticalCompact);
+                    }
                     this.eventBus.$emit("updateWidth", this.width);
                     this.updateHeight();
                 }
