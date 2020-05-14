@@ -167,7 +167,7 @@
 
                     //self.width = self.$el.offsetWidth;
                     addWindowEventListener('resize', self.onWindowResize);
-                    if(isCompactable){
+                    if(this.isCompactable){
                       compact(self.layout, self.verticalCompact);
                     }
                     self.updateHeight();
@@ -267,7 +267,7 @@
                         this.lastLayoutLength = this.layout.length;
                         this.initResponsiveFeatures();
                     }
-                    if(isCompactable){
+                    if(this.isCompactable){
                       compact(this.layout, this.verticalCompact);
                     }
                     this.eventBus.$emit("updateWidth", this.width);
