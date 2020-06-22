@@ -157,6 +157,26 @@
                 required: false,
                 default: Infinity
             },
+            minX: {
+                type: Number,
+                required: false,
+                default: -Infinity
+            },
+            minY: {
+                type: Number,
+                required: false,
+                default: -Infinity
+            },
+            maxX: {
+                type: Number,
+                required: false,
+                default: Infinity
+            },
+            maxY: {
+                type: Number,
+                required: false,
+                default: Infinity
+            },
             x: {
                 type: Number,
                 required: true
@@ -683,8 +703,8 @@
                 let y = Math.round((top - this.margin[1]) / (this.rowHeight + this.margin[1]));
 
                 // Capping
-                x = Math.max(Math.min(x, this.cols - this.innerW), 0);
-                y = Math.max(Math.min(y, this.maxRows - this.innerH), 0);
+                x = Math.max(Math.min(x, this.cols - this.innerW, this.maxX), this.minX, 0);
+                y = Math.max(Math.min(y, this.maxRows - this.innerH, this.maxY), this.minY, 0);
 
                 return {x, y};
             },
