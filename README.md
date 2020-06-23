@@ -319,6 +319,38 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
     The value must be a _whole number_. 
 
+* **minX**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `-Infinity`
+
+    Says what is a minimal horizontal position of the item. If `x` will be smaller than `minX` then `x` will be set to `minX`.
+
+* **minY**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `-Infinity`
+
+    Says what is a minimal vertical position of the item. If `y` will be smaller than `minY` then `y` will be set to `minY`.
+
+* **maxX**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `Infinity`
+
+    Says what is a maximal horizontal position of the item. If `x` will be bigger than `maxX` then `x` will be set to `maxX`.
+
+* **maxY**
+    
+    * type: `Number`
+    * required: `false`
+    * default: `Infinity`
+
+    Says what is a maximal vertical position of the item. If `y` will be bigger than `maxY` then `y` will be set to `maxY`.
+
 * **w**
     
     * type: `Number`
