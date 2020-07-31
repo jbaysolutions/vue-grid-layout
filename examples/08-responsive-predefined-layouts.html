@@ -12,9 +12,7 @@
 
     <a href="https://github.com/jbaysolutions/vue-grid-layout">View project on Github</a>
     <br/>
-    <a href="05-mirrored.html">Previous example: Mirrored grid layout</a>
-    <br/>
-    <a href="07-prevent-collision.html">Next example: Prevent collision</a>
+    <a href="07-prevent-collision.html">Previous example: Prevent collision</a>
 
     <div id="app" style="width: 100%;">
         <!--<pre>{{ $data | json }}</pre>-->
@@ -37,6 +35,7 @@
             <input type="checkbox" v-model="responsive"/> Responsive
             <br/>
             <grid-layout :layout.sync="layout"
+                         :responsive-layouts="layouts"
                          :col-num="12"
                          :row-height="30"
                          :is-draggable="draggable"
@@ -44,6 +43,7 @@
                          :vertical-compact="true"
                          :use-css-transforms="true"
                          :responsive="responsive"
+                         @breakpoint-changed="breakpointChangedEvent"
             >
                 <grid-item v-for="item in layout"
                            :x="item.x"
@@ -60,6 +60,6 @@
     </div>
     <script src="vue.min.js"></script>
     <script src="../dist/vue-grid-layout.umd.min.js"></script>
-    <script src="06-responsive.js"></script>
+    <script src="08-responsive-predefined-layouts.js"></script>
 </body>
 </html>

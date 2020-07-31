@@ -89,6 +89,12 @@
                 type: Boolean,
                 default: false
             },
+            responsiveLayouts: {
+                type: Object,
+                default: function() {
+                    return {};
+                }
+            },
             breakpoints:{
                 type: Object,
                 default: function(){return{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
@@ -381,7 +387,6 @@
 
             // finds or generates new layouts for set breakpoints
             responsiveGridLayout(){
-
                 let newBreakpoint = getBreakpointFromWidth(this.breakpoints, this.width);
                 let newCols = getColsFromBreakpoint(newBreakpoint, this.cols);
 
@@ -403,6 +408,10 @@
                 // Store the new layout.
                 this.layouts[newBreakpoint] = layout;
 
+                if (this.lastBreakpoint !== newBreakpoint) {
+                    this.$emit('breakpoint-changed', newBreakpoint, layout);
+                }
+
                 // new prop sync
                 this.$emit('update:layout', layout);
 
@@ -413,7 +422,7 @@
             // clear all responsive layouts
             initResponsiveFeatures(){
                 // clear layouts
-                this.layouts = {};
+                this.layouts = Object.assign({}, this.responsiveLayouts);
             },
 
             // find difference in layouts
