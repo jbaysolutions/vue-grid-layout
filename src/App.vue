@@ -33,8 +33,10 @@
             <input type="checkbox" v-model="preventCollision"/> Prevent Collision
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
+                Margin x: <input type="number" v-model="marginX"/> Margin y: <input type="number" v-model="marginY"/>
             </div>
             <grid-layout
+                :margin="[parseInt(marginX), parseInt(marginY)]"
                     :layout.sync="layout"
                     :col-num="parseInt(colNum)"
                     :row-height="rowHeight"
@@ -150,7 +152,9 @@
                 preventCollision: false,
                 rowHeight: 30,
                 colNum: 12,
-                index: 0
+                index: 0,
+                marginX: 10,
+                marginY: 10,
             }
         },
         mounted: function () {

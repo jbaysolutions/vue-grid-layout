@@ -247,6 +247,9 @@
             maxRows: function() {
                 this.eventBus.$emit("setMaxRows", this.maxRows);
             },
+            margin() {
+                this.updateHeight();
+            }
         },
         methods: {
             layoutUpdate() {
@@ -292,7 +295,10 @@
             },
             containerHeight: function () {
                 if (!this.autoSize) return;
-                return bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
+                // console.log("bottom: " + bottom(this.layout))
+                // console.log("rowHeight + margins: " + (this.rowHeight + this.margin[1]) + this.margin[1])
+                const containerHeight =  bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
+                return containerHeight;
             },
             dragEvent: function (eventName, id, x, y, h, w) {
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
