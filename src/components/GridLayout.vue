@@ -164,9 +164,7 @@
                     //self.width = self.$el.offsetWidth;
                     addWindowEventListener('resize', self.onWindowResize);
 
-                    const compactedLayout = compact(self.layout, self.verticalCompact);
-
-                    this.$emit('layout-compacted', compactedLayout);
+                    compact(self.layout, self.verticalCompact);
 
                     self.updateHeight();
                     self.$nextTick(function () {
@@ -266,9 +264,7 @@
                         this.initResponsiveFeatures();
                     }
 
-                    const compactedLayout = compact(this.layout, this.verticalCompact);
-
-                    this.$emit('layout-compacted', compactedLayout);
+                    compact(this.layout, this.verticalCompact);
                     this.eventBus.$emit("updateWidth", this.width);
                     this.updateHeight();
                 }
