@@ -380,9 +380,14 @@ export function setTopRight(top, right, width, height): Object {
  */
 export function sortLayoutItemsByRowCol(layout: Layout): Layout {
   return [].concat(layout).sort(function(a, b) {
+    if (a.y === b.y && a.x === b.x) {
+      return 0;
+    }
+
     if (a.y > b.y || (a.y === b.y && a.x > b.x)) {
       return 1;
     }
+
     return -1;
   });
 }
