@@ -273,6 +273,8 @@
                     compact(this.layout, this.verticalCompact);
                     this.eventBus.$emit("updateWidth", this.width);
                     this.updateHeight();
+                    
+                    this.$emit('layout-updated', this.layout)
                 }
             },
             updateHeight: function () {
