@@ -172,6 +172,8 @@
 
                     compact(self.layout, self.verticalCompact);
 
+                    self.$emit('layout-updated',self.layout)
+
                     self.updateHeight();
                     self.$nextTick(function () {
                         this.erd = elementResizeDetectorMaker({
