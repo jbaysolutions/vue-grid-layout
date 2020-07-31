@@ -291,7 +291,9 @@
             this.eventBus.$off('setMaxRows', self.setMaxRowsHandler);
             this.eventBus.$off('directionchange', self.directionchangeHandler);
             this.eventBus.$off('setColNum', self.setColNum);
-            this.interactObj.unset() // destroy interact intance
+            if (this.interactObj) {
+                this.interactObj.unset() // destroy interact intance
+            }
         },
         mounted: function () {
             this.cols = this.$parent.colNum;
