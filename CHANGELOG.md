@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.8 (July 31, 2020)
+
+* Make margins reactive (thanks [yfwz100](https://github.com/yfwz100))
+* Added missing 'layout-updated' events (thanks [ben-lau](https://github.com/ben-lau))
+* Support for initial responsive layouts and breakpoint change event (thanks [ftylitak](https://github.com/ftylitak))
+* Bugfix for possible error when layout items get removed and interactObj is not set (thanks [Tofandel](https://github.com/Tofandel))
+* Fix wrong grid item sorting in responsive mode (thanks [pieterbeulque](https://github.com/pieterbeulque))
+
 ## 2.3.7 (Oct 31, 2019)
 
 * renamed 'resized' event emitted when the container changes size (browser window or other), introduced in #337, fixes #358 

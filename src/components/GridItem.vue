@@ -291,7 +291,9 @@
             this.eventBus.$off('setMaxRows', self.setMaxRowsHandler);
             this.eventBus.$off('directionchange', self.directionchangeHandler);
             this.eventBus.$off('setColNum', self.setColNum);
-            this.interactObj.unset() // destroy interact intance
+            if (this.interactObj) {
+                this.interactObj.unset() // destroy interact intance
+            }
         },
         mounted: function () {
             this.cols = this.$parent.colNum;
@@ -377,7 +379,15 @@
             },
             maxW: function () {
                 this.tryMakeResizable();
-            }
+            },
+            "$parent.margin": function (margin) {
+                if (!margin || (margin[0] == this.margin[0] && margin[1] == this.margin[1])) {
+                    return;
+                }
+                this.margin = margin.map(m => Number(m));
+                this.createStyle();
+                this.emitContainerResized();
+            },
         },
         computed: {
             classObj() {

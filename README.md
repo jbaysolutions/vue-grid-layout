@@ -6,7 +6,7 @@
 
 vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired by [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
 
-### **Current version:** 2.3.7 (Supports Vue 2.2+)
+### **Current version:** 2.3.8 (Supports Vue 2.2+)
 
 ### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
 ### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
@@ -174,6 +174,16 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     This is the initial layout of the grid.
 
     The value must be an `Array` of `Object` items. Each item must have `i`, `x`, `y`, `w` and `h` properties. Please refer to the documentation for `GridItem` below for more information.
+
+* **responsiveLayouts**
+
+    * type: `Object`
+    * required: `false`
+    * default : `{}`
+
+    This is the initial layouts of the grid per breakpoint if `responsive` is set to `true`.
+    The keys of the `Object` are breakpoint names and each value is an `Array` of `Object` items as defined by `layout` prop. eg:{ lg:[layout items], md:[layout items] }.
+    Setting the prop after the creation of the GridLayout has no effect.
 
 * **colNum**
     
@@ -469,6 +479,7 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
             @layout-mounted="layoutMountedEvent"
             @layout-ready="layoutReadyEvent"
             @layout-updated="layoutUpdatedEvent"
+            @breakpoint-changed="breakpointChangedEvent"
     >
 
         <grid-item v-for="item in layout"
@@ -623,6 +634,24 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
      */
     containerResizedEvent: function(i, newH, newW, newHPx, newWPx){
         console.log("CONTAINER RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
+    },
+``` 
+
+* **breakpointChangedEvent**
+
+    Breakpoint Changed event
+
+    Every time the breakpoint value changes due to window resize
+ 
+```javascript
+    /**
+     * 
+     * @param newBreakpoint the breakpoint name
+     * @param newLayout the chosen layout for the breakpoint
+     * 
+     */
+    breakpointChangedEvent: function(newBreakpoint, newLayout){
+        console.log("BREAKPOINT CHANGED breakpoint=", newBreakpoint, ", layout: ", newLayout );
     },
 ``` 
 

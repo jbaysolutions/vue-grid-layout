@@ -33,8 +33,10 @@
             <input type="checkbox" v-model="preventCollision"/> Prevent Collision
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
+                Margin x: <input type="number" v-model="marginX"/> Margin y: <input type="number" v-model="marginY"/>
             </div>
             <grid-layout
+                :margin="[parseInt(marginX), parseInt(marginY)]"
                     :layout.sync="layout"
                     :col-num="parseInt(colNum)"
                     :row-height="rowHeight"
@@ -50,6 +52,7 @@
                     @layout-mounted="layoutMountedEvent"
                     @layout-ready="layoutReadyEvent"
                     @layout-updated="layoutUpdatedEvent"
+                    @breakpoint-changed="breakpointChangedEvent"
             >
                 <grid-item v-for="item in layout" :key="item.i"
                            :static="item.static"
@@ -149,7 +152,9 @@
                 preventCollision: false,
                 rowHeight: 30,
                 colNum: 12,
-                index: 0
+                index: 0,
+                marginX: 10,
+                marginY: 10,
             }
         },
         mounted: function () {
@@ -225,6 +230,9 @@
             layoutUpdatedEvent: function(newLayout){
                 console.log("Updated layout: ", newLayout)
             },
+            breakpointChangedEvent: function(newBreakpoint, newLayout){
+                console.log("breakpoint changed breakpoint=", newBreakpoint, ", layout: ", newLayout );
+            }
 
         },
     }
