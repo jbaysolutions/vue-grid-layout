@@ -24,6 +24,7 @@
             <button @click="decreaseWidth">Decrease Width</button>
             <button @click="increaseWidth">Increase Width</button>
             <button @click="addItem">Add an item</button>
+            <button @click="addItemDynamically">Add an item dynamically</button>
             <!-- Add to show rtl support -->
             <button @click="changeDirection">Change Direction</button>
             <input type="checkbox" v-model="draggable"/> Draggable
@@ -182,6 +183,17 @@
                 // let self = this;
                 //console.log("### LENGTH: " + this.layout.length);
                 let item = {"x":0,"y":0,"w":2,"h":2,"i":this.index+"", whatever: "bbb"};
+                this.index++;
+                this.layout.push(item);
+            },
+            addItemDynamically: function() {
+                let item = {
+                  x: (this.layout.length * 2) % (this.colNum || 12),
+                  y: this.layout.length + (this.colNum || 12), 
+                  w: 2,
+                  h: 2,
+                  i: this.index+"",
+                }
                 this.index++;
                 this.layout.push(item);
             },
