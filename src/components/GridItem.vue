@@ -88,6 +88,7 @@
 <script>
     import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '../helpers/utils';
     import {getControlPosition, createCoreData} from '../helpers/draggableUtils';
+    import {getColsFromBreakpoint} from '../helpers/responsiveUtils';
     import {getDocumentDir} from "../helpers/DOM";
     //    var eventBus = require('./eventBus');
 
@@ -301,7 +302,7 @@
             this.margin = this.$parent.margin !== undefined ? this.$parent.margin : [10, 10];
             this.maxRows = this.$parent.maxRows;
             if (this.$parent.responsive) {
-              this.cols = this.$parent.cols[this.$parent.lastBreakpoint];
+              this.cols = getColsFromBreakpoint(this.$parent.lastBreakpoint, this.$parent.cols);
             } else {
               this.cols = this.$parent.colNum;
             }
