@@ -296,11 +296,15 @@
             }
         },
         mounted: function () {
-            this.cols = this.$parent.colNum;
             this.rowHeight = this.$parent.rowHeight;
             this.containerWidth = this.$parent.width !== null ? this.$parent.width : 100;
             this.margin = this.$parent.margin !== undefined ? this.$parent.margin : [10, 10];
             this.maxRows = this.$parent.maxRows;
+            if (this.$parent.responsive) {
+              this.cols = this.$parent.cols[this.$parent.lastBreakpoint];
+            } else {
+              this.cols = this.$parent.colNum;
+            }
             if (this.isDraggable === null) {
                 this.draggable = this.$parent.isDraggable;
             } else {
