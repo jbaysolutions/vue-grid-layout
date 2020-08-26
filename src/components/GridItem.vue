@@ -511,6 +511,26 @@
                         }
                         newSize.height = this.resizing.height + coreEvent.deltaY;
 
+                        const p = this.$parent;
+                        const [marginX, marginY] = this.margin
+
+                        //limit scale on vertical, no scrollbar.
+                        if(!p.autoSize && !p.responsive && p.preventCollision){
+                            const top = p.rowHeight * this.y + marginY * (this.y + 1);
+                            const containerHeight = p.$el.clientHeight;
+                            if(newSize.height + top + marginY > containerHeight){
+                                newSize.height = containerHeight - top - marginY / 2;
+                            }
+                        }
+
+                        //limit scale on horizontal.
+                        const containerWidth = p.$el.clientWidth;
+                        const colWidth = Math.round((containerWidth - marginX * (p.colNum + 1))/p.colNum);
+                        const left = colWidth * this.x + marginX * (this.x + 1)
+                        if(newSize.width + left + marginX > containerWidth){
+                            newSize.width = containerWidth - left - marginX / 2
+                        }
+
                         ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
                         this.resizing = newSize;
                         break;
@@ -619,6 +639,33 @@
 //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
 //                        console.log("### drag => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
 //                        console.log("### drag end => " + JSON.stringify(newPosition));
+
+                        const p = this.$parent;
+                        const [marginX, marginY] = this.margin
+                        
+                        //limit move on vertical, no scrollbar.
+                        if(!p.autoSize && !p.responsive && p.preventCollision){
+                            const height = p.rowHeight * this.h + marginY * (this.h - 1);
+                            const containerHeight = p.$el.clientHeight;
+                            if(newPosition.top + height + marginY > containerHeight){
+                                newPosition.top = containerHeight - height - marginY / 2;
+                            }
+                            if(newPosition.top < marginY / 2){
+                                newPosition.top = marginY / 2
+                            }
+                        }
+
+                        //limit move on horizontal.
+                        const containerWidth = p.$el.clientWidth;
+                        const colWidth = Math.round((containerWidth - marginX * (p.colNum + 1))/p.colNum);
+                        const width = colWidth * this.w + marginX * (this.w - 1)
+                        if(newPosition.left + width + marginX > containerWidth){
+                            newPosition.left = containerWidth - width - marginX / 2
+                        }
+                        if(newPosition.left < marginX / 2){
+                            newPosition.left = marginX / 2
+                        }
+
                         this.dragging = newPosition;
                         break;
                     }
