@@ -810,8 +810,12 @@
                 // ok here we want to calculate if a resize is needed
                 this.previousW = this.innerW;
                 this.previousH = this.innerH;
-
-                let newSize=this.$slots.default[0].elm.getBoundingClientRect();
+                let available_slot = this.$slots.default.findIndex(slot => {
+                        return slot.tag != undefined;
+                    });
+                    let newSize = this.$slots.default[
+                        available_slot
+                    ].elm.getBoundingClientRect();
                 let pos = this.calcWH(newSize.height, newSize.width);
                 if (pos.w < this.minW) {
                     pos.w = this.minW;
