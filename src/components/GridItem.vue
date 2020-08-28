@@ -203,6 +203,7 @@
                 draggable: null,
                 resizable: null,
                 useCssTransforms: true,
+                useStyleCursor: true,
 
                 isDragging: false,
                 dragging: null,
@@ -312,6 +313,7 @@
                 this.resizable = this.isResizable;
             }
             this.useCssTransforms = this.$parent.useCssTransforms;
+            this.useStyleCursor = this.$parent.useStyleCursor;
             this.createStyle();
         },
         watch: {
@@ -738,6 +740,9 @@
                 const self = this;
                 if (this.interactObj === null || this.interactObj === undefined) {
                     this.interactObj = interact(this.$refs.item);
+                    if (!this.useStyleCursor) {
+                        this.interactObj.styleCursor(false);
+                    }
                 }
                 if (this.draggable && !this.static) {
                     const opts = {
@@ -762,6 +767,9 @@
                 const self = this;
                 if (this.interactObj === null || this.interactObj === undefined) {
                     this.interactObj = interact(this.$refs.item);
+                    if (!this.useStyleCursor) {
+                        this.interactObj.styleCursor(false);
+                    }
                 }
                 if (this.resizable && !this.static) {
                     let maximum = this.calcPosition(0,0,this.maxW, this.maxH);

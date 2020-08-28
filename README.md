@@ -24,6 +24,13 @@ English | [简体中文](./README-zh_CN.md)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
     - [npm](#npm)
+    - [browser](#browser)
+  - [Usage](#usage)
+  - [Documentation](#documentation)
+    - [Properties](#properties)
+      - [GridLayout](#gridlayout)
+      - [GridItem](#griditem)
+    - [Events](#events)
 - [Contribute](#contribute)
 - [TODO List](#todo-list)
 
@@ -301,6 +308,13 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
     Defines number of columns for each breakpoint
 
+* **useStyleCursor**
+
+    * type: `Boolean`
+    * required: `false`
+    * default: `true`
+
+    Says if set the `styleCursor` option to true. When dragging freezes, setting this value to `false` may alleviate problems. 
 
 ##### GridItem
 
