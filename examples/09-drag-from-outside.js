@@ -58,10 +58,8 @@ new Vue({
                     this.layout = this.layout.filter(obj => obj.i !=='drop');
                 }
             }  
-            
         },  
         dragend:function(e){
-        
             let parentRect = document.getElementById('content').getBoundingClientRect();
             let mouseInGrid=false;
             if (((mouseXY.x>parentRect.left) && (mouseXY.x<parentRect.right)) && ((mouseXY.y>parentRect.top)  && (mouseXY.y<parentRect.bottom))){
@@ -86,8 +84,7 @@ new Vue({
                         this.$refs.gridLayout.$children[this.layout.length].$refs.item.style.display="block";
                     } catch {
                     }  
-                    */
-                    
+                    */   
             }
         },  
     },  
