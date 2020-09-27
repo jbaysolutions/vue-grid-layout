@@ -10,21 +10,24 @@ var testLayout = [
     {"x":4,"y":5,"w":2,"h":5,"i":"8"}, 
     {"x":5,"y":10,"w":4,"h":3,"i":"9"},
 ];
+var mouseXY={"x":null,"y":null};
+var DragPos = {"x":null,"y":null,"w":1,"h":1,"i":null};
 
-let DragPos = {"x":null,"y":null,"w":1,"h":1,"i":null};
+document.addEventListener("dragover", function(e) {
+    mouseXY.x=e.clientX;
+    mouseXY.y=e.clientY;
+}, false);
+
 new Vue({
     el: '#app',
     data: {
         layout: testLayout,
     },
     methods: {
-        dragstart:function(e){
-        },
         drag:function(e){
-            
             let parentRect = document.getElementById('content').getBoundingClientRect();
             let mouseInGrid=false;
-            if (((e.x>parentRect.left) && (e.x<parentRect.right)) && ((e.y>parentRect.top)  && (e.y<parentRect.bottom))){
+            if (((mouseXY.x>parentRect.left) && (mouseXY.x<parentRect.right)) && ((mouseXY.y>parentRect.top)  && (mouseXY.y<parentRect.bottom))){
                 mouseInGrid=true;
             }
             if (mouseInGrid==true && (this.layout.findIndex(item => item.i === 'drop')) == -1){
@@ -43,8 +46,8 @@ new Vue({
                 } catch {
                 }
                 let el=this.$refs.gridLayout.$children[index]; 
-                el.dragging={"top":e.y-parentRect.top,"left":e.x-parentRect.left};
-                let new_pos=el.calcXY(e.y-parentRect.top, e.x-parentRect.left);
+                el.dragging={"top":mouseXY.y-parentRect.top,"left":mouseXY.x-parentRect.left};
+                let new_pos=el.calcXY(mouseXY.y-parentRect.top, mouseXY.x-parentRect.left);
                
                 if (mouseInGrid==true){
                     this.$refs.gridLayout.dragEvent('dragstart', 'drop', new_pos.x,new_pos.y,1,1); 
@@ -58,15 +61,18 @@ new Vue({
             
         },  
         dragend:function(e){
+        
             let parentRect = document.getElementById('content').getBoundingClientRect();
             let mouseInGrid=false;
-            if (((e.x>parentRect.left) && (e.x<parentRect.right)) && ((e.y>parentRect.top)  && (e.y<parentRect.bottom))){
+            if (((mouseXY.x>parentRect.left) && (mouseXY.x<parentRect.right)) && ((mouseXY.y>parentRect.top)  && (mouseXY.y<parentRect.bottom))){
                 mouseInGrid=true;
             }
             if (mouseInGrid==true){
                     alert(`Dropped element props:\n${JSON.stringify(DragPos, ['x', 'y', 'w', 'h'], 2)}`); 
+                    this.$refs.gridLayout.dragEvent('dragend', 'drop', DragPos.x,DragPos.y,1,1);
+                    this.layout = this.layout.filter(obj => obj.i !=='drop');
                     
-                    // UNCOMMENT below if you want to add a GridLayout item
+                    // UNCOMMENT below if you want to add a grid-item
                     /*
                     this.layout.push({
                         x: DragPos.x,
@@ -81,8 +87,9 @@ new Vue({
                     } catch {
                     }  
                     */
+                    
             }
-        },
+        },  
     },  
 });
 

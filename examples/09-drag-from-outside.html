@@ -18,7 +18,7 @@
     </style>
     
 </head>
-<body>
+<body @dragover="dragover">
     <h1>Vue Grid Layout Example 09 - Drag From Outside</h1>
 
     <a href="https://github.com/jbaysolutions/vue-grid-layout">View project on Github</a>
@@ -48,9 +48,9 @@
             </div>
         </div>
         <br/>
-        <div @dragstart="dragstart" @drag="drag" @dragend="dragend" class="droppable-element" draggable="true" unselectable="on">Droppable Element (Drag me!)</div>
+        <div @drag="drag" @dragend="dragend" class="droppable-element" draggable="true" unselectable="on">Droppable Element (Drag me!)</div>
         <div id="content">
-            <grid-layout ref="gridLayout" :layout.sync="layout"
+            <grid-layout  ref="gridLayout" :layout.sync="layout"
                          :col-num="12"
                          :row-height="30"
                          :is-draggable="true"
