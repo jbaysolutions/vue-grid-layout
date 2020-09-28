@@ -38,8 +38,8 @@
     "node-sass": "^4.13.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.0.1",
-    "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10",
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12",
     "webpack-bundle-analyzer": "^3.4.1"
   }
 }

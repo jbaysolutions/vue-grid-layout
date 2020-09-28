@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.9 (September ?, 2020)
+
+* Fix plugin installation (fixes #311) (thanks [yfwz100](https://github.com/yfwz100))
+
+
 ## 2.3.8 (July 31, 2020)
 
 * Make margins reactive (thanks [yfwz100](https://github.com/yfwz100))
