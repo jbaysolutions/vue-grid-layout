@@ -21,8 +21,9 @@
         cursor: pointer;
     }
 </style>
-<script>
-    export default {
+<script lang="ts">
+import {defineComponent} from 'vue'
+    export default defineComponent({
         name: "CustomDragElement",
         props: {
             text : {
@@ -38,4 +39,4 @@
             console.log("### " + this.text + " ready!");
         },
     }
-</script>
+)</script>
