@@ -1,68 +1,11 @@
-<h1 align="center">vue-grid-layout</h1>
+---
+sidebar: auto
+---
+# Getting Started
 
-<p align="center">
-<a href="https://www.npmjs.com/package/vue-grid-layout"><img src="https://img.shields.io/npm/v/vue-grid-layout.svg"/> <img src="https://img.shields.io/npm/dm/vue-grid-layout.svg"/></a> <a href="https://vuejs.org/"><img src="https://img.shields.io/badge/vue-2.2.x-brightgreen.svg"/></a>
-</p>
+## Installation
 
-vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.io/gridster.js/), for Vue.js. **Heavily inspired by [React-Grid-Layout](https://github.com/STRML/react-grid-layout)**
-
-### **Current version:** 2.3.9 (Supports Vue 2.2+)
-
-### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
-### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
-
-<br/>
-
-[**[Demo](https://jbaysolutions.github.io/vue-grid-layout/examples/01-basic.html) | [Changelog](/website/docs/changelog/README.md)**]
-
-English | [简体中文](./README-zh_CN.md) 
-
-<!--
-## Table of Contents
-
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
-    - [npm](#npm)
-- [Contribute](#contribute)
-- [TODO List](#todo-list)
-
-## Demos
-
-
-TODO UPDATE DOCS
-
-Used guide for vue cli build: https://medium.com/justfrontendthings/how-to-create-and-publish-your-own-vuejs-component-library-on-npm-using-vue-cli-28e60943eed3
-Also check https://cli.vuejs.org/guide/build-targets.html#library
-
--->
-
-#### Projects using vue-grid-layout
-
-- [Draxed](https://www.draxed.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
-- [cryptotiles](https://www.cryptotiles.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
-- [Data Providers](https://www.dataproviders.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
-- [Cataholic](https://cataholic.glitch.me/)
-
-*Know of others? Create a PR to let me know!*
-
-## Features
-
-* Draggable widgets
-* Resizable widgets
-* Static widgets
-* Bounds checking for dragging and resizing
-* Widgets may be added or removed without rebuilding grid
-* Layout can be serialized and restored
-* Automatic RTL support (resizing not working with RTL on 2.2.0)
-* Responsive
-
-
-## Getting Started
-
-### Installation
-
-#### npm
+### npm
 
     # install with npm    
 	npm install vue-grid-layout --save
@@ -90,7 +33,7 @@ Add to other Vue components
     
 ```    
 
-#### browser
+### browser
 
 Include the browser-ready bundle (download from [releases](https://github.com/jbaysolutions/vue-grid-layout/releases)) in your page. The components will be automatically available.
 
@@ -98,7 +41,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     <script src="vue-grid-layout.umd.min.js"></script>
 ```
 
-### Usage
+## Usage
 
 ```javascript
 	var testLayout = [
@@ -160,11 +103,11 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 ```
 
 
-### Documentation
+## Documentation
 
-#### Properties
+### Properties
 
-##### GridLayout
+#### GridLayout
 
 * **layout**
     
@@ -302,7 +245,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
     Defines number of columns for each breakpoint
 
 
-##### GridItem
+#### GridItem
 
 * **i**
     
@@ -456,7 +399,7 @@ Include the browser-ready bundle (download from [releases](https://github.com/jb
 
 
 
-#### Events
+### Events
 
 Move and resize event listeners can be added to each grid-item, so that the parent Vue can be notified when a grid element is being moved or resized.
 Moved and resized event listeners can be added, if the only notification needed is when an item is finished moving or resizing.
@@ -656,16 +599,6 @@ Working example [here](https://jbaysolutions.github.io/vue-grid-layout/examples/
 ``` 
 
 
-## Contribute
+# Contribute
 
 If you have a feature request, please add it as an issue or make a pull request.
-
-
-## TODO List
-
-- [x] Basic grid layout
-- [x] Responsive
-- [x] Draggable grid items
-- [x] Resizable grid items
-- [x] Static elements
-- [x] Min/max w/h per item

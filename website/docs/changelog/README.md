@@ -1,3 +1,6 @@
+---
+sidebar: auto
+---
 # Changelog
 
 ## 2.3.9 (September 28, 2020)
