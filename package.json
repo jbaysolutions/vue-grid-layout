@@ -22,7 +22,7 @@
   "unpkg": "dist/vue-grid-layout.umd.min.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "rollup -c"
   },
   "dependencies": {
     "element-resize-detector": "^1.2.1",
@@ -33,7 +33,14 @@
     "@types/element-resize-detector": "^1.1.2",
     "@vue/compiler-sfc": "3.0.0",
     "autoprefixer": "^9.0.0",
-    "vite": "^1.0.0-rc.4",
+    "rollup-plugin-postcss": "^3.1.8",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-vue": "^6.0.0-beta.10",
+    "tslib": "^2.0.2",
+    "typescript": "^4.0.3",
+    "vite": "^1.0.0-rc.4"
+  },
+  "peerDependencies": {
     "vue": "3.0.0"
   }
 }
