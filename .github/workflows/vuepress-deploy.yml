@@ -12,6 +12,6 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           TARGET_REPO: jbaysolutions/vue-grid-layout
-          TARGET_BRANCH: master
+          TARGET_BRANCH: gh-pages
           BUILD_SCRIPT: cd website && yarn && yarn build
           BUILD_DIR: public
