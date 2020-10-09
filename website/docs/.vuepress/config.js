@@ -6,6 +6,7 @@ module.exports = {
 	title,
 	description,
 	head: [
+		['link', { rel: 'icon', href: `/favicon.ico` }],
 		['link', { rel: "apple-touch-icon", sizes: "180x180", href: "https://jbaysolutions.github.io/vue-grid-layout/assets/favicon/apple-touch-icon.png"}],
 		// ['script', { src: 'https://cdn.jsdelivr.net/npm/vue-grid-layout@2.3.9/dist/vue-grid-layout.umd.min.js' }]
 	],
