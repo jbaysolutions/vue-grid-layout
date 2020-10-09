@@ -14,4 +14,4 @@ jobs:
           TARGET_REPO: jbaysolutions/vue-grid-layout
           TARGET_BRANCH: master
           BUILD_SCRIPT: cd website && yarn && yarn build
-          BUILD_DIR: website/public
+          BUILD_DIR: public
