@@ -8,14 +8,19 @@
   "private": false,
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "serve": "vuepress serve docs"
   },
   "dependencies": {
-    "vuepress-plugin-seo": "^0.1.4",
-    "vuepress-plugin-sitemap": "^2.3.1"
   },
   "devDependencies": {
-    "vuepress": "^1.6.0"
+    "@vuepress/plugin-back-to-top": "^1.6.0",
+    "@vuepress/plugin-google-analytics": "^1.6.0",
+    "vue-grid-layout": "^2.3.9",
+    "vuepress-plugin-seo": "^0.1.4",
+    "vuepress-plugin-sitemap": "^2.3.1",
+    "vuepress": "^1.6.0",
+    "vuepress-plugin-serve": "^2.0.4"
   },
   "resolutions": {
     "watchpack": "1.6.1"

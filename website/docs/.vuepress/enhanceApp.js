@@ -2,7 +2,6 @@
  * App level enhancements. Read more here:
  * https://vuepress.vuejs.org/guide/basic-config.html#app-level-enhancements
  */
-// import VueFormulate from '@braid/vue-formulate'
 // import pageComponents from '@internal/page-components'
 import Autocomplete from './Autocomplete'
 // import ArticleCard from './components/ArticleCard'
@@ -12,7 +11,12 @@ import Autocomplete from './Autocomplete'
 // import '../../node_modules/@braid/vue-formulate/themes/snow/snow.scss'
 
 export default ({ Vue }) => {
-
+	/*Vue.prototype.$gridlayout = {
+		async load () {
+			await import('vue-grid-layout');
+			console.log("LOADED!")
+		},
+	};*/
   /*Vue.use(VueFormulate, {
     plugins: [ Autocomplete ]
   })*/

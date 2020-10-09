@@ -13,7 +13,7 @@ vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.i
 
 <br/>
 
-[**[Demo](https://jbaysolutions.github.io/vue-grid-layout/examples/01-basic.html) | [Changelog](/website/docs/changelog/README.md)**]
+[**[Demo](https://jbaysolutions.github.io/vue-grid-layout/examples/01-basic.html) | [Changelog](/https://jbaysolutions.github.io/vue-grid-layout/changelog/)**]
 
 English | [简体中文](./README-zh_CN.md) 
 

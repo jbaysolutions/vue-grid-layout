@@ -1,9 +1,9 @@
 ---
 layout: HomeLayout
 home: true
-<!--heroImage: /logo.svg-->
+heroImage: /assets/img/logo.png
 heroText: Vue Grid Layout
-tagline: A grid layout system for Vue.js
+tagline: A grid layout system for Vue.js, like <a href="http://dsmorse.github.io/gridster.js/" target="_blank">Gridster</a>, for Vue.js. Heavily inspired by <a href='https://github.com/STRML/react-grid-layout' target='_blank'>React-Grid-Layout</a> 
 actionText: Get Started →
 actionLink: /guide/
 features:
@@ -27,7 +27,5 @@ features:
   details: 
 ---
 
-# Demo
+<HomeFooter></HomeFooter>
 
-
-TODO (work in progress...)

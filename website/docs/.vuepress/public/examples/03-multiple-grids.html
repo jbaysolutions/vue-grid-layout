@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Vue Grid Layout Example 3 - Multiple grids</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--<link rel="stylesheet" href="../dist/vue-grid-layout.css">-->
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<h1>Vue Grid Layout Example 3 - Multiple grids</h1>
+
+<a href="https://github.com/jbaysolutions/vue-grid-layout">View project on Github</a>
+<br/>
+<a href="02-events.html">Previous example: Move and resize events</a>
+<br/>
+<a href="04-allow-ignore.html">Next example: Drag allow/ignore elements</a>
+
+
+<div id="app1" style="width: 100%;">
+    <h3>Grid 1</h3>
+    <div>
+        <div class="layoutJSON">
+            Displayed as <code>[x, y, w, h]</code>:
+            <div class="columns">
+                <div class="layoutItem" v-for="item in layout">
+                    <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+                </div>
+            </div>
+        </div>
+    </div>
+    <grid-layout :layout="layout"
+                 :col-num="12"
+                 :row-height="30"
+                 :is-draggable="true"
+                 :is-resizable="true"
+                 :vertical-compact="true"
+                 :use-css-transforms="true"
+    >
+        <grid-item v-for="item in layout"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
+                   :i="item.i"
+        >
+            <span class="text">{{item.i}}</span>
+        </grid-item>
+    </grid-layout>
+</div>
+<hr/>
+<div id="app2" style="width: 100%;">
+    <h3>Grid 2</h3>
+    <div>
+        <div class="layoutJSON">
+            Displayed as <code>[x, y, w, h]</code>:
+            <div class="columns">
+                <div class="layoutItem" v-for="item in layout">
+                    <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+                </div>
+            </div>
+        </div>
+    </div>
+    <grid-layout :layout="layout"
+                 :col-num="12"
+                 :row-height="30"
+                 :is-draggable="true"
+                 :is-resizable="true"
+                 :vertical-compact="true"
+                 :use-css-transforms="true"
+    >
+        <grid-item v-for="item in layout"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
+                   :i="item.i"
+        >
+            <span class="text">{{item.i}}</span>
+        </grid-item>
+    </grid-layout>
+</div>
+
+<script src="vue.min.js"></script>
+<script src="../dist/vue-grid-layout.umd.min.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app1',
+        data: {
+            layout: [
+                {"x":0,"y":0,"w":2,"h":2,"i":"0"},
+                {"x":2,"y":0,"w":2,"h":4,"i":"1"},
+            ],
+            index: 0
+        },
+    });
+
+    new Vue({
+        el: '#app2',
+        data: {
+            layout: [
+                {"x":0,"y":0,"w":2,"h":2,"i":"0"},
+                {"x":2,"y":0,"w":2,"h":4,"i":"1"},
+                {"x":4,"y":0,"w":2,"h":2,"i":"2"},
+            ],
+            index: 0
+        },
+    });
+
+
+
+</script>
+</body>
+</html>

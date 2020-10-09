@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Vue Grid Layout Example 1 - Basic</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="app.css">
+    <!--<link rel="stylesheet" href="../dist/vue-grid-layout.css">-->
+</head>
+<body>
+    <h1>Vue Grid Layout Example 1 - Basic</h1>
+
+    <a href="https://github.com/jbaysolutions/vue-grid-layout">View project on Github</a>
+    <br/>
+    <a href="02-events.html">Next example: Move and resize events</a>
+
+    <div id="app" style="width: 100%;">
+        <!--<pre>{{ $data | json }}</pre>-->
+        <div>
+            <div class="layoutJSON">
+                Displayed as <code>[x, y, w, h]</code>:
+                <div class="columns">
+                    <div class="layoutItem" v-for="item in layout">
+                        <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <!--<button @click="decreaseWidth">Decrease Width</button>
+            <button @click="increaseWidth">Increase Width</button>
+            <button @click="addItem">Add an item</button>-->
+            <input type="checkbox" v-model="draggable"/> Draggable
+            <input type="checkbox" v-model="resizable"/> Resizable
+            <br/>
+            <grid-layout :layout="layout"
+                         :col-num="12"
+                         :row-height="30"
+                         :is-draggable="draggable"
+                         :is-resizable="resizable"
+                         :vertical-compact="true"
+                         :use-css-transforms="true"
+            >
+                <grid-item v-for="item in layout"
+                           :static="item.static"
+                           :x="item.x"
+                           :y="item.y"
+                           :w="item.w"
+                           :h="item.h"
+                           :i="item.i"
+                        >
+                    <span class="text">{{itemTitle(item)}}</span>
+                </grid-item>
+            </grid-layout>
+        </div>
+
+    </div>
+    <script src="vue.min.js"></script>
+    <script src="../dist/vue-grid-layout.umd.min.js"></script>
+    <script src="01-basic.js"></script>
+</body>
+</html>
