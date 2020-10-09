@@ -1,9 +1,8 @@
 {
   "name": "vue-grid-layout-website",
   "version": "1.0.0",
-  "description": "website",
-  "main": "index.js",
-  "author": "Gustavo Santos",
+  "description": "vue-grid-layout website",
+  "author": "Gustavo Santos (gustavo@jbaysolutions.com)",
   "license": "MIT",
   "private": false,
   "scripts": {
