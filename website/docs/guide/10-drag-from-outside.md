@@ -7,3 +7,5 @@ Once you drop the item within the grid you'll get its coordinates/properties and
 <ClientOnly>
 <Example10DragFromOutside></Example10DragFromOutside>
 </ClientOnly>
+
+[View source](https://github.com/jbaysolutions/vue-grid-layout/blob/master/website/docs/.vuepress/components/Example10DragFromOutside.vue)

@@ -5,3 +5,5 @@
 </iframe>
 <!--Example09DynamicAddRemove></Example09DynamicAddRemove-->
 </ClientOnly>
+
+[View source](https://github.com/jbaysolutions/vue-grid-layout/blob/master/website/docs/.vuepress/components/Example09DynamicAddRemove.vue)
