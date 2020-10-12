@@ -33,7 +33,7 @@ vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.i
 * Automatic RTL support (resizing not working with RTL on 2.2.0)
 * Responsive
 
-## **Current version:** 2.3.9 (Supports Vue 2.2+)
+## **Current version:** 2.3.10 (Supports Vue 2.2+)
 
 #### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
 #### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
