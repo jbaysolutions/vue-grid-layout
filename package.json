@@ -27,8 +27,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "element-resize-detector": "^1.1.15",
-    "interactjs": "^1.9.22"
+    "element-resize-detector": "^1.2.1",
+    "@interactjs/interactjs": "^1.10.0",
+    "@interactjs/auto-start": "^1.10.0",
+    "@interactjs/actions": "^1.10.0",
+    "@interactjs/modifiers": "^1.10.0",
+    "@interactjs/dev-tools": "^1.10.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.1",
@@ -41,6 +45,6 @@
     "sass-loader": "^7.0.1",
     "vue": "^2.6.12",
     "vue-template-compiler": "^2.6.12",
-    "webpack-bundle-analyzer": "^3.4.1"
+    "webpack-bundle-analyzer": "^3.9.0"
   }
 }

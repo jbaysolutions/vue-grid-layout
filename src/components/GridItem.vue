@@ -86,12 +86,17 @@
     }
 </style>
 <script>
-    import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '../helpers/utils';
-    import {getControlPosition, createCoreData} from '../helpers/draggableUtils';
-    import {getDocumentDir} from "../helpers/DOM";
+    import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '@/helpers/utils';
+    import {getControlPosition, createCoreData} from '@/helpers/draggableUtils';
+    import {getDocumentDir} from "@/helpers/DOM";
     //    var eventBus = require('./eventBus');
 
-    let interact = require("interactjs");
+    import '@interactjs/auto-start'
+    import '@interactjs/actions/drag'
+    import '@interactjs/actions/resize'
+    import '@interactjs/modifiers'
+    import '@interactjs/dev-tools'
+    import interact from '@interactjs/interact'
 
     export default {
         name: "GridItem",
