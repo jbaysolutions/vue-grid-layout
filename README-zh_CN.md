@@ -9,7 +9,7 @@ vue-grid-layout是一个类似于[Gridster](http://dsmorse.github.io/gridster.js
 ### **当前版本:** 2.3.8 (支持 Vue 2.2+)
 
 ### **Vue 2.1.10 及以下请使用 [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
-### **Vue 1 请使用 [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
+### **Vue 1 请使用 [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)**
 
 <br/>
 
@@ -64,10 +64,10 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 
 #### npm
 
-    # 使用 npm    
+    # 使用 npm
 	npm install vue-grid-layout --save
-    
-    # 使用 yarn    
+
+    # 使用 yarn
     yarn add vue-grid-layout
 
 
@@ -77,7 +77,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     import VueGridLayout from 'vue-grid-layout';
 ```
 
-加入到 Vue 组件 
+加入到 Vue 组件
 
  ```javascript
     export default {
@@ -87,8 +87,8 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
         },
     // ... data, methods, mounted (), etc.
     }
-    
-```    
+
+```
 
 #### 浏览器
 
@@ -123,14 +123,14 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 	    {"x":0,"y":9,"w":2,"h":3,"i":"18"},
 	    {"x":2,"y":6,"w":2,"h":2,"i":"19"}
 	];
-	
+
 	new Vue({
 	    el: '#app',
 	    data: {
 	        layout: testLayout,
 	    },
 	});
-``` 
+```
 
 
 ```html
@@ -167,14 +167,22 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 ##### GridLayout
 
 * **layout**
-    
+
     * type: `Array`
     * required: `true`
 
     数据源。值必须为 `Array`，其数据项为 `Object`。 每条数据项必须有 `i`, `x`, `y`, `w` 和 `h` 属性。 请参考下面的 `GridItem`。
 
+* **responsiveLayouts**
+
+    * type: `Object`
+    * required: `false`
+    * default: `{}`
+
+    如果 `responsive` 设置为 `true`，该配置将作为栅格中每个断点的初始布局。键值是断点名称，每项的值都是类似 `layout` 属性定义的数据结构，值必须为 `Array`，其数据项为 `Object`。例如： `{lg: [layout items], md: [layout items]}`。需要注意的是，在创建栅格布局后设置该属性无效。
+
 * **colNum**
-    
+
     * type: `Number`
     * required: `false`
     * default: `12`
@@ -182,7 +190,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     定义栅格系统的列数，其值需为自然数。
 
 * **rowHeight**
-    
+
     * type: `Number`
     * required: `false`
     * default: `150`
@@ -190,7 +198,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     每行的高度，单位像素。
 
 * **maxRows**
-    
+
     * type: `Number`
     * required: `false`
     * default: `Infinity`
@@ -198,7 +206,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     定义最大行数。
 
 * **margin**
-    
+
     * type: `Array`
     * required: `false`
     * default: `[10, 10]`
@@ -208,7 +216,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     值必须是包含两个 `Number`的数组，数组中第一个元素表示水平边距，第二个表示垂直边距，单位为像素。
 
 * **isDraggable**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `true`
@@ -216,7 +224,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     标识栅格中的元素是否可拖拽。
 
 * **isResizable**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `true`
@@ -224,7 +232,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     标识栅格中的元素是否可调整大小。
 
 * **isMirrored**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `false`
@@ -232,7 +240,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     标识栅格中的元素是否可镜像反转。
 
 * **autoSize**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `true`
@@ -240,7 +248,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     标识容器是否自动调整大小。
 
 * **verticalCompact**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `true`
@@ -248,7 +256,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     标识布局是否垂直压缩。
 
 * **useCssTransforms**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `true`
@@ -256,7 +264,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     标识是否使用CSS属性 `transition-property: transform;`。
 
 * **responsive**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `false`
@@ -290,82 +298,82 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 ##### GridItem
 
 * **i**
-    
+
     * type: `String`
     * required: `true`
 
     栅格中元素的ID。
 
 * **x**
-    
+
     * type: `Number`
     * required: `true`
 
     标识栅格元素位于第几列，需为自然数。
 
 * **y**
-    
+
     * type: `Number`
     * required: `true`
 
     标识栅格元素位于第几行，需为自然数。
 
 * **w**
-    
+
     * type: `Number`
     * required: `true`
 
     标识栅格元素的初始宽度，值为`colWidth`的倍数。
 
 * **h**
-    
+
     * type: `Number`
     * required: `true`
 
     标识栅格元素的初始高度，值为`rowHeight`的倍数。
 
 * **minW**
-    
+
     * type: `Number`
     * required: `false`
     * default: `1`
 
     栅格元素的最小宽度，值为`colWidth`的倍数。
-    
+
     如果`w`小于`minW`，则`minW`的值会被`w`覆盖。
 
 * **minH**
-    
+
     * type: `Number`
     * required: `false`
     * default: `1`
 
     栅格元素的最小高度，值为`rowHeight`的倍数。
-    
+
     如果`h`小于`minH`，则`minH`的值会被`h`覆盖。
 
 * **maxW**
-    
+
     * type: `Number`
     * required: `false`
     * default: `Infinity`
 
     栅格元素的最大宽度，值为`colWidth`的倍数。
-    
+
     如果`w`大于`maxW`，则`maxW`的值会被`w`覆盖。
 
 * **maxH**
-    
+
     * type: `Number`
     * required: `false`
     * default: `Infinity`
 
     栅格元素的最大高度，值为`rowHeight`的倍数。
-    
+
     如果`h`大于`maxH`，则`maxH`的值会被`h`覆盖。
 
 * **isDraggable**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `null`
@@ -373,7 +381,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     标识栅格元素是否可拖拽。如果值为`null`则取决于父容器。
 
 * **isResizable**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `null`
@@ -381,7 +389,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     标识栅格元素是否可调整大小。如果值为`null`则取决于父容器。
 
 * **static**
-    
+
     * type: `Boolean`
     * required: `false`
     * default: `false`
@@ -389,7 +397,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     标识栅格元素是否为静态的（无法拖拽、调整大小或被其他元素移动）。
 
 * **dragIgnoreFrom**
-    
+
     * type: `String`
     * required: `false`
     * default: `'a, button'`
@@ -399,7 +407,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     请参考 [interact.js docs](http://interactjs.io/docs/#ignorable-selectors)中的`ignoreFrom`。
 
 * **dragAllowFrom**
-    
+
     * type: `String`
     * required: `false`
     * default: `null`
@@ -411,7 +419,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     请参考 [interact.js docs](http://interactjs.io/docs/#ignorable-selectors)中的`allowFrom`。
 
 * **resizeIgnoreFrom**
-    
+
     * type: `String`
     * required: `false`
     * default: `'a, button'`
@@ -426,7 +434,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 
 每一个栅格元素`grid-item`上都可以添加监听器，用于监听移动和调整大小事件，这样父级Vue对象就可以收到通知。
 
- [示例](https://jbaysolutions.github.io/vue-grid-layout/examples/02-events.html)   
+ [示例](https://jbaysolutions.github.io/vue-grid-layout/examples/02-events.html)
 
 ````html
 
@@ -460,7 +468,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
             {{item.i}}
         </grid-item>
     </grid-layout>
-```` 
+````
 
 * **layoutCreatedEvent**
 
@@ -525,12 +533,12 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 * **resizeEvent**
 
     调整大小时的事件
- 
+
 ```javascript
     resizeEvent: function(i, newH, newW, newHPx, newWPx){
         console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
     },
-``` 
+```
 
 * **movedEvent**
 
@@ -545,21 +553,21 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 * **resizedEvent**
 
     调整大小后的事件
- 
+
 ```javascript
     /**
-     * 
+     *
      * @param i the item id/index
-     * @param newH new height in grid rows 
+     * @param newH new height in grid rows
      * @param newW new width in grid columns
      * @param newHPx new height in pixels
      * @param newWPx new width in pixels
-     * 
+     *
      */
     resizedEvent: function(i, newH, newW, newHPx, newWPx){
         console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
     },
-``` 
+```
 
 
 ## 如何贡献

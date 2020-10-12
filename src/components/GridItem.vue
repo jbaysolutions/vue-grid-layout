@@ -86,12 +86,17 @@
     }
 </style>
 <script>
-    import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '../helpers/utils';
-    import {getControlPosition, createCoreData} from '../helpers/draggableUtils';
-    import {getDocumentDir} from "../helpers/DOM";
+    import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '@/helpers/utils';
+    import {getControlPosition, createCoreData} from '@/helpers/draggableUtils';
+    import {getDocumentDir} from "@/helpers/DOM";
     //    var eventBus = require('./eventBus');
 
-    let interact = require("interactjs");
+    import '@interactjs/auto-start'
+    import '@interactjs/actions/drag'
+    import '@interactjs/actions/resize'
+    import '@interactjs/modifiers'
+    import '@interactjs/dev-tools'
+    import interact from '@interactjs/interact'
 
     export default {
         name: "GridItem",
@@ -192,7 +197,7 @@
                 default: 'a, button'
             },
         },
-        inject: ["eventBus"],
+        inject: ["eventBus", "layout"],
         data: function () {
             return {
                 cols: 1,
@@ -297,23 +302,23 @@
             }
         },
         mounted: function () {
-            this.cols = this.$parent.colNum;
-            this.rowHeight = this.$parent.rowHeight;
-            this.containerWidth = this.$parent.width !== null ? this.$parent.width : 100;
-            this.margin = this.$parent.margin !== undefined ? this.$parent.margin : [10, 10];
-            this.maxRows = this.$parent.maxRows;
+            this.cols = this.layout.colNum;
+            this.rowHeight = this.layout.rowHeight;
+            this.containerWidth = this.layout.width !== null ? this.layout.width : 100;
+            this.margin = this.layout.margin !== undefined ? this.layout.margin : [10, 10];
+            this.maxRows = this.layout.maxRows;
             if (this.isDraggable === null) {
-                this.draggable = this.$parent.isDraggable;
+                this.draggable = this.layout.isDraggable;
             } else {
                 this.draggable = this.isDraggable;
             }
             if (this.isResizable === null) {
-                this.resizable = this.$parent.isResizable;
+                this.resizable = this.layout.isResizable;
             } else {
                 this.resizable = this.isResizable;
             }
-            this.useCssTransforms = this.$parent.useCssTransforms;
-            this.useStyleCursor = this.$parent.useStyleCursor;
+            this.useCssTransforms = this.layout.useCssTransforms;
+            this.useStyleCursor = this.layout.useStyleCursor;
             this.createStyle();
         },
         watch: {
@@ -414,7 +419,7 @@
                 return navigator.userAgent.toLowerCase().indexOf("android") !== -1;
             },
             renderRtl() {
-                return (this.$parent.isMirrored) ? !this.rtl : this.rtl;
+                return (this.layout.isMirrored) ? !this.rtl : this.rtl;
             },
             resizableHandleClass() {
                 if (this.renderRtl) {
