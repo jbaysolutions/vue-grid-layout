@@ -107,6 +107,10 @@
             preventCollision: {
                 type: Boolean,
                 default: false
+            },
+            useStyleCursor: {
+                type: Boolean,
+                default: true
             }
         },
         data: function () {

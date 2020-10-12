@@ -287,6 +287,13 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
 
     设置每个断点对应的列数。
 
+* **useStyleCursor**
+
+    * type: `Boolean`
+    * required: `false`
+    * default: `true`
+
+    标识是否使用动态鼠标指针样式。当拖动出现卡顿时，将此值设为 `false`也许可以缓解布局问题。
 
 ##### GridItem
 
