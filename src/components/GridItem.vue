@@ -88,6 +88,7 @@
 <script>
     import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '@/helpers/utils';
     import {getControlPosition, createCoreData} from '@/helpers/draggableUtils';
+    import {getColsFromBreakpoint} from '@/helpers/responsiveUtils';
     import {getDocumentDir} from "@/helpers/DOM";
     //    var eventBus = require('./eventBus');
 
@@ -302,11 +303,16 @@
             }
         },
         mounted: function () {
-            this.cols = this.layout.colNum;
+            if (this.layout.responsive) {
+              this.cols = getColsFromBreakpoint(this.layout.lastBreakpoint, this.layout.cols);
+            } else {
+              this.cols = this.layout.colNum;
+            }
             this.rowHeight = this.layout.rowHeight;
             this.containerWidth = this.layout.width !== null ? this.layout.width : 100;
             this.margin = this.layout.margin !== undefined ? this.layout.margin : [10, 10];
             this.maxRows = this.layout.maxRows;
+
             if (this.isDraggable === null) {
                 this.draggable = this.layout.isDraggable;
             } else {
