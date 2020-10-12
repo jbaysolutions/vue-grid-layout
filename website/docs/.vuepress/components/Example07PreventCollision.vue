@@ -1,6 +1,6 @@
 <template>
     <div>
- o       <grid-layout :layout="layout"
+        <grid-layout :layout="layout"
                      :col-num="12"
                      :row-height="30"
                      :is-draggable="draggable"
