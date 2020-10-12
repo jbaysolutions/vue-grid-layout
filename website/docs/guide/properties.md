@@ -138,6 +138,14 @@ Breakpoints defined for responsive layout. Sets widths on wich column number cha
 
 Defines number of columns for each breakpoint
 
+### useStyleCursor
+
+* type: `Boolean`
+* required: `false`
+* default: `true`
+
+Says if set the `styleCursor` option to true. When dragging freezes, setting this value to `false` may alleviate problems. 
+**This property is not reactive**
 
 ## GridItem
 
