@@ -3,7 +3,15 @@ sidebar: auto
 ---
 # Changelog
 
-## 2.3.9 (September 28, 2020)
+## 2.3.10 (Unreleased)
+
+* Bumped interact.js to 1.10.0, now imported as ES6 modules to optimize size 
+* fix: resizing a grid item in RTL mode wasn't working (thanks [or-lat](https://github.com/or-lat)) 
+* Added GridLayout.useStyleCursor property to fix possible browser freezes (thanks [mosuzi](https://github.com/mosuzi)) 
+* fix: wrong parent layout when GridItem is not the child of GridLayout (thanks [lzq4047](https://github.com/lzq4047)) 
+* Fix: Item's size changes when hiding/displaying it again in responsive mode (thanks [lustan3216](https://github.com/lustan3216)) 
+
+## 2.3.9 (Sep 28, 2020)
 
 * Fix plugin installation (fixes #311) (thanks [yfwz100](https://github.com/yfwz100))
 * Bumped interact.js to 1.9.22
