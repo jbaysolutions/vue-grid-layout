@@ -1,4 +1,12 @@
+---
+sidebar: auto
+---
 # Changelog
+
+## 2.3.9 (September 28, 2020)
+
+* Fix plugin installation (fixes #311) (thanks [yfwz100](https://github.com/yfwz100))
+* Bumped interact.js to 1.9.22
 
 ## 2.3.8 (July 31, 2020)
 

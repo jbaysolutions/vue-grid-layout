@@ -1,0 +1,17 @@
+name: Build and Deploy vuepress
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: vuepress-deploy
+        uses: jenkey2011/vuepress-deploy@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          TARGET_REPO: jbaysolutions/vue-grid-layout
+          TARGET_BRANCH: gh-pages
+          BUILD_SCRIPT: cd website && yarn && yarn build
+          BUILD_DIR: public

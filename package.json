@@ -1,6 +1,6 @@
 {
   "name": "vue-grid-layout",
-  "version": "2.3.8",
+  "version": "2.3.9",
   "description": "A draggable and resizable grid layout, as a Vue component.",
   "keywords": [
     "grid",
@@ -17,6 +17,7 @@
     "url": "https://github.com/jbaysolutions/vue-grid-layout.git"
   },
   "author": "Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com)",
+  "homepage": "https://github.com/jbaysolutions/vue-grid-layout",
   "main": "dist/vue-grid-layout.common.js",
   "unpkg": "dist/vue-grid-layout.umd.min.js",
   "scripts": {
@@ -26,8 +27,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "element-resize-detector": "^1.1.15",
-    "interactjs": "^1.6.3"
+    "element-resize-detector": "^1.2.1",
+    "@interactjs/interactjs": "^1.10.0",
+    "@interactjs/auto-start": "^1.10.0",
+    "@interactjs/actions": "^1.10.0",
+    "@interactjs/modifiers": "^1.10.0",
+    "@interactjs/dev-tools": "^1.10.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.1",
@@ -38,8 +43,8 @@
     "node-sass": "^4.13.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.0.1",
-    "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10",
-    "webpack-bundle-analyzer": "^3.4.1"
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12",
+    "webpack-bundle-analyzer": "^3.9.0"
   }
 }
