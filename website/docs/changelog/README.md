@@ -3,7 +3,7 @@ sidebar: auto
 ---
 # Changelog
 
-## 2.3.10 (Unreleased)
+## 2.3.10 (Oct 12, 2020)
 
 * Bumped interact.js to 1.10.0, now imported as ES6 modules to optimize size 
 * fix: resizing a grid item in RTL mode wasn't working (thanks [or-lat](https://github.com/or-lat)) 
