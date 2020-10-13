@@ -3,6 +3,10 @@ sidebar: auto
 ---
 # Changelog
 
+## 2.3.11 (Oct 13, 2020)
+
+* fix: regression when using responsive layout (#487)
+
 ## 2.3.10 (Oct 12, 2020)
 
 * Bumped interact.js to 1.10.0, now imported as ES6 modules to optimize size 

@@ -303,10 +303,10 @@
             }
         },
         mounted: function () {
-            if (this.layout.responsive) {
-              this.cols = getColsFromBreakpoint(this.layout.lastBreakpoint, this.layout.cols);
+            if (this.layout.responsive && this.layout.lastBreakpoint) {
+                this.cols = getColsFromBreakpoint(this.layout.lastBreakpoint, this.layout.cols);
             } else {
-              this.cols = this.layout.colNum;
+                this.cols = this.layout.colNum;
             }
             this.rowHeight = this.layout.rowHeight;
             this.containerWidth = this.layout.width !== null ? this.layout.width : 100;

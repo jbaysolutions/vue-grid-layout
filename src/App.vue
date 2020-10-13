@@ -142,7 +142,6 @@
     export default {
         name: 'app',
         components: {
-            // ResponsiveGridLayout,
             GridLayout,
             GridItem,
             TestElement,
