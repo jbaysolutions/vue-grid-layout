@@ -10,29 +10,31 @@
         :alt="data.heroAlt || 'hero'"
       >
 
-      <h1
-        v-if="data.heroText !== null"
-        id="main-title"
-      >
-        {{ data.heroText || $title || 'Hello' }}
-      </h1>
+        <div>
+            <h1
+                v-if="data.heroText !== null"
+                id="main-title"
+            >
+                {{ data.heroText || $title || 'Hello' }}
+            </h1>
+            <p
 
-      <p
-        v-if="data.tagline !== null"
-        class="description"
-        v-html="data.tagline || $description || 'Welcome to your VuePress site'"
-      >
-      </p>
+                v-if="data.tagline !== null"
+                class="description"
+                v-html="data.tagline || $description || 'Welcome to your VuePress site'"
+            >
+            </p>
+            <p
 
-      <p
-        v-if="data.actionText && data.actionLink"
-        class="action"
-      >
-        <NavLink
-          class="action-button"
-          :item="actionLink"
-        />
-      </p>
+                v-if="data.actionText && data.actionLink"
+                class="action"
+            >
+                <NavLink
+                    class="action-button"
+                    :item="actionLink"
+                />
+            </p>
+        </div>
     </header>
 
       <ClientOnly>
@@ -88,7 +90,12 @@ export default {
   margin 0px auto
   display block
   .hero
-    text-align center
+    //text-align center
+    display flex
+    //align-items center
+    align-items flex-start
+    justify-content center
+    text-align left
     img
       max-width: 100%
       max-height 280px
@@ -155,11 +162,14 @@ export default {
     padding-left 1.5rem
     padding-right 1.5rem
     .hero
+        flex-direction column
+        text-align center
       img
-        max-height 210px
-        margin 2rem auto 1.2rem
+        max-height 210px !important
+        margin 2rem auto 1.2rem !important
       h1
         font-size 2rem
+        margin-top 0 !important
       h1, .description, .action
         margin 1.2rem auto
       .description
