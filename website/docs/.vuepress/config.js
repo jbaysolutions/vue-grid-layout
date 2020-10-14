@@ -56,10 +56,10 @@ module.exports = {
 		editLinks: true,
 		editLinkText: 'Help improve this page!',
 		lastUpdated: 'Last Updated',
-		/*algolia: {
-				  apiKey: 'XXX',
-				  indexName: 'vuegridlayout'
-				}*/
+		algolia: {
+		  apiKey: '2f143d1edd24605564065dd02bf0a22b',
+		  indexName: 'vue_grid_layout'
+		}
 	},
 	plugins: [
 		'@vuepress/back-to-top',
