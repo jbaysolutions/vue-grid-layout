@@ -1,28 +1,30 @@
 <template>
-  <ParentLayout>
-    <!--<template #sidebar-top>
-        <h2>XXX</h2>
-    </template>-->
-    <template #sidebar-bottom>
-        <footer class="footer">
-            A product by:
-            <a href="https://www.jbaysolutions.com/" target="_blank" rel="noopener" class="footer-card">
-                <img src="assets/img/logo-jbay.png" />
-            </a>
-        </footer>
-    </template>
-  </ParentLayout>
+    <ParentLayout>
+        <template #sidebar-top>
+            <CarbonAds/>
+        </template>
+        <template #sidebar-bottom>
+            <footer class="footer">
+                A product by:
+                <a href="https://www.jbaysolutions.com/" target="_blank" rel="noopener" class="footer-card">
+                    <img src="assets/img/logo-jbay.png"/>
+                </a>
+            </footer>
+        </template>
+    </ParentLayout>
 </template>
 
 <script>
 import ParentLayout from '@parent-theme/layouts/Layout.vue'
+import CarbonAds from '../components/CarbonAds'
 
 export default {
-  name: 'Layout',
+    name: 'Layout',
 
-  components: {
-    ParentLayout,
-  }
+    components: {
+        ParentLayout,
+        CarbonAds,
+    }
 }
 </script>
 
