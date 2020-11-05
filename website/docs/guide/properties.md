@@ -22,6 +22,8 @@ This is the initial layouts of the grid per breakpoint if `responsive` is set to
 The keys of the `Object` are breakpoint names and each value is an `Array` of `Object` items as defined by `layout` prop. eg:{ lg:[layout items], md:[layout items] }.
 Setting the prop after the creation of the GridLayout has no effect.
 
+See also [responsive](#responsive), [breakpoints](#breakpoints) and [cols](#cols)
+
 ### colNum
     
 * type: `Number`
@@ -122,6 +124,9 @@ Says if the CSS `transition-property: transform;` should be used.
 
 Says if the layout should be responsive to window width
 
+See also [responsiveLayouts](#responsivelayouts), [breakpoints](#breakpoints) and [cols](#cols)
+
+
 ### breakpoints
 
 * type: `Object`
@@ -129,6 +134,8 @@ Says if the layout should be responsive to window width
 * default: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }
 
 Breakpoints defined for responsive layout. Sets widths on wich column number changes
+
+See also [responsiveLayouts](#responsivelayouts) and [cols](#cols)
 
 ### cols
 
