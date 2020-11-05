@@ -155,7 +155,9 @@
             this.eventBus.$off('dragEvent', this.dragEventHandler);
 			this.eventBus.$destroy();
             removeWindowEventListener("resize", this.onWindowResize);
-			this.erd.uninstall(this.$refs.item);
+            if (this.erd) {
+                this.erd.uninstall(this.$refs.item);
+            }
         },
         beforeMount: function() {
             this.$emit('layout-before-mount', this.layout);
