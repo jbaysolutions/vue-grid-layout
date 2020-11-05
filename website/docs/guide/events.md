@@ -43,11 +43,11 @@ Working example [here](../guide/02-events.md)
 
 ## GridLayout
 
-* **layoutCreatedEvent**
+### layoutCreatedEvent
 
-    Layout created event
+Layout created event
 
-    Emited on the component created lifecycle hook
+Emited on the component created lifecycle hook
 
 ```javascript
     layoutCreatedEvent: function(newLayout){
@@ -55,11 +55,11 @@ Working example [here](../guide/02-events.md)
     }
 ```
 
-* **layoutBeforeMountEvent**
+### layoutBeforeMountEvent
 
-    Layout beforeMount event
+Layout beforeMount event
 
-    Emited on the component beforeMount lifecycle hook
+Emited on the component beforeMount lifecycle hook
 
 ```javascript
     layoutBeforeMountEvent: function(newLayout){
@@ -67,11 +67,11 @@ Working example [here](../guide/02-events.md)
     }
 ```
 
-* **layoutMountedEvent**
+### layoutMountedEvent
 
-    Layout mounted event
+Layout mounted event
 
-    Emited on the component mounted lifecycle hook
+Emited on the component mounted lifecycle hook
 
 ```javascript
     layoutMountedEvent: function(newLayout){
@@ -79,11 +79,11 @@ Working example [here](../guide/02-events.md)
     }
 ```
 
-* **layoutReadyEvent**
+### layoutReadyEvent
 
-    Layout ready event
+Layout ready event
 
-    Emited when all the operations on the mount hook finish
+Emited when all the operations on the mount hook finish
 
 ```javascript
     layoutReadyEvent: function(newLayout){
@@ -91,11 +91,11 @@ Working example [here](../guide/02-events.md)
     }
 ```
 
-* **layoutUpdatedEvent**
+### layoutUpdatedEvent
 
-    Layout updated event
+Layout updated event
 
-    Every time the layout has finished updating and positions of all grid-items are recalculated
+Every time the layout has finished updating and positions of all grid-items are recalculated
 
 ```javascript
     layoutUpdatedEvent: function(newLayout){
@@ -104,11 +104,11 @@ Working example [here](../guide/02-events.md)
 ```
 
 
-* **breakpointChangedEvent**
+### breakpointChangedEvent
 
-    Breakpoint Changed event
+Breakpoint Changed event
 
-    Every time the breakpoint value changes due to window resize
+Every time the breakpoint value changes due to window resize
  
 ```javascript
     /**
@@ -125,11 +125,11 @@ Working example [here](../guide/02-events.md)
 
 ## GridItem
 
-* **moveEvent**
+### moveEvent
 
-    Move event
+Move event
 
-    Every time an item is being moved and changes position
+Every time an item is being moved and changes position
 
 ```javascript
     moveEvent: function(i, newX, newY){
@@ -137,11 +137,11 @@ Working example [here](../guide/02-events.md)
     },
 ```
 
-* **resizeEvent**
+### resizeEvent
 
-    Resize event
+Resize event
 
-    Every time an item is being resized and changes size
+Every time an item is being resized and changes size
  
 ```javascript
     resizeEvent: function(i, newH, newW, newHPx, newWPx){
@@ -149,11 +149,11 @@ Working example [here](../guide/02-events.md)
     },
 ``` 
 
-* **movedEvent**
+### movedEvent
 
-    Moved event
+Moved event
 
-    Every time an item is finished being moved and changes position
+Every time an item is finished being moved and changes position
 
 ```javascript
     movedEvent: function(i, newX, newY){
@@ -161,11 +161,11 @@ Working example [here](../guide/02-events.md)
     },
 ```
 
-* **resizedEvent**
+### resizedEvent
 
-    Resized event
+Resized event
 
-    Every time an item is finished being resized and changes size
+Every time an item is finished being resized and changes size
  
 ```javascript
     /**
@@ -182,11 +182,11 @@ Working example [here](../guide/02-events.md)
     },
 ``` 
 
-* **containerResizedEvent**
+### containerResizedEvent
 
-    Container Resized event
+Container Resized event
 
-    Every time the grid item/layout container changes size (browser window or other)
+Every time the grid item/layout container changes size (browser window or other)
  
 ```javascript
     /**
