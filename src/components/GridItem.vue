@@ -85,15 +85,23 @@
         user-select: none;
     }
 </style>
-<script>
-    import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '../helpers/utils';
-    import {getControlPosition, createCoreData} from '../helpers/draggableUtils';
-    import {getDocumentDir} from "../helpers/DOM";
-    //    var eventBus = require('./eventBus');
+<script lang="ts">
+import { defineComponent } from 'vue'
+import interact from 'interactjs'
+import {
+  setTopLeft,
+  setTopRight,
+  setTransform,
+  setTransformRtl,
+} from '../helpers/utils'
+import {
+  createCoreData,
+  getControlPosition,
+} from '../helpers/draggableUtils'
+import { getDocumentDir } from "../helpers/DOM"
+//    var eventBus = require('./eventBus');
 
-    let interact = require("interactjs");
-
-    export default {
+    export default defineComponent({
         name: "GridItem",
         props: {
             /*cols: {
@@ -269,28 +277,28 @@
                self.cols = parseInt(colNum);
             }
 
-            this.eventBus.$on('updateWidth', self.updateWidthHandler);
-            this.eventBus.$on('compact', self.compactHandler);
-            this.eventBus.$on('setDraggable', self.setDraggableHandler);
-            this.eventBus.$on('setResizable', self.setResizableHandler);
-            this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
-            this.eventBus.$on('setMaxRows', self.setMaxRowsHandler);
-            this.eventBus.$on('directionchange', self.directionchangeHandler);
-            this.eventBus.$on('setColNum', self.setColNum)
+            this.eventBus.on('updateWidth', self.updateWidthHandler);
+            this.eventBus.on('compact', self.compactHandler);
+            this.eventBus.on('setDraggable', self.setDraggableHandler);
+            this.eventBus.on('setResizable', self.setResizableHandler);
+            this.eventBus.on('setRowHeight', self.setRowHeightHandler);
+            this.eventBus.on('setMaxRows', self.setMaxRowsHandler);
+            this.eventBus.on('directionchange', self.directionchangeHandler);
+            this.eventBus.on('setColNum', self.setColNum)
 
             this.rtl = getDocumentDir() === 'rtl';
         },
-        beforeDestroy: function(){
+        beforeUnmount: function(){
             let self = this;
             //Remove listeners
-            this.eventBus.$off('updateWidth', self.updateWidthHandler);
-            this.eventBus.$off('compact', self.compactHandler);
-            this.eventBus.$off('setDraggable', self.setDraggableHandler);
-            this.eventBus.$off('setResizable', self.setResizableHandler);
-            this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
-            this.eventBus.$off('setMaxRows', self.setMaxRowsHandler);
-            this.eventBus.$off('directionchange', self.directionchangeHandler);
-            this.eventBus.$off('setColNum', self.setColNum);
+            this.eventBus.off('updateWidth', self.updateWidthHandler);
+            this.eventBus.off('compact', self.compactHandler);
+            this.eventBus.off('setDraggable', self.setDraggableHandler);
+            this.eventBus.off('setResizable', self.setResizableHandler);
+            this.eventBus.off('setRowHeight', self.setRowHeightHandler);
+            this.eventBus.off('setMaxRows', self.setMaxRowsHandler);
+            this.eventBus.off('directionchange', self.directionchangeHandler);
+            this.eventBus.off('setColNum', self.setColNum);
             if (this.interactObj) {
                 this.interactObj.unset() // destroy interact intance
             }
@@ -471,7 +479,7 @@
             emitContainerResized() {
                 // this.style has width and height with trailing 'px'. The
                 // resized event is without them
-                let styleProps = {};
+                let styleProps: {height: number, width: number} = {};
                 for (let prop of ['width', 'height']) {
                     let val = this.style[prop];
                     let matches = val.match(/^(\d+)px$/);
@@ -481,7 +489,7 @@
                 }
                 this.$emit("container-resized", this.i, this.h, this.w, styleProps.height, styleProps.width);
             },
-            handleResize: function (event) {
+            handleResize: function (event: MouseEvent) {
                 if (this.static) return;
                 const position = getControlPosition(event);
                 // Get the current drag point from the event. This is used as the offset.
@@ -558,9 +566,9 @@
                 if (event.type === "resizeend" && (this.previousW !== this.innerW || this.previousH !== this.innerH)) {
                     this.$emit("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
                 }
-                this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
+                this.eventBus.emit("resizeEvent", { eventType: event.type, i: this.i, x: this.innerX, y: this.innerY, h: pos.h, w: pos.w });
             },
-            handleDrag(event) {
+            handleDrag(event: MouseEvent) {
                 if (this.static) return;
                 if (this.isResizing) return;
 
@@ -577,8 +585,8 @@
                         this.previousX = this.innerX;
                         this.previousY = this.innerY;
 
-                        let parentRect = event.target.offsetParent.getBoundingClientRect();
-                        let clientRect = event.target.getBoundingClientRect();
+                        let parentRect = (event.target as HTMLElement).offsetParent.getBoundingClientRect();
+                        let clientRect = (event.target as HTMLElement).getBoundingClientRect();
                         if (this.renderRtl) {
                             newPosition.left = (clientRect.right - parentRect.right) * -1;
                         } else {
@@ -591,8 +599,8 @@
                     }
                     case "dragend": {
                         if (!this.isDragging) return;
-                        let parentRect = event.target.offsetParent.getBoundingClientRect();
-                        let clientRect = event.target.getBoundingClientRect();
+                        let parentRect = (event.target as HTMLElement).offsetParent.getBoundingClientRect();
+                        let clientRect = (event.target as HTMLElement).getBoundingClientRect();
 //                        Add rtl support
                         if (this.renderRtl) {
                             newPosition.left = (clientRect.right - parentRect.right) * -1;
@@ -641,9 +649,9 @@
                 if (event.type === "dragend" && (this.previousX !== this.innerX || this.previousY !== this.innerY)) {
                     this.$emit("moved", this.i, pos.x, pos.y);
                 }
-                this.eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.innerH, this.innerW);
+                this.eventBus.emit("dragEvent", {eventType: event.type, i:this.i, x:pos.x, y:pos.y, h:this.innerH, w:this.innerW});
             },
-            calcPosition: function (x, y, w, h) {
+            calcPosition: function (x: number, y: number, w: number, h: number) {
                 const colWidth = this.calcColWidth();
                 // add rtl support
                 let out;
@@ -679,7 +687,7 @@
              * @return {Object} x and y in grid units.
              */
             // TODO check if this function needs change in order to support rtl.
-            calcXY(top, left) {
+            calcXY(top: number, left: number) {
                 const colWidth = this.calcColWidth();
 
                 // left = colWidth * x + margin * (x + 1)
@@ -699,10 +707,9 @@
                 return {x, y};
             },
             // Helper for generating column width
-            calcColWidth() {
-                const colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
-               // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
-                return colWidth;
+            calcColWidth(): number {
+              // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
+                return (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
             },
 
             /**
@@ -711,7 +718,7 @@
              * @param  {Number} width  Width in pixels.
              * @return {Object} w, h as grid units.
              */
-            calcWH(height, width) {
+            calcWH(height: number, width: number) {
                 const colWidth = this.calcColWidth();
 
                 // width = colWidth * w - (margin * (w - 1))
@@ -725,7 +732,7 @@
                 h = Math.max(Math.min(h, this.maxRows - this.innerY), 0);
                 return {w, h};
             },
-            updateWidth: function (width, colNum) {
+            updateWidth: function (width: number, colNum: number) {
                 this.containerWidth = width;
                 if (colNum !== undefined && colNum !== null) {
                     this.cols = colNum;
@@ -841,9 +848,9 @@
                 }
                 if (this.previousW !== pos.w || this.previousH !== pos.h) {
                     this.$emit("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
-                    this.eventBus.$emit("resizeEvent", "resizeend", this.i, this.innerX, this.innerY, pos.h, pos.w);
+                    this.eventBus.emit("resizeEvent", {eventType: "resizeend",i: this.i,x: this.innerX,y: this.innerY,h: pos.h,w: pos.w});
                 }
             }
         },
     }
-</script>
+)</script>
