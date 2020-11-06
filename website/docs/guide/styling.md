@@ -32,7 +32,7 @@ Or by wrapping your grid with a more [specific](https://developer.mozilla.org/en
 
 ````css
 .container .vue-grid-item.vue-grid-placeholder {
-    background: green !important;
+    background: green;
 }
 ````
 
@@ -45,4 +45,4 @@ In this example we change the placeholder background color to green:
 </ClientOnly>
 
 
-Working in progress...
+Work in progress...
