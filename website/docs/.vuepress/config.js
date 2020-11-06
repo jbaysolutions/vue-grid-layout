@@ -23,6 +23,7 @@ module.exports = {
 						'usage',
 						'properties',
 						'events',
+						'styling',
 					]
 				},
 				{
