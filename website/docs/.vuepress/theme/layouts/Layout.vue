@@ -7,7 +7,7 @@
             <footer class="footer">
                 A product by:
                 <a href="https://www.jbaysolutions.com/" target="_blank" rel="noopener" class="footer-card">
-                    <img src="assets/img/logo-jbay.png"/>
+                    <img :src="$withBase('/assets/img/logo-jbay.png')" alt="JBay Solutions"/>
                 </a>
             </footer>
         </template>
