@@ -28,7 +28,7 @@ You can override the properties using the !important rule:
 }
 ````
 
-Or by wrapping your grid with a more (specific)[https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity] class:
+Or by wrapping your grid with a more [specific](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) class:
 
 ````css
 .container .vue-grid-item.vue-grid-placeholder {
