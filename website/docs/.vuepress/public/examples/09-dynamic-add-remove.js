@@ -40,7 +40,8 @@ new Vue({
       this.index++;
     },
     removeItem: function (val) {
-      this.layout = this.layout.filter((item) => item.i !== val);
+      const index = this.layout.map(item => item.i).indexOf(val);
+      this.layout.splice(index, 1);
     },
   },
 });

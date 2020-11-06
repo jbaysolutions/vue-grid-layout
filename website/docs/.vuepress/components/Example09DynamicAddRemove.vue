@@ -1,5 +1,13 @@
 <template>
     <div>
+        <div class="layoutJSON">
+            Displayed as <code>[x, y, w, h]</code>:
+            <div class="columns">
+                <div class="layoutItem" v-for="item in layout" :key="item.i">
+                    <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+                </div>
+            </div>
+        </div>
         <button @click="addItem">Add an item dynamically</button>
         <input type="checkbox" v-model="draggable" /> Draggable
         <input type="checkbox" v-model="resizable" /> Resizable
@@ -50,7 +58,7 @@ export default {
         }
     },
     mounted() {
-        this.$gridlayout.load();
+        // this.$gridlayout.load();
         this.index = this.layout.length;
     },
     methods: {
@@ -67,13 +75,29 @@ export default {
             this.index++;
         },
         removeItem: function (val) {
-            this.layout = this.layout.filter((item) => item.i !== val);
+            const index = this.layout.map(item => item.i).indexOf(val);
+            this.layout.splice(index, 1);
         },
     }
 }
 </script>
 
-<style scoped>
+<style>
+.layoutJSON {
+    background: #ddd;
+    border: 1px solid black;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.columns {
+    -moz-columns: 120px;
+    -webkit-columns: 120px;
+    columns: 120px;
+}
+
+/*************************************/
+
 .remove {
     position: absolute;
     right: 2px;
