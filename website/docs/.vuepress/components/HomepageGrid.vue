@@ -1,5 +1,5 @@
 <template>
-    <grid-layout :layout="layout"
+    <grid-layout :layout.sync="layout"
                  :col-num="12"
                  :row-height="30"
                  :is-draggable="draggable"

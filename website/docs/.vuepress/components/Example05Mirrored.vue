@@ -4,7 +4,7 @@
         <input type="checkbox" v-model="resizable"/> Resizable
         <input type="checkbox" v-model="mirrored"/> Mirrored
         <br/>
-        <grid-layout :layout="layout"
+        <grid-layout :layout.sync="layout"
                      :col-num="12"
                      :row-height="30"
                      :is-draggable="draggable"

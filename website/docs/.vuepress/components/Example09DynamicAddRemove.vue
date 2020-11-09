@@ -11,7 +11,7 @@
         <button @click="addItem">Add an item dynamically</button>
         <input type="checkbox" v-model="draggable" /> Draggable
         <input type="checkbox" v-model="resizable" /> Resizable
-        <grid-layout :layout="layout"
+        <grid-layout :layout.sync="layout"
                      :col-num="colNum"
                      :row-height="30"
                      :is-draggable="draggable"

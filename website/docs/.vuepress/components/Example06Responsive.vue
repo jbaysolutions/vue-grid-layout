@@ -14,7 +14,7 @@
         <input type="checkbox" v-model="responsive"/> Responsive
         <br/>
         <div style="width:100%;margin-top: 10px;height:100%;">
-            <grid-layout :layout="layout"
+            <grid-layout :layout.sync="layout"
                          :col-num="12"
                          :row-height="30"
                          :is-draggable="draggable"

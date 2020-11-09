@@ -2,7 +2,7 @@
     <div>
         <div style="margin-top:10px;">
             <h4>Grid #1</h4>
-            <grid-layout :layout="layout"
+            <grid-layout :layout.sync="layout"
                          :col-num="12"
                          :row-height="30"
                          :is-draggable="true"
