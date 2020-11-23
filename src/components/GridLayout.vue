@@ -96,6 +96,10 @@
                     return {};
                 }
             },
+            transformScale: {
+                type: Number,
+                default: 1
+            },
             breakpoints:{
                 type: Object,
                 default: function(){return{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
@@ -243,6 +247,9 @@
             },
             isResizable: function() {
                 this.eventBus.$emit("setResizable", this.isResizable);
+            },
+            transformScale: function() {
+                this.eventBus.$emit("setTransformScale", this.transformScale);
             },
             responsive() {
                 if (!this.responsive) {
