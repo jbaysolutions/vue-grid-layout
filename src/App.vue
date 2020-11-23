@@ -23,6 +23,8 @@
         <div id="content">
             <button @click="decreaseWidth">Decrease Width</button>
             <button @click="increaseWidth">Increase Width</button>
+            <button @click="scaleHalf">Scale x0.5</button>
+            <button @click="scaleIdentity">Scale x1.0</button>
             <button @click="addItem">Add an item</button>
             <button @click="addItemDynamically">Add an item dynamically</button>
             <!-- Add to show rtl support -->
@@ -37,7 +39,8 @@
                 Margin x: <input type="number" v-model="marginX"/> Margin y: <input type="number" v-model="marginY"/>
             </div>
             <grid-layout
-                :margin="[parseInt(marginX), parseInt(marginY)]"
+                    id="grid-layout"
+                    :margin="[parseInt(marginX), parseInt(marginY)]"
                     :layout.sync="layout"
                     :col-num="parseInt(colNum)"
                     :row-height="rowHeight"
@@ -48,6 +51,7 @@
                     :vertical-compact="true"
                     :use-css-transforms="true"
                     :responsive="responsive"
+                    :transformScale="transformScale"
                     @layout-created="layoutCreatedEvent"
                     @layout-before-mount="layoutBeforeMountEvent"
                     @layout-mounted="layoutMountedEvent"
@@ -155,6 +159,7 @@
                 resizable: true,
                 mirrored: false,
                 responsive: true,
+                transformScale: 1,
                 preventCollision: false,
                 rowHeight: 30,
                 colNum: 12,
@@ -179,6 +184,14 @@
                 let width = document.getElementById("content").offsetWidth;
                 width -= 20;
                 document.getElementById("content").style.width = width+"px";
+            },
+            scaleHalf: function() {
+              this.transformScale = 0.5
+              document.getElementById("grid-layout").style.transform = "scale(0.5)";
+            },
+            scaleIdentity: function() {
+              this.transformScale = 1
+              document.getElementById("grid-layout").style.transform = "scale(1)";
             },
             removeItem: function(item) {
                 //console.log("### REMOVE " + item.i);
