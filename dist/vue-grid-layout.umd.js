@@ -4379,12 +4379,12 @@ __webpack_require__.d(all_namespaceObject, "edgeTarget", function() { return edg
 __webpack_require__.d(all_namespaceObject, "elements", function() { return snappers_elements; });
 __webpack_require__.d(all_namespaceObject, "grid", function() { return grid; });
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"099cfe04-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=df7c3722&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"099cfe04-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=37761098&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-item",class:_vm.classObj,style:(_vm.style)},[_vm._t("default"),(_vm.resizableAndNotStatic)?_c('span',{ref:"handle",class:_vm.resizableHandleClass}):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=df7c3722&
+// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=37761098&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
@@ -11569,6 +11569,7 @@ _interactjs_interact.use(dev_tools_plugin);
       switch (event.type) {
         case "resizestart":
           {
+            this.tryMakeResizable();
             this.previousW = this.innerW;
             this.previousH = this.innerH;
             pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
@@ -11920,12 +11921,12 @@ _interactjs_interact.use(dev_tools_plugin);
           ignoreFrom: this.resizeIgnoreFrom,
           restrictSize: {
             min: {
-              height: minimum.height,
-              width: minimum.width
+              height: minimum.height * this.transformScale,
+              width: minimum.width * this.transformScale
             },
             max: {
-              height: maximum.height,
-              width: maximum.width
+              height: maximum.height * this.transformScale,
+              width: maximum.width * this.transformScale
             }
           }
         };

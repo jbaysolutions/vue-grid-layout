@@ -513,6 +513,7 @@
                 let pos;
                 switch (event.type) {
                     case "resizestart": {
+                        this.tryMakeResizable()
                         this.previousW = this.innerW;
                         this.previousH = this.innerH;
                         pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
@@ -807,7 +808,7 @@
                     }
                 }
                 if (this.resizable && !this.static) {
-                    let maximum = this.calcPosition(0,0,this.maxW, this.maxH);
+                    let maximum = this.calcPosition(0,0, this.maxW, this.maxH);
                     let minimum = this.calcPosition(0,0, this.minW, this.minH);
 
                     // console.log("### MAX " + JSON.stringify(maximum));
@@ -825,12 +826,12 @@
                         ignoreFrom: this.resizeIgnoreFrom,
                         restrictSize: {
                             min: {
-                                height: minimum.height,
-                                width: minimum.width
+                                height: minimum.height * this.transformScale,
+                                width: minimum.width * this.transformScale
                             },
                             max: {
-                                height: maximum.height,
-                                width: maximum.width
+                                height: maximum.height * this.transformScale,
+                                width: maximum.width * this.transformScale
                             }
                         }
                     };

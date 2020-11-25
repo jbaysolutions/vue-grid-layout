@@ -24,6 +24,7 @@
             <button @click="decreaseWidth">Decrease Width</button>
             <button @click="increaseWidth">Increase Width</button>
             <button @click="scaleHalf">Scale x0.5</button>
+            <button @click="scaleThreeQuarters">Scale x0.75</button>
             <button @click="scaleIdentity">Scale x1.0</button>
             <button @click="addItem">Add an item</button>
             <button @click="addItemDynamically">Add an item dynamically</button>
@@ -188,6 +189,10 @@
             scaleHalf: function() {
               this.transformScale = 0.5
               document.getElementById("grid-layout").style.transform = "scale(0.5)";
+            },
+            scaleThreeQuarters: function() {
+              this.transformScale = 0.75
+              document.getElementById("grid-layout").style.transform = "scale(0.75)";
             },
             scaleIdentity: function() {
               this.transformScale = 1
