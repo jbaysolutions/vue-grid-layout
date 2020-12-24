@@ -133,7 +133,7 @@ See also [responsiveLayouts](#responsivelayouts), [breakpoints](#breakpoints) an
 * required: `false`
 * default: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }
 
-Breakpoints defined for responsive layout. Sets widths on wich column number changes
+Breakpoints defined for responsive layout,the parameter represents the width of different devices:lg(large), md(medium), sm(small), xs(extra small). Sets widths on wich column number changes
 
 See also [responsiveLayouts](#responsivelayouts) and [cols](#cols)
 
