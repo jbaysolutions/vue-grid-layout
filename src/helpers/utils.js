@@ -462,6 +462,7 @@ export function synchronizeLayoutWithChildren(initialLayout: Layout, children: A
 export function validateLayout(layout: Layout, contextName: string): void {
   contextName = contextName || "Layout";
   const subProps = ['x', 'y', 'w', 'h'];
+  let keyArr = [];
   if (!Array.isArray(layout)) throw new Error(contextName + " must be an array!");
   for (let i = 0, len = layout.length; i < len; i++) {
     const item = layout[i];
@@ -470,11 +471,20 @@ export function validateLayout(layout: Layout, contextName: string): void {
         throw new Error('VueGridLayout: ' + contextName + '[' + i + '].' + subProps[j] + ' must be a number!');
       }
     }
-    if (item.i && typeof item.i !== 'string') {
-      // number is also ok, so comment the error
-        // TODO confirm if commenting the line below doesn't cause unexpected problems
-      // throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
+
+    if (item.i === undefined || item.i === null) {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i cannot be null!');
     }
+
+    if (typeof item.i !== 'number' || typeof item.i !== 'string') {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string or number!');
+    }
+
+    if (keyArr.indexOf(item.i) >= 0) {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be unique!');
+    }
+    keyArr.push(item.i);
+
     if (item.static !== undefined && typeof item.static !== 'boolean') {
       throw new Error('VueGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');
     }
