@@ -33,16 +33,16 @@
     <div id="content">
         <input type="checkbox" v-model="draggable" /> Draggable
         <input type="checkbox" v-model="resizable" /> Resizable
-        <input type="checkbox" v-model="bounded" /> Responsive
+        <input type="checkbox" v-model="bounded" /> Bounded
         <br />
         <grid-layout  :layout.sync="layout"
-                        :col-num="12"
-                        :row-height="30"
-                        :is-draggable="draggable"
-                        :is-resizable="resizable"
-                        :is-bounded="bounded"
-                        :vertical-compact="true"
-                        :use-css-transforms="true"
+                      :col-num="12"
+                      :row-height="30"
+                      :is-draggable="draggable"
+                      :is-resizable="resizable"
+                      :is-bounded="bounded"
+                      :vertical-compact="true"
+                      :use-css-transforms="true"
         >
             <grid-item  v-for="item in layout"
                         :x="item.x"
