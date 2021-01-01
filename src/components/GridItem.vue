@@ -133,6 +133,11 @@
                 required: false,
                 default: null
             },
+            isBounded: {
+                type: Boolean,
+                required: false,
+                default: null
+            },
             /*useCssTransforms: {
              type: Boolean,
              required: true
@@ -258,7 +263,11 @@
                     self.resizable = isResizable;
                 }
             };
-
+            self.setBoundedHandler = function (isBounded) {
+                if (self.isBounded === null) {
+                    self.bounded = isBounded;
+                }
+            };
             self.setRowHeightHandler = function (rowHeight) {
                 self.rowHeight = rowHeight;
             };
@@ -280,6 +289,7 @@
             this.eventBus.$on('compact', self.compactHandler);
             this.eventBus.$on('setDraggable', self.setDraggableHandler);
             this.eventBus.$on('setResizable', self.setResizableHandler);
+            this.eventBus.$on('setBounded', self.setBoundedHandler);
             this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$on('setMaxRows', self.setMaxRowsHandler);
             this.eventBus.$on('directionchange', self.directionchangeHandler);
@@ -294,6 +304,7 @@
             this.eventBus.$off('compact', self.compactHandler);
             this.eventBus.$off('setDraggable', self.setDraggableHandler);
             this.eventBus.$off('setResizable', self.setResizableHandler);
+            this.eventBus.$off('setBounded', self.setBoundedHandler);
             this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$off('setMaxRows', self.setMaxRowsHandler);
             this.eventBus.$off('directionchange', self.directionchangeHandler);
@@ -323,6 +334,11 @@
             } else {
                 this.resizable = this.isResizable;
             }
+            if (this.isBounded === null) {
+                this.bounded = this.layout.isBounded;
+            } else {
+                this.bounded = this.isBounded;
+            }
             this.useCssTransforms = this.layout.useCssTransforms;
             this.useStyleCursor = this.layout.useStyleCursor;
             this.createStyle();
@@ -340,6 +356,9 @@
             },
             isResizable: function () {
                 this.resizable = this.isResizable;
+            },
+            isBounded: function () {
+                this.bounded = this.isBounded;
             },
             resizable: function () {
                 this.tryMakeResizable();
@@ -629,6 +648,13 @@
                             newPosition.left = this.dragging.left + coreEvent.deltaX;
                         }
                         newPosition.top = this.dragging.top + coreEvent.deltaY;
+                        if(this.bounded){
+                            const bottomBoundary = event.target.offsetParent.clientHeight - this.calcGridItemWHPx(this.h, this.rowHeight, this.margin[1]);
+                            newPosition.top = this.clamp(newPosition.top, 0, bottomBoundary);
+                            const colWidth = this.calcColWidth();
+                            const rightBoundary = this.containerWidth - this.calcGridItemWHPx(this.w, colWidth, this.margin[0]);
+                            newPosition.left = this.clamp(newPosition.left, 0, rightBoundary);
+                        }
 //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
 //                        console.log("### drag => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
 //                        console.log("### drag end => " + JSON.stringify(newPosition));
@@ -716,6 +742,22 @@
                 const colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
                // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
                 return colWidth;
+            },
+            // This can either be called:
+            // calcGridItemWHPx(w, colWidth, margin[0])
+            // or
+            // calcGridItemWHPx(h, rowHeight, margin[1])
+            calcGridItemWHPx(gridUnits,colOrRowSize,marginPx) {
+                // 0 * Infinity === NaN, which causes problems with resize contraints
+                if (!Number.isFinite(gridUnits)) return gridUnits;
+                return Math.round(
+                    colOrRowSize * gridUnits + Math.max(0, gridUnits - 1) * marginPx
+                );
+            },
+
+            // Similar to _.clamp
+            clamp(num, lowerBound, upperBound) {
+                return Math.max(Math.min(num, upperBound), lowerBound);
             },
 
             /**

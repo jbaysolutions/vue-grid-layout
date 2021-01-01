@@ -30,6 +30,7 @@
             <input type="checkbox" v-model="draggable"/> Draggable
             <input type="checkbox" v-model="resizable"/> Resizable
             <input type="checkbox" v-model="mirrored"/> Mirrored
+            <input type="checkbox" v-model="bounded"/> Bounded
             <input type="checkbox" v-model="responsive"/> Responsive
             <input type="checkbox" v-model="preventCollision"/> Prevent Collision
             <div style="margin-top: 10px;margin-bottom: 10px;">
@@ -44,6 +45,7 @@
                     :is-draggable="draggable"
                     :is-resizable="resizable"
                     :is-mirrored="mirrored"
+                    :is-bounded="bounded"
                     :prevent-collision="preventCollision"
                     :vertical-compact="true"
                     :use-css-transforms="true"
@@ -155,6 +157,7 @@
                 resizable: true,
                 mirrored: false,
                 responsive: true,
+                bounded: false,
                 preventCollision: false,
                 rowHeight: 30,
                 colNum: 12,
