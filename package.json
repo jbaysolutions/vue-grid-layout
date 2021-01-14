@@ -28,11 +28,11 @@
   },
   "dependencies": {
     "element-resize-detector": "^1.2.1",
-    "@interactjs/interactjs": "^1.10.0",
-    "@interactjs/auto-start": "^1.10.0",
-    "@interactjs/actions": "^1.10.0",
-    "@interactjs/modifiers": "^1.10.0",
-    "@interactjs/dev-tools": "^1.10.0"
+    "@interactjs/interactjs": "^1.10.2",
+    "@interactjs/auto-start": "^1.10.2",
+    "@interactjs/actions": "^1.10.2",
+    "@interactjs/modifiers": "^1.10.2",
+    "@interactjs/dev-tools": "^1.10.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.1",
