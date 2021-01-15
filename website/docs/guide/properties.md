@@ -311,6 +311,6 @@ For more info please refer to `ignoreFrom` in [interact.js docs](http://interact
 
 * type: `Boolean`
 * required: `false`
-* default: `'false'`
+* default: `false`
 
 If 'true', forces the GridItem to preserve its aspect ratio when resizing. 
