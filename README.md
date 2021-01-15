@@ -14,9 +14,9 @@
     <img src="https://img.shields.io/badge/vue-2.2.x-brightgreen.svg"/>
 </a-->
 </p>
-<p align="center">
+<h2 align="center">
 <a href="https://jbaysolutions.github.io/vue-grid-layout/" target="_blank">Documentation Website</a>
-</p>
+</h2>
 
 ## What is Vue Grid Layout?
 
@@ -33,7 +33,7 @@ vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.i
 * Automatic RTL support (resizing not working with RTL on 2.2.0)
 * Responsive
 
-## **Current version:** 2.3.11 (Supports Vue 2.2+)
+## **Current version:** 2.3.12 (Supports Vue 2.2+)
 
 #### **For Vue 2.1.10 and below use version [2.1.3](https://github.com/jbaysolutions/vue-grid-layout/tree/2.1.3)**
 #### **For Vue 1 use version [1.0.3](https://github.com/jbaysolutions/vue-grid-layout/tree/1.0.3)** 
@@ -42,8 +42,9 @@ vue-grid-layout is a grid layout system, like [Gridster](http://dsmorse.github.i
 
 Check out the <a href="https://jbaysolutions.github.io/vue-grid-layout/" target="_blank">Documentation Website</a>
 
+<!--
 Chinese documentation: [简体中文](./README-zh_CN.md) 
-
+-->
 
 #### Projects using vue-grid-layout
 
