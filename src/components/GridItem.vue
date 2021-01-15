@@ -790,7 +790,11 @@
                     // console.log("### MIN " + JSON.stringify(minimum));
 
                     const opts = {
-                        preserveAspectRatio: true,
+                        modifiers: [
+                            interact.modifiers.aspectRatio({
+                                ratio: 'preserve'
+                            }),
+                        ],
                         // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
                         edges: {
                             left: false,
