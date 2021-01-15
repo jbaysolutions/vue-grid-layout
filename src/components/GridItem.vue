@@ -92,12 +92,7 @@
     import {getDocumentDir} from "@/helpers/DOM";
     //    var eventBus = require('./eventBus');
 
-    import '@interactjs/auto-start'
-    import '@interactjs/actions/drag'
-    import '@interactjs/actions/resize'
-    import '@interactjs/modifiers'
-    import '@interactjs/dev-tools'
-    import interact from '@interactjs/interact'
+    import interact from 'interactjs'
 
     export default {
         name: "GridItem",
