@@ -202,6 +202,11 @@
                 required: false,
                 default: 'a, button'
             },
+            preserveAspectRatio: {
+                type: Boolean,
+                required: false,
+                default: false,
+            }
         },
         inject: ["eventBus", "layout"],
         data: function () {
@@ -832,7 +837,6 @@
                     // console.log("### MIN " + JSON.stringify(minimum));
 
                     const opts = {
-                        preserveAspectRatio: true,
                         // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
                         edges: {
                             left: false,
@@ -852,6 +856,14 @@
                             }
                         }
                     };
+
+                    if (this.preserveAspectRatio) {
+                        opts.modifiers = [
+                            interact.modifiers.aspectRatio({
+                                ratio: 'preserve'
+                            }),
+                        ]
+                    }
 
                     this.interactObj.resizable(opts);
                     if (!this.resizeEventSet) {

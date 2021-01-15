@@ -277,7 +277,7 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     * required: `false`
     * default: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }
 
-    为响应式布局设置断点。
+    为响应式布局设置断点，其中参数代表不同设备的宽度：lg（large），md（medium），sm（small），xs（extra small）。
 
 * **cols**
 
@@ -294,6 +294,13 @@ Also check https://cli.vuejs.org/guide/build-targets.html#library
     * default: `true`
 
     标识是否使用动态鼠标指针样式。当拖动出现卡顿时，将此值设为 `false`也许可以缓解布局问题。
+
+ * **preventCollision**
+
+    * type: `Boolean`
+    * default: `false`
+
+    值设置为ture时，栅格只能拖动至空白处。
 
 ##### GridItem
 
