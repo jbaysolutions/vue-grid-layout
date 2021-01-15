@@ -101,3 +101,7 @@
     box-sizing: border-box;
     cursor: pointer;
 }
+
+#content .vue-grid-item.vue-grid-placeholder {
+    background-color: green;
+}
