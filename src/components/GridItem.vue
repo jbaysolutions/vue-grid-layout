@@ -733,7 +733,7 @@
                 // w = (width + margin) / (colWidth + margin)
                 let w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));
                 let h = 0;
-                if (!false) {
+                if (!autoSizeFlag) {
                     h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
                 } else {
                     h = Math.ceil((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
