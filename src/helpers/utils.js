@@ -476,7 +476,7 @@ export function validateLayout(layout: Layout, contextName: string): void {
       throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i cannot be null!');
     }
 
-    if (typeof item.i !== 'number' || typeof item.i !== 'string') {
+    if (typeof item.i !== 'number' && typeof item.i !== 'string') {
       throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string or number!');
     }
 
