@@ -5,6 +5,8 @@ sidebar: auto
 
 ## 2.3.12（2021年01月15日）
 
+* 将interact.js升级到1.10.2
+* 向GridItem添加了'preserveAspectRatio'属性 （感谢 [validide](https://github.com/validide)）
 
 ## 2.3.11（2020年10月13日）
 
