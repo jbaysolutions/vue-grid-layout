@@ -727,16 +727,22 @@
              * Given a height and width in pixel values, calculate grid units.
              * @param  {Number} height Height in pixels.
              * @param  {Number} width  Width in pixels.
+             * @param  {Boolean} autoSizeFlag  function autoSize identifier.
              * @return {Object} w, h as grid units.
              */
-            calcWH(height, width) {
+            calcWH(height, width, autoSizeFlag = false) {
                 const colWidth = this.calcColWidth();
 
                 // width = colWidth * w - (margin * (w - 1))
                 // ...
                 // w = (width + margin) / (colWidth + margin)
                 let w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));
-                let h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                let h = 0;
+                if (!autoSizeFlag) {
+                    h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                } else {
+                    h = Math.ceil((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                }
 
                 // Capping
                 w = Math.max(Math.min(w, this.cols - this.innerX), 0);
@@ -843,7 +849,7 @@
                 this.previousH = this.innerH;
 
                 let newSize=this.$slots.default[0].elm.getBoundingClientRect();
-                let pos = this.calcWH(newSize.height, newSize.width);
+                let pos = this.calcWH(newSize.height, newSize.width, true);
                 if (pos.w < this.minW) {
                     pos.w = this.minW;
                 }
