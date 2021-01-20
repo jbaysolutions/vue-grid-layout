@@ -20,6 +20,7 @@ export default {
         }
     ],
     plugins: [
+        vue(),
         nodeResolve(),
         commonjs(),
         typescript({
@@ -27,7 +28,6 @@ export default {
             experimentalDecorators: true,
             module: 'es2015'
         }),
-        vue(),
         postcss({
             plugins: [require('autoprefixer')]
         }),
