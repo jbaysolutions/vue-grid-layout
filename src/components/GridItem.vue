@@ -824,7 +824,12 @@
                     if (this.preserveAspectRatio) {
                         opts.modifiers = [
                             interact.modifiers.aspectRatio({
-                                ratio: 'preserve'
+                                ratio: 'preserve',
+                                modifiers: [
+                                    interact.modifiers.restrict({
+                                        restriction: 'parent'
+                                    })
+                                ]
                             }),
                         ]
                     }
