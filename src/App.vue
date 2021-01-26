@@ -38,7 +38,7 @@
             </div>
             <grid-layout
                 :margin="[parseInt(marginX), parseInt(marginY)]"
-                    :layout.sync="layout"
+                    :value="layout"
                     :col-num="parseInt(colNum)"
                     :row-height="rowHeight"
                     :is-draggable="draggable"
@@ -113,7 +113,7 @@
     import GridLayout from './components/GridLayout.vue';
     // import ResponsiveGridLayout from './components/ResponsiveGridLayout.vue';
     import TestElement from './components/TestElement.vue';
-    import CustomDragElement from './components/CustomDragElement.vue';
+    // import CustomDragElement from './components/CustomDragElement.vue';
     import {getDocumentDir, setDocumentDir} from "./helpers/DOM";
     //var eventBus = require('./eventBus');
 
@@ -154,7 +154,7 @@
             GridLayout,
             GridItem,
             TestElement,
-            CustomDragElement,
+            // CustomDragElement,
         },
         data () {
             return {
@@ -257,9 +257,11 @@
             },
             layoutReadyEvent: function(newLayout){
                 console.log("Ready layout: ", newLayout)
+                this.layout = newLayout
             },
             layoutUpdatedEvent: function(newLayout){
                 console.log("Updated layout: ", newLayout)
+                this.layout = newLayout
             },
             breakpointChangedEvent: function(newBreakpoint, newLayout){
                 console.log("breakpoint changed breakpoint=", newBreakpoint, ", layout: ", newLayout );

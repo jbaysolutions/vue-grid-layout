@@ -24,35 +24,28 @@
     "serve": "vue-cli-service serve",
     "build": "rimraf dist && vue-cli-service build",
     "build-lib": "rimraf dist && vue-cli-service build --target lib ./src/components/index.js",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit",
-    "test:cover": "vue-cli-service test:unit --coverage"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "element-resize-detector": "^1.2.1",
-    "@interactjs/interactjs": "^1.10.2",
-    "@interactjs/auto-start": "^1.10.2",
     "@interactjs/actions": "^1.10.2",
+    "@interactjs/auto-start": "^1.10.2",
+    "@interactjs/dev-tools": "^1.10.2",
+    "@interactjs/interactjs": "^1.10.2",
     "@interactjs/modifiers": "^1.10.2",
-    "@interactjs/dev-tools": "^1.10.2"
+    "element-resize-detector": "^1.2.1",
+    "mitt": "^2.1.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.12.11",
     "@vue/cli-plugin-babel": "^3.4.1",
     "@vue/cli-plugin-eslint": "^3.4.1",
-    "@vue/cli-plugin-unit-jest": "^4.5.10",
-    "@vue/cli-service": "^3.4.1",
-    "@vue/eslint-config-standard": "^3.0.5",
-    "@vue/test-utils": "^1.1.2",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^26.6.3",
+    "@vue/cli-service": "^4.5.10",
+    "@vue/compiler-sfc": "^3.0.5",
     "babel-plugin-transform-flow-comments": "^6.7.0",
+    "eslint-plugin-vue": "^7.4.1",
     "node-sass": "^4.13.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.0.1",
-    "vue": "^2.6.12",
-    "vue-jest": "^3.0.7",
-    "vue-template-compiler": "^2.6.12",
+    "vue": "^3.0.0",
     "webpack-bundle-analyzer": "^3.9.0"
   }
 }
