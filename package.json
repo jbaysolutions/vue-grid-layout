@@ -1,6 +1,6 @@
 {
   "name": "vue-grid-layout",
-  "version": "2.3.12",
+  "version": "3.0.0-beta1",
   "description": "A draggable and resizable grid layout, as a Vue component.",
   "keywords": [
     "grid",
@@ -24,7 +24,9 @@
     "serve": "vue-cli-service serve",
     "build": "rimraf dist && vue-cli-service build",
     "build-lib": "rimraf dist && vue-cli-service build --target lib ./src/components/index.js",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit",
+    "test:cover": "vue-cli-service test:unit --coverage"
   },
   "dependencies": {
     "@interactjs/actions": "^1.10.2",
@@ -38,14 +40,16 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.1",
     "@vue/cli-plugin-eslint": "^3.4.1",
+    "@vue/cli-plugin-unit-jest": "^4.5.11",
     "@vue/cli-service": "^4.5.10",
     "@vue/compiler-sfc": "^3.0.5",
-    "babel-plugin-transform-flow-comments": "^6.7.0",
-    "eslint-plugin-vue": "^7.4.1",
+    "babel-plugin-transform-flow-comments": "^6.22.0",
+    "eslint-plugin-vue": "^7.5.0",
     "node-sass": "^4.13.0",
     "rimraf": "^2.6.2",
-    "sass-loader": "^7.0.1",
+    "sass-loader": "^10.1.1",
     "vue": "^3.0.0",
+    "vue-jest": "^3.0.7",
     "webpack-bundle-analyzer": "^3.9.0"
   }
 }

@@ -38,24 +38,26 @@
             </div>
             <grid-layout
                 :margin="[parseInt(marginX), parseInt(marginY)]"
-                    :value="layout"
-                    :col-num="parseInt(colNum)"
-                    :row-height="rowHeight"
-                    :is-draggable="draggable"
-                    :is-resizable="resizable"
-                    :is-mirrored="mirrored"
-                    :prevent-collision="preventCollision"
-                    :vertical-compact="compact"
-                    :use-css-transforms="true"
-                    :responsive="responsive"
-                    @layout-created="layoutCreatedEvent"
-                    @layout-before-mount="layoutBeforeMountEvent"
-                    @layout-mounted="layoutMountedEvent"
-                    @layout-ready="layoutReadyEvent"
-                    @layout-updated="layoutUpdatedEvent"
-                    @breakpoint-changed="breakpointChangedEvent"
+                v-model:layout="layout"
+                :responsive-layouts="layouts"
+                :col-num="parseInt(colNum)"
+                :row-height="rowHeight"
+                :is-draggable="draggable"
+                :is-resizable="resizable"
+                :is-mirrored="mirrored"
+                :prevent-collision="preventCollision"
+                :vertical-compact="compact"
+                :use-css-transforms="true"
+                :responsive="responsive"
+                @layout-created="layoutCreatedEvent"
+                @layout-before-mount="layoutBeforeMountEvent"
+                @layout-mounted="layoutMountedEvent"
+                @layout-ready="layoutReadyEvent"
+                @layout-updated="layoutUpdatedEvent"
+                @breakpoint-changed="breakpointChangedEvent"
             >
-                <grid-item v-for="item in layout" :key="item.i"
+                <grid-item v-for="item in layout"
+                           :key="item.i"
                            :static="item.static"
                            :x="item.x"
                            :y="item.y"
@@ -81,29 +83,6 @@
                 </grid-item>
             </grid-layout>
             <hr/>
-            <!--<grid-layout
-                    :layout="layout2"
-                    :col-num="12"
-                    :row-height="rowHeight"
-                    :is-draggable="draggable"
-                    :is-resizable="resizable"
-                    :vertical-compact="true"
-                    :use-css-transforms="true"
-            >
-                <grid-item v-for="item in layout2" :key="item.i"
-                           :x="item.x"
-                           :y="item.y"
-                           :w="item.w"
-                           :h="item.h"
-                           :min-w="2"
-                           :min-h="2"
-                           :i="item.i"
-                           :is-draggable="item.draggable"
-                           :is-resizable="item.resizable"
-                >
-                    <test-element :text="item.i"></test-element>
-                </grid-item>
-            </grid-layout>-->
         </div>
     </div>
 </template>
@@ -111,13 +90,58 @@
 <script>
     import GridItem from './components/GridItem.vue';
     import GridLayout from './components/GridLayout.vue';
-    // import ResponsiveGridLayout from './components/ResponsiveGridLayout.vue';
     import TestElement from './components/TestElement.vue';
     // import CustomDragElement from './components/CustomDragElement.vue';
     import {getDocumentDir, setDocumentDir} from "./helpers/DOM";
-    //var eventBus = require('./eventBus');
 
-    let testLayout = [
+    var testLayouts = {
+        md: [
+            {"x":0, "y":0, "w":2, "h":2, "i":"0"},
+            {"x":2, "y":0, "w":2, "h":4, "i":"1"},
+            {"x":4, "y":0, "w":2, "h":5, "i":"2"},
+            {"x":6, "y":0, "w":2, "h":3, "i":"3"},
+            {"x":2, "y":4, "w":2, "h":3, "i":"4"},
+            {"x":4, "y":5, "w":2, "h":3, "i":"5"},
+            {"x":0, "y":2, "w":2, "h":5, "i":"6"},
+            {"x":2, "y":7, "w":2, "h":5, "i":"7"},
+            {"x":4, "y":8, "w":2, "h":5, "i":"8"},
+            {"x":6, "y":3, "w":2, "h":4, "i":"9"},
+            {"x":0, "y":7, "w":2, "h":4, "i":"10"},
+            {"x":2, "y":19, "w":2, "h":4, "i":"11"},
+            {"x":0, "y":14, "w":2, "h":5, "i":"12"},
+            {"x":2, "y":14, "w":2, "h":5, "i":"13"},
+            {"x":4, "y":13, "w":2, "h":4, "i":"14"},
+            {"x":6, "y":7, "w":2, "h":4, "i":"15"},
+            {"x":0, "y":19, "w":2, "h":5, "i":"16"},
+            {"x":8, "y":0, "w":2, "h":2, "i":"17"},
+            {"x":0, "y":11, "w":2, "h":3, "i":"18"},
+            {"x":2, "y":12, "w":2, "h":2, "i":"19"}
+        ],
+        lg: [
+            {"x":0,"y":0,"w":2,"h":2,"i":"0"},
+            {"x":2,"y":0,"w":2,"h":4,"i":"1"},
+            {"x":4,"y":0,"w":2,"h":5,"i":"2"},
+            {"x":6,"y":0,"w":2,"h":3,"i":"3"},
+            {"x":8,"y":0,"w":2,"h":3,"i":"4"},
+            {"x":10,"y":0,"w":2,"h":3,"i":"5"},
+            {"x":0,"y":5,"w":2,"h":5,"i":"6"},
+            {"x":2,"y":5,"w":2,"h":5,"i":"7"},
+            {"x":4,"y":5,"w":2,"h":5,"i":"8"},
+            {"x":6,"y":4,"w":2,"h":4,"i":"9"},
+            {"x":8,"y":4,"w":2,"h":4,"i":"10"},
+            {"x":10,"y":4,"w":2,"h":4,"i":"11"},
+            {"x":0,"y":10,"w":2,"h":5,"i":"12"},
+            {"x":2,"y":10,"w":2,"h":5,"i":"13"},
+            {"x":4,"y":8,"w":2,"h":4,"i":"14"},
+            {"x":6,"y":8,"w":2,"h":4,"i":"15"},
+            {"x":8,"y":10,"w":2,"h":5,"i":"16"},
+            {"x":10,"y":4,"w":2,"h":2,"i":"17"},
+            {"x":0,"y":9,"w":2,"h":3,"i":"18"},
+            {"x":2,"y":6,"w":2,"h":2,"i":"19"}
+        ],
+    };
+
+    /*let testLayout = [
         {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true, static: false, minY: 0, maxY: 2},
         {"x":2,"y":0,"w":2,"h":4,"i":"1", resizable: null, draggable: null, static: true},
         {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false, static: false, minX: 4, maxX: 4, minW: 2, maxW: 2, preserveAspectRatio: true},
@@ -138,14 +162,6 @@
         {"x":10,"y":4,"w":2,"h":2,"i":"17", resizable: false, draggable: false, static: false},
         {"x":0,"y":9,"w":2,"h":3,"i":"18", resizable: false, draggable: false, static: false},
         {"x":2,"y":6,"w":2,"h":2,"i":"19", resizable: false, draggable: false, static: false}
-    ];
-
-    /*let testLayout = [
-        { x: 0, y: 0, w: 2, h: 2, i: "0" },
-        { x: 2, y: 0, w: 2, h: 2, i: "1" },
-        { x: 4, y: 0, w: 2, h: 2, i: "2" },
-        { x: 6, y: 0, w: 2, h: 2, i: "3" },
-        { x: 8, y: 0, w: 2, h: 2, i: "4" },
     ];*/
 
     export default {
@@ -158,8 +174,10 @@
         },
         data () {
             return {
-                layout: JSON.parse(JSON.stringify(testLayout)),
-                layout2: JSON.parse(JSON.stringify(testLayout)),
+                // layout: JSON.parse(JSON.stringify(testLayout)),
+                // layout2: JSON.parse(JSON.stringify(testLayout)),
+                layouts: testLayouts,
+                layout: testLayouts["lg"],
                 draggable: true,
                 resizable: true,
                 mirrored: false,
