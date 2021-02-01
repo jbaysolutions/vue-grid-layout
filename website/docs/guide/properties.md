@@ -314,3 +314,11 @@ For more info please refer to `ignoreFrom` in [interact.js docs](http://interact
 * default: `false`
 
 If 'true', forces the GridItem to preserve its aspect ratio when resizing. 
+
+### restrictToParent
+
+* type: `Boolean`
+* required: `false`
+* default: `false`
+
+If 'true', restricts resizing the items outside of the parent.

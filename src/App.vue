@@ -64,11 +64,14 @@
                            :i="item.i"
                            :min-w="item.minW"
                            :max-w="item.maxW"
+                           :min-h="item.minH"
+                           :max-h="item.maxH"
                            :min-x="item.minX"
                            :max-x="item.maxX"
                            :min-y="item.minY"
                            :max-y="item.maxY"
                            :preserve-aspect-ratio="item.preserveAspectRatio"
+                           :restrict-to-parent="item.restrictToParent"
                            @resize="resize"
                            @move="move"
                            @resized="resized"
@@ -120,7 +123,7 @@
     let testLayout = [
         {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true, static: false, minY: 0, maxY: 2},
         {"x":2,"y":0,"w":2,"h":4,"i":"1", resizable: null, draggable: null, static: true},
-        {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false, static: false, minX: 4, maxX: 4, minW: 2, maxW: 2, preserveAspectRatio: true},
+        {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false, static: false, minX: 4, maxX: 4, minW: 2, maxW: 2, preserveAspectRatio: true, restrictToParent: true},
         {"x":6,"y":0,"w":2,"h":3,"i":"3", resizable: false, draggable: false, static: false},
         {"x":8,"y":0,"w":2,"h":3,"i":"4", resizable: false, draggable: false, static: false},
         {"x":10,"y":0,"w":2,"h":3,"i":"5", resizable: false, draggable: false, static: false},
@@ -147,6 +150,15 @@
         { x: 6, y: 0, w: 2, h: 2, i: "3" },
         { x: 8, y: 0, w: 2, h: 2, i: "4" },
     ];*/
+
+    /* let testLayout = [
+        {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true, static: false, minW: 2, minH: 2, preserveAspectRatio: true, restrictToParent: true},
+        {"x":2,"y":0,"w":2,"h":2,"i":"1", resizable: true, draggable: true, static: false, minW: 2, minH: 2, preserveAspectRatio: true, restrictToParent: true},
+        {"x":4,"y":0,"w":2,"h":2,"i":"2", resizable: true, draggable: true, static: false, minW: 2, minH: 2, preserveAspectRatio: true, restrictToParent: true},
+        {"x":6,"y":0,"w":2,"h":2,"i":"3", resizable: true, draggable: true, static: false, minW: 2, minH: 2, preserveAspectRatio: true, restrictToParent: true},
+        {"x":9,"y":0,"w":3,"h":6,"i":"4", resizable: true, draggable: true, static: false, minW: 3, minH: 6, preserveAspectRatio: true, restrictToParent: true},
+        {"x":0,"y":2,"w":6,"h":3,"i":"5", resizable: true, draggable: true, static: false, minW: 6, minH: 3, preserveAspectRatio: true, restrictToParent: true},
+    ]; */
 
     export default {
         name: 'app',
