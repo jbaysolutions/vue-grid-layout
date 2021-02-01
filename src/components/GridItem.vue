@@ -732,17 +732,30 @@
              */
             calcWH(height, width, autoSizeFlag = false) {
                 const colWidth = this.calcColWidth();
-
-                // width = colWidth * w - (margin * (w - 1))
-                // ...
-                // w = (width + margin) / (colWidth + margin)
-                let w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));
-                let h = 0;
-                if (!autoSizeFlag) {
-                    h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                let w,h;
+                /* Make sure that the aspect ratio is preserved when snapping the element to grid. */
+                if (this.preserveAspectRatio) {
+                    const ratio = width/height;
+                    if (width >= height) {
+                        h = autoSizeFlag ? Math.ceil((height + this.margin[1]) / (this.rowHeight + this.margin[1])) :
+                            Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                        w = Math.round(h * ratio);
+                    } else {
+                        w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));
+                        h = autoSizeFlag ? Math.ceil(w / ratio) : Math.round(w / ratio);
+                    }
                 } else {
-                    h = Math.ceil((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
-                }
+                    // width = colWidth * w - (margin * (w - 1))
+                    // ...
+                    // w = (width + margin) / (colWidth + margin)
+                    w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));
+                    h = 0;
+                    if (!autoSizeFlag) {
+                        h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                    } else {
+                        h = Math.ceil((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                    }
+                }                
 
                 // Capping
                 w = Math.max(Math.min(w, this.cols - this.innerX), 0);
