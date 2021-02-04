@@ -1,3 +1,9 @@
+export type Emitter = {
+  on: Function,
+  emit: Function,
+  off: Function
+}
+
 export type LayoutItem = {
   i: string
   x: number

@@ -86,13 +86,14 @@
     }
 </style>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject, reactive } from 'vue'
 import interact from 'interactjs'
 import {
   setTopLeft,
   setTopRight,
   setTransform,
   setTransformRtl,
+  Emitter
 } from '../helpers/utils'
 import {
   createCoreData,
@@ -200,7 +201,87 @@ import { getDocumentDir } from "../helpers/DOM"
                 default: 'a, button'
             },
         },
-        inject: ["eventBus"],
+        setup(props, content) {
+            const eventBus: Emitter = inject('eventBus');
+            const cols = 1;
+            const containerWidth = 100;
+            const rowHeight = 30;
+            const margin = [10, 10];
+            const maxRows = Infinity;
+            const draggable = null;
+            const resizable = null;
+            const useCssTransforms = true;
+            const isDragging = false;
+            const dragging = null;
+            const isResizing = false;
+            const resizing = null;
+            const lastX = NaN;
+            const lastY = NaN;
+            const lastW = NaN;
+            const lastH = NaN;
+            const style = {};
+            const rtl = false;
+            const dragEventSet = false;
+            const resizeEventSet = false;
+            const previousW = null;
+            const previousH = null;
+            const previousX = null;
+            const previousY = null;
+            const innerX = props.x;
+            const innerY = props.y;
+            const innerW = props.w;
+            const innerH = props.h;
+
+            const updateWidthHandler = (width) => {
+                updateWidth(width);
+            }
+            const compactHandler = (layout) => {
+                compact(layout);
+            }
+            const setDraggableHandler = (isDraggable: Boolean) => {
+                if (props.isDraggable === null) {
+                    props.isDraggable = isDraggable;
+                }
+            }
+            const setResizableHandler = () => {
+                
+            }
+            const setRowHeightHandler = () => {
+                
+            }
+            const setMaxRowsHandler = () => {
+                
+            }
+            const directionchangeHandler = () => {
+                
+            }
+            const setColNum = () => {
+
+            }
+
+            eventBus.on('updateWidth', updateWidthHandler);
+            eventBus.on('compact', compactHandler);
+            eventBus.on('setDraggable', setDraggableHandler);
+            eventBus.on('setResizable', setResizableHandler);
+            eventBus.on('setRowHeight', setRowHeightHandler);
+            eventBus.on('setMaxRows', setMaxRowsHandler);
+            eventBus.on('directionchange', directionchangeHandler);
+            eventBus.on('setColNum', setColNum)
+
+            function updateWidth(width) {
+
+            }
+            function compact(layout) {
+
+            }
+
+            return {
+                classObj,
+                style,
+                resizableAndNotStatic,
+                resizableHandleClass
+            }
+        },
         data: function () {
             return {
                 cols: 1,
