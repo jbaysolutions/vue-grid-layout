@@ -130,9 +130,9 @@ export default {
                     h: 1,
                     i: DragPos.i,
                 });
-                this.$refs.gridLayout.dragEvent('dragend', DragPos.i, DragPos.x,DragPos.y,1,1);
+                this.$refs.gridlayout.dragEvent('dragend', DragPos.i, DragPos.x,DragPos.y,1,1);
                 try {
-                    this.$refs.gridLayout.$children[this.layout.length].$refs.item.style.display="block";
+                    this.$refs.gridlayout.$children[this.layout.length].$refs.item.style.display="block";
                 } catch {
                 }
                 */
