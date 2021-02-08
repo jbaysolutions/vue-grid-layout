@@ -92,7 +92,7 @@
                 type: Boolean,
                 default: true
             },
-            value: {
+            layout: {
                 type: Array,
                 required: true,
             },
@@ -136,7 +136,6 @@
                 layouts: {}, // array to store all layouts from different breakpoints
                 lastBreakpoint: null, // store last active breakpoint
                 originalLayout: null, // store original Layout
-                layout: JSON.parse(JSON.stringify(this.value))
             };
         },
         created () {
@@ -231,6 +230,9 @@
                     }
                     this.updateHeight();
                 });
+            },
+            'layout.length': function() {
+                this.layoutUpdate();
             },
             layout: function () {
                 this.layoutUpdate();
@@ -335,7 +337,7 @@
                 }
 
                 // Move the element to the dragged location.
-                this.layout = moveElement(this.layout, l, x, y, true, this.preventCollision);
+                moveElement(this.layout, l, x, y, true, this.preventCollision);
                 compact(this.layout, this.verticalCompact);
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.emit("compact");
