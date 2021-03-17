@@ -93,6 +93,7 @@
     //    var eventBus = require('./eventBus');
 
     import '@interactjs/auto-start'
+    import '@interactjs/auto-scroll'
     import '@interactjs/actions/drag'
     import '@interactjs/actions/resize'
     import '@interactjs/modifiers'
@@ -201,6 +202,16 @@
                 type: Boolean,
                 required: false,
                 default: false,
+            },
+            dragOption:{
+                type:Object,
+                required: false,
+                default: ()=>({}),
+            },
+            resizeOption:{
+                type:Object,
+                required: false,
+                default: ()=>({}),
             }
         },
         inject: ["eventBus", "layout"],
@@ -769,7 +780,8 @@
                 if (this.draggable && !this.static) {
                     const opts = {
                         ignoreFrom: this.dragIgnoreFrom,
-                        allowFrom: this.dragAllowFrom
+                        allowFrom: this.dragAllowFrom,
+                        ...this.dragOption
                     };
                     this.interactObj.draggable(opts);
                     /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
@@ -818,7 +830,8 @@
                                 height: maximum.height,
                                 width: maximum.width
                             }
-                        }
+                        },
+                        ...this.resizeOption,
                     };
 
                     if (this.preserveAspectRatio) {
