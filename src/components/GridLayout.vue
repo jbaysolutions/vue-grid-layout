@@ -133,6 +133,7 @@
                 // layout: JSON.parse(JSON.stringify(this.value)),
             };
         },
+        emits: ['update:layout','layout-created','layout-before-mount','layout-mounted','layout-updated','layout-ready','breakpoint-changed'],
         created () {
             const self = this;
 
