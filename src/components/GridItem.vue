@@ -241,6 +241,7 @@
                 innerH: this.h
             }
         },
+        emits: ['container-resized'],
         created () {
             let self = this;
 
