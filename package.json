@@ -30,11 +30,11 @@
   },
   "dependencies": {
     "element-resize-detector": "^1.2.1",
-    "@interactjs/interactjs": "1.10.3",
-    "@interactjs/auto-start": "1.10.3",
-    "@interactjs/actions": "1.10.3",
-    "@interactjs/modifiers": "1.10.3",
-    "@interactjs/dev-tools": "1.10.3"
+    "@interactjs/interactjs": "^1.10.2",
+    "@interactjs/auto-start": "^1.10.2",
+    "@interactjs/actions": "^1.10.2",
+    "@interactjs/modifiers": "^1.10.2",
+    "@interactjs/dev-tools": "^1.10.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
