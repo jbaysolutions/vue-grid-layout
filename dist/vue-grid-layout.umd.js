@@ -6391,12 +6391,12 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var GridItem = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5d91b53e-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=7d4b224e&
-var GridLayoutvue_type_template_id_7d4b224e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle),on:{"drop":_vm.handleDropDone,"dragover":_vm.handleAllowDrop}},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
-var GridLayoutvue_type_template_id_7d4b224e_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5d91b53e-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=2ca8c7d4&
+var GridLayoutvue_type_template_id_2ca8c7d4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle),on:{"drop":_vm.handleDropDone,"dragover":_vm.handleAllowDrop}},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
+var GridLayoutvue_type_template_id_2ca8c7d4_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=7d4b224e&
+// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=2ca8c7d4&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
@@ -6597,7 +6597,6 @@ function sortBreakpoints(breakpoints
   });
 }
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=script&lang=js&
-
 
 
 
@@ -6841,18 +6840,18 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
         this.updateHeight();
       });
     },
-    // layout: function () {
-    //     for(let i=0; i < this.layout.length; i++) {
-    //         let item = this.layout[i];
-    //         if (i === this.layout.length - 1) {
-    //             item.active = true;
-    //             this.$emit('layout-active', item);
-    //             continue;
-    //         }
-    //         item.active = false;
-    //     }
-    //     this.layoutUpdate();
-    // },
+    layout: function layout() {
+      //     for(let i=0; i < this.layout.length; i++) {
+      //         let item = this.layout[i];
+      //         if (i === this.layout.length - 1) {
+      //             item.active = true;
+      //             this.$emit('layout-active', item);
+      //             continue;
+      //         }
+      //         item.active = false;
+      //     }
+      this.layoutUpdate();
+    },
     colNum: function colNum(val) {
       this.eventBus.$emit("setColNum", val);
     },
@@ -7096,8 +7095,8 @@ var GridLayoutvue_type_style_index_0_lang_css_ = __webpack_require__("e279");
 
 var GridLayout_component = normalizeComponent(
   components_GridLayoutvue_type_script_lang_js_,
-  GridLayoutvue_type_template_id_7d4b224e_render,
-  GridLayoutvue_type_template_id_7d4b224e_staticRenderFns,
+  GridLayoutvue_type_template_id_2ca8c7d4_render,
+  GridLayoutvue_type_template_id_2ca8c7d4_staticRenderFns,
   false,
   null,
   null,

@@ -216,7 +216,7 @@
                     this.updateHeight();
                 });
             },
-            // layout: function () {
+            layout: function () {
             //     for(let i=0; i < this.layout.length; i++) {
             //         let item = this.layout[i];
             //         if (i === this.layout.length - 1) {
@@ -226,8 +226,8 @@
             //         }
             //         item.active = false;
             //     }
-            //     this.layoutUpdate();
-            // },
+                this.layoutUpdate();
+            },
             colNum: function (val) {
                 this.eventBus.$emit("setColNum", val);
             },
