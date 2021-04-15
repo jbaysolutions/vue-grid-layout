@@ -216,18 +216,18 @@
                     this.updateHeight();
                 });
             },
-            layout: function () {
-                // for (let i = 0; i < this.layout.length; i++) {
-                //     let item = this.layout[i];
-                //     if (i === this.layout.length - 1) {
-                //         item.active = true;
-                //         this.$emit('layout-active', item);
-                //         continue;
-                //     }
-                //     item.active = false;
-                // }
-                this.layoutUpdate();
-            },
+            // layout: function () {
+            //     for(let i=0; i < this.layout.length; i++) {
+            //         let item = this.layout[i];
+            //         if (i === this.layout.length - 1) {
+            //             item.active = true;
+            //             this.$emit('layout-active', item);
+            //             continue;
+            //         }
+            //         item.active = false;
+            //     }
+            //     this.layoutUpdate();
+            // },
             colNum: function (val) {
                 this.eventBus.$emit("setColNum", val);
             },
@@ -260,7 +260,7 @@
                 this.$emit('layout-drop', event);
             },
             activeHandler(id) {
-                for (let i = 0; i < this.layout.length; i++) {
+                for (let i = 0;i < this.layout.length; i++) {
                     let item = this.layout[i];
                     if (item.i === id) {
                         item.active = true;
