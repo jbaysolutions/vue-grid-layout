@@ -217,15 +217,15 @@
                 });
             },
             layout: function () {
-            //     for(let i=0; i < this.layout.length; i++) {
-            //         let item = this.layout[i];
-            //         if (i === this.layout.length - 1) {
-            //             item.active = true;
-            //             this.$emit('layout-active', item);
-            //             continue;
-            //         }
-            //         item.active = false;
-            //     }
+                for(let i=0; i < this.layout.length; i++) {
+                    let item = this.layout[i];
+                    if (i === this.layout.length - 1) {
+                        item.active = true;
+                        this.$emit('layout-active', item);
+                        continue;
+                    }
+                    item.active = false;
+                }
                 this.layoutUpdate();
             },
             colNum: function (val) {
