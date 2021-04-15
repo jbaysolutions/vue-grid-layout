@@ -158,6 +158,7 @@
             this.layout.forEach(item => {
                 item.active = false;
             })
+            this.layout[0].active = true
             this.index = this.layout.length;
         },
         methods: {
@@ -274,5 +275,33 @@
   /*text-align: center;*/
   color: #2c3e50;
   /*margin-top: 60px;*/
+}
+.vue-grid-item {
+  // background-color: #1890ff;
+  overflow: hidden;
+  // background-color: transparent;
+  // border-radius: 5px;
+  // box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  &.active {
+    // outline: 1px dashed black;
+    // outline-offset:5px;
+    animation: glow 800ms ease-out infinite alternate;
+  }
+  @keyframes glow {
+    0% {
+      border-color: #393;
+      box-shadow: 0 0 5px rgba(0, 255, 0, 0.2),
+        inset 0 0 5px rgba(0, 255, 0, 0.1), 0 1px 0 #393;
+      outline: 1px dashed black;
+      outline-offset: 1px;
+    }
+    100% {
+      border-color: #6f6;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
+        inset 0 0 10px rgba(0, 255, 0, 0.4), 0 1px 0 #6f6;
+      outline: 2px dashed black;
+      outline-offset: 5px;
+    }
+  }
 }
 </style>
