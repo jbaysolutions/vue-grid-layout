@@ -232,6 +232,9 @@
             layout() {
                 this.layoutUpdate();
             },
+            'layout.length': function() {
+                this.layoutUpdate();
+            },
             colNum: function (val) {
                 this.eventBus.emit("setColNum", val);
             },
