@@ -241,6 +241,7 @@
                 innerH: this.h
             }
         },
+        emits: ['container-resized','resize','resized'],
         created () {
             let self = this;
 
@@ -849,7 +850,7 @@
                 this.previousW = this.innerW;
                 this.previousH = this.innerH;
 
-                let newSize=this.$slots().default[0].elm.getBoundingClientRect();
+                let newSize=this.$refs.item.children[0].getBoundingClientRect();
                 let pos = this.calcWH(newSize.height, newSize.width, true);
                 if (pos.w < this.minW) {
                     pos.w = this.minW;
