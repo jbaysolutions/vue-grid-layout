@@ -62,6 +62,7 @@
                            :w="item.w"
                            :h="item.h"
                            :i="item.i"
+                           :float="item.float"
                            :min-w="item.minW"
                            :max-w="item.maxW"
                            :min-x="item.minX"
@@ -118,7 +119,7 @@
     //var eventBus = require('./eventBus');
 
     let testLayout = [
-        {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true, static: false, minY: 0, maxY: 2},
+        {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true, static: false, minY: 0, maxY: 2,float:true},
         {"x":2,"y":0,"w":2,"h":4,"i":"1", resizable: null, draggable: null, static: true},
         {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false, static: false, minX: 4, maxX: 4, minW: 2, maxW: 2, preserveAspectRatio: true},
         {"x":6,"y":0,"w":2,"h":3,"i":"3", resizable: false, draggable: false, static: false},
@@ -216,18 +217,22 @@
                 this.index++;
                 this.layout.push(item);
             },
+            // 移动的过程中触发
             move: function(i, newX, newY){
                 console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
             },
             resize: function(i, newH, newW, newHPx, newWPx){
                 console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
             },
+            // 移动结束触发
             moved: function(i, newX, newY){
                 console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
             },
+            // grid item 大小变化时触发
             resized: function(i, newH, newW, newHPx, newWPx){
                 console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
             },
+            // grid layout 大小变化时触发
             containerResized: function(i, newH, newW, newHPx, newWPx){
                 console.log("### CONTAINER RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
             },

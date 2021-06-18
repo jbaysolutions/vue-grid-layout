@@ -25,3 +25,4 @@ yarn.lock
 yarn-error.log
 
 website/docs/dist
+website/public/

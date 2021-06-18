@@ -88,8 +88,8 @@ export function compact(layout: Layout, verticalCompact: Boolean): Layout {
   for (let i = 0, len = sorted.length; i < len; i++) {
     let l = sorted[i];
 
-    // Don't move static elements
-    if (!l.static) {
+    // Don't move static elements  不移动float元素
+    if (!l.static && !l.float) {
       l = compactItem(compareWith, l, verticalCompact);
 
       // Add to comparison array. We only collide with items before this one.
@@ -207,11 +207,11 @@ export function getStatics(layout: Layout): Array<LayoutItem> {
  *                                     being dragged/resized by th euser.
  */
 export function moveElement(layout: Layout, l: LayoutItem, x: Number, y: Number, isUserAction: Boolean, preventCollision: Boolean): Layout {
-  if (l.static) return layout;
+  if (l.static) return layout;//如果节点是静态节点，退出函数
 
   // Short-circuit if nothing to do.
   //if (l.y === y && l.x === x) return layout;
-
+// 旧的位置
   const oldX = l.x;
   const oldY = l.y;
 
@@ -220,7 +220,7 @@ export function moveElement(layout: Layout, l: LayoutItem, x: Number, y: Number,
   if (typeof x === 'number') l.x = x;
   if (typeof y === 'number') l.y = y;
   l.moved = true;
-
+  if(l.float) return layout;
   // If this collides with anything, move it.
   // When doing this comparison, we have to sort the items we compare with
   // to ensure, in the case of multiple collisions, that we're getting the
@@ -251,7 +251,7 @@ export function moveElement(layout: Layout, l: LayoutItem, x: Number, y: Number,
     if (collision.static) {
       layout = moveElementAwayFromCollision(layout, collision, l, isUserAction);
     } else {
-      layout = moveElementAwayFromCollision(layout, l, collision, isUserAction);
+      layout =collision.float ? layout : moveElementAwayFromCollision(layout, l, collision, isUserAction);
     }
   }
 
@@ -261,10 +261,12 @@ export function moveElement(layout: Layout, l: LayoutItem, x: Number, y: Number,
 /**
  * This is where the magic needs to happen - given a collision, move an element away from the collision.
  * We attempt to move it up if there's room, otherwise it goes below.
- *
- * @param  {Array} layout            Full layout to modify.
- * @param  {LayoutItem} collidesWith Layout item we're colliding with.
- * @param  {LayoutItem} itemToMove   Layout item we're moving.
+ * 
+ *这就是魔法需要发生的地方——给定一个碰撞，将一个元素从碰撞中移开。
+*如果有空间的话，我们试着把它往上移动，否则它就在下面。
+ * @param  {Array} layout            Full layout to modify. 整个要修改的layout
+ * @param  {LayoutItem} collidesWith Layout item we're colliding with. 给定的碰撞item
+ * @param  {LayoutItem} itemToMove   Layout item we're moving. 我们要移开的item
  * @param  {Boolean} [isUserAction]  If true, designates that the item we're moving is being dragged/resized
  *                                   by the user.
  */
