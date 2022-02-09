@@ -5,7 +5,10 @@
          :style="style"
     >
         <slot></slot>
-        <span v-if="resizableAndNotStatic" ref="handle" :class="resizableHandleClass"></span>
+        <span v-if="resizableAndNotStatic && resizeFromBr" class="vue-resizable-handle vue-resizable-handle-br" ></span>
+        <span v-if="resizableAndNotStatic && resizeFromBl" class="vue-resizable-handle vue-resizable-handle-bl"></span>
+        <span v-if="resizableAndNotStatic && resizeFromTl" class="vue-resizable-handle vue-resizable-handle-tl"></span>
+        <span v-if="resizableAndNotStatic && resizeFromTr" class="vue-resizable-handle vue-resizable-handle-tr"></span>
         <!--<span v-if="draggable" ref="dragHandle" class="vue-draggable-handle"></span>-->
     </div>
 </template>
@@ -58,18 +61,93 @@
         position: absolute;
         width: 20px;
         height: 20px;
+    }
+
+    .vue-grid-item > .vue-resizable-handle::after {
+        content: "";
+        position: absolute;
+        right: 3px;
+        bottom: 3px;
+        width: 5px;
+        height: 5px;
+        border-right: 2px solid rgba(0, 0, 0, 0.4);
+        border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+    }
+
+    .vue-grid-item > .vue-resizable-handle.vue-resizable-handle-br {
         bottom: 0;
         right: 0;
-        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');
-        background-position: bottom right;
+        //cursor: se-resize;
+    }
+
+    .vue-grid-item > .vue-resizable-handle.vue-resizable-handle-bl {
+        bottom: 0;
+        left: 0;
+        transform: rotate(90deg);
+    }
+
+    .vue-grid-item > .vue-resizable-handle.vue-resizable-handle-tl {
+        top: 0;
+        left: 0;
+        transform: rotate(180deg);
+    }
+
+    .vue-grid-item > .vue-resizable-handle.vue-resizable-handle-tr {
+        top: 0;
+        right: 0;
+        transform: rotate(270deg);
+    }
+
+    /*
+    .vue-grid-item > .vue-resizable-handle-bl {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        bottom: 0;
+        left: 0;
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2aWV3Qm94PSIwIDAgNiA2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIG9wYWNpdHk9IjAuMzAyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLCAxLCAtMSwgMCwgNiwgMCkiPgogICAgPHBhdGggZD0iTSA2IDYgTCAwIDYgTCAwIDQuMiBMIDQgNC4yIEwgNC4yIDQuMiBMIDQuMiAwIEwgNiAwIEwgNiA2IEwgNiA2IFoiIGZpbGw9IiMwMDAwMDAiLz4KICA8L2c+Cjwvc3ZnPg==');
+        background-position: bottom left;
         padding: 0 3px 3px 0;
         background-repeat: no-repeat;
         background-origin: content-box;
         box-sizing: border-box;
-        cursor: se-resize;
+        !*cursor: se-resize;*!
     }
 
-    .vue-grid-item > .vue-rtl-resizable-handle {
+    .vue-grid-item > .vue-resizable-handle-tl {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 0;
+        transform: rotate(180deg);
+        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');
+        background-position: top left;
+        padding: 0 3px 3px 0;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        box-sizing: border-box;
+        !*cursor: se-resize;*!
+    }
+
+    .vue-grid-item > .vue-resizable-handle-tr {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        right: 0;
+        transform: rotate(-90deg);
+        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');
+        background-position: top right;
+        padding: 0 3px 3px 0;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        box-sizing: border-box;
+        !*cursor: se-resize;*!
+    }
+    */
+
+    /*.vue-grid-item > .vue-rtl-resizable-handle {
         bottom: 0;
         left: 0;
         background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAuMDAwMDAwMDAwMDAwMDAyIiBoZWlnaHQ9IjEwLjAwMDAwMDAwMDAwMDAwMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KIDwhLS0gQ3JlYXRlZCB3aXRoIE1ldGhvZCBEcmF3IC0gaHR0cDovL2dpdGh1Yi5jb20vZHVvcGl4ZWwvTWV0aG9kLURyYXcvIC0tPgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSIxMiIgd2lkdGg9IjEyIiB5PSItMSIgeD0iLTEiLz4KICA8ZyBkaXNwbGF5PSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgeT0iMCIgeD0iMCIgaGVpZ2h0PSIxMDAlIiB3aWR0aD0iMTAwJSIgaWQ9ImNhbnZhc0dyaWQiPgogICA8cmVjdCBmaWxsPSJ1cmwoI2dyaWRwYXR0ZXJuKSIgc3Ryb2tlLXdpZHRoPSIwIiB5PSIwIiB4PSIwIiBoZWlnaHQ9IjEwMCUiIHdpZHRoPSIxMDAlIi8+CiAgPC9nPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxsaW5lIGNhbnZhcz0iI2ZmZmZmZiIgY2FudmFzLW9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJ1bmRlZmluZWQiIHN0cm9rZS1saW5lam9pbj0idW5kZWZpbmVkIiBpZD0ic3ZnXzEiIHkyPSItNzAuMTc4NDA3IiB4Mj0iMTI0LjQ2NDE3NSIgeTE9Ii0zOC4zOTI3MzciIHgxPSIxNDQuODIxMjg5IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlPSIjMDAwIiBmaWxsPSJub25lIi8+CiAgPGxpbmUgc3Ryb2tlPSIjNjY2NjY2IiBzdHJva2UtbGluZWNhcD0idW5kZWZpbmVkIiBzdHJva2UtbGluZWpvaW49InVuZGVmaW5lZCIgaWQ9InN2Z181IiB5Mj0iOS4xMDY5NTciIHgyPSIwLjk0NzI0NyIgeTE9Ii0wLjAxODEyOCIgeDE9IjAuOTQ3MjQ3IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KICA8bGluZSBzdHJva2UtbGluZWNhcD0idW5kZWZpbmVkIiBzdHJva2UtbGluZWpvaW49InVuZGVmaW5lZCIgaWQ9InN2Z183IiB5Mj0iOSIgeDI9IjEwLjA3MzUyOSIgeTE9IjkiIHgxPSItMC42NTU2NCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9IiM2NjY2NjYiIGZpbGw9Im5vbmUiLz4KIDwvZz4KPC9zdmc+);
@@ -77,9 +155,9 @@
         padding-left: 3px;
         background-repeat: no-repeat;
         background-origin: content-box;
-        cursor: sw-resize;
+        !*cursor: sw-resize;*!
         right: auto;
-    }
+    }*/
 
     .vue-grid-item.disable-userselect {
         user-select: none;
@@ -197,6 +275,18 @@
                 required: false,
                 default: 'a, button'
             },
+            resizeFrom: {
+                type: Array,
+                required: false,
+                default() {
+                    return ['bottom', 'right']
+                }
+            },
+            resizeMargin: {
+                type: Number,
+                required: false,
+                default: 10
+            },
             preserveAspectRatio: {
                 type: Boolean,
                 required: false,
@@ -279,6 +369,7 @@
 
             self.setColNum = (colNum) => {
                self.cols = parseInt(colNum);
+                // console.log("setColNum COLS=" + this.cols)
             }
 
             this.eventBus.$on('updateWidth', self.updateWidthHandler);
@@ -310,8 +401,10 @@
         mounted: function () {
             if (this.layout.responsive && this.layout.lastBreakpoint) {
                 this.cols = getColsFromBreakpoint(this.layout.lastBreakpoint, this.layout.cols);
+                // console.log("mounted COLS=" + this.cols)
             } else {
                 this.cols = this.layout.colNum;
+                // console.log("mounted COLS=" + this.cols)
             }
             this.rowHeight = this.layout.rowHeight;
             this.containerWidth = this.layout.width !== null ? this.layout.width : 100;
@@ -406,6 +499,11 @@
                 this.createStyle();
                 this.emitContainerResized();
             },
+            style() {
+                if (!this.$el.className.includes("placeholder") && this.i === "0") {
+                    console.log(JSON.stringify(this.style))
+                }
+            }
         },
         computed: {
             classObj() {
@@ -423,6 +521,18 @@
             resizableAndNotStatic(){
                 return this.resizable && !this.static;
             },
+            resizeFromBr() {
+                return this.resizeFrom.find(e => e === "bottom") && this.resizeFrom.find(e => e === "right")
+            },
+            resizeFromBl() {
+                return this.resizeFrom.find(e => e === "bottom") && this.resizeFrom.find(e => e === "left")
+            },
+            resizeFromTl() {
+                return this.resizeFrom.find(e => e === "top") && this.resizeFrom.find(e => e === "left")
+            },
+            resizeFromTr() {
+                return this.resizeFrom.find(e => e === "top") && this.resizeFrom.find(e => e === "right")
+            },
             draggableOrResizableAndNotStatic(){
                 return (this.draggable || this.resizable) && !this.static;
             },
@@ -432,13 +542,18 @@
             renderRtl() {
                 return (this.layout.isMirrored) ? !this.rtl : this.rtl;
             },
-            resizableHandleClass() {
-                if (this.renderRtl) {
-                    return 'vue-resizable-handle vue-rtl-resizable-handle';
-                } else {
-                    return 'vue-resizable-handle';
-                }
-            }
+            resizableHandleBrClass() {
+                return 'vue-resizable-handle-br';
+            },
+            resizableHandleBlClass() {
+                return 'vue-resizable-handle-bl';
+            },
+            resizableHandleTlClass() {
+                return 'vue-resizable-handle-tl';
+            },
+            resizableHandleTrClass() {
+                return 'vue-resizable-handle-tr';
+            },
         },
         methods: {
             createStyle: function () {
@@ -450,7 +565,10 @@
                   this.innerW = this.w;
                 }
                 let pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
-
+                // console.log(this.$el.className);
+                // if (!this.$el.className.includes("placeholder") && this.i === "0") {
+                //     console.log("createStyle #" + this.i + " LEFT=" + pos.left + " TOP=" + pos.top + " WIDTH=" + pos.width)
+                // }
 
                 if (this.isDragging) {
                     pos.top = this.dragging.top;
@@ -464,6 +582,11 @@
                 if (this.isResizing) {
                     pos.width = this.resizing.width;
                     pos.height = this.resizing.height;
+                    pos.left = this.resizing.left;
+                    pos.top = this.resizing.top;
+                    // if (!this.$el.className.includes("placeholder") && this.i === "0") {
+                    //     console.log("createStyle #" + this.i + " LEFT=" + pos.left + " TOP=" + pos.top + " WIDTH=" + pos.width + " #2")
+                    // }
                 }
 
                 let style;
@@ -484,6 +607,9 @@
                         style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
                     }
                 }
+                // if (!this.$el.className.includes("placeholder") && this.i === "0") {
+                //     console.log(JSON.stringify(style))
+                // }
                 this.style = style;
             },
             emitContainerResized() {
@@ -510,26 +636,70 @@
                 let pos;
                 switch (event.type) {
                     case "resizestart": {
+                        // this.previousX = this.innerX;
+                        // this.previousY = this.innerY;
+                        let parentRect = event.target.offsetParent.getBoundingClientRect();
+                        let clientRect = event.target.getBoundingClientRect();
+                        if (this.renderRtl) {
+                            newSize.left = (clientRect.right - parentRect.right) * -1;
+                        } else {
+                            newSize.left = clientRect.left - parentRect.left;
+                        }
+                        newSize.top = clientRect.top - parentRect.top;
+
                         this.previousW = this.innerW;
                         this.previousH = this.innerH;
                         pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
                         newSize.width = pos.width;
                         newSize.height = pos.height;
+
+                        // console.log("START NEW SIZE => " + JSON.stringify(newSize))
                         this.resizing = newSize;
                         this.isResizing = true;
                         break;
                     }
                     case "resizemove": {
-//                        console.log("### resize => " + event.type + ", lastW=" + this.lastW + ", lastH=" + this.lastH);
+                        // console.log("### resizemove => x=" +this.innerX + " y=" + this.innerY + " w=" + this.innerW + " h=" + this.innerH);
+
+                        //                        console.log("### resize => " + event.type + ", lastW=" + this.lastW + ", lastH=" + this.lastH);
                         const coreEvent = createCoreData(this.lastW, this.lastH, x, y);
-                        if (this.renderRtl) {
+                        // NEW
+                        if (event.edges.left) {
+                            // if (this.renderRtl) {
+                            //     newSize.width = this.resizing.width + coreEvent.deltaX;
+                            //     newSize.left = this.resizing.left - coreEvent.deltaX;
+                            // } else {
+                                newSize.left = this.resizing.left + coreEvent.deltaX;
+                                newSize.width = this.resizing.width - coreEvent.deltaX;
+                            // console.log("resizing DELTA X=" + coreEvent.deltaX)
+                            //}
+                        } else {
+                            // if (this.renderRtl) {
+                            //     newSize.width = this.resizing.width - coreEvent.deltaX;
+                            // } else {
+                                newSize.width = this.resizing.width + coreEvent.deltaX;
+                            // }
+                            newSize.left = this.resizing.left;
+                        }
+
+                        if (event.edges.top) {
+                            newSize.height = this.resizing.height - coreEvent.deltaY;
+                            newSize.top = this.resizing.top + coreEvent.deltaY;
+                        } else {
+                            newSize.height = this.resizing.height + coreEvent.deltaY;
+                            newSize.top = this.resizing.top;
+                        }
+                        // END NEW
+
+                        /*if (this.renderRtl) {
                             newSize.width = this.resizing.width - coreEvent.deltaX;
                         } else {
                             newSize.width = this.resizing.width + coreEvent.deltaX;
                         }
-                        newSize.height = this.resizing.height + coreEvent.deltaY;
+                        newSize.height = this.resizing.height + coreEvent.deltaY;*/
 
-                        ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
+                        // console.log("NEW SIZE => " + JSON.stringify(newSize))
+                        // console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
                         this.resizing = newSize;
                         break;
                     }
@@ -538,6 +708,17 @@
                         pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
                         newSize.width = pos.width;
                         newSize.height = pos.height;
+
+                        let parentRect = event.target.offsetParent.getBoundingClientRect();
+                        let clientRect = event.target.getBoundingClientRect();
+//                        Add rtl support
+                        if (this.renderRtl) {
+                            newSize.left = (clientRect.right - parentRect.right) * -1;
+                        } else {
+                            newSize.left = clientRect.left - parentRect.left;
+                        }
+                        newSize.top = clientRect.top - parentRect.top;
+
 //                        console.log("### resize end => " + JSON.stringify(newSize));
                         this.resizing = null;
                         this.isResizing = false;
@@ -567,6 +748,13 @@
                     pos.w = 1;
                 }
 
+                let posMove;
+                if (this.renderRtl) {
+                    posMove = this.calcXY(newSize.top, newSize.left);
+                } else {
+                    posMove = this.calcXY(newSize.top, newSize.left);
+                }
+
                 this.lastW = x;
                 this.lastH = y;
 
@@ -576,7 +764,8 @@
                 if (event.type === "resizeend" && (this.previousW !== this.innerW || this.previousH !== this.innerH)) {
                     this.$emit("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
                 }
-                this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
+                // this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
+                this.eventBus.$emit("resizeEvent", event.type, this.i, posMove.x, posMove.y, pos.h, pos.w);
             },
             handleDrag(event) {
                 if (this.static) return;
@@ -753,6 +942,7 @@
                 this.containerWidth = width;
                 if (colNum !== undefined && colNum !== null) {
                     this.cols = colNum;
+                    // console.log("updateWidth COLS=" + this.cols)
                 }
             },
             compact: function () {
@@ -801,32 +991,30 @@
                     // console.log("### MIN " + JSON.stringify(minimum));
 
                     const opts = {
+                        // https://github.com/taye/interact.js/issues/685
                         // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
+                        margin: this.resizeMargin,
                         edges: {
-                            left: false,
-                            right: "." + this.resizableHandleClass.trim().replace(" ", "."),
-                            bottom: "." + this.resizableHandleClass.trim().replace(" ", "."),
-                            top: false
+                            left: this.resizeFrom.includes('left'),
+                            right: this.resizeFrom.includes('right'),
+                            bottom: this.resizeFrom.includes('bottom'),
+                            top: this.resizeFrom.includes('top')
                         },
                         ignoreFrom: this.resizeIgnoreFrom,
-                        restrictSize: {
-                            min: {
-                                height: minimum.height,
-                                width: minimum.width
-                            },
-                            max: {
-                                height: maximum.height,
-                                width: maximum.width
-                            }
-                        }
+                        modifiers: [
+                            interact.modifiers.restrictSize({
+                                min: { width: minimum.width, height: minimum.height },
+                                max: { width: maximum.width, height: maximum.height }
+                            })
+                        ],
                     };
 
                     if (this.preserveAspectRatio) {
-                        opts.modifiers = [
+                        opts.modifiers.push(
                             interact.modifiers.aspectRatio({
                                 ratio: 'preserve'
                             }),
-                        ]
+                        )
                     }
 
                     this.interactObj.resizable(opts);

@@ -8,6 +8,7 @@ const banner = PACKAGE.name + ' - ' + PACKAGE.version + ' | ' +
     PACKAGE.homepage;
 
 module.exports = {
+    publicPath: '/vue-grid-layout-resize/',
     configureWebpack: {
         output: {
             library: "VueGridLayout",

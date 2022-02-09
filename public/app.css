@@ -32,6 +32,7 @@
 
 
 
+/*
 .vue-resizable-handle {
     z-index: 5000;
     position: absolute;
@@ -47,6 +48,7 @@
     box-sizing: border-box;
     cursor: se-resize;
 }
+*/
 
 .vue-grid-item:not(.vue-grid-placeholder) {
     background: #ccc;

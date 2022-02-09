@@ -2,6 +2,7 @@
     <div id="app">
         <h1 style="text-align: center">Vue Grid Layout</h1>
         <!--<pre>{{ layout | json }}</pre>-->
+<!--        <interact-tester></interact-tester>-->
         <div>
             <div class="layoutJSON">
                 Displayed as <code>[x, y, w, h]</code>:
@@ -40,20 +41,14 @@
                 :margin="[parseInt(marginX), parseInt(marginY)]"
                     :layout.sync="layout"
                     :col-num="parseInt(colNum)"
-                    :row-height="rowHeight"
+                    :row-height="parseInt(rowHeight)"
                     :is-draggable="draggable"
                     :is-resizable="resizable"
                     :is-mirrored="mirrored"
                     :prevent-collision="preventCollision"
                     :vertical-compact="compact"
-                    :use-css-transforms="true"
+                    :use-css-transforms="false"
                     :responsive="responsive"
-                    @layout-created="layoutCreatedEvent"
-                    @layout-before-mount="layoutBeforeMountEvent"
-                    @layout-mounted="layoutMountedEvent"
-                    @layout-ready="layoutReadyEvent"
-                    @layout-updated="layoutUpdatedEvent"
-                    @breakpoint-changed="breakpointChangedEvent"
             >
                 <grid-item v-for="item in layout" :key="item.i"
                            :static="item.static"
@@ -64,16 +59,14 @@
                            :i="item.i"
                            :min-w="item.minW"
                            :max-w="item.maxW"
+                           :min-h="item.minH"
+                           :max-h="item.maxH"
                            :min-x="item.minX"
                            :max-x="item.maxX"
                            :min-y="item.minY"
                            :max-y="item.maxY"
+                           :resize-from="['left', 'right', 'top', 'bottom']"
                            :preserve-aspect-ratio="item.preserveAspectRatio"
-                           @resize="resize"
-                           @move="move"
-                           @resized="resized"
-                           @container-resized="containerResized"
-                           @moved="moved"
                 >
                     <!--<custom-drag-element :text="item.i"></custom-drag-element>-->
                     <test-element :text="item.i" @removeItem="removeItem($event)"></test-element>
@@ -113,14 +106,15 @@
     import GridLayout from './components/GridLayout.vue';
     // import ResponsiveGridLayout from './components/ResponsiveGridLayout.vue';
     import TestElement from './components/TestElement.vue';
-    import CustomDragElement from './components/CustomDragElement.vue';
+    // import CustomDragElement from './components/CustomDragElement.vue';
     import {getDocumentDir, setDocumentDir} from "./helpers/DOM";
+    import InteractTester from "@/components/InteractTester";
     //var eventBus = require('./eventBus');
 
-    let testLayout = [
-        {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true, static: false, minY: 0, maxY: 2},
+    /*let testLayout = [
+        {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true, static: false, minY: 0, maxY: 2, minW: 2, maxW: 4, minH: 2, maxH: 4},
         {"x":2,"y":0,"w":2,"h":4,"i":"1", resizable: null, draggable: null, static: true},
-        {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false, static: false, minX: 4, maxX: 4, minW: 2, maxW: 2, preserveAspectRatio: true},
+        {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false, static: false, minX: 4, maxX: 4, minW: 2, maxW: 4, preserveAspectRatio: true},
         {"x":6,"y":0,"w":2,"h":3,"i":"3", resizable: false, draggable: false, static: false},
         {"x":8,"y":0,"w":2,"h":3,"i":"4", resizable: false, draggable: false, static: false},
         {"x":10,"y":0,"w":2,"h":3,"i":"5", resizable: false, draggable: false, static: false},
@@ -138,6 +132,11 @@
         {"x":10,"y":4,"w":2,"h":2,"i":"17", resizable: false, draggable: false, static: false},
         {"x":0,"y":9,"w":2,"h":3,"i":"18", resizable: false, draggable: false, static: false},
         {"x":2,"y":6,"w":2,"h":2,"i":"19", resizable: false, draggable: false, static: false}
+    ];*/
+
+    let testLayout = [
+        {"x":5,"y":0,"w":1,"h":3,"i":"0", resizable: true, draggable: true},
+        {"x":6,"y":0,"w":6,"h":6,"i":"1", resizable: true, draggable: true},
     ];
 
     /*let testLayout = [
@@ -151,10 +150,11 @@
     export default {
         name: 'app',
         components: {
+            InteractTester,
             GridLayout,
             GridItem,
             TestElement,
-            CustomDragElement,
+            // CustomDragElement,
         },
         data () {
             return {

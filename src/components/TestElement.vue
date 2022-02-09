@@ -9,8 +9,8 @@
 <style>
 .remove {
     position: absolute;
-    right: 2px;
-    top: 0;
+    right: 15px;
+    top: 5px;
     cursor: pointer;
 }
 </style>

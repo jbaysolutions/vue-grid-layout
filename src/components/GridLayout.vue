@@ -333,7 +333,7 @@
                 }
 
                 // Move the element to the dragged location.
-                this.layout = moveElement(this.layout, l, x, y, true, this.preventCollision);
+                this.$emit("update:layout", moveElement(this.layout, l, x, y, true, this.preventCollision));
                 compact(this.layout, this.verticalCompact);
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.$emit("compact");
@@ -346,13 +346,15 @@
                 if (l === undefined || l === null){
                     l = {h:0, w:0}
                 }
+                // console.log("LLLLLLLLLLL => " + this.preventCollision)
 
                 let hasCollisions;
                 if (this.preventCollision) {
-                    const collisions = getAllCollisions(this.layout, { ...l, w, h }).filter(
+                    const collisions = getAllCollisions(this.layout, { ...l, x, y, w, h }).filter(
                         layoutItem => layoutItem.i !== l.i
                     );
                     hasCollisions = collisions.length > 0;
+                    // console.log(JSON.stringify(collisions))
 
                     // If we're colliding, we need adjust the placeholder.
                     if (hasCollisions) {
@@ -370,6 +372,8 @@
                 }
 
                 if (!hasCollisions) {
+                    l.x = x;
+                    l.y = y;
                     // Set new width and height.
                     l.w = w;
                     l.h = h;
@@ -377,10 +381,11 @@
 
                 if (eventName === "resizestart" || eventName === "resizemove") {
                     this.placeholder.i = id;
-                    this.placeholder.x = x;
-                    this.placeholder.y = y;
+                    this.placeholder.x = l.x;
+                    this.placeholder.y = l.y;
                     this.placeholder.w = l.w;
                     this.placeholder.h = l.h;
+                    // console.log("PLACEHOLDER => " + JSON.stringify(this.placeholder))
                     this.$nextTick(function() {
                         this.isDragging = true;
                     });
