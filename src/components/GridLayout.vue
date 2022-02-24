@@ -82,6 +82,10 @@
                 type: Boolean,
                 default: true
             },
+            restoreOnDrag: {
+                type: Boolean,
+                default: false
+            },
             layout: {
                 type: Array,
                 required: true,
@@ -343,8 +347,8 @@
                 this.layout = moveElement(this.layout, l, x, y, true, this.preventCollision);
 
                 if (this.verticalCompact) {
-                    compact(this.layout, this.verticalCompact, this.positionsBeforeDrag);
-                } else {
+                    compact(this.layout, this.verticalCompact);
+                } else if (this.restoreOnDrag) {
                     // Do not compact items more than in layout before drag
                     // Set moved item as static to avoid to compact it
                     l.static = true;
