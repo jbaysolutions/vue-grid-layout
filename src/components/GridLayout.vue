@@ -346,15 +346,16 @@
                 // Move the element to the dragged location.
                 this.layout = moveElement(this.layout, l, x, y, true, this.preventCollision);
 
-                if (this.verticalCompact) {
-                    compact(this.layout, this.verticalCompact);
-                } else if (this.restoreOnDrag) {
+                if (this.restoreOnDrag) {
                     // Do not compact items more than in layout before drag
                     // Set moved item as static to avoid to compact it
                     l.static = true;
                     compact(this.layout, this.verticalCompact, this.positionsBeforeDrag);
                     l.static = false;
+                } else {
+                    compact(this.layout, this.verticalCompact);
                 }
+
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.$emit("compact");
                 this.updateHeight();
