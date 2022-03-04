@@ -47,7 +47,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-transform-flow-comments": "^6.7.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.0.1",
     "vue": "^2.6.12",
