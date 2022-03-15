@@ -9,9 +9,12 @@ const VueGridLayout = {
 }
 
 export function install(Vue) {
+    // @ts-ignore
     if (install.installed) return;
+    // @ts-ignore
     install.installed = true;
     Object.keys(VueGridLayout).forEach(name => {
+        // @ts-ignore
         Vue.component(name, VueGridLayout[name]);
     });
 }
