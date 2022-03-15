@@ -201,6 +201,11 @@
                 type: Boolean,
                 required: false,
                 default: false,
+            },
+            restrictToParent: {
+                type: Boolean,
+                required: false,
+                default: false,
             }
         },
         inject: ["eventBus", "layout"],
@@ -822,10 +827,32 @@
                     };
 
                     if (this.preserveAspectRatio) {
+                        if (this.restrictToParent) {
+                            /* To guarantee that the aspect ratio options are respected by other modifiers, 
+                            those modifiers must be in the aspectRatio.modifiers array option, not in the same 
+                            resize.modifiers array as the aspectRatio one. (https://interactjs.io/docs/resizable#aspect-ratio) */
+                            opts.modifiers = [
+                                interact.modifiers.aspectRatio({
+                                    ratio: 'preserve',
+                                    modifiers: [
+                                        interact.modifiers.restrict({
+                                            restriction: 'parent'
+                                        })
+                                    ]
+                                }),
+                            ];
+                        } else {
+                            opts.modifiers = [
+                                interact.modifiers.aspectRatio({
+                                    ratio: 'preserve'
+                                }),
+                            ];
+                        }
+                    } else if (this.restrictToParent) {
                         opts.modifiers = [
-                            interact.modifiers.aspectRatio({
-                                ratio: 'preserve'
-                            }),
+                            interact.modifiers.restrict({
+                                restriction: 'parent'
+                            })
                         ]
                     }
 
