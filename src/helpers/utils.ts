@@ -3,7 +3,7 @@ export type LayoutItemRequired = {w: number, h: number, x: number, y: number, i:
 export type LayoutItem = LayoutItemRequired &
                          {minW?: number, minH?: number, maxW?: number, maxH?: number,
                           moved?: boolean, static?: boolean,
-                          isDraggable?: ?boolean, isResizable?: ?boolean};
+                          isDraggable?: boolean, isResizable?: boolean};
 export type Layout = Array<LayoutItem>;
 // export type Position = {left: number, top: number, width: number, height: number};
 /*
@@ -77,7 +77,7 @@ export function collides(l1: LayoutItem, l2: LayoutItem): boolean {
  *   vertically.
  * @return {Array}       Compacted Layout.
  */
-export function compact(layout: Layout, verticalCompact: Boolean): Layout {
+export function compact(layout: Layout, verticalCompact: boolean): Layout {
     // Statics go in the compareWith array right away so items flow around them.
   const compareWith = getStatics(layout);
   // We go through the items by row and column.
@@ -162,7 +162,7 @@ export function correctBounds(layout: Layout, bounds: {cols: number}): Layout {
  * @param  {String} id     ID
  * @return {LayoutItem}    Item at ID.
  */
-export function getLayoutItem(layout: Layout, id: string): ?LayoutItem {
+export function getLayoutItem(layout: Layout, id: string): LayoutItem | undefined {
   for (let i = 0, len = layout.length; i < len; i++) {
     if (layout[i].i === id) return layout[i];
   }
@@ -176,7 +176,7 @@ export function getLayoutItem(layout: Layout, id: string): ?LayoutItem {
  * @param  {Object} layoutItem Layout item.
  * @return {Object|undefined}  A colliding layout item, or undefined.
  */
-export function getFirstCollision(layout: Layout, layoutItem: LayoutItem): ?LayoutItem {
+export function getFirstCollision(layout: Layout, layoutItem: LayoutItem): LayoutItem | undefined {
   for (let i = 0, len = layout.length; i < len; i++) {
     if (collides(layout[i], layoutItem)) return layout[i];
   }
@@ -206,7 +206,7 @@ export function getStatics(layout: Layout): Array<LayoutItem> {
  * @param  {Boolean}    [isUserAction] If true, designates that the item we're moving is
  *                                     being dragged/resized by th euser.
  */
-export function moveElement(layout: Layout, l: LayoutItem, x: Number, y: Number, isUserAction: Boolean, preventCollision: Boolean): Layout {
+export function moveElement(layout: Layout, l: LayoutItem, x: number, y: number, isUserAction: boolean, preventCollision: boolean): Layout {
   if (l.static) return layout;
 
   // Short-circuit if nothing to do.
@@ -269,7 +269,7 @@ export function moveElement(layout: Layout, l: LayoutItem, x: Number, y: Number,
  *                                   by the user.
  */
 export function moveElementAwayFromCollision(layout: Layout, collidesWith: LayoutItem,
-                                             itemToMove: LayoutItem, isUserAction: ?boolean): Layout {
+                                             itemToMove: LayoutItem, isUserAction: boolean = false): Layout {
 
   const preventCollision = false // we're already colliding
   // If there is enough space above the collision to put this element, move it there.
@@ -286,13 +286,13 @@ export function moveElementAwayFromCollision(layout: Layout, collidesWith: Layou
     };
     fakeItem.y = Math.max(collidesWith.y - itemToMove.h, 0);
     if (!getFirstCollision(layout, fakeItem)) {
-      return moveElement(layout, itemToMove, undefined, fakeItem.y, preventCollision);
+      return moveElement(layout, itemToMove, undefined, fakeItem.y, isUserAction, preventCollision);
     }
   }
 
   // Previously this was optimized to move below the collision directly, but this can cause problems
   // with cascading moves, as an item may actually leapflog a collision and cause a reversal in order.
-  return moveElement(layout, itemToMove, undefined, itemToMove.y + 1, preventCollision);
+  return moveElement(layout, itemToMove, undefined, itemToMove.y + 1, isUserAction, preventCollision);
 }
 
 /**

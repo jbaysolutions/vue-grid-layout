@@ -30,7 +30,7 @@ export function setDocumentDir(dir: "ltr" | "rtl" | "auto"){
     html.setAttribute("dir", dir);
 }
 
-export function addWindowEventListener(event:string, callback: () => mixed){
+export function addWindowEventListener(event:string, callback: () => void){
     if(!hasWindow){
 
         callback();
@@ -39,7 +39,7 @@ export function addWindowEventListener(event:string, callback: () => mixed){
     window.addEventListener(event, callback);
 }
 
-export function removeWindowEventListener(event:string, callback: () => mixed){
+export function removeWindowEventListener(event:string, callback: () => void){
     if(!hasWindow){
         return;
     }

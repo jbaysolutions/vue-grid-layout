@@ -86,10 +86,10 @@
     }
 </style>
 <script>
-    import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '@/helpers/utils';
-    import {getControlPosition, createCoreData} from '@/helpers/draggableUtils';
-    import {getColsFromBreakpoint} from '@/helpers/responsiveUtils';
-    import {getDocumentDir} from "@/helpers/DOM";
+    import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '../helpers/utils';
+    import {getControlPosition, createCoreData} from '../helpers/draggableUtils';
+    import {getColsFromBreakpoint} from '../helpers/responsiveUtils';
+    import {getDocumentDir} from "../helpers/DOM";
     //    var eventBus = require('./eventBus');
 
     import '@interactjs/auto-start'

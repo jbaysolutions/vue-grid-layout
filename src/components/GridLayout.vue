@@ -20,12 +20,12 @@
     import Vue from 'vue';
     const elementResizeDetectorMaker = require("element-resize-detector");
 
-    import {bottom, compact, getLayoutItem, moveElement, validateLayout, cloneLayout, getAllCollisions} from '@/helpers/utils';
-    import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout} from "@/helpers/responsiveUtils";
+    import {bottom, compact, getLayoutItem, moveElement, validateLayout, cloneLayout, getAllCollisions} from '../helpers/utils';
+    import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout} from "../helpers/responsiveUtils";
     //var eventBus = require('./eventBus');
 
     import GridItem from './GridItem.vue'
-    import {addWindowEventListener, removeWindowEventListener} from "@/helpers/DOM";
+    import {addWindowEventListener, removeWindowEventListener} from "../helpers/DOM";
 
     export default {
         name: "GridLayout",
