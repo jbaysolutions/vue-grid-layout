@@ -1,4 +1,4 @@
-/*! vue-grid-layout - 3.0.0-beta1 | (c) 2015, 2021  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
+/*! vue-grid-layout - 3.0.0-beta1 | (c) 2015, 2022  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -205,12 +205,23 @@ module.exports = function (S, index, unicode) {
 
 /***/ }),
 
+/***/ "07e3":
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+
 /***/ "083e":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridItem_vue_vue_type_style_index_0_id_46ff2fc8_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c541");
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridItem_vue_vue_type_style_index_0_id_46ff2fc8_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridItem_vue_vue_type_style_index_0_id_46ff2fc8_lang_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_GridItem_vue_vue_type_style_index_0_id_46ff2fc8_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c541");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_GridItem_vue_vue_type_style_index_0_id_46ff2fc8_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_GridItem_vue_vue_type_style_index_0_id_46ff2fc8_lang_css__WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
 
 
@@ -596,6 +607,39 @@ detector.isLegacyOpera = function() {
 
 /***/ }),
 
+/***/ "1bc3":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__("f772");
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+
+/***/ "1ec9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("f772");
+var document = __webpack_require__("e53d").document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
+
+/***/ }),
+
 /***/ "214f":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -853,6 +897,20 @@ exports.f = Object.getOwnPropertySymbols;
 
 /***/ }),
 
+/***/ "294c":
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+
 /***/ "2aba":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1035,6 +1093,21 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 
 /***/ }),
 
+/***/ "35e8":
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__("d9f6");
+var createDesc = __webpack_require__("aebd");
+module.exports = __webpack_require__("8e60") ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+
 /***/ "38fd":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1071,6 +1144,18 @@ __webpack_require__("32e9")(IteratorPrototype, __webpack_require__("2b4c")('iter
 module.exports = function (Constructor, NAME, next) {
   Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
   setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+
+/***/ }),
+
+/***/ "454f":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("46a7");
+var $Object = __webpack_require__("584a").Object;
+module.exports = function defineProperty(it, key, desc) {
+  return $Object.defineProperty(it, key, desc);
 };
 
 
@@ -1116,6 +1201,16 @@ module.exports = function (bitmap, value) {
     value: value
   };
 };
+
+
+/***/ }),
+
+/***/ "46a7":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__("63b6");
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__("8e60"), 'Object', { defineProperty: __webpack_require__("d9f6").f });
 
 
 /***/ }),
@@ -1730,6 +1825,15 @@ $export($export.P + $export.F * (fails(function () {
 
 /***/ }),
 
+/***/ "584a":
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.6.12' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+
 /***/ "5be5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1927,12 +2031,81 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 /***/ }),
 
+/***/ "63b6":
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__("e53d");
+var core = __webpack_require__("584a");
+var ctx = __webpack_require__("d864");
+var hide = __webpack_require__("35e8");
+var has = __webpack_require__("07e3");
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var IS_WRAP = type & $export.W;
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE];
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+  var key, own, out;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    if (own && has(exports, key)) continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    // bind timers to global for call from export context
+    : IS_BIND && own ? ctx(out, global)
+    // wrap global constructors for prevent change them in library
+    : IS_WRAP && target[key] == out ? (function (C) {
+      var F = function (a, b, c) {
+        if (this instanceof C) {
+          switch (arguments.length) {
+            case 0: return new C();
+            case 1: return new C(a);
+            case 2: return new C(a, b);
+          } return new C(a, b, c);
+        } return C.apply(this, arguments);
+      };
+      F[PROTOTYPE] = C[PROTOTYPE];
+      return F;
+    // make static versions for prototype methods
+    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+    if (IS_PROTO) {
+      (exports.virtual || (exports.virtual = {}))[key] = out;
+      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
+    }
+  }
+};
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+
 /***/ "6521":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridLayout_vue_vue_type_style_index_0_id_fc5948f6_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("92bf");
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridLayout_vue_vue_type_style_index_0_id_fc5948f6_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridLayout_vue_vue_type_style_index_0_id_fc5948f6_lang_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_GridLayout_vue_vue_type_style_index_0_id_fc5948f6_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("92bf");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_GridLayout_vue_vue_type_style_index_0_id_fc5948f6_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_GridLayout_vue_vue_type_style_index_0_id_fc5948f6_lang_css__WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
 
 
@@ -1976,6 +2149,25 @@ module.exports = function (it, S) {
   if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
   if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
   throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+
+/***/ "6b0d":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+// runtime helper for setting properties on components
+// in a tree-shakable way
+exports.default = (sfc, props) => {
+    const target = sfc.__vccOpts || sfc;
+    for (const [key, val] of props) {
+        target[key] = val;
+    }
+    return target;
 };
 
 
@@ -2054,6 +2246,27 @@ module.exports = function (index, length) {
 
 /***/ }),
 
+/***/ "794b":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__("8e60") && !__webpack_require__("294c")(function () {
+  return Object.defineProperty(__webpack_require__("1ec9")('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "79aa":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+
 /***/ "79e5":
 /***/ (function(module, exports) {
 
@@ -2110,6 +2323,13 @@ module.exports = exports;
 
 module.exports = {};
 
+
+/***/ }),
+
+/***/ "85f2":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("454f");
 
 /***/ }),
 
@@ -2260,6 +2480,17 @@ module.exports = require("vue");
 
 /***/ }),
 
+/***/ "8e60":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__("294c")(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
 /***/ "8e6e":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2310,11 +2541,12 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 // load the styles
 var content = __webpack_require__("848e");
+if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__("499e").default
-var update = add("ff1827d0", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("8582ea56", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -2678,6 +2910,21 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 
 /***/ }),
 
+/***/ "aebd":
+/***/ (function(module, exports) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+
+/***/ }),
+
 /***/ "b0c5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2917,11 +3164,12 @@ module.exports = function (IS_INCLUDES) {
 
 // load the styles
 var content = __webpack_require__("493e");
+if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__("499e").default
-var update = add("40158674", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("a861e89e", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -3191,7 +3439,8 @@ module.exports = function(options) {
 
         function isDetached(element) {
             function isInDocument(element) {
-                return element === element.ownerDocument.body || element.ownerDocument.body.contains(element);
+                var isInShadowRoot = element.getRootNode && element.getRootNode().contains(element);
+                return element === element.ownerDocument.body || element.ownerDocument.body.contains(element) || isInShadowRoot;
             }
 
             if (!isInDocument(element)) {
@@ -3423,11 +3672,21 @@ module.exports = function(options) {
             rootContainer.appendChild(containerContainer);
 
             function onExpandScroll() {
-                getState(element).onExpand && getState(element).onExpand();
+                var state = getState(element);
+                if (state && state.onExpand) {
+                    state.onExpand();
+                } else {
+                    debug("Aborting expand scroll handler: element has been uninstalled");
+                }
             }
 
             function onShrinkScroll() {
-                getState(element).onShrink && getState(element).onShrink();
+                var state = getState(element);
+                if (state && state.onShrink) {
+                    state.onShrink();
+                } else {
+                    debug("Aborting shrink scroll handler: element has been uninstalled");
+                }
             }
 
             addEvent(expand, "scroll", onExpandScroll);
@@ -3821,12 +4080,62 @@ module.exports = {
 
 /***/ }),
 
+/***/ "d864":
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__("79aa");
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+
 /***/ "d8e8":
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
   if (typeof it != 'function') throw TypeError(it + ' is not a function!');
   return it;
+};
+
+
+/***/ }),
+
+/***/ "d9f6":
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__("e4ae");
+var IE8_DOM_DEFINE = __webpack_require__("794b");
+var toPrimitive = __webpack_require__("1bc3");
+var dP = Object.defineProperty;
+
+exports.f = __webpack_require__("8e60") ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
 };
 
 
@@ -3839,6 +4148,31 @@ module.exports = function (it) {
 module.exports = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
+
+
+/***/ }),
+
+/***/ "e4ae":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("f772");
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "e53d":
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ }),
@@ -4206,6 +4540,16 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__("7333") }
 
 /***/ }),
 
+/***/ "f772":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+
+/***/ }),
+
 /***/ "fa5b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4268,17 +4612,17 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/GridItem.vue?vue&type=template&id=46ff2fc8
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/GridItem.vue?vue&type=template&id=46ff2fc8
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("div", {
+  return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", {
     ref: "item",
-    class: ["vue-grid-item", $options.classObj],
-    style: _ctx.style
-  }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "default"), $options.resizableAndNotStatic ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("span", {
+    class: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["normalizeClass"])(["vue-grid-item", $options.classObj]),
+    style: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["normalizeStyle"])(_ctx.style)
+  }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "default"), $options.resizableAndNotStatic ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("span", {
     key: 0,
     ref: "handle",
-    class: $options.resizableHandleClass
+    class: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["normalizeClass"])($options.resizableHandleClass)
   }, null, 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)], 6);
 }
 // CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=46ff2fc8
@@ -5431,7 +5775,6 @@ const array = thing => object(thing) && typeof thing.length !== 'undefined' && f
 // CONCATENATED MODULE: ./node_modules/@interactjs/utils/browser.js
 
 
-
 const browser = {
   init: browser_init,
   supportsTouch: null,
@@ -5447,7 +5790,7 @@ const browser = {
 
 function browser_init(window) {
   const Element = utils_domObjects.Element;
-  const navigator = win.navigator; // Does the browser support touch input?
+  const navigator = window.navigator || {}; // Does the browser support touch input?
 
   browser.supportsTouch = 'ontouchstart' in window || is.func(window.DocumentTouch) && utils_domObjects.document instanceof window.DocumentTouch; // Does the browser support PointerEvents
 
@@ -5476,7 +5819,7 @@ function browser_init(window) {
     cancel: 'pointercancel'
   } : null; // because Webkit and Opera still use 'mousewheel' event type
 
-  browser.wheelEvent = 'onmousewheel' in utils_domObjects.document ? 'mousewheel' : 'wheel';
+  browser.wheelEvent = utils_domObjects.document && 'onmousewheel' in utils_domObjects.document ? 'mousewheel' : 'wheel';
 }
 
 /* harmony default export */ var utils_browser = (browser);
@@ -5528,6 +5871,7 @@ function clone(source) {
 // CONCATENATED MODULE: ./node_modules/@interactjs/utils/extend.js
 function extend(dest, source) {
   for (const prop in source) {
+    ;
     dest[prop] = source[prop];
   }
 
@@ -5540,28 +5884,28 @@ let lastTime = 0;
 let request;
 let cancel;
 
-function raf_init(window) {
-  request = window.requestAnimationFrame;
-  cancel = window.cancelAnimationFrame;
+function raf_init(global) {
+  request = global.requestAnimationFrame;
+  cancel = global.cancelAnimationFrame;
 
   if (!request) {
     const vendors = ['ms', 'moz', 'webkit', 'o'];
 
     for (const vendor of vendors) {
-      request = window[`${vendor}RequestAnimationFrame`];
-      cancel = window[`${vendor}CancelAnimationFrame`] || window[`${vendor}CancelRequestAnimationFrame`];
+      request = global[`${vendor}RequestAnimationFrame`];
+      cancel = global[`${vendor}CancelAnimationFrame`] || global[`${vendor}CancelRequestAnimationFrame`];
     }
   }
 
-  request = request && request.bind(window);
-  cancel = cancel && cancel.bind(window);
+  request = request && request.bind(global);
+  cancel = cancel && cancel.bind(global);
 
   if (!request) {
     request = callback => {
       const currTime = Date.now();
-      const timeToCall = Math.max(0, 16 - (currTime - lastTime)); // eslint-disable-next-line node/no-callback-literal
-
-      const token = window.setTimeout(() => {
+      const timeToCall = Math.max(0, 16 - (currTime - lastTime));
+      const token = global.setTimeout(() => {
+        // eslint-disable-next-line node/no-callback-literal
         callback(currTime + timeToCall);
       }, timeToCall);
       lastTime = currTime + timeToCall;
@@ -5812,18 +6156,21 @@ function indexOfDeepestElement(elements) {
     }
 
     const parents = [currentNodeParents[commonIndex - 1], currentNodeParents[commonIndex], deepestNodeParents[commonIndex]];
-    let child = parents[0].lastChild;
 
-    while (child) {
-      if (child === parents[1]) {
-        deepestNodeIndex = i;
-        deepestNodeParents = currentNodeParents;
-        break;
-      } else if (child === parents[2]) {
-        break;
+    if (parents[0]) {
+      let child = parents[0].lastChild;
+
+      while (child) {
+        if (child === parents[1]) {
+          deepestNodeIndex = i;
+          deepestNodeParents = currentNodeParents;
+          break;
+        } else if (child === parents[2]) {
+          break;
+        }
+
+        child = child.previousSibling;
       }
-
-      child = child.previousSibling;
     }
   }
 
@@ -6059,10 +6406,10 @@ Object.defineProperty(BaseEvent.prototype, 'interaction', {
 
 });
 //# sourceMappingURL=BaseEvent.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/core/defaultOptions.js
+// CONCATENATED MODULE: ./node_modules/@interactjs/core/options.js
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 // export interface Options extends BaseDefaults, PerActionDefaults {}
-const defaultOptions_defaults = {
+const options_defaults = {
   base: {
     preventDefault: 'auto',
     deltaSource: 'page'
@@ -6076,7 +6423,7 @@ const defaultOptions_defaults = {
   },
   actions: {}
 };
-//# sourceMappingURL=defaultOptions.js.map
+//# sourceMappingURL=options.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/core/InteractEvent.js
 
 
@@ -6119,7 +6466,7 @@ class InteractEvent_InteractEvent extends BaseEvent {
     this.preEnd = void 0;
     element = element || interaction.element;
     const target = interaction.interactable;
-    const deltaSource = (target && target.options || defaultOptions_defaults).deltaSource;
+    const deltaSource = (target && target.options || options_defaults).deltaSource;
     const origin = getOriginXY(target, element, actionName);
     const starting = phase === 'start';
     const ending = phase === 'end';
@@ -6314,553 +6661,28 @@ Object.defineProperties(InteractEvent_InteractEvent.prototype, {
   }
 });
 //# sourceMappingURL=InteractEvent.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/core/isNonNativeEvent.js
-function isNonNativeEvent(type, actions) {
-  if (actions.phaselessTypes[type]) {
-    return true;
-  }
+// CONCATENATED MODULE: ./node_modules/@interactjs/utils/misc.js
 
-  for (const name in actions.map) {
-    if (type.indexOf(name) === 0 && type.substr(name.length) in actions.phases) {
-      return true;
+function warnOnce(method, message) {
+  let warned = false;
+  return function () {
+    if (!warned) {
+      ;
+      win.console.warn(message);
+      warned = true;
     }
-  }
 
-  return false;
+    return method.apply(this, arguments);
+  };
 }
-//# sourceMappingURL=isNonNativeEvent.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/core/Interactable.js
-/* eslint-disable no-dupe-class-members */
-
-
-
-
-
-
-
-
-
-
-
-/** */
-class Interactable_Interactable {
-  /** @internal */
-  get _defaults() {
-    return {
-      base: {},
-      perAction: {},
-      actions: {}
-    };
-  }
-
-  /** */
-  constructor(target, options, defaultContext, scopeEvents) {
-    this.options = void 0;
-    this._actions = void 0;
-    this.target = void 0;
-    this.events = new Eventable_Eventable();
-    this._context = void 0;
-    this._win = void 0;
-    this._doc = void 0;
-    this._scopeEvents = void 0;
-    this._rectChecker = void 0;
-    this._actions = options.actions;
-    this.target = target;
-    this._context = options.context || defaultContext;
-    this._win = getWindow(trySelector(target) ? this._context : target);
-    this._doc = this._win.document;
-    this._scopeEvents = scopeEvents;
-    this.set(options);
-  }
-
-  setOnEvents(actionName, phases) {
-    if (is.func(phases.onstart)) {
-      this.on(`${actionName}start`, phases.onstart);
-    }
-
-    if (is.func(phases.onmove)) {
-      this.on(`${actionName}move`, phases.onmove);
-    }
-
-    if (is.func(phases.onend)) {
-      this.on(`${actionName}end`, phases.onend);
-    }
-
-    if (is.func(phases.oninertiastart)) {
-      this.on(`${actionName}inertiastart`, phases.oninertiastart);
-    }
-
-    return this;
-  }
-
-  updatePerActionListeners(actionName, prev, cur) {
-    if (is.array(prev) || is.object(prev)) {
-      this.off(actionName, prev);
-    }
-
-    if (is.array(cur) || is.object(cur)) {
-      this.on(actionName, cur);
-    }
-  }
-
-  setPerAction(actionName, options) {
-    const defaults = this._defaults; // for all the default per-action options
-
-    for (const optionName_ in options) {
-      const optionName = optionName_;
-      const actionOptions = this.options[actionName];
-      const optionValue = options[optionName]; // remove old event listeners and add new ones
-
-      if (optionName === 'listeners') {
-        this.updatePerActionListeners(actionName, actionOptions.listeners, optionValue);
-      } // if the option value is an array
-
-
-      if (is.array(optionValue)) {
-        actionOptions[optionName] = from(optionValue);
-      } // if the option value is an object
-      else if (is.plainObject(optionValue)) {
-          // copy the object
-          actionOptions[optionName] = extend(actionOptions[optionName] || {}, clone(optionValue)); // set anabled field to true if it exists in the defaults
-
-          if (is.object(defaults.perAction[optionName]) && 'enabled' in defaults.perAction[optionName]) {
-            actionOptions[optionName].enabled = optionValue.enabled !== false;
-          }
-        } // if the option value is a boolean and the default is an object
-        else if (is.bool(optionValue) && is.object(defaults.perAction[optionName])) {
-            actionOptions[optionName].enabled = optionValue;
-          } // if it's anything else, do a plain assignment
-          else {
-              actionOptions[optionName] = optionValue;
-            }
-    }
-  }
-  /**
-   * The default function to get an Interactables bounding rect. Can be
-   * overridden using {@link Interactable.rectChecker}.
-   *
-   * @param {Element} [element] The element to measure.
-   * @return {Rect} The object's bounding rectangle.
-   */
-
-
-  getRect(element) {
-    element = element || (is.element(this.target) ? this.target : null);
-
-    if (is.string(this.target)) {
-      element = element || this._context.querySelector(this.target);
-    }
-
-    return getElementRect(element);
-  }
-  /**
-   * Returns or sets the function used to calculate the interactable's
-   * element's rectangle
-   *
-   * @param {function} [checker] A function which returns this Interactable's
-   * bounding rectangle. See {@link Interactable.getRect}
-   * @return {function | object} The checker function or this Interactable
-   */
-
-
-  rectChecker(checker) {
-    if (is.func(checker)) {
-      this._rectChecker = checker;
-
-      this.getRect = element => {
-        const rect = extend({}, this._rectChecker(element));
-
-        if (!('width' in rect)) {
-          rect.width = rect.right - rect.left;
-          rect.height = rect.bottom - rect.top;
-        }
-
-        return rect;
-      };
-
-      return this;
-    }
-
-    if (checker === null) {
-      delete this.getRect;
-      delete this._rectChecker;
-      return this;
-    }
-
-    return this.getRect;
-  }
-
-  _backCompatOption(optionName, newValue) {
-    if (trySelector(newValue) || is.object(newValue)) {
-      this.options[optionName] = newValue;
-
-      for (const action in this._actions.map) {
-        this.options[action][optionName] = newValue;
-      }
-
-      return this;
-    }
-
-    return this.options[optionName];
-  }
-  /**
-   * Gets or sets the origin of the Interactable's element.  The x and y
-   * of the origin will be subtracted from action event coordinates.
-   *
-   * @param {Element | object | string} [origin] An HTML or SVG Element whose
-   * rect will be used, an object eg. { x: 0, y: 0 } or string 'parent', 'self'
-   * or any CSS selector
-   *
-   * @return {object} The current origin or this Interactable
-   */
-
-
-  origin(newValue) {
-    return this._backCompatOption('origin', newValue);
-  }
-  /**
-   * Returns or sets the mouse coordinate types used to calculate the
-   * movement of the pointer.
-   *
-   * @param {string} [newValue] Use 'client' if you will be scrolling while
-   * interacting; Use 'page' if you want autoScroll to work
-   * @return {string | object} The current deltaSource or this Interactable
-   */
-
-
-  deltaSource(newValue) {
-    if (newValue === 'page' || newValue === 'client') {
-      this.options.deltaSource = newValue;
-      return this;
-    }
-
-    return this.options.deltaSource;
-  }
-  /**
-   * Gets the selector context Node of the Interactable. The default is
-   * `window.document`.
-   *
-   * @return {Node} The context Node of this Interactable
-   */
-
-
-  context() {
-    return this._context;
-  }
-
-  inContext(element) {
-    return this._context === element.ownerDocument || nodeContains(this._context, element);
-  }
-
-  testIgnoreAllow(options, targetNode, eventTarget) {
-    return !this.testIgnore(options.ignoreFrom, targetNode, eventTarget) && this.testAllow(options.allowFrom, targetNode, eventTarget);
-  }
-
-  testAllow(allowFrom, targetNode, element) {
-    if (!allowFrom) {
-      return true;
-    }
-
-    if (!is.element(element)) {
-      return false;
-    }
-
-    if (is.string(allowFrom)) {
-      return matchesUpTo(element, allowFrom, targetNode);
-    } else if (is.element(allowFrom)) {
-      return nodeContains(allowFrom, element);
-    }
-
-    return false;
-  }
-
-  testIgnore(ignoreFrom, targetNode, element) {
-    if (!ignoreFrom || !is.element(element)) {
-      return false;
-    }
-
-    if (is.string(ignoreFrom)) {
-      return matchesUpTo(element, ignoreFrom, targetNode);
-    } else if (is.element(ignoreFrom)) {
-      return nodeContains(ignoreFrom, element);
-    }
-
-    return false;
-  }
-  /**
-   * Calls listeners for the given InteractEvent type bound globally
-   * and directly to this Interactable
-   *
-   * @param {InteractEvent} iEvent The InteractEvent object to be fired on this
-   * Interactable
-   * @return {Interactable} this Interactable
-   */
-
-
-  fire(iEvent) {
-    this.events.fire(iEvent);
-    return this;
-  }
-
-  _onOff(method, typeArg, listenerArg, options) {
-    if (is.object(typeArg) && !is.array(typeArg)) {
-      options = listenerArg;
-      listenerArg = null;
-    }
-
-    const addRemove = method === 'on' ? 'add' : 'remove';
-    const listeners = normalize(typeArg, listenerArg);
-
-    for (let type in listeners) {
-      if (type === 'wheel') {
-        type = utils_browser.wheelEvent;
-      }
-
-      for (const listener of listeners[type]) {
-        // if it is an action event type
-        if (isNonNativeEvent(type, this._actions)) {
-          this.events[method](type, listener);
-        } // delegated event
-        else if (is.string(this.target)) {
-            this._scopeEvents[`${addRemove}Delegate`](this.target, this._context, type, listener, options);
-          } // remove listener from this Interactable's element
-          else {
-              this._scopeEvents[addRemove](this.target, type, listener, options);
-            }
-      }
-    }
-
-    return this;
-  }
-  /**
-   * Binds a listener for an InteractEvent, pointerEvent or DOM event.
-   *
-   * @param {string | array | object} types The types of events to listen
-   * for
-   * @param {function | array | object} [listener] The event listener function(s)
-   * @param {object | boolean} [options] options object or useCapture flag for
-   * addEventListener
-   * @return {Interactable} This Interactable
-   */
-
-
-  on(types, listener, options) {
-    return this._onOff('on', types, listener, options);
-  }
-  /**
-   * Removes an InteractEvent, pointerEvent or DOM event listener.
-   *
-   * @param {string | array | object} types The types of events that were
-   * listened for
-   * @param {function | array | object} [listener] The event listener function(s)
-   * @param {object | boolean} [options] options object or useCapture flag for
-   * removeEventListener
-   * @return {Interactable} This Interactable
-   */
-
-
-  off(types, listener, options) {
-    return this._onOff('off', types, listener, options);
-  }
-  /**
-   * Reset the options of this Interactable
-   *
-   * @param {object} options The new settings to apply
-   * @return {object} This Interactable
-   */
-
-
-  set(options) {
-    const defaults = this._defaults;
-
-    if (!is.object(options)) {
-      options = {};
-    }
-
-    this.options = clone(defaults.base);
-
-    for (const actionName_ in this._actions.methodDict) {
-      const actionName = actionName_;
-      const methodName = this._actions.methodDict[actionName];
-      this.options[actionName] = {};
-      this.setPerAction(actionName, extend(extend({}, defaults.perAction), defaults.actions[actionName]));
-      this[methodName](options[actionName]);
-    }
-
-    for (const setting in options) {
-      if (is.func(this[setting])) {
-        this[setting](options[setting]);
-      }
-    }
-
-    return this;
-  }
-  /**
-   * Remove this interactable from the list of interactables and remove it's
-   * action capabilities and event listeners
-   */
-
-
-  unset() {
-    if (is.string(this.target)) {
-      // remove delegated events
-      for (const type in this._scopeEvents.delegatedEvents) {
-        const delegated = this._scopeEvents.delegatedEvents[type];
-
-        for (let i = delegated.length - 1; i >= 0; i--) {
-          const {
-            selector,
-            context,
-            listeners
-          } = delegated[i];
-
-          if (selector === this.target && context === this._context) {
-            delegated.splice(i, 1);
-          }
-
-          for (let l = listeners.length - 1; l >= 0; l--) {
-            this._scopeEvents.removeDelegate(this.target, this._context, type, listeners[l][0], listeners[l][1]);
-          }
-        }
-      }
-    } else {
-      this._scopeEvents.remove(this.target, 'all');
-    }
-  }
-
-}
-//# sourceMappingURL=Interactable.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/core/InteractableSet.js
-
-
-
-
-class InteractableSet_InteractableSet {
-  // all set interactables
-  constructor(scope) {
-    this.list = [];
-    this.selectorMap = {};
-    this.scope = void 0;
-    this.scope = scope;
-    scope.addListeners({
-      'interactable:unset': ({
-        interactable
-      }) => {
-        const {
-          target,
-          _context: context
-        } = interactable;
-        const targetMappings = is.string(target) ? this.selectorMap[target] : target[this.scope.id];
-        const targetIndex = findIndex(targetMappings, m => m.context === context);
-
-        if (targetMappings[targetIndex]) {
-          // Destroying mappingInfo's context and interactable
-          targetMappings[targetIndex].context = null;
-          targetMappings[targetIndex].interactable = null;
-        }
-
-        targetMappings.splice(targetIndex, 1);
-      }
-    });
-  }
-
-  new(target, options) {
-    options = extend(options || {}, {
-      actions: this.scope.actions
-    });
-    const interactable = new this.scope.Interactable(target, options, this.scope.document, this.scope.events);
-    const mappingInfo = {
-      context: interactable._context,
-      interactable
-    };
-    this.scope.addDocument(interactable._doc);
-    this.list.push(interactable);
-
-    if (is.string(target)) {
-      if (!this.selectorMap[target]) {
-        this.selectorMap[target] = [];
-      }
-
-      this.selectorMap[target].push(mappingInfo);
-    } else {
-      if (!interactable.target[this.scope.id]) {
-        Object.defineProperty(target, this.scope.id, {
-          value: [],
-          configurable: true
-        });
-      }
-
-      target[this.scope.id].push(mappingInfo);
-    }
-
-    this.scope.fire('interactable:new', {
-      target,
-      options,
-      interactable,
-      win: this.scope._win
-    });
-    return interactable;
-  }
-
-  get(target, options) {
-    const context = options && options.context || this.scope.document;
-    const isSelector = is.string(target);
-    const targetMappings = isSelector ? this.selectorMap[target] : target[this.scope.id];
-
-    if (!targetMappings) {
-      return null;
-    }
-
-    const found = find(targetMappings, m => m.context === context && (isSelector || m.interactable.inContext(target)));
-    return found && found.interactable;
-  }
-
-  forEachMatch(node, callback) {
-    for (const interactable of this.list) {
-      let ret;
-
-      if ((is.string(interactable.target) // target is a selector and the element matches
-      ? is.element(node) && matchesSelector(node, interactable.target) : // target is the element
-      node === interactable.target) && // the element is in context
-      interactable.inContext(node)) {
-        ret = callback(interactable);
-      }
-
-      if (ret !== undefined) {
-        return ret;
-      }
-    }
-  }
-
-}
-//# sourceMappingURL=InteractableSet.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/utils/pointerExtend.js
-function pointerExtend(dest, source) {
-  for (const prop in source) {
-    const prefixedPropREs = pointerExtend.prefixedPropREs;
-    let deprecated = false; // skip deprecated prefixed properties
-
-    for (const vendor in prefixedPropREs) {
-      if (prop.indexOf(vendor) === 0 && prefixedPropREs[vendor].test(prop)) {
-        deprecated = true;
-        break;
-      }
-    }
-
-    if (!deprecated && typeof source[prop] !== 'function') {
-      dest[prop] = source[prop];
-    }
-  }
-
+function copyAction(dest, src) {
+  dest.name = src.name;
+  dest.axis = src.axis;
+  dest.edges = src.edges;
   return dest;
 }
-
-pointerExtend.prefixedPropREs = {
-  webkit: /(Movement[XY]|Radius[XY]|RotationAngle|Force)$/,
-  moz: /(Pressure)$/
-};
-/* harmony default export */ var utils_pointerExtend = (pointerExtend);
-//# sourceMappingURL=pointerExtend.js.map
+const sign = n => n >= 0 ? 1 : -1;
+//# sourceMappingURL=misc.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/utils/pointerUtils.js
 
 
@@ -7031,9 +6853,9 @@ function touchAngle(event, deltaSource) {
   return angle;
 }
 function getPointerType(pointer) {
-  return is.string(pointer.pointerType) ? pointer.pointerType : is.number(pointer.pointerType) ? [undefined, undefined, 'touch', 'pen', 'mouse'][pointer.pointerType] // if the PointerEvent API isn't available, then the "pointer" must
+  return is.string(pointer.pointerType) ? pointer.pointerType : is.number(pointer.pointerType) ? [undefined, undefined, 'touch', 'pen', 'mouse'][pointer.pointerType] : // if the PointerEvent API isn't available, then the "pointer" must
   // be either a MouseEvent, TouchEvent, or Touch object
-  : /touch/.test(pointer.type) || pointer instanceof utils_domObjects.Touch ? 'touch' : 'mouse';
+  /touch/.test(pointer.type || '') || pointer instanceof utils_domObjects.Touch ? 'touch' : 'mouse';
 } // [ event.target, event.currentTarget ]
 
 function getEventTargets(event) {
@@ -7112,305 +6934,22 @@ function coordsToEvent(coords) {
 }
 
 //# sourceMappingURL=pointerUtils.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/core/events.js
+// CONCATENATED MODULE: ./node_modules/@interactjs/core/isNonNativeEvent.js
+function isNonNativeEvent(type, actions) {
+  if (actions.phaselessTypes[type]) {
+    return true;
+  }
 
-
-
-
-
-
-
-
-function events_install(scope) {
-  const targets = [];
-  const delegatedEvents = {};
-  const documents = [];
-  const eventsMethods = {
-    add,
-    remove,
-    addDelegate,
-    removeDelegate,
-    delegateListener,
-    delegateUseCapture,
-    delegatedEvents,
-    documents,
-    targets,
-    supportsOptions: false,
-    supportsPassive: false
-  }; // check if browser supports passive events and options arg
-
-  scope.document.createElement('div').addEventListener('test', null, {
-    get capture() {
-      return eventsMethods.supportsOptions = true;
-    },
-
-    get passive() {
-      return eventsMethods.supportsPassive = true;
-    }
-
-  });
-  scope.events = eventsMethods;
-
-  function add(eventTarget, type, listener, optionalArg) {
-    const options = getOptions(optionalArg);
-    let target = find(targets, t => t.eventTarget === eventTarget);
-
-    if (!target) {
-      target = {
-        eventTarget,
-        events: {}
-      };
-      targets.push(target);
-    }
-
-    if (!target.events[type]) {
-      target.events[type] = [];
-    }
-
-    if (eventTarget.addEventListener && !contains(target.events[type], listener)) {
-      eventTarget.addEventListener(type, listener, eventsMethods.supportsOptions ? options : options.capture);
-      target.events[type].push(listener);
+  for (const name in actions.map) {
+    if (type.indexOf(name) === 0 && type.substr(name.length) in actions.phases) {
+      return true;
     }
   }
 
-  function remove(eventTarget, type, listener, optionalArg) {
-    const options = getOptions(optionalArg);
-    const targetIndex = findIndex(targets, t => t.eventTarget === eventTarget);
-    const target = targets[targetIndex];
-
-    if (!target || !target.events) {
-      return;
-    }
-
-    if (type === 'all') {
-      for (type in target.events) {
-        if (target.events.hasOwnProperty(type)) {
-          remove(eventTarget, type, 'all');
-        }
-      }
-
-      return;
-    }
-
-    let typeIsEmpty = false;
-    const typeListeners = target.events[type];
-
-    if (typeListeners) {
-      if (listener === 'all') {
-        for (let i = typeListeners.length - 1; i >= 0; i--) {
-          remove(eventTarget, type, typeListeners[i], options);
-        }
-
-        return;
-      } else {
-        for (let i = 0; i < typeListeners.length; i++) {
-          if (typeListeners[i] === listener) {
-            eventTarget.removeEventListener(type, listener, eventsMethods.supportsOptions ? options : options.capture);
-            typeListeners.splice(i, 1);
-
-            if (typeListeners.length === 0) {
-              delete target.events[type];
-              typeIsEmpty = true;
-            }
-
-            break;
-          }
-        }
-      }
-    }
-
-    if (typeIsEmpty && !Object.keys(target.events).length) {
-      targets.splice(targetIndex, 1);
-    }
-  }
-
-  function addDelegate(selector, context, type, listener, optionalArg) {
-    const options = getOptions(optionalArg);
-
-    if (!delegatedEvents[type]) {
-      delegatedEvents[type] = []; // add delegate listener functions
-
-      for (const doc of documents) {
-        add(doc, type, delegateListener);
-        add(doc, type, delegateUseCapture, true);
-      }
-    }
-
-    const delegates = delegatedEvents[type];
-    let delegate = find(delegates, d => d.selector === selector && d.context === context);
-
-    if (!delegate) {
-      delegate = {
-        selector,
-        context,
-        listeners: []
-      };
-      delegates.push(delegate);
-    }
-
-    delegate.listeners.push([listener, options]);
-  }
-
-  function removeDelegate(selector, context, type, listener, optionalArg) {
-    const options = getOptions(optionalArg);
-    const delegates = delegatedEvents[type];
-    let matchFound = false;
-    let index;
-
-    if (!delegates) {
-      return;
-    } // count from last index of delegated to 0
-
-
-    for (index = delegates.length - 1; index >= 0; index--) {
-      const cur = delegates[index]; // look for matching selector and context Node
-
-      if (cur.selector === selector && cur.context === context) {
-        const {
-          listeners
-        } = cur; // each item of the listeners array is an array: [function, capture, passive]
-
-        for (let i = listeners.length - 1; i >= 0; i--) {
-          const [fn, {
-            capture,
-            passive
-          }] = listeners[i]; // check if the listener functions and capture and passive flags match
-
-          if (fn === listener && capture === options.capture && passive === options.passive) {
-            // remove the listener from the array of listeners
-            listeners.splice(i, 1); // if all listeners for this target have been removed
-            // remove the target from the delegates array
-
-            if (!listeners.length) {
-              delegates.splice(index, 1); // remove delegate function from context
-
-              remove(context, type, delegateListener);
-              remove(context, type, delegateUseCapture, true);
-            } // only remove one listener
-
-
-            matchFound = true;
-            break;
-          }
-        }
-
-        if (matchFound) {
-          break;
-        }
-      }
-    }
-  } // bound to the interactable context when a DOM event
-  // listener is added to a selector interactable
-
-
-  function delegateListener(event, optionalArg) {
-    const options = getOptions(optionalArg);
-    const fakeEvent = new events_FakeEvent(event);
-    const delegates = delegatedEvents[event.type];
-    const [eventTarget] = getEventTargets(event);
-    let element = eventTarget; // climb up document tree looking for selector matches
-
-    while (is.element(element)) {
-      for (let i = 0; i < delegates.length; i++) {
-        const cur = delegates[i];
-        const {
-          selector,
-          context
-        } = cur;
-
-        if (matchesSelector(element, selector) && nodeContains(context, eventTarget) && nodeContains(context, element)) {
-          const {
-            listeners
-          } = cur;
-          fakeEvent.currentTarget = element;
-
-          for (const [fn, {
-            capture,
-            passive
-          }] of listeners) {
-            if (capture === options.capture && passive === options.passive) {
-              fn(fakeEvent);
-            }
-          }
-        }
-      }
-
-      element = parentNode(element);
-    }
-  }
-
-  function delegateUseCapture(event) {
-    return delegateListener.call(this, event, true);
-  } // for type inferrence
-
-
-  return eventsMethods;
+  return false;
 }
-
-class events_FakeEvent {
-  constructor(originalEvent) {
-    this.currentTarget = void 0;
-    this.originalEvent = void 0;
-    this.type = void 0;
-    this.originalEvent = originalEvent; // duplicate the event so that currentTarget can be changed
-
-    utils_pointerExtend(this, originalEvent);
-  }
-
-  preventOriginalDefault() {
-    this.originalEvent.preventDefault();
-  }
-
-  stopPropagation() {
-    this.originalEvent.stopPropagation();
-  }
-
-  stopImmediatePropagation() {
-    this.originalEvent.stopImmediatePropagation();
-  }
-
-}
-
-function getOptions(param) {
-  if (!is.object(param)) {
-    return {
-      capture: !!param,
-      passive: false
-    };
-  }
-
-  const options = extend({}, param);
-  options.capture = !!param.capture;
-  options.passive = !!param.passive;
-  return options;
-}
-
-/* harmony default export */ var events = ({
-  id: 'events',
-  install: events_install
-});
-//# sourceMappingURL=events.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/utils/misc.js
-
-function warnOnce(method, message) {
-  let warned = false;
-  return function () {
-    if (!warned) {
-      win.console.warn(message);
-      warned = true;
-    }
-
-    return method.apply(this, arguments);
-  };
-}
-function copyAction(dest, src) {
-  dest.name = src.name;
-  dest.axis = src.axis;
-  dest.edges = src.edges;
-  return dest;
-}
-//# sourceMappingURL=misc.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/core/interactStatic.js
+//# sourceMappingURL=isNonNativeEvent.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/core/InteractStatic.js
 /** @module interact */
 
 
@@ -7466,13 +7005,13 @@ function createInteractStatic(scope) {
   interact.closest = domUtils_closest;
   interact.globalEvents = {}; // eslint-disable-next-line no-undef
 
-  interact.version = "1.10.2";
+  interact.version = "1.10.11";
   interact.scope = scope;
   /**
-  * Use a plugin
-  *
-  * @alias module:interact.use
-  *
+   * Use a plugin
+   *
+   * @alias module:interact.use
+   *
    */
 
   interact.use = function (plugin, options) {
@@ -7664,7 +7203,824 @@ function createInteractStatic(scope) {
 
   return interact;
 }
-//# sourceMappingURL=interactStatic.js.map
+//# sourceMappingURL=InteractStatic.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/core/Interactable.js
+/* eslint-disable no-dupe-class-members */
+
+
+
+
+
+
+
+
+
+
+
+/** */
+class Interactable_Interactable {
+  /** @internal */
+  get _defaults() {
+    return {
+      base: {},
+      perAction: {},
+      actions: {}
+    };
+  }
+
+  /** */
+  constructor(target, options, defaultContext, scopeEvents) {
+    this.options = void 0;
+    this._actions = void 0;
+    this.target = void 0;
+    this.events = new Eventable_Eventable();
+    this._context = void 0;
+    this._win = void 0;
+    this._doc = void 0;
+    this._scopeEvents = void 0;
+    this._rectChecker = void 0;
+    this._actions = options.actions;
+    this.target = target;
+    this._context = options.context || defaultContext;
+    this._win = getWindow(trySelector(target) ? this._context : target);
+    this._doc = this._win.document;
+    this._scopeEvents = scopeEvents;
+    this.set(options);
+  }
+
+  setOnEvents(actionName, phases) {
+    if (is.func(phases.onstart)) {
+      this.on(`${actionName}start`, phases.onstart);
+    }
+
+    if (is.func(phases.onmove)) {
+      this.on(`${actionName}move`, phases.onmove);
+    }
+
+    if (is.func(phases.onend)) {
+      this.on(`${actionName}end`, phases.onend);
+    }
+
+    if (is.func(phases.oninertiastart)) {
+      this.on(`${actionName}inertiastart`, phases.oninertiastart);
+    }
+
+    return this;
+  }
+
+  updatePerActionListeners(actionName, prev, cur) {
+    if (is.array(prev) || is.object(prev)) {
+      this.off(actionName, prev);
+    }
+
+    if (is.array(cur) || is.object(cur)) {
+      this.on(actionName, cur);
+    }
+  }
+
+  setPerAction(actionName, options) {
+    const defaults = this._defaults; // for all the default per-action options
+
+    for (const optionName_ in options) {
+      const optionName = optionName_;
+      const actionOptions = this.options[actionName];
+      const optionValue = options[optionName]; // remove old event listeners and add new ones
+
+      if (optionName === 'listeners') {
+        this.updatePerActionListeners(actionName, actionOptions.listeners, optionValue);
+      } // if the option value is an array
+
+
+      if (is.array(optionValue)) {
+        ;
+        actionOptions[optionName] = from(optionValue);
+      } // if the option value is an object
+      else if (is.plainObject(optionValue)) {
+          // copy the object
+          ;
+          actionOptions[optionName] = extend(actionOptions[optionName] || {}, clone(optionValue)); // set anabled field to true if it exists in the defaults
+
+          if (is.object(defaults.perAction[optionName]) && 'enabled' in defaults.perAction[optionName]) {
+            ;
+            actionOptions[optionName].enabled = optionValue.enabled !== false;
+          }
+        } // if the option value is a boolean and the default is an object
+        else if (is.bool(optionValue) && is.object(defaults.perAction[optionName])) {
+            ;
+            actionOptions[optionName].enabled = optionValue;
+          } // if it's anything else, do a plain assignment
+          else {
+              ;
+              actionOptions[optionName] = optionValue;
+            }
+    }
+  }
+  /**
+   * The default function to get an Interactables bounding rect. Can be
+   * overridden using {@link Interactable.rectChecker}.
+   *
+   * @param {Element} [element] The element to measure.
+   * @return {Rect} The object's bounding rectangle.
+   */
+
+
+  getRect(element) {
+    element = element || (is.element(this.target) ? this.target : null);
+
+    if (is.string(this.target)) {
+      element = element || this._context.querySelector(this.target);
+    }
+
+    return getElementRect(element);
+  }
+  /**
+   * Returns or sets the function used to calculate the interactable's
+   * element's rectangle
+   *
+   * @param {function} [checker] A function which returns this Interactable's
+   * bounding rectangle. See {@link Interactable.getRect}
+   * @return {function | object} The checker function or this Interactable
+   */
+
+
+  rectChecker(checker) {
+    if (is.func(checker)) {
+      this._rectChecker = checker;
+
+      this.getRect = element => {
+        const rect = extend({}, this._rectChecker(element));
+
+        if (!('width' in rect)) {
+          rect.width = rect.right - rect.left;
+          rect.height = rect.bottom - rect.top;
+        }
+
+        return rect;
+      };
+
+      return this;
+    }
+
+    if (checker === null) {
+      delete this.getRect;
+      delete this._rectChecker;
+      return this;
+    }
+
+    return this.getRect;
+  }
+
+  _backCompatOption(optionName, newValue) {
+    if (trySelector(newValue) || is.object(newValue)) {
+      ;
+      this.options[optionName] = newValue;
+
+      for (const action in this._actions.map) {
+        ;
+        this.options[action][optionName] = newValue;
+      }
+
+      return this;
+    }
+
+    return this.options[optionName];
+  }
+  /**
+   * Gets or sets the origin of the Interactable's element.  The x and y
+   * of the origin will be subtracted from action event coordinates.
+   *
+   * @param {Element | object | string} [origin] An HTML or SVG Element whose
+   * rect will be used, an object eg. { x: 0, y: 0 } or string 'parent', 'self'
+   * or any CSS selector
+   *
+   * @return {object} The current origin or this Interactable
+   */
+
+
+  origin(newValue) {
+    return this._backCompatOption('origin', newValue);
+  }
+  /**
+   * Returns or sets the mouse coordinate types used to calculate the
+   * movement of the pointer.
+   *
+   * @param {string} [newValue] Use 'client' if you will be scrolling while
+   * interacting; Use 'page' if you want autoScroll to work
+   * @return {string | object} The current deltaSource or this Interactable
+   */
+
+
+  deltaSource(newValue) {
+    if (newValue === 'page' || newValue === 'client') {
+      this.options.deltaSource = newValue;
+      return this;
+    }
+
+    return this.options.deltaSource;
+  }
+  /**
+   * Gets the selector context Node of the Interactable. The default is
+   * `window.document`.
+   *
+   * @return {Node} The context Node of this Interactable
+   */
+
+
+  context() {
+    return this._context;
+  }
+
+  inContext(element) {
+    return this._context === element.ownerDocument || nodeContains(this._context, element);
+  }
+
+  testIgnoreAllow(options, targetNode, eventTarget) {
+    return !this.testIgnore(options.ignoreFrom, targetNode, eventTarget) && this.testAllow(options.allowFrom, targetNode, eventTarget);
+  }
+
+  testAllow(allowFrom, targetNode, element) {
+    if (!allowFrom) {
+      return true;
+    }
+
+    if (!is.element(element)) {
+      return false;
+    }
+
+    if (is.string(allowFrom)) {
+      return matchesUpTo(element, allowFrom, targetNode);
+    } else if (is.element(allowFrom)) {
+      return nodeContains(allowFrom, element);
+    }
+
+    return false;
+  }
+
+  testIgnore(ignoreFrom, targetNode, element) {
+    if (!ignoreFrom || !is.element(element)) {
+      return false;
+    }
+
+    if (is.string(ignoreFrom)) {
+      return matchesUpTo(element, ignoreFrom, targetNode);
+    } else if (is.element(ignoreFrom)) {
+      return nodeContains(ignoreFrom, element);
+    }
+
+    return false;
+  }
+  /**
+   * Calls listeners for the given InteractEvent type bound globally
+   * and directly to this Interactable
+   *
+   * @param {InteractEvent} iEvent The InteractEvent object to be fired on this
+   * Interactable
+   * @return {Interactable} this Interactable
+   */
+
+
+  fire(iEvent) {
+    this.events.fire(iEvent);
+    return this;
+  }
+
+  _onOff(method, typeArg, listenerArg, options) {
+    if (is.object(typeArg) && !is.array(typeArg)) {
+      options = listenerArg;
+      listenerArg = null;
+    }
+
+    const addRemove = method === 'on' ? 'add' : 'remove';
+    const listeners = normalize(typeArg, listenerArg);
+
+    for (let type in listeners) {
+      if (type === 'wheel') {
+        type = utils_browser.wheelEvent;
+      }
+
+      for (const listener of listeners[type]) {
+        // if it is an action event type
+        if (isNonNativeEvent(type, this._actions)) {
+          this.events[method](type, listener);
+        } // delegated event
+        else if (is.string(this.target)) {
+            this._scopeEvents[`${addRemove}Delegate`](this.target, this._context, type, listener, options);
+          } // remove listener from this Interactable's element
+          else {
+              this._scopeEvents[addRemove](this.target, type, listener, options);
+            }
+      }
+    }
+
+    return this;
+  }
+  /**
+   * Binds a listener for an InteractEvent, pointerEvent or DOM event.
+   *
+   * @param {string | array | object} types The types of events to listen
+   * for
+   * @param {function | array | object} [listener] The event listener function(s)
+   * @param {object | boolean} [options] options object or useCapture flag for
+   * addEventListener
+   * @return {Interactable} This Interactable
+   */
+
+
+  on(types, listener, options) {
+    return this._onOff('on', types, listener, options);
+  }
+  /**
+   * Removes an InteractEvent, pointerEvent or DOM event listener.
+   *
+   * @param {string | array | object} types The types of events that were
+   * listened for
+   * @param {function | array | object} [listener] The event listener function(s)
+   * @param {object | boolean} [options] options object or useCapture flag for
+   * removeEventListener
+   * @return {Interactable} This Interactable
+   */
+
+
+  off(types, listener, options) {
+    return this._onOff('off', types, listener, options);
+  }
+  /**
+   * Reset the options of this Interactable
+   *
+   * @param {object} options The new settings to apply
+   * @return {object} This Interactable
+   */
+
+
+  set(options) {
+    const defaults = this._defaults;
+
+    if (!is.object(options)) {
+      options = {};
+    }
+
+    ;
+    this.options = clone(defaults.base);
+
+    for (const actionName_ in this._actions.methodDict) {
+      const actionName = actionName_;
+      const methodName = this._actions.methodDict[actionName];
+      this.options[actionName] = {};
+      this.setPerAction(actionName, extend(extend({}, defaults.perAction), defaults.actions[actionName]));
+      this[methodName](options[actionName]);
+    }
+
+    for (const setting in options) {
+      if (is.func(this[setting])) {
+        ;
+        this[setting](options[setting]);
+      }
+    }
+
+    return this;
+  }
+  /**
+   * Remove this interactable from the list of interactables and remove it's
+   * action capabilities and event listeners
+   */
+
+
+  unset() {
+    if (is.string(this.target)) {
+      // remove delegated events
+      for (const type in this._scopeEvents.delegatedEvents) {
+        const delegated = this._scopeEvents.delegatedEvents[type];
+
+        for (let i = delegated.length - 1; i >= 0; i--) {
+          const {
+            selector,
+            context,
+            listeners
+          } = delegated[i];
+
+          if (selector === this.target && context === this._context) {
+            delegated.splice(i, 1);
+          }
+
+          for (let l = listeners.length - 1; l >= 0; l--) {
+            this._scopeEvents.removeDelegate(this.target, this._context, type, listeners[l][0], listeners[l][1]);
+          }
+        }
+      }
+    } else {
+      this._scopeEvents.remove(this.target, 'all');
+    }
+  }
+
+}
+//# sourceMappingURL=Interactable.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/core/InteractableSet.js
+
+
+
+
+class InteractableSet_InteractableSet {
+  // all set interactables
+  constructor(scope) {
+    this.list = [];
+    this.selectorMap = {};
+    this.scope = void 0;
+    this.scope = scope;
+    scope.addListeners({
+      'interactable:unset': ({
+        interactable
+      }) => {
+        const {
+          target,
+          _context: context
+        } = interactable;
+        const targetMappings = is.string(target) ? this.selectorMap[target] : target[this.scope.id];
+        const targetIndex = findIndex(targetMappings, m => m.context === context);
+
+        if (targetMappings[targetIndex]) {
+          // Destroying mappingInfo's context and interactable
+          targetMappings[targetIndex].context = null;
+          targetMappings[targetIndex].interactable = null;
+        }
+
+        targetMappings.splice(targetIndex, 1);
+      }
+    });
+  }
+
+  new(target, options) {
+    options = extend(options || {}, {
+      actions: this.scope.actions
+    });
+    const interactable = new this.scope.Interactable(target, options, this.scope.document, this.scope.events);
+    const mappingInfo = {
+      context: interactable._context,
+      interactable
+    };
+    this.scope.addDocument(interactable._doc);
+    this.list.push(interactable);
+
+    if (is.string(target)) {
+      if (!this.selectorMap[target]) {
+        this.selectorMap[target] = [];
+      }
+
+      this.selectorMap[target].push(mappingInfo);
+    } else {
+      if (!interactable.target[this.scope.id]) {
+        Object.defineProperty(target, this.scope.id, {
+          value: [],
+          configurable: true
+        });
+      }
+
+      ;
+      target[this.scope.id].push(mappingInfo);
+    }
+
+    this.scope.fire('interactable:new', {
+      target,
+      options,
+      interactable,
+      win: this.scope._win
+    });
+    return interactable;
+  }
+
+  get(target, options) {
+    const context = options && options.context || this.scope.document;
+    const isSelector = is.string(target);
+    const targetMappings = isSelector ? this.selectorMap[target] : target[this.scope.id];
+
+    if (!targetMappings) {
+      return null;
+    }
+
+    const found = find(targetMappings, m => m.context === context && (isSelector || m.interactable.inContext(target)));
+    return found && found.interactable;
+  }
+
+  forEachMatch(node, callback) {
+    for (const interactable of this.list) {
+      let ret;
+
+      if ((is.string(interactable.target) ? // target is a selector and the element matches
+      is.element(node) && matchesSelector(node, interactable.target) : // target is the element
+      node === interactable.target) && // the element is in context
+      interactable.inContext(node)) {
+        ret = callback(interactable);
+      }
+
+      if (ret !== undefined) {
+        return ret;
+      }
+    }
+  }
+
+}
+//# sourceMappingURL=InteractableSet.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/utils/pointerExtend.js
+function pointerExtend(dest, source) {
+  for (const prop in source) {
+    const prefixedPropREs = pointerExtend.prefixedPropREs;
+    let deprecated = false; // skip deprecated prefixed properties
+
+    for (const vendor in prefixedPropREs) {
+      if (prop.indexOf(vendor) === 0 && prefixedPropREs[vendor].test(prop)) {
+        deprecated = true;
+        break;
+      }
+    }
+
+    if (!deprecated && typeof source[prop] !== 'function') {
+      dest[prop] = source[prop];
+    }
+  }
+
+  return dest;
+}
+
+pointerExtend.prefixedPropREs = {
+  webkit: /(Movement[XY]|Radius[XY]|RotationAngle|Force)$/,
+  moz: /(Pressure)$/
+};
+/* harmony default export */ var utils_pointerExtend = (pointerExtend);
+//# sourceMappingURL=pointerExtend.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/core/events.js
+
+
+
+
+
+
+
+function events_install(scope) {
+  var _scope$document;
+
+  const targets = [];
+  const delegatedEvents = {};
+  const documents = [];
+  const eventsMethods = {
+    add,
+    remove,
+    addDelegate,
+    removeDelegate,
+    delegateListener,
+    delegateUseCapture,
+    delegatedEvents,
+    documents,
+    targets,
+    supportsOptions: false,
+    supportsPassive: false
+  }; // check if browser supports passive events and options arg
+
+  (_scope$document = scope.document) == null ? void 0 : _scope$document.createElement('div').addEventListener('test', null, {
+    get capture() {
+      return eventsMethods.supportsOptions = true;
+    },
+
+    get passive() {
+      return eventsMethods.supportsPassive = true;
+    }
+
+  });
+  scope.events = eventsMethods;
+
+  function add(eventTarget, type, listener, optionalArg) {
+    const options = getOptions(optionalArg);
+    let target = find(targets, t => t.eventTarget === eventTarget);
+
+    if (!target) {
+      target = {
+        eventTarget,
+        events: {}
+      };
+      targets.push(target);
+    }
+
+    if (!target.events[type]) {
+      target.events[type] = [];
+    }
+
+    if (eventTarget.addEventListener && !contains(target.events[type], listener)) {
+      eventTarget.addEventListener(type, listener, eventsMethods.supportsOptions ? options : options.capture);
+      target.events[type].push(listener);
+    }
+  }
+
+  function remove(eventTarget, type, listener, optionalArg) {
+    const options = getOptions(optionalArg);
+    const targetIndex = findIndex(targets, t => t.eventTarget === eventTarget);
+    const target = targets[targetIndex];
+
+    if (!target || !target.events) {
+      return;
+    }
+
+    if (type === 'all') {
+      for (type in target.events) {
+        if (target.events.hasOwnProperty(type)) {
+          remove(eventTarget, type, 'all');
+        }
+      }
+
+      return;
+    }
+
+    let typeIsEmpty = false;
+    const typeListeners = target.events[type];
+
+    if (typeListeners) {
+      if (listener === 'all') {
+        for (let i = typeListeners.length - 1; i >= 0; i--) {
+          remove(eventTarget, type, typeListeners[i], options);
+        }
+
+        return;
+      } else {
+        for (let i = 0; i < typeListeners.length; i++) {
+          if (typeListeners[i] === listener) {
+            eventTarget.removeEventListener(type, listener, eventsMethods.supportsOptions ? options : options.capture);
+            typeListeners.splice(i, 1);
+
+            if (typeListeners.length === 0) {
+              delete target.events[type];
+              typeIsEmpty = true;
+            }
+
+            break;
+          }
+        }
+      }
+    }
+
+    if (typeIsEmpty && !Object.keys(target.events).length) {
+      targets.splice(targetIndex, 1);
+    }
+  }
+
+  function addDelegate(selector, context, type, listener, optionalArg) {
+    const options = getOptions(optionalArg);
+
+    if (!delegatedEvents[type]) {
+      delegatedEvents[type] = []; // add delegate listener functions
+
+      for (const doc of documents) {
+        add(doc, type, delegateListener);
+        add(doc, type, delegateUseCapture, true);
+      }
+    }
+
+    const delegates = delegatedEvents[type];
+    let delegate = find(delegates, d => d.selector === selector && d.context === context);
+
+    if (!delegate) {
+      delegate = {
+        selector,
+        context,
+        listeners: []
+      };
+      delegates.push(delegate);
+    }
+
+    delegate.listeners.push([listener, options]);
+  }
+
+  function removeDelegate(selector, context, type, listener, optionalArg) {
+    const options = getOptions(optionalArg);
+    const delegates = delegatedEvents[type];
+    let matchFound = false;
+    let index;
+    if (!delegates) return; // count from last index of delegated to 0
+
+    for (index = delegates.length - 1; index >= 0; index--) {
+      const cur = delegates[index]; // look for matching selector and context Node
+
+      if (cur.selector === selector && cur.context === context) {
+        const {
+          listeners
+        } = cur; // each item of the listeners array is an array: [function, capture, passive]
+
+        for (let i = listeners.length - 1; i >= 0; i--) {
+          const [fn, {
+            capture,
+            passive
+          }] = listeners[i]; // check if the listener functions and capture and passive flags match
+
+          if (fn === listener && capture === options.capture && passive === options.passive) {
+            // remove the listener from the array of listeners
+            listeners.splice(i, 1); // if all listeners for this target have been removed
+            // remove the target from the delegates array
+
+            if (!listeners.length) {
+              delegates.splice(index, 1); // remove delegate function from context
+
+              remove(context, type, delegateListener);
+              remove(context, type, delegateUseCapture, true);
+            } // only remove one listener
+
+
+            matchFound = true;
+            break;
+          }
+        }
+
+        if (matchFound) {
+          break;
+        }
+      }
+    }
+  } // bound to the interactable context when a DOM event
+  // listener is added to a selector interactable
+
+
+  function delegateListener(event, optionalArg) {
+    const options = getOptions(optionalArg);
+    const fakeEvent = new events_FakeEvent(event);
+    const delegates = delegatedEvents[event.type];
+    const [eventTarget] = getEventTargets(event);
+    let element = eventTarget; // climb up document tree looking for selector matches
+
+    while (is.element(element)) {
+      for (let i = 0; i < delegates.length; i++) {
+        const cur = delegates[i];
+        const {
+          selector,
+          context
+        } = cur;
+
+        if (matchesSelector(element, selector) && nodeContains(context, eventTarget) && nodeContains(context, element)) {
+          const {
+            listeners
+          } = cur;
+          fakeEvent.currentTarget = element;
+
+          for (const [fn, {
+            capture,
+            passive
+          }] of listeners) {
+            if (capture === options.capture && passive === options.passive) {
+              fn(fakeEvent);
+            }
+          }
+        }
+      }
+
+      element = parentNode(element);
+    }
+  }
+
+  function delegateUseCapture(event) {
+    return delegateListener.call(this, event, true);
+  } // for type inferrence
+
+
+  return eventsMethods;
+}
+
+class events_FakeEvent {
+  constructor(originalEvent) {
+    this.currentTarget = void 0;
+    this.originalEvent = void 0;
+    this.type = void 0;
+    this.originalEvent = originalEvent; // duplicate the event so that currentTarget can be changed
+
+    utils_pointerExtend(this, originalEvent);
+  }
+
+  preventOriginalDefault() {
+    this.originalEvent.preventDefault();
+  }
+
+  stopPropagation() {
+    this.originalEvent.stopPropagation();
+  }
+
+  stopImmediatePropagation() {
+    this.originalEvent.stopImmediatePropagation();
+  }
+
+}
+
+function getOptions(param) {
+  if (!is.object(param)) {
+    return {
+      capture: !!param,
+      passive: false
+    };
+  }
+
+  const options = extend({}, param);
+  options.capture = !!param.capture;
+  options.passive = !!param.passive;
+  return options;
+}
+
+/* harmony default export */ var events = ({
+  id: 'events',
+  install: events_install
+});
+//# sourceMappingURL=events.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/core/PointerInfo.js
 class PointerInfo {
   constructor(id, pointer, event, downTime, downTarget) {
@@ -8113,11 +8469,7 @@ class Interaction_Interaction {
 
   removePointer(pointer, event) {
     const pointerIndex = this.getPointerIndex(pointer);
-
-    if (pointerIndex === -1) {
-      return;
-    }
-
+    if (pointerIndex === -1) return;
     const pointerInfo = this.pointers[pointerIndex];
 
     this._scopeFire('interactions:remove-pointer', {
@@ -8209,7 +8561,6 @@ class Interaction_Interaction {
 
 
 
-
 function preventDefault(newValue) {
   if (/^(always|never|auto)$/.test(newValue)) {
     this.options.preventDefault = newValue;
@@ -8226,10 +8577,7 @@ function preventDefault(newValue) {
 
 function checkAndPreventDefault(interactable, scope, event) {
   const setting = interactable.options.preventDefault;
-
-  if (setting === 'never') {
-    return;
-  }
+  if (setting === 'never') return;
 
   if (setting === 'always') {
     event.preventDefault();
@@ -8463,7 +8811,6 @@ function hasPointerId(interaction, pointerId) {
 /* harmony default export */ var interactionFinder = (finder);
 //# sourceMappingURL=interactionFinder.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/core/interactions.js
-
 
 
 
@@ -8756,6 +9103,7 @@ const interactions_interactions = {
 
 
 
+
 class scope_Scope {
   // main window
   // main document
@@ -8766,7 +9114,7 @@ class scope_Scope {
     this.isInitialized = false;
     this.listenerMaps = [];
     this.browser = utils_browser;
-    this.defaults = clone(defaultOptions_defaults);
+    this.defaults = clone(options_defaults);
     this.Eventable = Eventable_Eventable;
     this.actions = {
       map: {},
@@ -8960,10 +9308,15 @@ class scope_Scope {
 }
 function initScope(scope, window) {
   scope.isInitialized = true;
-  window_init(window);
+
+  if (is.window(window)) {
+    window_init(window);
+  }
+
   utils_domObjects.init(window);
   utils_browser.init(window);
-  raf.init(window);
+  raf.init(window); // @ts-expect-error
+
   scope.window = window;
   scope.document = window.document;
   scope.usePlugin(core_interactions);
@@ -8980,14 +9333,12 @@ function pluginIdRoot(id) {
 const interact_scope = new scope_Scope();
 const interact_interact = interact_scope.interactStatic;
 /* harmony default export */ var _interactjs_interact = (interact_interact);
-const interact_init = win => interact_scope.init(win);
 
-if (typeof window === 'object' && !!window) {
-  interact_init(window);
-}
+const _global = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : undefined;
+
+interact_scope.init(_global);
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/auto-start/InteractableMethods.js
-
 
 
 
@@ -9168,7 +9519,6 @@ function actionChecker(checker) {
 
 
 
-
 function base_install(scope) {
   const {
     interactStatic: interact,
@@ -9215,10 +9565,7 @@ function prepareOnDown({
   event,
   eventTarget
 }, scope) {
-  if (interaction.interacting()) {
-    return;
-  }
-
+  if (interaction.interacting()) return;
   const actionInfo = getActionInfo(interaction, pointer, event, eventTarget, scope);
   prepare(interaction, actionInfo, scope);
 }
@@ -9229,10 +9576,7 @@ function prepareOnMove({
   event,
   eventTarget
 }, scope) {
-  if (interaction.pointerType !== 'mouse' || interaction.pointerIsDown || interaction.interacting()) {
-    return;
-  }
-
+  if (interaction.pointerType !== 'mouse' || interaction.pointerIsDown || interaction.interacting()) return;
   const actionInfo = getActionInfo(interaction, pointer, event, eventTarget, scope);
   prepare(interaction, actionInfo, scope);
 }
@@ -9492,30 +9836,25 @@ function beforeStart({
   dx,
   dy
 }, scope) {
-  if (interaction.prepared.name !== 'drag') {
-    return;
-  } // check if a drag is in the correct axis
-
+  if (interaction.prepared.name !== 'drag') return; // check if a drag is in the correct axis
 
   const absX = Math.abs(dx);
   const absY = Math.abs(dy);
   const targetOptions = interaction.interactable.options.drag;
   const startAxis = targetOptions.startAxis;
   const currentAxis = absX > absY ? 'x' : absX < absY ? 'y' : 'xy';
-  interaction.prepared.axis = targetOptions.lockAxis === 'start' ? currentAxis[0] // always lock to one axis even if currentAxis === 'xy'
-  : targetOptions.lockAxis; // if the movement isn't in the startAxis of the interactable
+  interaction.prepared.axis = targetOptions.lockAxis === 'start' ? currentAxis[0] : // always lock to one axis even if currentAxis === 'xy'
+  targetOptions.lockAxis; // if the movement isn't in the startAxis of the interactable
 
   if (currentAxis !== 'xy' && startAxis !== 'xy' && startAxis !== currentAxis) {
     // cancel the prepared action
+    ;
     interaction.prepared.name = null; // then try to get a drag from another ineractable
 
     let element = eventTarget;
 
     const getDraggable = function (interactable) {
-      if (interactable === interaction.interactable) {
-        return;
-      }
-
+      if (interactable === interaction.interactable) return;
       const options = interaction.interactable.options.drag;
 
       if (!options.manualStart && interactable.testIgnoreAllow(options, element, eventTarget)) {
@@ -9532,6 +9871,7 @@ function beforeStart({
       const interactable = scope.interactables.forEachMatch(element, getDraggable);
 
       if (interactable) {
+        ;
         interaction.prepared.name = 'drag';
         interaction.interactable = interactable;
         interaction.element = element;
@@ -9560,7 +9900,6 @@ function checkStartAxis(startAxis, interactable) {
 });
 //# sourceMappingURL=dragAxis.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/auto-start/hold.js
-
 
 
 function hold_install(scope) {
@@ -9646,15 +9985,9 @@ const hold = {
 /* eslint-disable import/order, no-console, eol-last */
 
 
-
-if (typeof window === 'object' && !!window) {
-  interact_init(window);
-}
-
 _interactjs_interact.use(auto_start_plugin);
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/actions/drag/plugin.js
-
 
 
 function plugin_install(scope) {
@@ -9672,10 +10005,7 @@ function plugin_install(scope) {
 function beforeMove({
   interaction
 }) {
-  if (interaction.prepared.name !== 'drag') {
-    return;
-  }
-
+  if (interaction.prepared.name !== 'drag') return;
   const axis = interaction.prepared.axis;
 
   if (axis === 'x') {
@@ -9695,10 +10025,7 @@ function move({
   iEvent,
   interaction
 }) {
-  if (interaction.prepared.name !== 'drag') {
-    return;
-  }
-
+  if (interaction.prepared.name !== 'drag') return;
   const axis = interaction.prepared.axis;
 
   if (axis === 'x' || axis === 'y') {
@@ -9821,16 +10148,9 @@ const drag = {
 /* eslint-disable import/order, no-console, eol-last */
 
 
-
-if (typeof window === 'object' && !!window) {
-  interact_init(window);
-}
-
 _interactjs_interact.use(drag_plugin);
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/actions/resize/plugin.js
-
-
 
 
 
@@ -10042,11 +10362,12 @@ function checkResizeEdge(name, value, page, element, interactableElement, rect, 
     return false;
   }
 
-  return is.element(value) // the value is an element to use as a resize handle
-  ? value === element // otherwise check if element matches value as selector
-  : matchesUpTo(element, value, interactableElement);
+  return is.element(value) ? // the value is an element to use as a resize handle
+  value === element : // otherwise check if element matches value as selector
+  matchesUpTo(element, value, interactableElement);
 }
 /* eslint-disable multiline-ternary */
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 
 
 function initCursors(browser) {
@@ -10111,10 +10432,7 @@ function plugin_move({
   iEvent,
   interaction
 }) {
-  if (interaction.prepared.name !== 'resize' || !interaction.prepared.edges) {
-    return;
-  }
-
+  if (interaction.prepared.name !== 'resize' || !interaction.prepared.edges) return;
   const resizeEvent = iEvent;
   const resizeOptions = interaction.interactable.options.resize;
   const invert = resizeOptions.invert;
@@ -10170,10 +10488,7 @@ function end({
   iEvent,
   interaction
 }) {
-  if (interaction.prepared.name !== 'resize' || !interaction.prepared.edges) {
-    return;
-  }
-
+  if (interaction.prepared.name !== 'resize' || !interaction.prepared.edges) return;
   const resizeEvent = iEvent;
   resizeEvent.edges = interaction.prepared.edges;
   resizeEvent.rect = interaction._rects.corrected;
@@ -10184,10 +10499,7 @@ function updateEventAxes({
   iEvent,
   interaction
 }) {
-  if (interaction.prepared.name !== 'resize' || !interaction.resizeAxes) {
-    return;
-  }
-
+  if (interaction.prepared.name !== 'resize' || !interaction.resizeAxes) return;
   const options = interaction.interactable.options;
   const resizeEvent = iEvent;
 
@@ -10283,11 +10595,6 @@ const resize = {
 /* eslint-disable import/order, no-console, eol-last */
 
 
-
-if (typeof window === 'object' && !!window) {
-  interact_init(window);
-}
-
 _interactjs_interact.use(resize_plugin);
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/snappers/edgeTarget.js
@@ -10337,6 +10644,7 @@ _interactjs_interact.use(resize_plugin);
 });
 //# sourceMappingURL=grid.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/snappers/all.js
+/* eslint-disable import/no-named-as-default, import/no-unresolved */
 
 
 
@@ -10371,9 +10679,9 @@ class Modification_Modification {
       top: 0,
       bottom: 0
     };
-    this.startDelta = null;
-    this.result = null;
-    this.endResult = null;
+    this.startDelta = void 0;
+    this.result = void 0;
+    this.endResult = void 0;
     this.edges = void 0;
     this.interaction = void 0;
     this.interaction = interaction;
@@ -10394,11 +10702,11 @@ class Modification_Modification {
       x: 0,
       y: 0
     };
-    const arg = {
+    const arg = this.fillArg({
       phase,
       pageCoords,
       preEnd: false
-    };
+    });
     this.result = createResult();
     this.startAll(arg);
     const result = this.result = this.setAll(arg);
@@ -10415,11 +10723,10 @@ class Modification_Modification {
     arg.rect = arg.rect || interaction.rect;
     arg.edges = this.edges;
     arg.startOffset = this.startOffset;
+    return arg;
   }
 
   startAll(arg) {
-    this.fillArg(arg);
-
     for (const state of this.states) {
       if (state.methods.start) {
         arg.state = state;
@@ -10429,7 +10736,6 @@ class Modification_Modification {
   }
 
   setAll(arg) {
-    this.fillArg(arg);
     const {
       phase,
       preEnd,
@@ -10442,13 +10748,15 @@ class Modification_Modification {
     const newResult = createResult(arg.coords, arg.rect);
 
     for (const state of states) {
+      var _state$methods;
+
       const {
         options
       } = state;
       const lastModifierCoords = extend({}, arg.coords);
       let returnValue = null;
 
-      if (state.methods.set && this.shouldDo(options, preEnd, phase)) {
+      if ((_state$methods = state.methods) != null && _state$methods.set && this.shouldDo(options, preEnd, phase)) {
         arg.state = state;
         returnValue = state.methods.set(arg);
         addEdges(this.interaction.edges, arg.rect, {
@@ -10524,11 +10832,11 @@ class Modification_Modification {
       preEnd,
       skipModifiers
     } = arg;
-    const result = this.setAll({
+    const result = this.setAll(this.fillArg({
       preEnd,
       phase,
       pageCoords: arg.modifiedCoords || interaction.coords.cur.page
-    });
+    }));
     this.result = result; // don't fire an action move if a modifier would keep the event in the same
     // cordinates as before
 
@@ -10647,10 +10955,7 @@ class Modification_Modification {
       modification
     }
   }) {
-    if (!modification.result) {
-      return;
-    }
-
+    if (!modification.result) return;
     const {
       startDelta
     } = modification;
@@ -10753,8 +11058,6 @@ function getRectOffset(rect, coords) {
 //# sourceMappingURL=Modification.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/modifiers/base.js
 
-
-
 function makeModifier(module, name) {
   const {
     defaults
@@ -10772,6 +11075,7 @@ function makeModifier(module, name) {
 
     for (const prop in defaults) {
       if (!(prop in options)) {
+        ;
         options[prop] = defaults[prop];
       }
     }
@@ -10802,12 +11106,10 @@ function makeModifier(module, name) {
 }
 function addEventModifiers({
   iEvent,
-  interaction: {
-    modification: {
-      result
-    }
-  }
+  interaction
 }) {
+  const result = interaction.modification.result;
+
   if (result) {
     iEvent.modifiers = result.eventProps;
   }
@@ -10825,9 +11127,7 @@ const modifiersBase = {
       interaction.modification = new Modification_Modification(interaction);
     },
     'interactions:before-action-start': arg => {
-      const {
-        modification
-      } = arg.interaction;
+      const modification = arg.interaction.modification;
       modification.start(arg, arg.interaction.coords.start.page);
       arg.interaction.edges = modification.edges;
       modification.applyToInteraction(arg);
@@ -10906,11 +11206,7 @@ const aspectRatio = {
     }
 
     extend(arg.edges, linkedEdges);
-
-    if (!modifiers || !modifiers.length) {
-      return;
-    }
-
+    if (!modifiers || !modifiers.length) return;
     const subModification = new Modification_Modification(arg.interaction);
     subModification.copyFrom(arg.interaction.modification);
     subModification.prepareStates(modifiers);
@@ -11065,11 +11361,7 @@ function set({
     offset
   } = state;
   const restriction = getRestrictionRect(options.restriction, interaction, coords);
-
-  if (!restriction) {
-    return;
-  }
-
+  if (!restriction) return;
   const rect = xywhToTlbr(restriction);
   coords.x = Math.max(Math.min(rect.right - offset.right, coords.x), rect.left + offset.left);
   coords.y = Math.max(Math.min(rect.bottom - offset.bottom, coords.y), rect.top + offset.top);
@@ -11363,10 +11655,12 @@ function snap_pointer_start(arg) {
     relativePoint,
     x: startOffset.left - rect.width * relativePoint.x + snapOffset.x,
     y: startOffset.top - rect.height * relativePoint.y + snapOffset.y
-  })) : [extend({
+  })) : [{
     index: 0,
-    relativePoint: null
-  }, snapOffset)];
+    relativePoint: null,
+    x: snapOffset.x,
+    y: snapOffset.y
+  }];
 }
 
 function pointer_set(arg) {
@@ -11440,10 +11734,10 @@ function pointer_set(arg) {
       inRange = false;
     }
 
-    if (!closest.target || (inRange // is the closest target in range?
-    ? closest.inRange && range !== Infinity // the pointer is relatively deeper in this target
-    ? distance / range < closest.distance / closest.range // this target has Infinite range and the closest doesn't
-    : range === Infinity && closest.range !== Infinity || // OR this target is closer that the previous closest
+    if (!closest.target || (inRange ? // is the closest target in range?
+    closest.inRange && range !== Infinity ? // the pointer is relatively deeper in this target
+    distance / range < closest.distance / closest.range : // this target has Infinite range and the closest doesn't
+    range === Infinity && closest.range !== Infinity || // OR this target is closer that the previous closest
     distance < closest.distance : // The other is not in range and the pointer is closer to this target
     !closest.inRange && distance < closest.distance)) {
       closest.target = target;
@@ -11657,7 +11951,7 @@ const snapEdges = {
 
 //# sourceMappingURL=edges.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/modifiers/all.js
-/* eslint-disable node/no-extraneous-import */
+/* eslint-disable node/no-extraneous-import, import/no-unresolved */
 
 
 
@@ -11717,15 +12011,12 @@ const plugin_modifiers = {
 /* eslint-disable import/order, no-console, eol-last */
 
 
-
-if (typeof window === 'object' && !!window) {
-  interact_init(window);
-}
-
 _interactjs_interact.use(modifiers_plugin);
 //# sourceMappingURL=index.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/dev-tools/visualizer/plugin.js
+/* harmony default export */ var visualizer_plugin = ({});
+//# sourceMappingURL=plugin.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/dev-tools/plugin.js
-/* eslint-disable no-console */
 
 
 
@@ -11746,7 +12037,7 @@ const links = {
   boxSizing: 'https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing'
 }; // eslint-disable-next-line no-undef
 
-const isProduction = "development" === 'production'; // eslint-disable-next-line no-restricted-syntax
+const isProduction = "development" === 'production';
 
 function dev_tools_plugin_install(scope, {
   logger
@@ -11768,6 +12059,8 @@ function dev_tools_plugin_install(scope, {
 
     return this.options.devTools;
   };
+
+  scope.usePlugin(visualizer_plugin);
 }
 
 const checks = [{
@@ -11870,14 +12163,9 @@ const defaultExport = isProduction ? {
 /* eslint-disable import/order, no-console, eol-last */
 
 
-
-if (typeof window === 'object' && !!window) {
-  interact_init(window);
-}
-
 _interactjs_interact.use(dev_tools_plugin);
 //# sourceMappingURL=index.js.map
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/GridItem.vue?vue&type=script&lang=js
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/GridItem.vue?vue&type=script&lang=js
 
 
 
@@ -11903,7 +12191,7 @@ _interactjs_interact.use(dev_tools_plugin);
     /*containerWidth: {
      type: Number,
      required: true
-       },
+      },
      rowHeight: {
      type: Number,
      required: true
@@ -12758,24 +13046,30 @@ _interactjs_interact.use(dev_tools_plugin);
 // EXTERNAL MODULE: ./src/components/GridItem.vue?vue&type=style&index=0&id=46ff2fc8&lang=css
 var GridItemvue_type_style_index_0_id_46ff2fc8_lang_css = __webpack_require__("083e");
 
+// EXTERNAL MODULE: ./node_modules/vue-loader-v16/dist/exportHelper.js
+var exportHelper = __webpack_require__("6b0d");
+var exportHelper_default = /*#__PURE__*/__webpack_require__.n(exportHelper);
+
 // CONCATENATED MODULE: ./src/components/GridItem.vue
 
 
 
 
 
-GridItemvue_type_script_lang_js.render = render
 
-/* harmony default export */ var GridItem = (GridItemvue_type_script_lang_js);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/GridLayout.vue?vue&type=template&id=fc5948f6
+
+const __exports__ = /*#__PURE__*/exportHelper_default()(GridItemvue_type_script_lang_js, [['render',render]])
+
+/* harmony default export */ var GridItem = (__exports__);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/GridLayout.vue?vue&type=template&id=fc5948f6
 
 function GridLayoutvue_type_template_id_fc5948f6_render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_grid_item = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["resolveComponent"])("grid-item");
 
-  return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("div", {
+  return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", {
     ref: "item",
     class: "vue-grid-layout",
-    style: _ctx.mergedStyle
+    style: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["normalizeStyle"])(_ctx.mergedStyle)
   }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "default"), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withDirectives"])(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createVNode"])(_component_grid_item, {
     class: "vue-grid-placeholder",
     x: _ctx.placeholder.x,
@@ -12796,10 +13090,15 @@ var es6_object_assign = __webpack_require__("f751");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-finite.js
 var es6_number_is_finite = __webpack_require__("fca0");
 
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js
+var define_property = __webpack_require__("85f2");
+var define_property_default = /*#__PURE__*/__webpack_require__.n(define_property);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
-    Object.defineProperty(obj, key, {
+    define_property_default()(obj, key, {
       value: value,
       enumerable: true,
       configurable: true,
@@ -12815,7 +13114,7 @@ function _defineProperty(obj, key, value) {
 /* harmony default export */ var mitt_es = (function(n){return{all:n=n||new Map,on:function(t,e){var i=n.get(t);i&&i.push(e)||n.set(t,[e])},off:function(t,e){var i=n.get(t);i&&i.splice(i.indexOf(e)>>>0,1)},emit:function(t,e){(n.get(t)||[]).slice().map(function(n){n(e)}),(n.get("*")||[]).slice().map(function(n){n(t,e)})}}});
 //# sourceMappingURL=mitt.es.js.map
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/GridLayout.vue?vue&type=script&lang=js
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/GridLayout.vue?vue&type=script&lang=js
 
 
 
@@ -12825,9 +13124,9 @@ function _defineProperty(obj, key, value) {
 
 
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 
 
@@ -13049,14 +13348,14 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
               got set to null in the constructor. It is now time
               to issue layout-ready events as the GridItems have
               their sizes configured properly.
-                The reason for emitting the layout-ready events on
+               The reason for emitting the layout-ready events on
               the next tick is to allow for the newly-emitted
               updateWidth event (above) to have reached the
               children GridItem-s and had their effect, so we're
               sure that they have the final size before we emit
               layout-ready (for this GridLayout) and
               item-layout-ready (for the GridItem-s).
-                This way any client event handlers can reliably
+               This way any client event handlers can reliably
               invistigate stable sizes of GridItem-s.
           */
           this.$nextTick(function () {
@@ -13300,9 +13599,11 @@ var GridLayoutvue_type_style_index_0_id_fc5948f6_lang_css = __webpack_require__(
 
 
 
-GridLayoutvue_type_script_lang_js.render = GridLayoutvue_type_template_id_fc5948f6_render
 
-/* harmony default export */ var GridLayout = (GridLayoutvue_type_script_lang_js);
+
+const GridLayout_exports_ = /*#__PURE__*/exportHelper_default()(GridLayoutvue_type_script_lang_js, [['render',GridLayoutvue_type_template_id_fc5948f6_render]])
+
+/* harmony default export */ var GridLayout = (GridLayout_exports_);
 // CONCATENATED MODULE: ./src/components/index.js
 
 

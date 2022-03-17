@@ -45,9 +45,7 @@
     "@vue/compiler-sfc": "^3.0.5",
     "babel-plugin-transform-flow-comments": "^6.22.0",
     "eslint-plugin-vue": "^7.5.0",
-    "node-sass": "^4.13.0",
     "rimraf": "^2.6.2",
-    "sass-loader": "^10.1.1",
     "vue": "^3.0.0",
     "vue-jest": "^3.0.7",
     "webpack-bundle-analyzer": "^3.9.0"
