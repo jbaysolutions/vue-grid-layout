@@ -338,7 +338,13 @@
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.$emit("compact");
                 this.updateHeight();
-                if (eventName === 'dragend') this.$emit('layout-updated', this.layout);
+                
+
+                if (eventName === 'dragend') {
+                    this.$emit('layout-updated', this.layout);
+                    // new prop sync
+                    this.$emit('update:layout', this.layout);
+                }
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
                 let l = getLayoutItem(this.layout, id);
