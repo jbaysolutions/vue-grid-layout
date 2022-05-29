@@ -32,6 +32,8 @@
             <input type="checkbox" v-model="mirrored"/> Mirrored
             <input type="checkbox" v-model="responsive"/> Responsive
             <input type="checkbox" v-model="preventCollision"/> Prevent Collision
+            <input type="checkbox" v-model="isVerticalResize"/> isVerticalResize
+            <input type="checkbox" v-model="isHorizontalResize"/> isHorizontalResize
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
                 Margin x: <input type="number" v-model="marginX"/> Margin y: <input type="number" v-model="marginY"/>
@@ -69,6 +71,8 @@
                            :min-y="item.minY"
                            :max-y="item.maxY"
                            :preserve-aspect-ratio="item.preserveAspectRatio"
+                           :is-horizontal-resize="isHorizontalResize"
+                           :is-vertical-resize="isVerticalResize"
                            @resize="resize"
                            @move="move"
                            @resized="resized"
@@ -166,6 +170,8 @@
                 responsive: true,
                 preventCollision: false,
                 compact: true,
+                isHorizontalResize: true,
+                isVerticalResize: true,
                 rowHeight: 30,
                 colNum: 12,
                 index: 0,
