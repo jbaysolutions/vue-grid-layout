@@ -100,6 +100,14 @@ Says if the container height should swells and contracts to fit contents.
 
 Says if the layout should be compact vertically.
 
+### restoreOnDrag
+    
+* type: `Boolean`
+* required: `false`
+* default: `false`
+
+Says if the moved grid items should be restored after an item has been dragged over.
+
 ### preventCollision
     
 * type: `Boolean`
