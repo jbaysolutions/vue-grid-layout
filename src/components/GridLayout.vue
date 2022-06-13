@@ -31,7 +31,7 @@
         name: "GridLayout",
         provide() {
             return {
-                eventBus: null,
+                eventBus: this.eventBus,
                 layout: this
             }
         },
@@ -129,6 +129,7 @@
                 layouts: {}, // array to store all layouts from different breakpoints
                 lastBreakpoint: null, // store last active breakpoint
                 originalLayout: null, // store original Layout
+                eventBus: new Vue() // EventBus for communicating between components.
             };
         },
         created () {
@@ -143,8 +144,6 @@
                 self.dragEvent(eventType, i, x, y, h, w);
             };
 
-            self._provided.eventBus = new Vue();
-            self.eventBus = self._provided.eventBus;
             self.eventBus.$on('resizeEvent', self.resizeEventHandler);
             self.eventBus.$on('dragEvent', self.dragEventHandler);
             self.$emit('layout-created', self.layout);
