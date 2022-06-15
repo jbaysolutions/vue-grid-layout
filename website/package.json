@@ -1,8 +1,8 @@
 {
-  "name": "vue-grid-layout-website",
+  "name": "@energiency/vue-grid-layout-website",
   "version": "1.0.0",
-  "description": "vue-grid-layout website",
-  "author": "Gustavo Santos (gustavo@jbaysolutions.com)",
+  "description": "@energiency/vue-grid-layout website",
+  "author": "Energiency (dev@energiency.com)",
   "license": "MIT",
   "private": false,
   "scripts": {
