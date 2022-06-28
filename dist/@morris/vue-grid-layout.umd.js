@@ -1,4 +1,4 @@
-/*! vue-grid-layout - 2.3.12 | (c) 2015, 2021  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
+/*! @morris/vue-grid-layout - 2.4.0 | (c) 2015, 2022  Morris<gzpgdd@icloud.com> | https://github.com/Morris-G/vue-grid-layout */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("vue"));
@@ -209,6 +209,17 @@ var at = __webpack_require__("02f4")(true);
 // https://tc39.github.io/ecma262/#sec-advancestringindex
 module.exports = function (S, index, unicode) {
   return index + (unicode ? at(S, index).length : 1);
+};
+
+
+/***/ }),
+
+/***/ "07e3":
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
 };
 
 
@@ -609,6 +620,25 @@ detector.isLegacyOpera = function() {
 
 /***/ }),
 
+/***/ "1bc3":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__("f772");
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+
 /***/ "1ca7":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -672,6 +702,20 @@ function removeWindowEventListener(event
 
   window.removeEventListener(event, callback);
 }
+
+/***/ }),
+
+/***/ "1ec9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("f772");
+var document = __webpack_require__("e53d").document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
 
 /***/ }),
 
@@ -1021,6 +1065,20 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ "294c":
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+
 /***/ "2aba":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1262,12 +1320,27 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 
 /***/ }),
 
+/***/ "35e8":
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__("d9f6");
+var createDesc = __webpack_require__("aebd");
+module.exports = __webpack_require__("8e60") ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+
 /***/ "37c8":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"048e26c0-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=db3b5a1c&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0e48daee-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=db3b5a1c&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
 var staticRenderFns = []
 
@@ -1292,10 +1365,15 @@ var es6_number_is_finite = __webpack_require__("fca0");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
 
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js
+var define_property = __webpack_require__("85f2");
+var define_property_default = /*#__PURE__*/__webpack_require__.n(define_property);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
-    Object.defineProperty(obj, key, {
+    define_property_default()(obj, key, {
       value: value,
       enumerable: true,
       configurable: true,
@@ -1320,7 +1398,7 @@ var utils = __webpack_require__("a2b6");
 // EXTERNAL MODULE: ./src/helpers/responsiveUtils.js
 var responsiveUtils = __webpack_require__("97a7");
 
-// EXTERNAL MODULE: ./src/components/GridItem.vue + 69 modules
+// EXTERNAL MODULE: ./src/components/GridItem.vue + 71 modules
 var GridItem = __webpack_require__("bc21");
 
 // EXTERNAL MODULE: ./src/helpers/DOM.js
@@ -1880,6 +1958,18 @@ module.exports = function (Constructor, NAME, next) {
 
 /***/ }),
 
+/***/ "454f":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("46a7");
+var $Object = __webpack_require__("584a").Object;
+module.exports = function defineProperty(it, key, desc) {
+  return $Object.defineProperty(it, key, desc);
+};
+
+
+/***/ }),
+
 /***/ "456d":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1920,6 +2010,16 @@ module.exports = function (bitmap, value) {
     value: value
   };
 };
+
+
+/***/ }),
+
+/***/ "46a7":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__("63b6");
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__("8e60"), 'Object', { defineProperty: __webpack_require__("d9f6").f });
 
 
 /***/ }),
@@ -2520,6 +2620,15 @@ $export($export.P + $export.F * (fails(function () {
 
 /***/ }),
 
+/***/ "584a":
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.6.12' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+
 /***/ "5be5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2728,6 +2837,75 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 /***/ }),
 
+/***/ "63b6":
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__("e53d");
+var core = __webpack_require__("584a");
+var ctx = __webpack_require__("d864");
+var hide = __webpack_require__("35e8");
+var has = __webpack_require__("07e3");
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var IS_WRAP = type & $export.W;
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE];
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+  var key, own, out;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    if (own && has(exports, key)) continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    // bind timers to global for call from export context
+    : IS_BIND && own ? ctx(out, global)
+    // wrap global constructors for prevent change them in library
+    : IS_WRAP && target[key] == out ? (function (C) {
+      var F = function (a, b, c) {
+        if (this instanceof C) {
+          switch (arguments.length) {
+            case 0: return new C();
+            case 1: return new C(a);
+            case 2: return new C(a, b);
+          } return new C(a, b, c);
+        } return C.apply(this, arguments);
+      };
+      F[PROTOTYPE] = C[PROTOTYPE];
+      return F;
+    // make static versions for prototype methods
+    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+    if (IS_PROTO) {
+      (exports.virtual || (exports.virtual = {}))[key] = out;
+      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
+    }
+  }
+};
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+
 /***/ "6821":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2859,6 +3037,27 @@ module.exports = function (index, length) {
 
 /***/ }),
 
+/***/ "794b":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__("8e60") && !__webpack_require__("294c")(function () {
+  return Object.defineProperty(__webpack_require__("1ec9")('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "79aa":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+
 /***/ "79e5":
 /***/ (function(module, exports) {
 
@@ -2927,6 +3126,13 @@ module.exports = {};
 
 /***/ }),
 
+/***/ "85f2":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("454f");
+
+/***/ }),
+
 /***/ "86cc":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2986,6 +3192,17 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__8bbf__;
+
+/***/ }),
+
+/***/ "8e60":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__("294c")(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
 
 /***/ }),
 
@@ -3953,6 +4170,7 @@ function validateLayout(layout
 {
   contextName = contextName || "Layout";
   var subProps = ['x', 'y', 'w', 'h'];
+  var keyArr = [];
   if (!Array.isArray(layout)) throw new Error(contextName + " must be an array!");
 
   for (var i = 0, len = layout.length; i < len; i++) {
@@ -3964,10 +4182,19 @@ function validateLayout(layout
       }
     }
 
-    if (item.i && typeof item.i !== 'string') {// number is also ok, so comment the error
-      // TODO confirm if commenting the line below doesn't cause unexpected problems
-      // throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
+    if (item.i === undefined || item.i === null) {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i cannot be null!');
     }
+
+    if (typeof item.i !== 'number' && typeof item.i !== 'string') {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string or number!');
+    }
+
+    if (keyArr.indexOf(item.i) >= 0) {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be unique!');
+    }
+
+    keyArr.push(item.i);
 
     if (item.static !== undefined && typeof item.static !== 'boolean') {
       throw new Error('VueGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');
@@ -4376,6 +4603,21 @@ exports.push([module.i, ".vue-grid-layout{position:relative;-webkit-transition:h
 
 /***/ }),
 
+/***/ "aebd":
+/***/ (function(module, exports) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+
+/***/ }),
+
 /***/ "b0c5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4432,12 +4674,12 @@ __webpack_require__.d(all_namespaceObject, "edgeTarget", function() { return edg
 __webpack_require__.d(all_namespaceObject, "elements", function() { return snappers_elements; });
 __webpack_require__.d(all_namespaceObject, "grid", function() { return grid; });
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"048e26c0-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=7eed73a4&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0e48daee-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=cc8d4138&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-item",class:_vm.classObj,style:(_vm.style)},[_vm._t("default"),(_vm.resizableAndNotStatic)?_c('span',{ref:"handle",class:_vm.resizableHandleClass}):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=7eed73a4&
+// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=cc8d4138&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
@@ -8183,6 +8425,267 @@ if (typeof window === 'object' && !!window) {
   interact_init(window);
 }
 //# sourceMappingURL=index.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/auto-scroll/plugin.js
+
+
+
+
+
+
+
+function plugin_install(scope) {
+  const {
+    defaults,
+    actions
+  } = scope;
+  scope.autoScroll = autoScroll;
+
+  autoScroll.now = () => scope.now();
+
+  actions.phaselessTypes.autoscroll = true;
+  defaults.perAction.autoScroll = autoScroll.defaults;
+}
+
+const autoScroll = {
+  defaults: {
+    enabled: false,
+    margin: 60,
+    // the item that is scrolled (Window or HTMLElement)
+    container: null,
+    // the scroll speed in pixels per second
+    speed: 300
+  },
+  now: Date.now,
+  interaction: null,
+  i: 0,
+  // the handle returned by window.setInterval
+  // Direction each pulse is to scroll in
+  x: 0,
+  y: 0,
+  isScrolling: false,
+  prevTime: 0,
+  margin: 0,
+  speed: 0,
+
+  start(interaction) {
+    autoScroll.isScrolling = true;
+    raf.cancel(autoScroll.i);
+    interaction.autoScroll = autoScroll;
+    autoScroll.interaction = interaction;
+    autoScroll.prevTime = autoScroll.now();
+    autoScroll.i = raf.request(autoScroll.scroll);
+  },
+
+  stop() {
+    autoScroll.isScrolling = false;
+
+    if (autoScroll.interaction) {
+      autoScroll.interaction.autoScroll = null;
+    }
+
+    raf.cancel(autoScroll.i);
+  },
+
+  // scroll the window by the values in scroll.x/y
+  scroll() {
+    const {
+      interaction
+    } = autoScroll;
+    const {
+      interactable,
+      element
+    } = interaction;
+    const actionName = interaction.prepared.name;
+    const options = interactable.options[actionName].autoScroll;
+    const container = getContainer(options.container, interactable, element);
+    const now = autoScroll.now(); // change in time in seconds
+
+    const dt = (now - autoScroll.prevTime) / 1000; // displacement
+
+    const s = options.speed * dt;
+
+    if (s >= 1) {
+      const scrollBy = {
+        x: autoScroll.x * s,
+        y: autoScroll.y * s
+      };
+
+      if (scrollBy.x || scrollBy.y) {
+        const prevScroll = getScroll(container);
+
+        if (is.window(container)) {
+          container.scrollBy(scrollBy.x, scrollBy.y);
+        } else if (container) {
+          container.scrollLeft += scrollBy.x;
+          container.scrollTop += scrollBy.y;
+        }
+
+        const curScroll = getScroll(container);
+        const delta = {
+          x: curScroll.x - prevScroll.x,
+          y: curScroll.y - prevScroll.y
+        };
+
+        if (delta.x || delta.y) {
+          interactable.fire({
+            type: 'autoscroll',
+            target: element,
+            interactable,
+            delta,
+            interaction,
+            container
+          });
+        }
+      }
+
+      autoScroll.prevTime = now;
+    }
+
+    if (autoScroll.isScrolling) {
+      raf.cancel(autoScroll.i);
+      autoScroll.i = raf.request(autoScroll.scroll);
+    }
+  },
+
+  check(interactable, actionName) {
+    var _options$actionName$a;
+
+    const options = interactable.options;
+    return (_options$actionName$a = options[actionName].autoScroll) == null ? void 0 : _options$actionName$a.enabled;
+  },
+
+  onInteractionMove({
+    interaction,
+    pointer
+  }) {
+    if (!(interaction.interacting() && autoScroll.check(interaction.interactable, interaction.prepared.name))) {
+      return;
+    }
+
+    if (interaction.simulation) {
+      autoScroll.x = autoScroll.y = 0;
+      return;
+    }
+
+    let top;
+    let right;
+    let bottom;
+    let left;
+    const {
+      interactable,
+      element
+    } = interaction;
+    const actionName = interaction.prepared.name;
+    const options = interactable.options[actionName].autoScroll;
+    const container = getContainer(options.container, interactable, element);
+
+    if (is.window(container)) {
+      left = pointer.clientX < autoScroll.margin;
+      top = pointer.clientY < autoScroll.margin;
+      right = pointer.clientX > container.innerWidth - autoScroll.margin;
+      bottom = pointer.clientY > container.innerHeight - autoScroll.margin;
+    } else {
+      const rect = getElementClientRect(container);
+      left = pointer.clientX < rect.left + autoScroll.margin;
+      top = pointer.clientY < rect.top + autoScroll.margin;
+      right = pointer.clientX > rect.right - autoScroll.margin;
+      bottom = pointer.clientY > rect.bottom - autoScroll.margin;
+    }
+
+    autoScroll.x = right ? 1 : left ? -1 : 0;
+    autoScroll.y = bottom ? 1 : top ? -1 : 0;
+
+    if (!autoScroll.isScrolling) {
+      // set the autoScroll properties to those of the target
+      autoScroll.margin = options.margin;
+      autoScroll.speed = options.speed;
+      autoScroll.start(interaction);
+    }
+  }
+
+};
+function getContainer(value, interactable, element) {
+  return (is.string(value) ? getStringOptionResult(value, interactable, element) : value) || getWindow(element);
+}
+function getScroll(container) {
+  if (is.window(container)) {
+    container = window.document.body;
+  }
+
+  return {
+    x: container.scrollLeft,
+    y: container.scrollTop
+  };
+}
+function getScrollSize(container) {
+  if (is.window(container)) {
+    container = window.document.body;
+  }
+
+  return {
+    x: container.scrollWidth,
+    y: container.scrollHeight
+  };
+}
+function getScrollSizeDelta({
+  interaction,
+  element
+}, func) {
+  const scrollOptions = interaction && interaction.interactable.options[interaction.prepared.name].autoScroll;
+
+  if (!scrollOptions || !scrollOptions.enabled) {
+    func();
+    return {
+      x: 0,
+      y: 0
+    };
+  }
+
+  const scrollContainer = getContainer(scrollOptions.container, interaction.interactable, element);
+  const prevSize = getScroll(scrollContainer);
+  func();
+  const curSize = getScroll(scrollContainer);
+  return {
+    x: curSize.x - prevSize.x,
+    y: curSize.y - prevSize.y
+  };
+}
+const autoScrollPlugin = {
+  id: 'auto-scroll',
+  install: plugin_install,
+  listeners: {
+    'interactions:new': ({
+      interaction
+    }) => {
+      interaction.autoScroll = null;
+    },
+    'interactions:destroy': ({
+      interaction
+    }) => {
+      interaction.autoScroll = null;
+      autoScroll.stop();
+
+      if (autoScroll.interaction) {
+        autoScroll.interaction = null;
+      }
+    },
+    'interactions:stop': autoScroll.stop,
+    'interactions:action-move': arg => autoScroll.onInteractionMove(arg)
+  }
+};
+/* harmony default export */ var auto_scroll_plugin = (autoScrollPlugin);
+//# sourceMappingURL=plugin.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/auto-scroll/index.js
+/* eslint-disable import/order, no-console, eol-last */
+
+
+
+if (typeof window === 'object' && !!window) {
+  interact_init(window);
+}
+
+_interactjs_interact.use(auto_scroll_plugin);
+//# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/auto-start/InteractableMethods.js
 
 
@@ -8854,7 +9357,7 @@ _interactjs_interact.use(auto_start_plugin);
 
 
 
-function plugin_install(scope) {
+function drag_plugin_install(scope) {
   const {
     actions,
     Interactable,
@@ -8973,7 +9476,7 @@ const plugin_draggable = function draggable(options) {
 
 const drag = {
   id: 'actions/drag',
-  install: plugin_install,
+  install: drag_plugin_install,
   listeners: {
     'interactions:before-action-move': beforeMove,
     'interactions:action-resume': beforeMove,
@@ -11161,10 +11664,6 @@ _interactjs_interact.use(dev_tools_plugin);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -11176,30 +11675,31 @@ _interactjs_interact.use(dev_tools_plugin);
 
 
 
+
 /* harmony default export */ var GridItemvue_type_script_lang_js_ = ({
   name: "GridItem",
   props: {
     /*cols: {
-     type: Number,
-     required: true
-     },*/
+             type: Number,
+             required: true
+             },*/
 
     /*containerWidth: {
-     type: Number,
-     required: true
-      },
-     rowHeight: {
-     type: Number,
-     required: true
-     },
-     margin: {
-     type: Array,
-     required: true
-     },
-     maxRows: {
-     type: Number,
-     required: true
-     },*/
+             type: Number,
+             required: true
+                  },
+             rowHeight: {
+             type: Number,
+             required: true
+             },
+             margin: {
+             type: Array,
+             required: true
+             },
+             maxRows: {
+             type: Number,
+             required: true
+             },*/
     isDraggable: {
       type: Boolean,
       required: false,
@@ -11212,10 +11712,10 @@ _interactjs_interact.use(dev_tools_plugin);
     },
 
     /*useCssTransforms: {
-     type: Boolean,
-     required: true
-     },
-     */
+             type: Boolean,
+             required: true
+             },
+             */
     static: {
       type: Boolean,
       required: false,
@@ -11263,7 +11763,7 @@ _interactjs_interact.use(dev_tools_plugin);
     dragIgnoreFrom: {
       type: String,
       required: false,
-      default: 'a, button'
+      default: "a, button"
     },
     dragAllowFrom: {
       type: String,
@@ -11273,12 +11773,20 @@ _interactjs_interact.use(dev_tools_plugin);
     resizeIgnoreFrom: {
       type: String,
       required: false,
-      default: 'a, button'
+      default: "a, button"
     },
     preserveAspectRatio: {
       type: Boolean,
       required: false,
       default: false
+    },
+    autoScroll: {
+      type: Boolean,
+      default: false
+    },
+    scrollEl: {
+      type: String,
+      required: false
     }
   },
   inject: ["eventBus", "layout"],
@@ -11312,7 +11820,8 @@ _interactjs_interact.use(dev_tools_plugin);
       innerX: this.x,
       innerY: this.y,
       innerW: this.w,
-      innerH: this.h
+      innerH: this.h,
+      interactObj: null
     };
   },
   created: function created() {
@@ -11349,7 +11858,7 @@ _interactjs_interact.use(dev_tools_plugin);
     };
 
     self.directionchangeHandler = function () {
-      _this.rtl = Object(DOM["b" /* getDocumentDir */])() === 'rtl';
+      _this.rtl = Object(DOM["b" /* getDocumentDir */])() === "rtl";
 
       _this.compact();
     };
@@ -11358,27 +11867,27 @@ _interactjs_interact.use(dev_tools_plugin);
       self.cols = parseInt(colNum);
     };
 
-    this.eventBus.$on('updateWidth', self.updateWidthHandler);
-    this.eventBus.$on('compact', self.compactHandler);
-    this.eventBus.$on('setDraggable', self.setDraggableHandler);
-    this.eventBus.$on('setResizable', self.setResizableHandler);
-    this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
-    this.eventBus.$on('setMaxRows', self.setMaxRowsHandler);
-    this.eventBus.$on('directionchange', self.directionchangeHandler);
-    this.eventBus.$on('setColNum', self.setColNum);
-    this.rtl = Object(DOM["b" /* getDocumentDir */])() === 'rtl';
+    this.eventBus.$on("updateWidth", self.updateWidthHandler);
+    this.eventBus.$on("compact", self.compactHandler);
+    this.eventBus.$on("setDraggable", self.setDraggableHandler);
+    this.eventBus.$on("setResizable", self.setResizableHandler);
+    this.eventBus.$on("setRowHeight", self.setRowHeightHandler);
+    this.eventBus.$on("setMaxRows", self.setMaxRowsHandler);
+    this.eventBus.$on("directionchange", self.directionchangeHandler);
+    this.eventBus.$on("setColNum", self.setColNum);
+    this.rtl = Object(DOM["b" /* getDocumentDir */])() === "rtl";
   },
   beforeDestroy: function beforeDestroy() {
     var self = this; //Remove listeners
 
-    this.eventBus.$off('updateWidth', self.updateWidthHandler);
-    this.eventBus.$off('compact', self.compactHandler);
-    this.eventBus.$off('setDraggable', self.setDraggableHandler);
-    this.eventBus.$off('setResizable', self.setResizableHandler);
-    this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
-    this.eventBus.$off('setMaxRows', self.setMaxRowsHandler);
-    this.eventBus.$off('directionchange', self.directionchangeHandler);
-    this.eventBus.$off('setColNum', self.setColNum);
+    this.eventBus.$off("updateWidth", self.updateWidthHandler);
+    this.eventBus.$off("compact", self.compactHandler);
+    this.eventBus.$off("setDraggable", self.setDraggableHandler);
+    this.eventBus.$off("setResizable", self.setResizableHandler);
+    this.eventBus.$off("setRowHeight", self.setRowHeightHandler);
+    this.eventBus.$off("setMaxRows", self.setMaxRowsHandler);
+    this.eventBus.$off("directionchange", self.directionchangeHandler);
+    this.eventBus.$off("setColNum", self.setColNum);
 
     if (this.interactObj) {
       this.interactObj.unset(); // destroy interact intance
@@ -11491,14 +12000,14 @@ _interactjs_interact.use(dev_tools_plugin);
   computed: {
     classObj: function classObj() {
       return {
-        'vue-resizable': this.resizableAndNotStatic,
-        'static': this.static,
-        'resizing': this.isResizing,
-        'vue-draggable-dragging': this.isDragging,
-        'cssTransforms': this.useCssTransforms,
-        'render-rtl': this.renderRtl,
-        'disable-userselect': this.isDragging,
-        'no-touch': this.isAndroid && this.draggableOrResizableAndNotStatic
+        "vue-resizable": this.resizableAndNotStatic,
+        static: this.static,
+        resizing: this.isResizing,
+        "vue-draggable-dragging": this.isDragging,
+        cssTransforms: this.useCssTransforms,
+        "render-rtl": this.renderRtl,
+        "disable-userselect": this.isDragging,
+        "no-touch": this.isAndroid && this.draggableOrResizableAndNotStatic
       };
     },
     resizableAndNotStatic: function resizableAndNotStatic() {
@@ -11515,9 +12024,9 @@ _interactjs_interact.use(dev_tools_plugin);
     },
     resizableHandleClass: function resizableHandleClass() {
       if (this.renderRtl) {
-        return 'vue-resizable-handle vue-rtl-resizable-handle';
+        return "vue-resizable-handle vue-rtl-resizable-handle";
       } else {
-        return 'vue-resizable-handle';
+        return "vue-resizable-handle";
       }
     }
   },
@@ -11574,7 +12083,7 @@ _interactjs_interact.use(dev_tools_plugin);
       // resized event is without them
       var styleProps = {};
 
-      for (var _i = 0, _arr = ['width', 'height']; _i < _arr.length; _i++) {
+      for (var _i = 0, _arr = ["width", "height"]; _i < _arr.length; _i++) {
         var prop = _arr[_i];
         var val = this.style[prop];
         var matches = val.match(/^(\d+)px$/);
@@ -11737,6 +12246,9 @@ _interactjs_interact.use(dev_tools_plugin);
             this.dragging = null;
             this.isDragging = false; // shouldUpdate = true;
 
+            this.$refs.item.scrollIntoView({
+              behavior: "smooth"
+            });
             break;
           }
 
@@ -11848,15 +12360,24 @@ _interactjs_interact.use(dev_tools_plugin);
      * Given a height and width in pixel values, calculate grid units.
      * @param  {Number} height Height in pixels.
      * @param  {Number} width  Width in pixels.
+     * @param  {Boolean} autoSizeFlag  function autoSize identifier.
      * @return {Object} w, h as grid units.
      */
     calcWH: function calcWH(height, width) {
+      var autoSizeFlag = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
       var colWidth = this.calcColWidth(); // width = colWidth * w - (margin * (w - 1))
       // ...
       // w = (width + margin) / (colWidth + margin)
 
       var w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));
-      var h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1])); // Capping
+      var h = 0;
+
+      if (!autoSizeFlag) {
+        h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+      } else {
+        h = Math.ceil((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+      } // Capping
+
 
       w = Math.max(Math.min(w, this.cols - this.innerX), 0);
       h = Math.max(Math.min(h, this.maxRows - this.innerY), 0);
@@ -11889,14 +12410,18 @@ _interactjs_interact.use(dev_tools_plugin);
       if (this.draggable && !this.static) {
         var opts = {
           ignoreFrom: this.dragIgnoreFrom,
-          allowFrom: this.dragAllowFrom
+          allowFrom: this.dragAllowFrom,
+          autoScroll: {
+            enabled: this.autoScroll,
+            container: this.scrollEl === undefined ? this.layout.$el.parentElement : document.querySelector(this.scrollEl)
+          }
         };
         this.interactObj.draggable(opts);
         /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
 
         if (!this.dragEventSet) {
           this.dragEventSet = true;
-          this.interactObj.on('dragstart dragmove dragend', function (event) {
+          this.interactObj.on("dragstart dragmove dragend", function (event) {
             self.handleDrag(event);
           });
         }
@@ -11940,12 +12465,16 @@ _interactjs_interact.use(dev_tools_plugin);
               height: maximum.height,
               width: maximum.width
             }
+          },
+          autoScroll: {
+            enabled: this.autoScroll,
+            container: this.scrollEl === undefined ? this.layout.$el.parentElement : document.querySelector(this.scrollEl)
           }
         };
 
         if (this.preserveAspectRatio) {
           opts.modifiers = [_interactjs_interact.modifiers.aspectRatio({
-            ratio: 'preserve'
+            ratio: "preserve"
           })];
         }
 
@@ -11953,7 +12482,7 @@ _interactjs_interact.use(dev_tools_plugin);
 
         if (!this.resizeEventSet) {
           this.resizeEventSet = true;
-          this.interactObj.on('resizestart resizemove resizeend', function (event) {
+          this.interactObj.on("resizestart resizemove resizeend", function (event) {
             self.handleResize(event);
           });
         }
@@ -11968,7 +12497,7 @@ _interactjs_interact.use(dev_tools_plugin);
       this.previousW = this.innerW;
       this.previousH = this.innerH;
       var newSize = this.$slots.default[0].elm.getBoundingClientRect();
-      var pos = this.calcWH(newSize.height, newSize.width);
+      var pos = this.calcWH(newSize.height, newSize.width, true);
 
       if (pos.w < this.minW) {
         pos.w = this.minW;
@@ -12003,6 +12532,9 @@ _interactjs_interact.use(dev_tools_plugin);
       if (this.previousW !== pos.w || this.previousH !== pos.h) {
         this.$emit("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
         this.eventBus.$emit("resizeEvent", "resizeend", this.i, this.innerX, this.innerY, pos.h, pos.w);
+        this.$refs.item.scrollIntoView({
+          behavior: "smooth"
+        });
       }
     }
   }
@@ -13150,12 +13682,62 @@ module.exports = {
 
 /***/ }),
 
+/***/ "d864":
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__("79aa");
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+
 /***/ "d8e8":
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
   if (typeof it != 'function') throw TypeError(it + ' is not a function!');
   return it;
+};
+
+
+/***/ }),
+
+/***/ "d9f6":
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__("e4ae");
+var IE8_DOM_DEFINE = __webpack_require__("794b");
+var toPrimitive = __webpack_require__("1bc3");
+var dP = Object.defineProperty;
+
+exports.f = __webpack_require__("8e60") ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
 };
 
 
@@ -13179,6 +13761,31 @@ module.exports = (
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GridLayout_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("1156");
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GridLayout_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GridLayout_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
+
+
+/***/ }),
+
+/***/ "e4ae":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("f772");
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "e53d":
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ }),
@@ -13585,6 +14192,16 @@ module.exports = function (object, index, value) {
 var $export = __webpack_require__("5ca1");
 
 $export($export.S + $export.F, 'Object', { assign: __webpack_require__("7333") });
+
+
+/***/ }),
+
+/***/ "f772":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
 
 
 /***/ }),

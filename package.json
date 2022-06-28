@@ -1,6 +1,6 @@
 {
-  "name": "vue-grid-layout",
-  "version": "2.3.12",
+  "name": "@morris/vue-grid-layout",
+  "version": "2.4.0",
   "description": "A draggable and resizable grid layout, as a Vue component.",
   "keywords": [
     "grid",
@@ -14,10 +14,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/jbaysolutions/vue-grid-layout.git"
+    "url": "https://github.com/Morris-G/vue-grid-layout"
   },
-  "author": "Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com)",
-  "homepage": "https://github.com/jbaysolutions/vue-grid-layout",
+  "author": "Morris<gzpgdd@icloud.com>",
+  "homepage": "https://github.com/Morris-G/vue-grid-layout",
   "main": "dist/vue-grid-layout.common.js",
   "unpkg": "dist/vue-grid-layout.umd.min.js",
   "scripts": {
@@ -29,12 +29,12 @@
     "test:cover": "vue-cli-service test:unit --coverage"
   },
   "dependencies": {
-    "element-resize-detector": "^1.2.1",
-    "@interactjs/interactjs": "^1.10.2",
-    "@interactjs/auto-start": "^1.10.2",
     "@interactjs/actions": "^1.10.2",
+    "@interactjs/auto-start": "^1.10.2",
+    "@interactjs/dev-tools": "^1.10.2",
+    "@interactjs/interactjs": "^1.10.2",
     "@interactjs/modifiers": "^1.10.2",
-    "@interactjs/dev-tools": "^1.10.2"
+    "element-resize-detector": "^1.2.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
@@ -47,8 +47,8 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-transform-flow-comments": "^6.7.0",
-    "node-sass": "^4.13.0",
     "rimraf": "^2.6.2",
+    "sass": "^1.53.0",
     "sass-loader": "^7.0.1",
     "vue": "^2.6.12",
     "vue-jest": "^3.0.7",
