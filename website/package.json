@@ -10,16 +10,14 @@
     "build": "vuepress build docs",
     "serve": "vuepress serve docs"
   },
-  "dependencies": {
-  },
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.6.0",
     "@vuepress/plugin-google-analytics": "^1.6.0",
-    "vue-grid-layout": "^2.3.11",
-    "vuepress-plugin-seo": "^0.1.4",
-    "vuepress-plugin-sitemap": "^2.3.1",
+    "m-grid-layout": "^2.4.0",
     "vuepress": "^1.7.1",
-    "vuepress-plugin-serve": "^2.0.4"
+    "vuepress-plugin-seo": "^0.1.4",
+    "vuepress-plugin-serve": "^2.0.4",
+    "vuepress-plugin-sitemap": "^2.3.1"
   },
   "resolutions": {
     "watchpack": "1.6.1"

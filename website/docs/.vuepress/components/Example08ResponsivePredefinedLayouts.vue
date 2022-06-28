@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { GridLayout, GridItem } from "vue-grid-layout"
+import { GridLayout, GridItem } from "m-grid-layout"
 
 let testLayouts = {
     md: [

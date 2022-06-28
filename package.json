@@ -1,5 +1,5 @@
 {
-  "name": "@morris/vue-grid-layout",
+  "name": "m-grid-layout",
   "version": "2.4.0",
   "description": "A draggable and resizable grid layout, as a Vue component.",
   "keywords": [
@@ -18,15 +18,19 @@
   },
   "author": "Morris<gzpgdd@icloud.com>",
   "homepage": "https://github.com/Morris-G/vue-grid-layout",
-  "main": "dist/vue-grid-layout.common.js",
-  "unpkg": "dist/vue-grid-layout.umd.min.js",
+  "main": "dist/m-grid-layout.common.js",
+  "unpkg": "dist/m-grid-layout.umd.min.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "rimraf dist && vue-cli-service build",
     "build-lib": "rimraf dist && vue-cli-service build --target lib ./src/components/index.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "test:cover": "vue-cli-service test:unit --coverage"
+    "test:cover": "vue-cli-service test:unit --coverage",
+    "prepublishOnly": "npm run build-lib"
   },
   "dependencies": {
     "@interactjs/actions": "^1.10.2",

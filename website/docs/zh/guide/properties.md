@@ -283,3 +283,18 @@
 标识栅格元素中哪些子元素无法触发调整大小的事件，值为`css-like`选择器。
 
 请参考[interact.js docs](http://interactjs.io/docs/#ignorable-selectors)中的`ignoreFrom`。
+
+### autoScroll
+
+* type: `Boolean`
+* required: `false`
+* default: `false`
+
+当拖动或者改变大小时，是否开启容器自动滚动，默认不开启
+
+### scrollEl
+
+* type: `String`
+* required: `false`
+
+设置自动滚动的容器，传入CSS选择器的值，默认是GridLayout的父级元素

@@ -314,3 +314,19 @@ For more info please refer to `ignoreFrom` in [interact.js docs](http://interact
 * default: `false`
 
 If 'true', forces the GridItem to preserve its aspect ratio when resizing. 
+
+
+### autoScroll
+
+* type: `Boolean`
+* required: `false`
+* default: `false`
+
+If 'true', container will scroll automatically while dragging or resizing GridItem.
+
+### scrollEl
+
+* type: `String`
+* required: `false`
+
+Set the container for auto-scroll, pass the CSS selector. defalut container is the GridLayout's parentElement

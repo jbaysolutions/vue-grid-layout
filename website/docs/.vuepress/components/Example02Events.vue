@@ -5,7 +5,7 @@
                 {{event}}
             </div>
         </div>
-        <div style="margin-top:10px;">
+        <div class="demo-auto-scroll">
             <grid-layout :layout.sync="layout"
                          :col-num="12"
                          :row-height="30"
@@ -20,6 +20,8 @@
                          @layout-updated="layoutUpdatedEvent"
             >
                 <grid-item v-for="item in layout"
+                           auto-scroll
+                           scroll-el=".demo-auto-scroll"
                            :x="item.x"
                            :y="item.y"
                            :w="item.w"
@@ -39,7 +41,7 @@
 </template>
 
 <script>
-import { GridLayout, GridItem } from "vue-grid-layout"
+import { GridLayout, GridItem } from "m-grid-layout"
 
 export default {
     components: {
@@ -137,6 +139,12 @@ export default {
 </script>
 
 <style scoped>
+.demo-auto-scroll {
+    height: 650px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
 .vue-grid-layout {
     background: #eee;
 }

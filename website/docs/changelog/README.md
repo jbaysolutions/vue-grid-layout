@@ -3,6 +3,11 @@ sidebar: auto
 ---
 # Changelog
 
+## 2.4.0 (Jun 28, 2022) by [Morris](https://github.com/Morris-G)
+* change node-sass to dart-sass
+* Added `GridItem.autoScroll` property to make container scroll automatically while dragging or resizing if set to `true`, default value is `false`
+* Added `GridItem.scrollEl` property to select the auto-scroll container, just pass the CSS selector
+
 ## 2.3.12 (Jan 15, 2020)
 
 * Bumped interact.js to 1.10.2
