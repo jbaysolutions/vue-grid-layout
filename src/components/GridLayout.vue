@@ -174,9 +174,10 @@
                 this.originalLayout = this.layout;
                 const self = this;
                 this.$nextTick(function() {
+                    self.initResponsiveFeatures();
+                    
                     self.onWindowResize();
 
-                    self.initResponsiveFeatures();
 
                     //self.width = self.$el.offsetWidth;
                     addWindowEventListener('resize', self.onWindowResize);
