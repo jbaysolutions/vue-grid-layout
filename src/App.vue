@@ -32,6 +32,7 @@
             <input type="checkbox" v-model="mirrored"/> Mirrored
             <input type="checkbox" v-model="responsive"/> Responsive
             <input type="checkbox" v-model="preventCollision"/> Prevent Collision
+            <input type="checkbox" v-model="compact"/> Vertical Compact
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
                 Margin x: <input type="number" v-model="marginX"/> Margin y: <input type="number" v-model="marginY"/>
@@ -46,6 +47,7 @@
                     :is-mirrored="mirrored"
                     :prevent-collision="preventCollision"
                     :vertical-compact="compact"
+                    :restore-on-drag="restoreOnDrag"
                     :use-css-transforms="true"
                     :responsive="responsive"
                     @layout-created="layoutCreatedEvent"
@@ -166,6 +168,7 @@
                 responsive: true,
                 preventCollision: false,
                 compact: true,
+                restoreOnDrag: true,
                 rowHeight: 30,
                 colNum: 12,
                 index: 0,
@@ -298,7 +301,7 @@
         }*/
 </style>
 
-<style lang="scss">
+<style lang="css">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

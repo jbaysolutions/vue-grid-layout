@@ -75,9 +75,10 @@ export function collides(l1: LayoutItem, l2: LayoutItem): boolean {
  * @param  {Array} layout Layout.
  * @param  {Boolean} verticalCompact Whether or not to compact the layout
  *   vertically.
+ * @param {Object} minPositions
  * @return {Array}       Compacted Layout.
  */
-export function compact(layout: Layout, verticalCompact: Boolean): Layout {
+export function compact(layout: Layout, verticalCompact: Boolean, minPositions): Layout {
     // Statics go in the compareWith array right away so items flow around them.
   const compareWith = getStatics(layout);
   // We go through the items by row and column.
@@ -90,7 +91,7 @@ export function compact(layout: Layout, verticalCompact: Boolean): Layout {
 
     // Don't move static elements
     if (!l.static) {
-      l = compactItem(compareWith, l, verticalCompact);
+      l = compactItem(compareWith, l, verticalCompact, minPositions);
 
       // Add to comparison array. We only collide with items before this one.
       // Statics are already in this array.
@@ -110,10 +111,15 @@ export function compact(layout: Layout, verticalCompact: Boolean): Layout {
 /**
  * Compact an item in the layout.
  */
-export function compactItem(compareWith: Layout, l: LayoutItem, verticalCompact: boolean): LayoutItem {
+export function compactItem(compareWith: Layout, l: LayoutItem, verticalCompact: boolean, minPositions): LayoutItem {
   if (verticalCompact) {
     // Move the element up as far as it can go without colliding.
     while (l.y > 0 && !getFirstCollision(compareWith, l)) {
+      l.y--;
+    }
+  } else if (minPositions) {
+    const minY = minPositions[l.i].y;
+    while (l.y > minY && !getFirstCollision(compareWith, l)) {
       l.y--;
     }
   }
