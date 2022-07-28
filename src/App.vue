@@ -47,6 +47,7 @@
                     :is-mirrored="mirrored"
                     :prevent-collision="preventCollision"
                     :vertical-compact="compact"
+                    :restore-on-drag="restoreOnDrag"
                     :use-css-transforms="true"
                     :responsive="responsive"
                     @layout-created="layoutCreatedEvent"
@@ -167,6 +168,7 @@
                 responsive: true,
                 preventCollision: false,
                 compact: true,
+                restoreOnDrag: true,
                 rowHeight: 30,
                 colNum: 12,
                 index: 0,
