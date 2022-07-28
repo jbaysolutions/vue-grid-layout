@@ -1,6 +1,7 @@
 <template>
     <div ref="item" class="vue-grid-layout" :style="mergedStyle">
         <slot></slot>
+        <!-- 拖拽的时候显示的占位item -->
         <grid-item class="vue-grid-placeholder"
                    v-show="isDragging"
                    :x="placeholder.x"
@@ -332,9 +333,9 @@
                     });
                 }
 
-                // Move the element to the dragged location.
+                // Move the element to the dragged location. TODO: 将元素移动到拖动的位置
                 this.layout = moveElement(this.layout, l, x, y, true, this.preventCollision);
-                compact(this.layout, this.verticalCompact);
+                if(!l.float)compact(this.layout, this.verticalCompact);//垂直方向压缩
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.$emit("compact");
                 this.updateHeight();

@@ -24,3 +24,4 @@ yarn-error.log*
 yarn-error.log
 
 website/docs/dist
+website/public/

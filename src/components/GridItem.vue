@@ -84,6 +84,9 @@
     .vue-grid-item.disable-userselect {
         user-select: none;
     }
+    .vue-grid-item.float{
+        z-index: 1;
+    }
 </style>
 <script>
     import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '@/helpers/utils';
@@ -123,6 +126,12 @@
              type: Number,
              required: true
              },*/
+            //  是否浮层
+            float: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
             isDraggable: {
                 type: Boolean,
                 required: false,
@@ -197,6 +206,7 @@
                 required: false,
                 default: 'a, button'
             },
+            // 是否保持纵横比
             preserveAspectRatio: {
                 type: Boolean,
                 required: false,
@@ -410,6 +420,7 @@
         computed: {
             classObj() {
                 return {
+                    'float':this.float,
                     'vue-resizable' : this.resizableAndNotStatic,
                     'static': this.static,
                     'resizing' : this.isResizing,
@@ -576,6 +587,7 @@
                 if (event.type === "resizeend" && (this.previousW !== this.innerW || this.previousH !== this.innerH)) {
                     this.$emit("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
                 }
+                 // TODO:
                 this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
             },
             handleDrag(event) {
@@ -659,6 +671,7 @@
                 if (event.type === "dragend" && (this.previousX !== this.innerX || this.previousY !== this.innerY)) {
                     this.$emit("moved", this.i, pos.x, pos.y);
                 }
+                // TODO: 
                 this.eventBus.$emit("dragEvent", event.type, this.i, pos.x, pos.y, this.innerH, this.innerW);
             },
             calcPosition: function (x, y, w, h) {
@@ -758,6 +771,7 @@
             compact: function () {
                 this.createStyle();
             },
+            //开始监听拖拽事件
             tryMakeDraggable: function(){
                 const self = this;
                 if (this.interactObj === null || this.interactObj === undefined) {
@@ -771,7 +785,7 @@
                         ignoreFrom: this.dragIgnoreFrom,
                         allowFrom: this.dragAllowFrom
                     };
-                    this.interactObj.draggable(opts);
+                    this.interactObj.draggable(opts);//设置为可拖拽
                     /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
                     if (!this.dragEventSet) {
                         this.dragEventSet = true;
@@ -785,6 +799,7 @@
                     });
                 }
             },
+            //开始监听resize
             tryMakeResizable: function(){
                 const self = this;
                 if (this.interactObj === null || this.interactObj === undefined) {
@@ -878,6 +893,7 @@
                 }
                 if (this.previousW !== pos.w || this.previousH !== pos.h) {
                     this.$emit("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
+                    // TODO:
                     this.eventBus.$emit("resizeEvent", "resizeend", this.i, this.innerX, this.innerY, pos.h, pos.w);
                 }
             }
