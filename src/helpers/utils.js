@@ -111,6 +111,15 @@ export function compact(layout: Layout, verticalCompact: Boolean): Layout {
  * Compact an item in the layout.
  */
 export function compactItem(compareWith: Layout, l: LayoutItem, verticalCompact: boolean): LayoutItem {
+  // move to bottom
+  let maxY = 0;
+  for (let i = 0, len = compareWith.length; i < len; i++) {
+    if(maxY < compareWith[i].y) {
+      maxY = compareWith[i].y;
+    }
+  }
+  l.y = Math.max(l.y, maxY);
+  
   if (verticalCompact) {
     // Move the element up as far as it can go without colliding.
     while (l.y > 0 && !getFirstCollision(compareWith, l)) {
