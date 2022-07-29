@@ -74,6 +74,10 @@
                 type: Boolean,
                 default: false
             },
+            isBounded: {
+                type: Boolean,
+                default: false
+            },
             useCssTransforms: {
                 type: Boolean,
                 default: true
@@ -248,6 +252,9 @@
             },
             isResizable: function() {
                 this.eventBus.$emit("setResizable", this.isResizable);
+            },
+            isBounded: function() {
+                this.eventBus.$emit("setBounded", this.isBounded);
             },
             responsive() {
                 if (!this.responsive) {
