@@ -3,6 +3,11 @@ sidebar: auto
 ---
 # Changelog
 
+## 2.3.12 (Jan 15, 2020)
+
+* Bumped interact.js to 1.10.2
+* Added 'preserveAspectRatio' property to GridItem (thanks [validide](https://github.com/validide))
+
 ## 2.3.11 (Oct 13, 2020)
 
 * fix: regression when using responsive layout (#487)

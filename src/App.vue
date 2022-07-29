@@ -33,8 +33,10 @@
             <input type="checkbox" v-model="draggable"/> Draggable
             <input type="checkbox" v-model="resizable"/> Resizable
             <input type="checkbox" v-model="mirrored"/> Mirrored
+            <input type="checkbox" v-model="bounded"/> Bounded
             <input type="checkbox" v-model="responsive"/> Responsive
             <input type="checkbox" v-model="preventCollision"/> Prevent Collision
+            <input type="checkbox" v-model="compact"/> Vertical Compact
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
                 Margin x: <input type="number" v-model="marginX"/> Margin y: <input type="number" v-model="marginY"/>
@@ -48,8 +50,10 @@
                     :is-draggable="draggable"
                     :is-resizable="resizable"
                     :is-mirrored="mirrored"
+                    :is-bounded="bounded"
                     :prevent-collision="preventCollision"
-                    :vertical-compact="true"
+                    :vertical-compact="compact"
+                    :restore-on-drag="restoreOnDrag"
                     :use-css-transforms="true"
                     :responsive="responsive"
                     :transformScale="transformScale"
@@ -73,6 +77,7 @@
                            :max-x="item.maxX"
                            :min-y="item.minY"
                            :max-y="item.maxY"
+                           :preserve-aspect-ratio="item.preserveAspectRatio"
                            @resize="resize"
                            @move="move"
                            @resized="resized"
@@ -80,7 +85,7 @@
                            @moved="moved"
                 >
                     <!--<custom-drag-element :text="item.i"></custom-drag-element>-->
-                    <test-element :text="item.i"></test-element>
+                    <test-element :text="item.i" @removeItem="removeItem($event)"></test-element>
                     <!--<button @click="clicked">CLICK ME!</button>-->
                 </grid-item>
             </grid-layout>
@@ -124,7 +129,7 @@
     let testLayout = [
         {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true, static: false, minY: 0, maxY: 2},
         {"x":2,"y":0,"w":2,"h":4,"i":"1", resizable: null, draggable: null, static: true},
-        {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false, static: false, minX: 4, maxX: 4, minW: 2, maxW: 2},
+        {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false, static: false, minX: 4, maxX: 4, minW: 2, maxW: 2, preserveAspectRatio: true},
         {"x":6,"y":0,"w":2,"h":3,"i":"3", resizable: false, draggable: false, static: false},
         {"x":8,"y":0,"w":2,"h":3,"i":"4", resizable: false, draggable: false, static: false},
         {"x":10,"y":0,"w":2,"h":3,"i":"5", resizable: false, draggable: false, static: false},
@@ -144,6 +149,14 @@
         {"x":2,"y":6,"w":2,"h":2,"i":"19", resizable: false, draggable: false, static: false}
     ];
 
+    /*let testLayout = [
+        { x: 0, y: 0, w: 2, h: 2, i: "0" },
+        { x: 2, y: 0, w: 2, h: 2, i: "1" },
+        { x: 4, y: 0, w: 2, h: 2, i: "2" },
+        { x: 6, y: 0, w: 2, h: 2, i: "3" },
+        { x: 8, y: 0, w: 2, h: 2, i: "4" },
+    ];*/
+
     export default {
         name: 'app',
         components: {
@@ -160,8 +173,11 @@
                 resizable: true,
                 mirrored: false,
                 responsive: true,
+                bounded: false,
                 transformScale: 1,
                 preventCollision: false,
+                compact: true,
+                restoreOnDrag: true,
                 rowHeight: 30,
                 colNum: 12,
                 index: 0,
@@ -187,20 +203,21 @@
                 document.getElementById("content").style.width = width+"px";
             },
             scaleHalf: function() {
-              this.transformScale = 0.5
-              document.getElementById("grid-layout").style.transform = "scale(0.5)";
+                this.transformScale = 0.5
+                document.getElementById("grid-layout").style.transform = "scale(0.5)";
             },
             scaleThreeQuarters: function() {
-              this.transformScale = 0.75
-              document.getElementById("grid-layout").style.transform = "scale(0.75)";
+                this.transformScale = 0.75
+                document.getElementById("grid-layout").style.transform = "scale(0.75)";
             },
             scaleIdentity: function() {
-              this.transformScale = 1
-              document.getElementById("grid-layout").style.transform = "scale(1)";
+                this.transformScale = 1
+                document.getElementById("grid-layout").style.transform = "scale(1)";
             },
-            removeItem: function(item) {
-                //console.log("### REMOVE " + item.i);
-                this.layout.splice(this.layout.indexOf(item), 1);
+            removeItem: function(i) {
+                console.log("### REMOVE " + i);
+                const index = this.layout.map(item => item.i).indexOf(i);
+                this.layout.splice(index, 1);
             },
             addItem: function() {
                 // let self = this;
@@ -210,9 +227,12 @@
                 this.layout.push(item);
             },
             addItemDynamically: function() {
+                const x = (this.layout.length * 2) % (this.colNum || 12);
+                const y = this.layout.length + (this.colNum || 12);
+                console.log("X=" + x + " Y=" + y)
                 let item = {
-                  x: (this.layout.length * 2) % (this.colNum || 12),
-                  y: this.layout.length + (this.colNum || 12),
+                  x: x,
+                  y: y,
                   w: 2,
                   h: 2,
                   i: this.index+"",
@@ -302,7 +322,7 @@
         }*/
 </style>
 
-<style lang="scss">
+<style lang="css">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

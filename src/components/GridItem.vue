@@ -93,6 +93,7 @@
     //    var eventBus = require('./eventBus');
 
     import '@interactjs/auto-start'
+    import '@interactjs/auto-scroll'
     import '@interactjs/actions/drag'
     import '@interactjs/actions/resize'
     import '@interactjs/modifiers'
@@ -129,6 +130,11 @@
                 default: null
             },
             isResizable: {
+                type: Boolean,
+                required: false,
+                default: null
+            },
+            isBounded: {
                 type: Boolean,
                 required: false,
                 default: null
@@ -197,6 +203,21 @@
                 required: false,
                 default: 'a, button'
             },
+            preserveAspectRatio: {
+                type: Boolean,
+                required: false,
+                default: false,
+            },
+            dragOption:{
+                type:Object,
+                required: false,
+                default: ()=>({}),
+            },
+            resizeOption:{
+                type:Object,
+                required: false,
+                default: ()=>({}),
+            }
         },
         inject: ["eventBus", "layout"],
         data: function () {
@@ -260,8 +281,14 @@
                 }
             };
 
+            self.setBoundedHandler = function (isBounded) {
+                if (self.isBounded === null) {
+                    self.bounded = isBounded;
+                }
+            };
+
             self.setTransformScaleHandler = function (transformScale) {
-              self.transformScale = transformScale
+                self.transformScale = transformScale
             };
 
             self.setRowHeightHandler = function (rowHeight) {
@@ -285,6 +312,7 @@
             this.eventBus.$on('compact', self.compactHandler);
             this.eventBus.$on('setDraggable', self.setDraggableHandler);
             this.eventBus.$on('setResizable', self.setResizableHandler);
+            this.eventBus.$on('setBounded', self.setBoundedHandler);
             this.eventBus.$on('setTransformScale', self.setTransformScaleHandler)
             this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$on('setMaxRows', self.setMaxRowsHandler);
@@ -300,6 +328,7 @@
             this.eventBus.$off('compact', self.compactHandler);
             this.eventBus.$off('setDraggable', self.setDraggableHandler);
             this.eventBus.$off('setResizable', self.setResizableHandler);
+            this.eventBus.$off('setBounded', self.setBoundedHandler);
             this.eventBus.$off('setTransformScale', self.setTransformScaleHandler)
             this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
             this.eventBus.$off('setMaxRows', self.setMaxRowsHandler);
@@ -330,6 +359,11 @@
             } else {
                 this.resizable = this.isResizable;
             }
+            if (this.isBounded === null) {
+                this.bounded = this.layout.isBounded;
+            } else {
+                this.bounded = this.isBounded;
+            }
             this.transformScale = this.layout.transformScale
             this.useCssTransforms = this.layout.useCssTransforms;
             this.useStyleCursor = this.layout.useStyleCursor;
@@ -348,6 +382,9 @@
             },
             isResizable: function () {
                 this.resizable = this.isResizable;
+            },
+            isBounded: function () {
+                this.bounded = this.isBounded;
             },
             resizable: function () {
                 this.tryMakeResizable();
@@ -654,6 +691,13 @@
                             newPosition.left = this.dragging.left + coreEvent.deltaX / this.transformScale;
                         }
                         newPosition.top = this.dragging.top + coreEvent.deltaY / this.transformScale;
+                        if(this.bounded){
+                            const bottomBoundary = event.target.offsetParent.clientHeight - this.calcGridItemWHPx(this.h, this.rowHeight, this.margin[1]);
+                            newPosition.top = this.clamp(newPosition.top, 0, bottomBoundary);
+                            const colWidth = this.calcColWidth();
+                            const rightBoundary = this.containerWidth - this.calcGridItemWHPx(this.w, colWidth, this.margin[0]);
+                            newPosition.left = this.clamp(newPosition.left, 0, rightBoundary);
+                        }
 //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
 //                        console.log("### drag => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
 //                        console.log("### drag end => " + JSON.stringify(newPosition));
@@ -742,21 +786,43 @@
                // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
                 return colWidth;
             },
+            // This can either be called:
+            // calcGridItemWHPx(w, colWidth, margin[0])
+            // or
+            // calcGridItemWHPx(h, rowHeight, margin[1])
+            calcGridItemWHPx(gridUnits,colOrRowSize,marginPx) {
+                // 0 * Infinity === NaN, which causes problems with resize contraints
+                if (!Number.isFinite(gridUnits)) return gridUnits;
+                return Math.round(
+                    colOrRowSize * gridUnits + Math.max(0, gridUnits - 1) * marginPx
+                );
+            },
+
+            // Similar to _.clamp
+            clamp(num, lowerBound, upperBound) {
+                return Math.max(Math.min(num, upperBound), lowerBound);
+            },
 
             /**
              * Given a height and width in pixel values, calculate grid units.
              * @param  {Number} height Height in pixels.
              * @param  {Number} width  Width in pixels.
+             * @param  {Boolean} autoSizeFlag  function autoSize identifier.
              * @return {Object} w, h as grid units.
              */
-            calcWH(height, width) {
+            calcWH(height, width, autoSizeFlag = false) {
                 const colWidth = this.calcColWidth();
 
                 // width = colWidth * w - (margin * (w - 1))
                 // ...
                 // w = (width + margin) / (colWidth + margin)
                 let w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));
-                let h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                let h = 0;
+                if (!autoSizeFlag) {
+                    h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                } else {
+                    h = Math.ceil((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+                }
 
                 // Capping
                 w = Math.max(Math.min(w, this.cols - this.innerX), 0);
@@ -783,7 +849,8 @@
                 if (this.draggable && !this.static) {
                     const opts = {
                         ignoreFrom: this.dragIgnoreFrom,
-                        allowFrom: this.dragAllowFrom
+                        allowFrom: this.dragAllowFrom,
+                        ...this.dragOption
                     };
                     this.interactObj.draggable(opts);
                     /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
@@ -815,7 +882,6 @@
                     // console.log("### MIN " + JSON.stringify(minimum));
 
                     const opts = {
-                        preserveAspectRatio: true,
                         // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
                         edges: {
                             left: false,
@@ -833,8 +899,17 @@
                                 height: maximum.height * this.transformScale,
                                 width: maximum.width * this.transformScale
                             }
-                        }
+                        },
+                        ...this.resizeOption,
                     };
+
+                    if (this.preserveAspectRatio) {
+                        opts.modifiers = [
+                            interact.modifiers.aspectRatio({
+                                ratio: 'preserve'
+                            }),
+                        ]
+                    }
 
                     this.interactObj.resizable(opts);
                     if (!this.resizeEventSet) {
@@ -856,7 +931,7 @@
                 this.previousH = this.innerH;
 
                 let newSize=this.$slots.default[0].elm.getBoundingClientRect();
-                let pos = this.calcWH(newSize.height, newSize.width);
+                let pos = this.calcWH(newSize.height, newSize.width, true);
                 if (pos.w < this.minW) {
                     pos.w = this.minW;
                 }

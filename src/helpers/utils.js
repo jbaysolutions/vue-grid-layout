@@ -75,9 +75,10 @@ export function collides(l1: LayoutItem, l2: LayoutItem): boolean {
  * @param  {Array} layout Layout.
  * @param  {Boolean} verticalCompact Whether or not to compact the layout
  *   vertically.
+ * @param {Object} minPositions
  * @return {Array}       Compacted Layout.
  */
-export function compact(layout: Layout, verticalCompact: Boolean): Layout {
+export function compact(layout: Layout, verticalCompact: Boolean, minPositions): Layout {
     // Statics go in the compareWith array right away so items flow around them.
   const compareWith = getStatics(layout);
   // We go through the items by row and column.
@@ -90,7 +91,7 @@ export function compact(layout: Layout, verticalCompact: Boolean): Layout {
 
     // Don't move static elements
     if (!l.static) {
-      l = compactItem(compareWith, l, verticalCompact);
+      l = compactItem(compareWith, l, verticalCompact, minPositions);
 
       // Add to comparison array. We only collide with items before this one.
       // Statics are already in this array.
@@ -110,10 +111,15 @@ export function compact(layout: Layout, verticalCompact: Boolean): Layout {
 /**
  * Compact an item in the layout.
  */
-export function compactItem(compareWith: Layout, l: LayoutItem, verticalCompact: boolean): LayoutItem {
+export function compactItem(compareWith: Layout, l: LayoutItem, verticalCompact: boolean, minPositions): LayoutItem {
   if (verticalCompact) {
     // Move the element up as far as it can go without colliding.
     while (l.y > 0 && !getFirstCollision(compareWith, l)) {
+      l.y--;
+    }
+  } else if (minPositions) {
+    const minY = minPositions[l.i].y;
+    while (l.y > minY && !getFirstCollision(compareWith, l)) {
       l.y--;
     }
   }
@@ -462,6 +468,7 @@ export function synchronizeLayoutWithChildren(initialLayout: Layout, children: A
 export function validateLayout(layout: Layout, contextName: string): void {
   contextName = contextName || "Layout";
   const subProps = ['x', 'y', 'w', 'h'];
+  let keyArr = [];
   if (!Array.isArray(layout)) throw new Error(contextName + " must be an array!");
   for (let i = 0, len = layout.length; i < len; i++) {
     const item = layout[i];
@@ -470,11 +477,20 @@ export function validateLayout(layout: Layout, contextName: string): void {
         throw new Error('VueGridLayout: ' + contextName + '[' + i + '].' + subProps[j] + ' must be a number!');
       }
     }
-    if (item.i && typeof item.i !== 'string') {
-      // number is also ok, so comment the error
-        // TODO confirm if commenting the line below doesn't cause unexpected problems
-      // throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
+
+    if (item.i === undefined || item.i === null) {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i cannot be null!');
     }
+
+    if (typeof item.i !== 'number' && typeof item.i !== 'string') {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string or number!');
+    }
+
+    if (keyArr.indexOf(item.i) >= 0) {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be unique!');
+    }
+    keyArr.push(item.i);
+
     if (item.static !== undefined && typeof item.static !== 'boolean') {
       throw new Error('VueGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');
     }
