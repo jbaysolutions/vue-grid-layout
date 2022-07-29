@@ -104,6 +104,10 @@
                     return {};
                 }
             },
+            transformScale: {
+                type: Number,
+                default: 1
+            },
             breakpoints:{
                 type: Object,
                 default: function(){return{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
@@ -179,7 +183,7 @@
                 const self = this;
                 this.$nextTick(function() {
                     self.initResponsiveFeatures();
-                    
+
                     self.onWindowResize();
 
 
@@ -255,6 +259,9 @@
             },
             isBounded: function() {
                 this.eventBus.$emit("setBounded", this.isBounded);
+            },
+            transformScale: function() {
+                this.eventBus.$emit("setTransformScale", this.transformScale);
             },
             responsive() {
                 if (!this.responsive) {

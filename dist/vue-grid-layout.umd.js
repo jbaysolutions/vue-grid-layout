@@ -1,4 +1,4 @@
-/*! vue-grid-layout - 2.3.12 | (c) 2015, 2021  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
+/*! vue-grid-layout - 2.3.11 | (c) 2015, 2020  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("vue"));
@@ -1267,24 +1267,18 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"048e26c0-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=db3b5a1c&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"099cfe04-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=2ee350e3&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=db3b5a1c&
+// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=2ee350e3&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
-var es6_array_iterator = __webpack_require__("cadf");
-
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
 var es6_object_keys = __webpack_require__("456d");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
-var es6_object_assign = __webpack_require__("f751");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-finite.js
 var es6_number_is_finite = __webpack_require__("fca0");
@@ -1327,8 +1321,6 @@ var GridItem = __webpack_require__("bc21");
 var DOM = __webpack_require__("1ca7");
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=script&lang=js&
-
-
 
 
 
@@ -1435,6 +1427,10 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       default: function _default() {
         return {};
       }
+    },
+    transformScale: {
+      type: Number,
+      default: 1
     },
     breakpoints: {
       type: Object,
@@ -1599,6 +1595,9 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
     },
     isResizable: function isResizable() {
       this.eventBus.$emit("setResizable", this.isResizable);
+    },
+    transformScale: function transformScale() {
+      this.eventBus.$emit("setTransformScale", this.transformScale);
     },
     responsive: function responsive() {
       if (!this.responsive) {
@@ -2483,7 +2482,7 @@ var store = global[SHARED] || (global[SHARED] = {});
 })('versions', []).push({
   version: core.version,
   mode: __webpack_require__("2d00") ? 'pure' : 'global',
-  copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 
 
@@ -2786,52 +2785,6 @@ var update = add("3cbd0c21", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ "7333":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// 19.1.2.1 Object.assign(target, source, ...)
-var DESCRIPTORS = __webpack_require__("9e1e");
-var getKeys = __webpack_require__("0d58");
-var gOPS = __webpack_require__("2621");
-var pIE = __webpack_require__("52a7");
-var toObject = __webpack_require__("4bf8");
-var IObject = __webpack_require__("626a");
-var $assign = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__("79e5")(function () {
-  var A = {};
-  var B = {};
-  // eslint-disable-next-line no-undef
-  var S = Symbol();
-  var K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function (k) { B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = toObject(target);
-  var aLen = arguments.length;
-  var index = 1;
-  var getSymbols = gOPS.f;
-  var isEnum = pIE.f;
-  while (aLen > index) {
-    var S = IObject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-    while (length > j) {
-      key = keys[j++];
-      if (!DESCRIPTORS || isEnum.call(S, key)) T[key] = S[key];
-    }
-  } return T;
-} : $assign;
-
-
-/***/ }),
-
 /***/ "7726":
 /***/ (function(module, exports) {
 
@@ -2913,7 +2866,7 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
 /***/ "8378":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.12' };
+var core = module.exports = { version: '2.6.11' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -3045,12 +2998,9 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("ac6a");
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("cadf");
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("456d");
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("a2b6");
-
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("456d");
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("a2b6");
 
 
 
@@ -3144,7 +3094,7 @@ function findOrGenerateResponsiveLayout(orgLayout
 /*: Layout*/
 {
   // If it already exists, just return it.
-  if (layouts[breakpoint]) return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* cloneLayout */ "b"])(layouts[breakpoint]); // Find or generate the next layout
+  if (layouts[breakpoint]) return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* cloneLayout */ "b"])(layouts[breakpoint]); // Find or generate the next layout
 
   var layout = orgLayout;
   var breakpointsSorted = sortBreakpoints(breakpoints);
@@ -3159,9 +3109,9 @@ function findOrGenerateResponsiveLayout(orgLayout
     }
   }
 
-  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
+  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
 
-  return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* correctBounds */ "d"])(layout, {
+  return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* correctBounds */ "d"])(layout, {
     cols: cols
   }), verticalCompact);
 }
@@ -3195,9 +3145,9 @@ function generateResponsiveLayout(layout
     break;
   }
   }*/
-  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
+  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
 
-  return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* correctBounds */ "d"])(layout, {
+  return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* correctBounds */ "d"])(layout, {
     cols: cols
   }), verticalCompact);
 }
@@ -3355,15 +3305,12 @@ module.exports = !__webpack_require__("79e5")(function () {
 /* unused harmony export findAndRemove */
 /* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("a481");
 /* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cadf");
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("456d");
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("ac6a");
-/* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("55dd");
-/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_4__);
-
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("456d");
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("ac6a");
+/* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("55dd");
+/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -4432,12 +4379,12 @@ __webpack_require__.d(all_namespaceObject, "edgeTarget", function() { return edg
 __webpack_require__.d(all_namespaceObject, "elements", function() { return snappers_elements; });
 __webpack_require__.d(all_namespaceObject, "grid", function() { return grid; });
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"048e26c0-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=7eed73a4&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"099cfe04-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=37761098&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-item",class:_vm.classObj,style:(_vm.style)},[_vm._t("default"),(_vm.resizableAndNotStatic)?_c('span',{ref:"handle",class:_vm.resizableHandleClass}):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=7eed73a4&
+// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=37761098&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
@@ -4756,7 +4703,7 @@ function raf_init(window) {
   if (!request) {
     request = callback => {
       const currTime = Date.now();
-      const timeToCall = Math.max(0, 16 - (currTime - lastTime)); // eslint-disable-next-line node/no-callback-literal
+      const timeToCall = Math.max(0, 16 - (currTime - lastTime)); // eslint-disable-next-line standard/no-callback-literal
 
       const token = window.setTimeout(() => {
         callback(currTime + timeToCall);
@@ -5281,6 +5228,7 @@ const defaultOptions_defaults = {
 
 
 class InteractEvent_InteractEvent extends BaseEvent {
+  // drag
   // resize
 
   /** */
@@ -5312,6 +5260,8 @@ class InteractEvent_InteractEvent extends BaseEvent {
     this.speed = void 0;
     this.swipe = void 0;
     this.timeStamp = void 0;
+    this.dragEnter = void 0;
+    this.dragLeave = void 0;
     this.axes = void 0;
     this.preEnd = void 0;
     element = element || interaction.element;
@@ -5637,7 +5587,7 @@ class Interactable_Interactable {
    * overridden using {@link Interactable.rectChecker}.
    *
    * @param {Element} [element] The element to measure.
-   * @return {Rect} The object's bounding rectangle.
+   * @return {Interact.Rect} The object's bounding rectangle.
    */
 
 
@@ -6317,7 +6267,6 @@ function coordsToEvent(coords) {
 
 
 
-
 function install(scope) {
   const targets = [];
   const delegatedEvents = {};
@@ -6587,29 +6536,8 @@ function getOptions(param) {
   install
 });
 //# sourceMappingURL=events.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/utils/misc.js
-
-function warnOnce(method, message) {
-  let warned = false;
-  return function () {
-    if (!warned) {
-      win.console.warn(message);
-      warned = true;
-    }
-
-    return method.apply(this, arguments);
-  };
-}
-function copyAction(dest, src) {
-  dest.name = src.name;
-  dest.axis = src.axis;
-  dest.edges = src.edges;
-  return dest;
-}
-//# sourceMappingURL=misc.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/core/interactStatic.js
 /** @module interact */
-
 
 
 
@@ -6663,13 +6591,16 @@ function createInteractStatic(scope) {
   interact.closest = domUtils_closest;
   interact.globalEvents = {}; // eslint-disable-next-line no-undef
 
-  interact.version = "1.10.2";
+  interact.version = "1.10.0";
   interact.scope = scope;
   /**
   * Use a plugin
   *
   * @alias module:interact.use
   *
+  * @param {Object} plugin
+  * @param {function} plugin.install
+  * @return {Interact.InteractStatic}
    */
 
   interact.use = function (plugin, options) {
@@ -6682,8 +6613,7 @@ function createInteractStatic(scope) {
    *
    * @alias module:interact.isSet
    *
-   * @param {Target} target The Element or string being searched for
-   * @param {object} options
+   * @param {Element} element The Element being searched for
    * @return {boolean} Indicates if the element or CSS selector was previously
    * passed to interact
    */
@@ -6693,7 +6623,6 @@ function createInteractStatic(scope) {
     return !!this.scope.interactables.get(target, options && options.context);
   };
   /**
-   * @deprecated
    * Add a global listener for an InteractEvent or adds a DOM event to `document`
    *
    * @alias module:interact.on
@@ -6706,7 +6635,7 @@ function createInteractStatic(scope) {
    */
 
 
-  interact.on = warnOnce(function on(type, listener, options) {
+  interact.on = function (type, listener, options) {
     if (is.string(type) && type.search(' ') !== -1) {
       type = type.trim().split(/ +/);
     }
@@ -6743,9 +6672,8 @@ function createInteractStatic(scope) {
       }
 
     return this;
-  }, 'The interact.on() method is being deprecated');
+  };
   /**
-   * @deprecated
    * Removes a global InteractEvent listener or DOM event from `document`
    *
    * @alias module:interact.off
@@ -6758,7 +6686,8 @@ function createInteractStatic(scope) {
    * @return {object} interact
    */
 
-  interact.off = warnOnce(function off(type, listener, options) {
+
+  interact.off = function (type, listener, options) {
     if (is.string(type) && type.search(' ') !== -1) {
       type = type.trim().split(/ +/);
     }
@@ -6790,7 +6719,7 @@ function createInteractStatic(scope) {
     }
 
     return this;
-  }, 'The interact.off() method is being deprecated');
+  };
 
   interact.debug = function () {
     return this.scope;
@@ -6862,6 +6791,26 @@ function createInteractStatic(scope) {
   return interact;
 }
 //# sourceMappingURL=interactStatic.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/utils/misc.js
+
+function warnOnce(method, message) {
+  let warned = false;
+  return function () {
+    if (!warned) {
+      win.console.warn(message);
+      warned = true;
+    }
+
+    return method.apply(this, arguments);
+  };
+}
+function copyAction(dest, src) {
+  dest.name = src.name;
+  dest.axis = src.axis;
+  dest.edges = src.edges;
+  return dest;
+}
+//# sourceMappingURL=misc.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/core/PointerInfo.js
 class PointerInfo {
   constructor(id, pointer, event, downTime, downTarget) {
@@ -7406,7 +7355,6 @@ class Interaction_Interaction {
 
 
 
-
 function preventDefault(newValue) {
   if (/^(always|never|auto)$/.test(newValue)) {
     this.options.preventDefault = newValue;
@@ -7660,7 +7608,6 @@ function hasPointerId(interaction, pointerId) {
 /* harmony default export */ var interactionFinder = (finder);
 //# sourceMappingURL=interactionFinder.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/core/interactions.js
-
 
 
 
@@ -8187,7 +8134,6 @@ if (typeof window === 'object' && !!window) {
 
 
 
-
 function InteractableMethods_install(scope) {
   const {
     /** @lends Interactable */
@@ -8359,7 +8305,6 @@ function actionChecker(checker) {
 });
 //# sourceMappingURL=InteractableMethods.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/auto-start/base.js
-
 
 
 
@@ -8759,7 +8704,6 @@ function checkStartAxis(startAxis, interactable) {
 // CONCATENATED MODULE: ./node_modules/@interactjs/auto-start/hold.js
 
 
-
 function hold_install(scope) {
   const {
     defaults
@@ -8780,7 +8724,7 @@ function getHoldDuration(interaction) {
   return options[actionName].hold || options[actionName].delay;
 }
 
-const hold = {
+/* harmony default export */ var hold = ({
   id: 'auto-start/hold',
   install: hold_install,
   listeners: {
@@ -8813,16 +8757,15 @@ const hold = {
     'autoStart:before-start': ({
       interaction
     }) => {
-      const holdDuration = getHoldDuration(interaction);
+      const hold = getHoldDuration(interaction);
 
-      if (holdDuration > 0) {
+      if (hold > 0) {
         interaction.prepared.name = null;
       }
     }
   },
   getHoldDuration
-};
-/* harmony default export */ var auto_start_hold = (hold);
+});
 //# sourceMappingURL=hold.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/auto-start/plugin.js
 
@@ -8833,7 +8776,7 @@ const hold = {
 
   install(scope) {
     scope.usePlugin(base);
-    scope.usePlugin(auto_start_hold);
+    scope.usePlugin(hold);
     scope.usePlugin(dragAxis);
   }
 
@@ -8846,12 +8789,17 @@ const hold = {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
+} // eslint-disable-next-line no-undef
+
+
+if (( true) && !_interactjs_interact.__warnedUseImport) {
+  _interactjs_interact.__warnedUseImport = true;
+  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(auto_start_plugin);
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/actions/drag/plugin.js
-
 
 
 function plugin_install(scope) {
@@ -9021,12 +8969,17 @@ const drag = {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
+} // eslint-disable-next-line no-undef
+
+
+if (( true) && !_interactjs_interact.__warnedUseImport) {
+  _interactjs_interact.__warnedUseImport = true;
+  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(drag_plugin);
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/actions/resize/plugin.js
-
 
 
 
@@ -9243,8 +9196,6 @@ function checkResizeEdge(name, value, page, element, interactableElement, rect, 
   ? value === element // otherwise check if element matches value as selector
   : matchesUpTo(element, value, interactableElement);
 }
-/* eslint-disable multiline-ternary */
-
 
 function initCursors(browser) {
   return browser.isIe9 ? {
@@ -9273,8 +9224,6 @@ function initCursors(browser) {
     bottomleft: 'nesw-resize'
   };
 }
-/* eslint-enable multiline-ternary */
-
 
 function start({
   iEvent,
@@ -9315,7 +9264,8 @@ function plugin_move({
   const resizeEvent = iEvent;
   const resizeOptions = interaction.interactable.options.resize;
   const invert = resizeOptions.invert;
-  const invertible = invert === 'reposition' || invert === 'negate';
+  const invertible = invert === 'reposition' || invert === 'negate'; // eslint-disable-next-line no-shadow
+
   const current = interaction.rect;
   const {
     start: startRect,
@@ -9483,6 +9433,12 @@ const resize = {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
+} // eslint-disable-next-line no-undef
+
+
+if (( true) && !_interactjs_interact.__warnedUseImport) {
+  _interactjs_interact.__warnedUseImport = true;
+  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(resize_plugin);
@@ -9950,8 +9906,6 @@ function getRectOffset(rect, coords) {
 //# sourceMappingURL=Modification.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/modifiers/base.js
 
-
-
 function makeModifier(module, name) {
   const {
     defaults
@@ -10052,7 +10006,7 @@ const modifiersBase = {
  * interact(target).resizable({
  *   modifiers: [
  *     interact.modifiers.snapSize({
- *       targets: [ interact.snappers.grid({ x: 20, y: 20 }) ],
+ *       targets: [ interact.createSnapGrid({ x: 20, y: 20 }) ],
  *     }),
  *     interact.aspectRatio({ ratio: 'preserve' }),
  *   ],
@@ -10917,13 +10871,18 @@ const plugin_modifiers = {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
+} // eslint-disable-next-line no-undef
+
+
+if (( true) && !_interactjs_interact.__warnedUseImport) {
+  _interactjs_interact.__warnedUseImport = true;
+  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(modifiers_plugin);
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/dev-tools/plugin.js
 /* eslint-disable no-console */
-
 
 
 
@@ -11070,6 +11029,12 @@ const defaultExport = isProduction ? {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
+} // eslint-disable-next-line no-undef
+
+
+if (( true) && !_interactjs_interact.__warnedUseImport) {
+  _interactjs_interact.__warnedUseImport = true;
+  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(dev_tools_plugin);
@@ -11274,11 +11239,6 @@ _interactjs_interact.use(dev_tools_plugin);
       type: String,
       required: false,
       default: 'a, button'
-    },
-    preserveAspectRatio: {
-      type: Boolean,
-      required: false,
-      default: false
     }
   },
   inject: ["eventBus", "layout"],
@@ -11291,6 +11251,7 @@ _interactjs_interact.use(dev_tools_plugin);
       maxRows: Infinity,
       draggable: null,
       resizable: null,
+      transformScale: 1,
       useCssTransforms: true,
       useStyleCursor: true,
       isDragging: false,
@@ -11340,6 +11301,10 @@ _interactjs_interact.use(dev_tools_plugin);
       }
     };
 
+    self.setTransformScaleHandler = function (transformScale) {
+      self.transformScale = transformScale;
+    };
+
     self.setRowHeightHandler = function (rowHeight) {
       self.rowHeight = rowHeight;
     };
@@ -11362,6 +11327,7 @@ _interactjs_interact.use(dev_tools_plugin);
     this.eventBus.$on('compact', self.compactHandler);
     this.eventBus.$on('setDraggable', self.setDraggableHandler);
     this.eventBus.$on('setResizable', self.setResizableHandler);
+    this.eventBus.$on('setTransformScale', self.setTransformScaleHandler);
     this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
     this.eventBus.$on('setMaxRows', self.setMaxRowsHandler);
     this.eventBus.$on('directionchange', self.directionchangeHandler);
@@ -11375,6 +11341,7 @@ _interactjs_interact.use(dev_tools_plugin);
     this.eventBus.$off('compact', self.compactHandler);
     this.eventBus.$off('setDraggable', self.setDraggableHandler);
     this.eventBus.$off('setResizable', self.setResizableHandler);
+    this.eventBus.$off('setTransformScale', self.setTransformScaleHandler);
     this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
     this.eventBus.$off('setMaxRows', self.setMaxRowsHandler);
     this.eventBus.$off('directionchange', self.directionchangeHandler);
@@ -11408,6 +11375,7 @@ _interactjs_interact.use(dev_tools_plugin);
       this.resizable = this.isResizable;
     }
 
+    this.transformScale = this.layout.transformScale;
     this.useCssTransforms = this.layout.useCssTransforms;
     this.useStyleCursor = this.layout.useStyleCursor;
     this.createStyle();
@@ -11601,6 +11569,7 @@ _interactjs_interact.use(dev_tools_plugin);
       switch (event.type) {
         case "resizestart":
           {
+            this.tryMakeResizable();
             this.previousW = this.innerW;
             this.previousH = this.innerH;
             pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
@@ -11617,12 +11586,12 @@ _interactjs_interact.use(dev_tools_plugin);
             var coreEvent = createCoreData(this.lastW, this.lastH, x, y);
 
             if (this.renderRtl) {
-              newSize.width = this.resizing.width - coreEvent.deltaX;
+              newSize.width = this.resizing.width - coreEvent.deltaX / this.transformScale;
             } else {
-              newSize.width = this.resizing.width + coreEvent.deltaX;
+              newSize.width = this.resizing.width + coreEvent.deltaX / this.transformScale;
             }
 
-            newSize.height = this.resizing.height + coreEvent.deltaY; ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
+            newSize.height = this.resizing.height + coreEvent.deltaY / this.transformScale; ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
 
             this.resizing = newSize;
             break;
@@ -11703,14 +11672,20 @@ _interactjs_interact.use(dev_tools_plugin);
             this.previousY = this.innerY;
             var parentRect = event.target.offsetParent.getBoundingClientRect();
             var clientRect = event.target.getBoundingClientRect();
+            var cLeft = clientRect.left / this.transformScale;
+            var pLeft = parentRect.left / this.transformScale;
+            var cRight = clientRect.right / this.transformScale;
+            var pRight = parentRect.right / this.transformScale;
+            var cTop = clientRect.top / this.transformScale;
+            var pTop = parentRect.top / this.transformScale;
 
             if (this.renderRtl) {
-              newPosition.left = (clientRect.right - parentRect.right) * -1;
+              newPosition.left = (cRight - pRight) * -1;
             } else {
-              newPosition.left = clientRect.left - parentRect.left;
+              newPosition.left = cLeft - pLeft;
             }
 
-            newPosition.top = clientRect.top - parentRect.top;
+            newPosition.top = cTop - pTop;
             this.dragging = newPosition;
             this.isDragging = true;
             break;
@@ -11722,16 +11697,28 @@ _interactjs_interact.use(dev_tools_plugin);
 
             var _parentRect = event.target.offsetParent.getBoundingClientRect();
 
-            var _clientRect = event.target.getBoundingClientRect(); //                        Add rtl support
+            var _clientRect = event.target.getBoundingClientRect();
+
+            var _cLeft = _clientRect.left / this.transformScale;
+
+            var _pLeft = _parentRect.left / this.transformScale;
+
+            var _cRight = _clientRect.right / this.transformScale;
+
+            var _pRight = _parentRect.right / this.transformScale;
+
+            var _cTop = _clientRect.top / this.transformScale;
+
+            var _pTop = _parentRect.top / this.transformScale; //                        Add rtl support
 
 
             if (this.renderRtl) {
-              newPosition.left = (_clientRect.right - _parentRect.right) * -1;
+              newPosition.left = (_cRight - _pRight) * -1;
             } else {
-              newPosition.left = _clientRect.left - _parentRect.left;
+              newPosition.left = _cLeft - _pLeft;
             }
 
-            newPosition.top = _clientRect.top - _parentRect.top; //                        console.log("### drag end => " + JSON.stringify(newPosition));
+            newPosition.top = _cTop - _pTop; //                        console.log("### drag end => " + JSON.stringify(newPosition));
             //                        console.log("### DROP: " + JSON.stringify(newPosition));
 
             this.dragging = null;
@@ -11745,12 +11732,12 @@ _interactjs_interact.use(dev_tools_plugin);
             var coreEvent = createCoreData(this.lastX, this.lastY, x, y); //                        Add rtl support
 
             if (this.renderRtl) {
-              newPosition.left = this.dragging.left - coreEvent.deltaX;
+              newPosition.left = this.dragging.left - coreEvent.deltaX / this.transformScale;
             } else {
-              newPosition.left = this.dragging.left + coreEvent.deltaX;
+              newPosition.left = this.dragging.left + coreEvent.deltaX / this.transformScale;
             }
 
-            newPosition.top = this.dragging.top + coreEvent.deltaY; //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
+            newPosition.top = this.dragging.top + coreEvent.deltaY / this.transformScale; //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
             //                        console.log("### drag => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
             //                        console.log("### drag end => " + JSON.stringify(newPosition));
 
@@ -11923,6 +11910,7 @@ _interactjs_interact.use(dev_tools_plugin);
         // console.log("### MIN " + JSON.stringify(minimum));
 
         var opts = {
+          preserveAspectRatio: true,
           // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
           edges: {
             left: false,
@@ -11933,22 +11921,15 @@ _interactjs_interact.use(dev_tools_plugin);
           ignoreFrom: this.resizeIgnoreFrom,
           restrictSize: {
             min: {
-              height: minimum.height,
-              width: minimum.width
+              height: minimum.height * this.transformScale,
+              width: minimum.width * this.transformScale
             },
             max: {
-              height: maximum.height,
-              width: maximum.width
+              height: maximum.height * this.transformScale,
+              width: maximum.width * this.transformScale
             }
           }
         };
-
-        if (this.preserveAspectRatio) {
-          opts.modifiers = [_interactjs_interact.modifiers.aspectRatio({
-            ratio: 'preserve'
-          })];
-        }
-
         this.interactObj.resizable(opts);
 
         if (!this.resizeEventSet) {
@@ -13574,17 +13555,6 @@ module.exports = function (object, index, value) {
     });
   }
 })(document);
-
-
-/***/ }),
-
-/***/ "f751":
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__("5ca1");
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__("7333") });
 
 
 /***/ }),
