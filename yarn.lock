@@ -1549,7 +1549,7 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@interactjs/actions@1.10.2", "@interactjs/actions@^1.10.2":
+"@interactjs/actions@1.10.2":
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/@interactjs/actions/-/actions-1.10.2.tgz#050ae1c40b7bd3773a79a65c5fb1730bb6111e7c"
   integrity sha512-BHJcW84WCMf/LsKmha/1Yog7aH3+QBXbLvowvZvwYvgjdUIb3xCa1a7FUYXuWAeKNMyKPVjFun+WPce75B+1tA==
@@ -1568,7 +1568,7 @@
   optionalDependencies:
     "@interactjs/interact" "1.10.2"
 
-"@interactjs/auto-start@1.10.2", "@interactjs/auto-start@^1.10.2":
+"@interactjs/auto-start@1.10.2":
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/@interactjs/auto-start/-/auto-start-1.10.2.tgz#bf961ae541cdf7cb0f03cb7ba89b4def4462fab0"
   integrity sha512-nZudj8VzJzz+uEyDHqXwtKpvUYr+Oj1+xBrJEu21CywroHQWM2J4fCIiCgeCo3d5/p/TrzFk5b+YfAWePKiLxA==
@@ -1585,7 +1585,7 @@
   resolved "https://registry.yarnpkg.com/@interactjs/core/-/core-1.10.2.tgz#00bc9c9ea9f50c1e345ab96deb750881e7ff0e6a"
   integrity sha512-SA5KRGo+gFJOhBj1Z2dLHhAf0/2nyHNd4SQ460aIQ3jj/QhqbJW6kGzmh7hBa2FzVGgxLhcQu7NZaP4rnDfUNw==
 
-"@interactjs/dev-tools@1.10.2", "@interactjs/dev-tools@^1.10.2":
+"@interactjs/dev-tools@1.10.2":
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/@interactjs/dev-tools/-/dev-tools-1.10.2.tgz#cde413abbd11dd91c87499105e16091e6eb35b67"
   integrity sha512-aAd9NgTAGA3yVdFCYcAAYrM4TYQFuVqEvsF+xj+g5SlGyrJ7+GTjPZ2rScOyAsABY4Tz64L2pXvWmXMG87dncA==
@@ -1617,7 +1617,7 @@
     "@interactjs/types" "1.10.2"
     "@interactjs/utils" "1.10.2"
 
-"@interactjs/interactjs@^1.10.2":
+"@interactjs/interactjs@1.10.2":
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/@interactjs/interactjs/-/interactjs-1.10.2.tgz#af96e47fc637ca96d9477fe8d7d1858ccaef28f8"
   integrity sha512-OwLl70af6lfZOOg/bvWKSNm1DS1nDI72QnzDYljSKfc2D8stqLIGDO1wPY2rhZudUG5q3t50EhmMUQF76yll/g==
@@ -1641,7 +1641,7 @@
     "@interactjs/utils" "1.10.2"
     "@interactjs/vue" "1.10.2"
 
-"@interactjs/modifiers@1.10.2", "@interactjs/modifiers@^1.10.2":
+"@interactjs/modifiers@1.10.2":
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/@interactjs/modifiers/-/modifiers-1.10.2.tgz#fde941d1f07d88b19c351d77cab3c766351c8f9e"
   integrity sha512-3wYEucvZF2NTIslnVIKw5MWhkn9LM42cGCQaC19o3LZeWnbps7NnHJCyQp6zylJrCbwt7f+CSt4Oj2/s0f6XEA==
@@ -4816,9 +4816,9 @@ electron-to-chromium@^1.3.793:
   integrity sha512-l9NrGV6Mr4ov5mayYPvIWcwklNw5ROmy6rllzz9dCACw9nKE5y+s5uQk+CBJMetxrWZ6QJFsvEfG6WDcH2IGUg==
 
 element-resize-detector@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/element-resize-detector/-/element-resize-detector-1.2.1.tgz#b0305194447a4863155e58f13323a0aef30851d1"
-  integrity sha512-BdFsPepnQr9fznNPF9nF4vQ457U/ZJXQDSNF1zBe7yaga8v9AdZf3/NElYxFdUh7SitSGt040QygiTo6dtatIw==
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/element-resize-detector/-/element-resize-detector-1.2.4.tgz#3e6c5982dd77508b5fa7e6d5c02170e26325c9b1"
+  integrity sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==
   dependencies:
     batch-processor "1.0.0"
 

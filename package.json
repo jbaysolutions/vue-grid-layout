@@ -29,12 +29,12 @@
     "test:cover": "vue-cli-service test:unit --coverage"
   },
   "dependencies": {
-    "@interactjs/actions": "^1.10.2",
-    "@interactjs/auto-scroll": "^1.10.8",
-    "@interactjs/auto-start": "^1.10.2",
-    "@interactjs/dev-tools": "^1.10.2",
-    "@interactjs/interactjs": "^1.10.2",
-    "@interactjs/modifiers": "^1.10.2",
+    "@interactjs/actions": "1.10.2",
+    "@interactjs/auto-scroll": "1.10.2",
+    "@interactjs/auto-start": "1.10.2",
+    "@interactjs/interactjs": "1.10.2",
+    "@interactjs/modifiers": "1.10.2",
+    "@interactjs/dev-tools": "1.10.2",
     "element-resize-detector": "^1.2.1"
   },
   "devDependencies": {
