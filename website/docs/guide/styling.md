@@ -72,6 +72,8 @@ CSS calculations for grid lines:
 * background size: calc(calc(100% - margin) / colNum) rowHeight + margin;
 * margin: margin / 2
 
+[View source](https://github.com/jbaysolutions/vue-grid-layout/blob/master/website/docs/.vuepress/components/ExampleStylingGridLines.vue)
+
 <ClientOnly>
 <ExampleStylingGridLines></ExampleStylingGridLines>
 </ClientOnly>
