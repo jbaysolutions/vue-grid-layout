@@ -45,4 +45,37 @@ In this example we change the placeholder background color to green:
 </ClientOnly>
 
 
+## Grid lines
+     
+To add grid lines to the layout, add the ``grid`` class to the grid-layout element and use the css:
+
+````css
+.grid::before {
+    content: '';
+    background-size: calc(calc(100% - 12px) / 12) 112px;
+    background-image: linear-gradient(
+            to right,
+            lightgrey 1px,
+            transparent 1px
+    ),
+    linear-gradient(to bottom, lightgrey 1px, transparent 1px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-repeat: repeat;
+    margin: 6px;
+}
+````
+
+CSS calculations for grid lines: 
+
+* background size: calc(calc(100% - margin) / colNum) rowHeight + margin;
+* margin: margin / 2
+
+<ClientOnly>
+<ExampleStylingGridLines></ExampleStylingGridLines>
+</ClientOnly>
+
+
+
 Work in progress...
