@@ -1,4 +1,4 @@
-/*! vue-grid-layout - 2.3.11 | (c) 2015, 2020  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
+/*! vue-grid-layout - 2.4.0 | (c) 2015, 2022  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("vue"));
@@ -1267,18 +1267,24 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"099cfe04-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=2ee350e3&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1705dc22-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=361da5e4&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=2ee350e3&
+// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=361da5e4&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
+var es6_array_iterator = __webpack_require__("cadf");
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
 var es6_object_keys = __webpack_require__("456d");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
+var es6_object_assign = __webpack_require__("f751");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-finite.js
 var es6_number_is_finite = __webpack_require__("fca0");
@@ -1286,21 +1292,9 @@ var es6_number_is_finite = __webpack_require__("fca0");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
 
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+var defineProperty = __webpack_require__("ade3");
 
-  return obj;
-}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
 
@@ -1314,7 +1308,7 @@ var utils = __webpack_require__("a2b6");
 // EXTERNAL MODULE: ./src/helpers/responsiveUtils.js
 var responsiveUtils = __webpack_require__("97a7");
 
-// EXTERNAL MODULE: ./src/components/GridItem.vue + 69 modules
+// EXTERNAL MODULE: ./src/components/GridItem.vue + 71 modules
 var GridItem = __webpack_require__("bc21");
 
 // EXTERNAL MODULE: ./src/helpers/DOM.js
@@ -1328,9 +1322,11 @@ var DOM = __webpack_require__("1ca7");
 
 
 
+
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(defineProperty["a" /* default */])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 //
 //
@@ -1406,6 +1402,10 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       type: Boolean,
       default: false
     },
+    isBounded: {
+      type: Boolean,
+      default: false
+    },
     useCssTransforms: {
       type: Boolean,
       default: true
@@ -1413,6 +1413,10 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
     verticalCompact: {
       type: Boolean,
       default: true
+    },
+    restoreOnDrag: {
+      type: Boolean,
+      default: false
     },
     layout: {
       type: Array,
@@ -1524,8 +1528,8 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       this.originalLayout = this.layout;
       var self = this;
       this.$nextTick(function () {
-        self.onWindowResize();
-        self.initResponsiveFeatures(); //self.width = self.$el.offsetWidth;
+        self.initResponsiveFeatures();
+        self.onWindowResize(); //self.width = self.$el.offsetWidth;
 
         Object(DOM["a" /* addWindowEventListener */])('resize', self.onWindowResize);
         Object(utils["c" /* compact */])(self.layout, self.verticalCompact);
@@ -1563,14 +1567,14 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
               got set to null in the constructor. It is now time
               to issue layout-ready events as the GridItems have
               their sizes configured properly.
-               The reason for emitting the layout-ready events on
+                The reason for emitting the layout-ready events on
               the next tick is to allow for the newly-emitted
               updateWidth event (above) to have reached the
               children GridItem-s and had their effect, so we're
               sure that they have the final size before we emit
               layout-ready (for this GridLayout) and
               item-layout-ready (for the GridItem-s).
-               This way any client event handlers can reliably
+                This way any client event handlers can reliably
               invistigate stable sizes of GridItem-s.
           */
           this.$nextTick(function () {
@@ -1595,6 +1599,9 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
     },
     isResizable: function isResizable() {
       this.eventBus.$emit("setResizable", this.isResizable);
+    },
+    isBounded: function isBounded() {
+      this.eventBus.$emit("setBounded", this.isBounded);
     },
     transformScale: function transformScale() {
       this.eventBus.$emit("setTransformScale", this.transformScale);
@@ -1674,6 +1681,18 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
         };
       }
 
+      if (eventName === "dragstart" && !this.verticalCompact) {
+        this.positionsBeforeDrag = this.layout.reduce(function (result, _ref) {
+          var i = _ref.i,
+              x = _ref.x,
+              y = _ref.y;
+          return _objectSpread(_objectSpread({}, result), {}, Object(defineProperty["a" /* default */])({}, i, {
+            x: x,
+            y: y
+          }));
+        }, {});
+      }
+
       if (eventName === "dragmove" || eventName === "dragstart") {
         this.placeholder.i = id;
         this.placeholder.x = l.x;
@@ -1693,11 +1712,25 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
 
 
       this.layout = Object(utils["g" /* moveElement */])(this.layout, l, x, y, true, this.preventCollision);
-      Object(utils["c" /* compact */])(this.layout, this.verticalCompact); // needed because vue can't detect changes on array element properties
+
+      if (this.restoreOnDrag) {
+        // Do not compact items more than in layout before drag
+        // Set moved item as static to avoid to compact it
+        l.static = true;
+        Object(utils["c" /* compact */])(this.layout, this.verticalCompact, this.positionsBeforeDrag);
+        l.static = false;
+      } else {
+        Object(utils["c" /* compact */])(this.layout, this.verticalCompact);
+      } // needed because vue can't detect changes on array element properties
+
 
       this.eventBus.$emit("compact");
       this.updateHeight();
-      if (eventName === 'dragend') this.$emit('layout-updated', this.layout);
+
+      if (eventName === 'dragend') {
+        delete this.positionsBeforeDrag;
+        this.$emit('layout-updated', this.layout);
+      }
     },
     resizeEvent: function resizeEvent(eventName, id, x, y, h, w) {
       var l = Object(utils["f" /* getLayoutItem */])(this.layout, id); //GetLayoutItem sometimes return null object
@@ -2482,7 +2515,7 @@ var store = global[SHARED] || (global[SHARED] = {});
 })('versions', []).push({
   version: core.version,
   mode: __webpack_require__("2d00") ? 'pure' : 'global',
-  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+  copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
 });
 
 
@@ -2785,6 +2818,52 @@ var update = add("3cbd0c21", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
+/***/ "7333":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var DESCRIPTORS = __webpack_require__("9e1e");
+var getKeys = __webpack_require__("0d58");
+var gOPS = __webpack_require__("2621");
+var pIE = __webpack_require__("52a7");
+var toObject = __webpack_require__("4bf8");
+var IObject = __webpack_require__("626a");
+var $assign = Object.assign;
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = !$assign || __webpack_require__("79e5")(function () {
+  var A = {};
+  var B = {};
+  // eslint-disable-next-line no-undef
+  var S = Symbol();
+  var K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function (k) { B[k] = k; });
+  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  var T = toObject(target);
+  var aLen = arguments.length;
+  var index = 1;
+  var getSymbols = gOPS.f;
+  var isEnum = pIE.f;
+  while (aLen > index) {
+    var S = IObject(arguments[index++]);
+    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var length = keys.length;
+    var j = 0;
+    var key;
+    while (length > j) {
+      key = keys[j++];
+      if (!DESCRIPTORS || isEnum.call(S, key)) T[key] = S[key];
+    }
+  } return T;
+} : $assign;
+
+
+/***/ }),
+
 /***/ "7726":
 /***/ (function(module, exports) {
 
@@ -2866,7 +2945,7 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
 /***/ "8378":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.11' };
+var core = module.exports = { version: '2.6.12' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -2998,9 +3077,12 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("ac6a");
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("456d");
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("a2b6");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("cadf");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("456d");
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("a2b6");
+
 
 
 
@@ -3094,7 +3176,7 @@ function findOrGenerateResponsiveLayout(orgLayout
 /*: Layout*/
 {
   // If it already exists, just return it.
-  if (layouts[breakpoint]) return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* cloneLayout */ "b"])(layouts[breakpoint]); // Find or generate the next layout
+  if (layouts[breakpoint]) return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* cloneLayout */ "b"])(layouts[breakpoint]); // Find or generate the next layout
 
   var layout = orgLayout;
   var breakpointsSorted = sortBreakpoints(breakpoints);
@@ -3109,9 +3191,9 @@ function findOrGenerateResponsiveLayout(orgLayout
     }
   }
 
-  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
+  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
 
-  return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* correctBounds */ "d"])(layout, {
+  return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* correctBounds */ "d"])(layout, {
     cols: cols
   }), verticalCompact);
 }
@@ -3145,9 +3227,9 @@ function generateResponsiveLayout(layout
     break;
   }
   }*/
-  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
+  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
 
-  return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* correctBounds */ "d"])(layout, {
+  return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* correctBounds */ "d"])(layout, {
     cols: cols
   }), verticalCompact);
 }
@@ -3305,12 +3387,15 @@ module.exports = !__webpack_require__("79e5")(function () {
 /* unused harmony export findAndRemove */
 /* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("a481");
 /* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("456d");
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("ac6a");
-/* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("55dd");
-/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cadf");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("456d");
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("ac6a");
+/* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("55dd");
+/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -3425,6 +3510,7 @@ function collides(l1
  * @param  {Array} layout Layout.
  * @param  {Boolean} verticalCompact Whether or not to compact the layout
  *   vertically.
+ * @param {Object} minPositions
  * @return {Array}       Compacted Layout.
  */
 
@@ -3432,7 +3518,7 @@ function compact(layout
 /*: Layout*/
 , verticalCompact
 /*: Boolean*/
-)
+, minPositions)
 /*: Layout*/
 {
   // Statics go in the compareWith array right away so items flow around them.
@@ -3446,7 +3532,7 @@ function compact(layout
     var l = sorted[i]; // Don't move static elements
 
     if (!l.static) {
-      l = compactItem(compareWith, l, verticalCompact); // Add to comparison array. We only collide with items before this one.
+      l = compactItem(compareWith, l, verticalCompact, minPositions); // Add to comparison array. We only collide with items before this one.
       // Statics are already in this array.
 
       compareWith.push(l);
@@ -3470,12 +3556,18 @@ function compactItem(compareWith
 /*: LayoutItem*/
 , verticalCompact
 /*: boolean*/
-)
+, minPositions)
 /*: LayoutItem*/
 {
   if (verticalCompact) {
     // Move the element up as far as it can go without colliding.
     while (l.y > 0 && !getFirstCollision(compareWith, l)) {
+      l.y--;
+    }
+  } else if (minPositions) {
+    var minY = minPositions[l.i].y;
+
+    while (l.y > minY && !getFirstCollision(compareWith, l)) {
       l.y--;
     }
   } // Move it down, and keep moving it down if it's colliding.
@@ -3900,6 +3992,7 @@ function validateLayout(layout
 {
   contextName = contextName || "Layout";
   var subProps = ['x', 'y', 'w', 'h'];
+  var keyArr = [];
   if (!Array.isArray(layout)) throw new Error(contextName + " must be an array!");
 
   for (var i = 0, len = layout.length; i < len; i++) {
@@ -3911,10 +4004,19 @@ function validateLayout(layout
       }
     }
 
-    if (item.i && typeof item.i !== 'string') {// number is also ok, so comment the error
-      // TODO confirm if commenting the line below doesn't cause unexpected problems
-      // throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
+    if (item.i === undefined || item.i === null) {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i cannot be null!');
     }
+
+    if (typeof item.i !== 'number' && typeof item.i !== 'string') {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string or number!');
+    }
+
+    if (keyArr.indexOf(item.i) >= 0) {
+      throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be unique!');
+    }
+
+    keyArr.push(item.i);
 
     if (item.static !== undefined && typeof item.static !== 'boolean') {
       throw new Error('VueGridLayout: ' + contextName + '[' + i + '].static must be a boolean!');
@@ -4323,6 +4425,28 @@ exports.push([module.i, ".vue-grid-layout{position:relative;-webkit-transition:h
 
 /***/ }),
 
+/***/ "ade3":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _defineProperty; });
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+/***/ }),
+
 /***/ "b0c5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4379,15 +4503,33 @@ __webpack_require__.d(all_namespaceObject, "edgeTarget", function() { return edg
 __webpack_require__.d(all_namespaceObject, "elements", function() { return snappers_elements; });
 __webpack_require__.d(all_namespaceObject, "grid", function() { return grid; });
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"099cfe04-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=37761098&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1705dc22-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=e7489122&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-item",class:_vm.classObj,style:(_vm.style)},[_vm._t("default"),(_vm.resizableAndNotStatic)?_c('span',{ref:"handle",class:_vm.resizableHandleClass}):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=37761098&
+// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=e7489122&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
+var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
+var web_dom_iterable = __webpack_require__("ac6a");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
+var es6_array_iterator = __webpack_require__("cadf");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
+var es6_object_keys = __webpack_require__("456d");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+var defineProperty = __webpack_require__("ade3");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-finite.js
+var es6_number_is_finite = __webpack_require__("fca0");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
 var es6_regexp_match = __webpack_require__("4917");
@@ -4703,7 +4845,7 @@ function raf_init(window) {
   if (!request) {
     request = callback => {
       const currTime = Date.now();
-      const timeToCall = Math.max(0, 16 - (currTime - lastTime)); // eslint-disable-next-line standard/no-callback-literal
+      const timeToCall = Math.max(0, 16 - (currTime - lastTime)); // eslint-disable-next-line node/no-callback-literal
 
       const token = window.setTimeout(() => {
         callback(currTime + timeToCall);
@@ -5228,7 +5370,6 @@ const defaultOptions_defaults = {
 
 
 class InteractEvent_InteractEvent extends BaseEvent {
-  // drag
   // resize
 
   /** */
@@ -5260,8 +5401,6 @@ class InteractEvent_InteractEvent extends BaseEvent {
     this.speed = void 0;
     this.swipe = void 0;
     this.timeStamp = void 0;
-    this.dragEnter = void 0;
-    this.dragLeave = void 0;
     this.axes = void 0;
     this.preEnd = void 0;
     element = element || interaction.element;
@@ -5587,7 +5726,7 @@ class Interactable_Interactable {
    * overridden using {@link Interactable.rectChecker}.
    *
    * @param {Element} [element] The element to measure.
-   * @return {Interact.Rect} The object's bounding rectangle.
+   * @return {Rect} The object's bounding rectangle.
    */
 
 
@@ -6267,6 +6406,7 @@ function coordsToEvent(coords) {
 
 
 
+
 function install(scope) {
   const targets = [];
   const delegatedEvents = {};
@@ -6536,8 +6676,29 @@ function getOptions(param) {
   install
 });
 //# sourceMappingURL=events.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/utils/misc.js
+
+function warnOnce(method, message) {
+  let warned = false;
+  return function () {
+    if (!warned) {
+      win.console.warn(message);
+      warned = true;
+    }
+
+    return method.apply(this, arguments);
+  };
+}
+function copyAction(dest, src) {
+  dest.name = src.name;
+  dest.axis = src.axis;
+  dest.edges = src.edges;
+  return dest;
+}
+//# sourceMappingURL=misc.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/core/interactStatic.js
 /** @module interact */
+
 
 
 
@@ -6591,16 +6752,13 @@ function createInteractStatic(scope) {
   interact.closest = domUtils_closest;
   interact.globalEvents = {}; // eslint-disable-next-line no-undef
 
-  interact.version = "1.10.0";
+  interact.version = "1.10.2";
   interact.scope = scope;
   /**
   * Use a plugin
   *
   * @alias module:interact.use
   *
-  * @param {Object} plugin
-  * @param {function} plugin.install
-  * @return {Interact.InteractStatic}
    */
 
   interact.use = function (plugin, options) {
@@ -6613,7 +6771,8 @@ function createInteractStatic(scope) {
    *
    * @alias module:interact.isSet
    *
-   * @param {Element} element The Element being searched for
+   * @param {Target} target The Element or string being searched for
+   * @param {object} options
    * @return {boolean} Indicates if the element or CSS selector was previously
    * passed to interact
    */
@@ -6623,6 +6782,7 @@ function createInteractStatic(scope) {
     return !!this.scope.interactables.get(target, options && options.context);
   };
   /**
+   * @deprecated
    * Add a global listener for an InteractEvent or adds a DOM event to `document`
    *
    * @alias module:interact.on
@@ -6635,7 +6795,7 @@ function createInteractStatic(scope) {
    */
 
 
-  interact.on = function (type, listener, options) {
+  interact.on = warnOnce(function on(type, listener, options) {
     if (is.string(type) && type.search(' ') !== -1) {
       type = type.trim().split(/ +/);
     }
@@ -6672,8 +6832,9 @@ function createInteractStatic(scope) {
       }
 
     return this;
-  };
+  }, 'The interact.on() method is being deprecated');
   /**
+   * @deprecated
    * Removes a global InteractEvent listener or DOM event from `document`
    *
    * @alias module:interact.off
@@ -6686,8 +6847,7 @@ function createInteractStatic(scope) {
    * @return {object} interact
    */
 
-
-  interact.off = function (type, listener, options) {
+  interact.off = warnOnce(function off(type, listener, options) {
     if (is.string(type) && type.search(' ') !== -1) {
       type = type.trim().split(/ +/);
     }
@@ -6719,7 +6879,7 @@ function createInteractStatic(scope) {
     }
 
     return this;
-  };
+  }, 'The interact.off() method is being deprecated');
 
   interact.debug = function () {
     return this.scope;
@@ -6791,26 +6951,6 @@ function createInteractStatic(scope) {
   return interact;
 }
 //# sourceMappingURL=interactStatic.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/utils/misc.js
-
-function warnOnce(method, message) {
-  let warned = false;
-  return function () {
-    if (!warned) {
-      win.console.warn(message);
-      warned = true;
-    }
-
-    return method.apply(this, arguments);
-  };
-}
-function copyAction(dest, src) {
-  dest.name = src.name;
-  dest.axis = src.axis;
-  dest.edges = src.edges;
-  return dest;
-}
-//# sourceMappingURL=misc.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/core/PointerInfo.js
 class PointerInfo {
   constructor(id, pointer, event, downTime, downTarget) {
@@ -7355,6 +7495,7 @@ class Interaction_Interaction {
 
 
 
+
 function preventDefault(newValue) {
   if (/^(always|never|auto)$/.test(newValue)) {
     this.options.preventDefault = newValue;
@@ -7608,6 +7749,7 @@ function hasPointerId(interaction, pointerId) {
 /* harmony default export */ var interactionFinder = (finder);
 //# sourceMappingURL=interactionFinder.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/core/interactions.js
+
 
 
 
@@ -8134,6 +8276,7 @@ if (typeof window === 'object' && !!window) {
 
 
 
+
 function InteractableMethods_install(scope) {
   const {
     /** @lends Interactable */
@@ -8305,6 +8448,7 @@ function actionChecker(checker) {
 });
 //# sourceMappingURL=InteractableMethods.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/auto-start/base.js
+
 
 
 
@@ -8704,6 +8848,7 @@ function checkStartAxis(startAxis, interactable) {
 // CONCATENATED MODULE: ./node_modules/@interactjs/auto-start/hold.js
 
 
+
 function hold_install(scope) {
   const {
     defaults
@@ -8724,7 +8869,7 @@ function getHoldDuration(interaction) {
   return options[actionName].hold || options[actionName].delay;
 }
 
-/* harmony default export */ var hold = ({
+const hold = {
   id: 'auto-start/hold',
   install: hold_install,
   listeners: {
@@ -8757,15 +8902,16 @@ function getHoldDuration(interaction) {
     'autoStart:before-start': ({
       interaction
     }) => {
-      const hold = getHoldDuration(interaction);
+      const holdDuration = getHoldDuration(interaction);
 
-      if (hold > 0) {
+      if (holdDuration > 0) {
         interaction.prepared.name = null;
       }
     }
   },
   getHoldDuration
-});
+};
+/* harmony default export */ var auto_start_hold = (hold);
 //# sourceMappingURL=hold.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/auto-start/plugin.js
 
@@ -8776,7 +8922,7 @@ function getHoldDuration(interaction) {
 
   install(scope) {
     scope.usePlugin(base);
-    scope.usePlugin(hold);
+    scope.usePlugin(auto_start_hold);
     scope.usePlugin(dragAxis);
   }
 
@@ -8789,20 +8935,276 @@ function getHoldDuration(interaction) {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
-} // eslint-disable-next-line no-undef
-
-
-if (( true) && !_interactjs_interact.__warnedUseImport) {
-  _interactjs_interact.__warnedUseImport = true;
-  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(auto_start_plugin);
 //# sourceMappingURL=index.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/actions/drag/plugin.js
+// CONCATENATED MODULE: ./node_modules/@interactjs/auto-scroll/plugin.js
+
+
+
+
+
 
 
 function plugin_install(scope) {
+  const {
+    defaults,
+    actions
+  } = scope;
+  scope.autoScroll = autoScroll;
+
+  autoScroll.now = () => scope.now();
+
+  actions.phaselessTypes.autoscroll = true;
+  defaults.perAction.autoScroll = autoScroll.defaults;
+}
+
+const autoScroll = {
+  defaults: {
+    enabled: false,
+    margin: 60,
+    // the item that is scrolled (Window or HTMLElement)
+    container: null,
+    // the scroll speed in pixels per second
+    speed: 300
+  },
+  now: Date.now,
+  interaction: null,
+  i: 0,
+  // the handle returned by window.setInterval
+  // Direction each pulse is to scroll in
+  x: 0,
+  y: 0,
+  isScrolling: false,
+  prevTime: 0,
+  margin: 0,
+  speed: 0,
+
+  start(interaction) {
+    autoScroll.isScrolling = true;
+    raf.cancel(autoScroll.i);
+    interaction.autoScroll = autoScroll;
+    autoScroll.interaction = interaction;
+    autoScroll.prevTime = autoScroll.now();
+    autoScroll.i = raf.request(autoScroll.scroll);
+  },
+
+  stop() {
+    autoScroll.isScrolling = false;
+
+    if (autoScroll.interaction) {
+      autoScroll.interaction.autoScroll = null;
+    }
+
+    raf.cancel(autoScroll.i);
+  },
+
+  // scroll the window by the values in scroll.x/y
+  scroll() {
+    const {
+      interaction
+    } = autoScroll;
+    const {
+      interactable,
+      element
+    } = interaction;
+    const actionName = interaction.prepared.name;
+    const options = interactable.options[actionName].autoScroll;
+    const container = getContainer(options.container, interactable, element);
+    const now = autoScroll.now(); // change in time in seconds
+
+    const dt = (now - autoScroll.prevTime) / 1000; // displacement
+
+    const s = options.speed * dt;
+
+    if (s >= 1) {
+      const scrollBy = {
+        x: autoScroll.x * s,
+        y: autoScroll.y * s
+      };
+
+      if (scrollBy.x || scrollBy.y) {
+        const prevScroll = getScroll(container);
+
+        if (is.window(container)) {
+          container.scrollBy(scrollBy.x, scrollBy.y);
+        } else if (container) {
+          container.scrollLeft += scrollBy.x;
+          container.scrollTop += scrollBy.y;
+        }
+
+        const curScroll = getScroll(container);
+        const delta = {
+          x: curScroll.x - prevScroll.x,
+          y: curScroll.y - prevScroll.y
+        };
+
+        if (delta.x || delta.y) {
+          interactable.fire({
+            type: 'autoscroll',
+            target: element,
+            interactable,
+            delta,
+            interaction,
+            container
+          });
+        }
+      }
+
+      autoScroll.prevTime = now;
+    }
+
+    if (autoScroll.isScrolling) {
+      raf.cancel(autoScroll.i);
+      autoScroll.i = raf.request(autoScroll.scroll);
+    }
+  },
+
+  check(interactable, actionName) {
+    var _options$actionName$a;
+
+    const options = interactable.options;
+    return (_options$actionName$a = options[actionName].autoScroll) == null ? void 0 : _options$actionName$a.enabled;
+  },
+
+  onInteractionMove({
+    interaction,
+    pointer
+  }) {
+    if (!(interaction.interacting() && autoScroll.check(interaction.interactable, interaction.prepared.name))) {
+      return;
+    }
+
+    if (interaction.simulation) {
+      autoScroll.x = autoScroll.y = 0;
+      return;
+    }
+
+    let top;
+    let right;
+    let bottom;
+    let left;
+    const {
+      interactable,
+      element
+    } = interaction;
+    const actionName = interaction.prepared.name;
+    const options = interactable.options[actionName].autoScroll;
+    const container = getContainer(options.container, interactable, element);
+
+    if (is.window(container)) {
+      left = pointer.clientX < autoScroll.margin;
+      top = pointer.clientY < autoScroll.margin;
+      right = pointer.clientX > container.innerWidth - autoScroll.margin;
+      bottom = pointer.clientY > container.innerHeight - autoScroll.margin;
+    } else {
+      const rect = getElementClientRect(container);
+      left = pointer.clientX < rect.left + autoScroll.margin;
+      top = pointer.clientY < rect.top + autoScroll.margin;
+      right = pointer.clientX > rect.right - autoScroll.margin;
+      bottom = pointer.clientY > rect.bottom - autoScroll.margin;
+    }
+
+    autoScroll.x = right ? 1 : left ? -1 : 0;
+    autoScroll.y = bottom ? 1 : top ? -1 : 0;
+
+    if (!autoScroll.isScrolling) {
+      // set the autoScroll properties to those of the target
+      autoScroll.margin = options.margin;
+      autoScroll.speed = options.speed;
+      autoScroll.start(interaction);
+    }
+  }
+
+};
+function getContainer(value, interactable, element) {
+  return (is.string(value) ? getStringOptionResult(value, interactable, element) : value) || getWindow(element);
+}
+function getScroll(container) {
+  if (is.window(container)) {
+    container = window.document.body;
+  }
+
+  return {
+    x: container.scrollLeft,
+    y: container.scrollTop
+  };
+}
+function getScrollSize(container) {
+  if (is.window(container)) {
+    container = window.document.body;
+  }
+
+  return {
+    x: container.scrollWidth,
+    y: container.scrollHeight
+  };
+}
+function getScrollSizeDelta({
+  interaction,
+  element
+}, func) {
+  const scrollOptions = interaction && interaction.interactable.options[interaction.prepared.name].autoScroll;
+
+  if (!scrollOptions || !scrollOptions.enabled) {
+    func();
+    return {
+      x: 0,
+      y: 0
+    };
+  }
+
+  const scrollContainer = getContainer(scrollOptions.container, interaction.interactable, element);
+  const prevSize = getScroll(scrollContainer);
+  func();
+  const curSize = getScroll(scrollContainer);
+  return {
+    x: curSize.x - prevSize.x,
+    y: curSize.y - prevSize.y
+  };
+}
+const autoScrollPlugin = {
+  id: 'auto-scroll',
+  install: plugin_install,
+  listeners: {
+    'interactions:new': ({
+      interaction
+    }) => {
+      interaction.autoScroll = null;
+    },
+    'interactions:destroy': ({
+      interaction
+    }) => {
+      interaction.autoScroll = null;
+      autoScroll.stop();
+
+      if (autoScroll.interaction) {
+        autoScroll.interaction = null;
+      }
+    },
+    'interactions:stop': autoScroll.stop,
+    'interactions:action-move': arg => autoScroll.onInteractionMove(arg)
+  }
+};
+/* harmony default export */ var auto_scroll_plugin = (autoScrollPlugin);
+//# sourceMappingURL=plugin.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/auto-scroll/index.js
+/* eslint-disable import/order, no-console, eol-last */
+
+
+
+if (typeof window === 'object' && !!window) {
+  interact_init(window);
+}
+
+_interactjs_interact.use(auto_scroll_plugin);
+//# sourceMappingURL=index.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/actions/drag/plugin.js
+
+
+
+function drag_plugin_install(scope) {
   const {
     actions,
     Interactable,
@@ -8921,7 +9323,7 @@ const plugin_draggable = function draggable(options) {
 
 const drag = {
   id: 'actions/drag',
-  install: plugin_install,
+  install: drag_plugin_install,
   listeners: {
     'interactions:before-action-move': beforeMove,
     'interactions:action-resume': beforeMove,
@@ -8969,17 +9371,12 @@ const drag = {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
-} // eslint-disable-next-line no-undef
-
-
-if (( true) && !_interactjs_interact.__warnedUseImport) {
-  _interactjs_interact.__warnedUseImport = true;
-  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(drag_plugin);
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/actions/resize/plugin.js
+
 
 
 
@@ -9196,6 +9593,8 @@ function checkResizeEdge(name, value, page, element, interactableElement, rect, 
   ? value === element // otherwise check if element matches value as selector
   : matchesUpTo(element, value, interactableElement);
 }
+/* eslint-disable multiline-ternary */
+
 
 function initCursors(browser) {
   return browser.isIe9 ? {
@@ -9224,6 +9623,8 @@ function initCursors(browser) {
     bottomleft: 'nesw-resize'
   };
 }
+/* eslint-enable multiline-ternary */
+
 
 function start({
   iEvent,
@@ -9264,8 +9665,7 @@ function plugin_move({
   const resizeEvent = iEvent;
   const resizeOptions = interaction.interactable.options.resize;
   const invert = resizeOptions.invert;
-  const invertible = invert === 'reposition' || invert === 'negate'; // eslint-disable-next-line no-shadow
-
+  const invertible = invert === 'reposition' || invert === 'negate';
   const current = interaction.rect;
   const {
     start: startRect,
@@ -9433,12 +9833,6 @@ const resize = {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
-} // eslint-disable-next-line no-undef
-
-
-if (( true) && !_interactjs_interact.__warnedUseImport) {
-  _interactjs_interact.__warnedUseImport = true;
-  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(resize_plugin);
@@ -9906,6 +10300,8 @@ function getRectOffset(rect, coords) {
 //# sourceMappingURL=Modification.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/modifiers/base.js
 
+
+
 function makeModifier(module, name) {
   const {
     defaults
@@ -10006,7 +10402,7 @@ const modifiersBase = {
  * interact(target).resizable({
  *   modifiers: [
  *     interact.modifiers.snapSize({
- *       targets: [ interact.createSnapGrid({ x: 20, y: 20 }) ],
+ *       targets: [ interact.snappers.grid({ x: 20, y: 20 }) ],
  *     }),
  *     interact.aspectRatio({ ratio: 'preserve' }),
  *   ],
@@ -10871,18 +11267,13 @@ const plugin_modifiers = {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
-} // eslint-disable-next-line no-undef
-
-
-if (( true) && !_interactjs_interact.__warnedUseImport) {
-  _interactjs_interact.__warnedUseImport = true;
-  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(modifiers_plugin);
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./node_modules/@interactjs/dev-tools/plugin.js
 /* eslint-disable no-console */
+
 
 
 
@@ -11029,12 +11420,6 @@ const defaultExport = isProduction ? {
 
 if (typeof window === 'object' && !!window) {
   interact_init(window);
-} // eslint-disable-next-line no-undef
-
-
-if (( true) && !_interactjs_interact.__warnedUseImport) {
-  _interactjs_interact.__warnedUseImport = true;
-  console.warn('[interact.js] The "@interactjs/*/index" packages are not quite stable yet. Use them with caution.');
 }
 
 _interactjs_interact.use(dev_tools_plugin);
@@ -11042,6 +11427,17 @@ _interactjs_interact.use(dev_tools_plugin);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=script&lang=js&
 
 
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(defineProperty["a" /* default */])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 //
 //
@@ -11141,6 +11537,7 @@ _interactjs_interact.use(dev_tools_plugin);
 
 
 
+
 /* harmony default export */ var GridItemvue_type_script_lang_js_ = ({
   name: "GridItem",
   props: {
@@ -11152,7 +11549,7 @@ _interactjs_interact.use(dev_tools_plugin);
     /*containerWidth: {
      type: Number,
      required: true
-      },
+       },
      rowHeight: {
      type: Number,
      required: true
@@ -11171,6 +11568,11 @@ _interactjs_interact.use(dev_tools_plugin);
       default: null
     },
     isResizable: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    isBounded: {
       type: Boolean,
       required: false,
       default: null
@@ -11239,6 +11641,25 @@ _interactjs_interact.use(dev_tools_plugin);
       type: String,
       required: false,
       default: 'a, button'
+    },
+    preserveAspectRatio: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    dragOption: {
+      type: Object,
+      required: false,
+      default: function _default() {
+        return {};
+      }
+    },
+    resizeOption: {
+      type: Object,
+      required: false,
+      default: function _default() {
+        return {};
+      }
     }
   },
   inject: ["eventBus", "layout"],
@@ -11301,6 +11722,12 @@ _interactjs_interact.use(dev_tools_plugin);
       }
     };
 
+    self.setBoundedHandler = function (isBounded) {
+      if (self.isBounded === null) {
+        self.bounded = isBounded;
+      }
+    };
+
     self.setTransformScaleHandler = function (transformScale) {
       self.transformScale = transformScale;
     };
@@ -11327,6 +11754,7 @@ _interactjs_interact.use(dev_tools_plugin);
     this.eventBus.$on('compact', self.compactHandler);
     this.eventBus.$on('setDraggable', self.setDraggableHandler);
     this.eventBus.$on('setResizable', self.setResizableHandler);
+    this.eventBus.$on('setBounded', self.setBoundedHandler);
     this.eventBus.$on('setTransformScale', self.setTransformScaleHandler);
     this.eventBus.$on('setRowHeight', self.setRowHeightHandler);
     this.eventBus.$on('setMaxRows', self.setMaxRowsHandler);
@@ -11341,6 +11769,7 @@ _interactjs_interact.use(dev_tools_plugin);
     this.eventBus.$off('compact', self.compactHandler);
     this.eventBus.$off('setDraggable', self.setDraggableHandler);
     this.eventBus.$off('setResizable', self.setResizableHandler);
+    this.eventBus.$off('setBounded', self.setBoundedHandler);
     this.eventBus.$off('setTransformScale', self.setTransformScaleHandler);
     this.eventBus.$off('setRowHeight', self.setRowHeightHandler);
     this.eventBus.$off('setMaxRows', self.setMaxRowsHandler);
@@ -11375,6 +11804,12 @@ _interactjs_interact.use(dev_tools_plugin);
       this.resizable = this.isResizable;
     }
 
+    if (this.isBounded === null) {
+      this.bounded = this.layout.isBounded;
+    } else {
+      this.bounded = this.isBounded;
+    }
+
     this.transformScale = this.layout.transformScale;
     this.useCssTransforms = this.layout.useCssTransforms;
     this.useStyleCursor = this.layout.useStyleCursor;
@@ -11393,6 +11828,9 @@ _interactjs_interact.use(dev_tools_plugin);
     },
     isResizable: function isResizable() {
       this.resizable = this.isResizable;
+    },
+    isBounded: function isBounded() {
+      this.bounded = this.isBounded;
     },
     resizable: function resizable() {
       this.tryMakeResizable();
@@ -11737,9 +12175,18 @@ _interactjs_interact.use(dev_tools_plugin);
               newPosition.left = this.dragging.left + coreEvent.deltaX / this.transformScale;
             }
 
-            newPosition.top = this.dragging.top + coreEvent.deltaY / this.transformScale; //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
+            newPosition.top = this.dragging.top + coreEvent.deltaY / this.transformScale;
+
+            if (this.bounded) {
+              var bottomBoundary = event.target.offsetParent.clientHeight - this.calcGridItemWHPx(this.h, this.rowHeight, this.margin[1]);
+              newPosition.top = this.clamp(newPosition.top, 0, bottomBoundary);
+              var colWidth = this.calcColWidth();
+              var rightBoundary = this.containerWidth - this.calcGridItemWHPx(this.w, colWidth, this.margin[0]);
+              newPosition.left = this.clamp(newPosition.left, 0, rightBoundary);
+            } //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
             //                        console.log("### drag => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
             //                        console.log("### drag end => " + JSON.stringify(newPosition));
+
 
             this.dragging = newPosition;
             break;
@@ -11830,20 +12277,42 @@ _interactjs_interact.use(dev_tools_plugin);
 
       return colWidth;
     },
+    // This can either be called:
+    // calcGridItemWHPx(w, colWidth, margin[0])
+    // or
+    // calcGridItemWHPx(h, rowHeight, margin[1])
+    calcGridItemWHPx: function calcGridItemWHPx(gridUnits, colOrRowSize, marginPx) {
+      // 0 * Infinity === NaN, which causes problems with resize contraints
+      if (!Number.isFinite(gridUnits)) return gridUnits;
+      return Math.round(colOrRowSize * gridUnits + Math.max(0, gridUnits - 1) * marginPx);
+    },
+    // Similar to _.clamp
+    clamp: function clamp(num, lowerBound, upperBound) {
+      return Math.max(Math.min(num, upperBound), lowerBound);
+    },
 
     /**
      * Given a height and width in pixel values, calculate grid units.
      * @param  {Number} height Height in pixels.
      * @param  {Number} width  Width in pixels.
+     * @param  {Boolean} autoSizeFlag  function autoSize identifier.
      * @return {Object} w, h as grid units.
      */
     calcWH: function calcWH(height, width) {
+      var autoSizeFlag = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
       var colWidth = this.calcColWidth(); // width = colWidth * w - (margin * (w - 1))
       // ...
       // w = (width + margin) / (colWidth + margin)
 
       var w = Math.round((width + this.margin[0]) / (colWidth + this.margin[0]));
-      var h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1])); // Capping
+      var h = 0;
+
+      if (!autoSizeFlag) {
+        h = Math.round((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+      } else {
+        h = Math.ceil((height + this.margin[1]) / (this.rowHeight + this.margin[1]));
+      } // Capping
+
 
       w = Math.max(Math.min(w, this.cols - this.innerX), 0);
       h = Math.max(Math.min(h, this.maxRows - this.innerY), 0);
@@ -11874,10 +12343,11 @@ _interactjs_interact.use(dev_tools_plugin);
       }
 
       if (this.draggable && !this.static) {
-        var opts = {
+        var opts = _objectSpread({
           ignoreFrom: this.dragIgnoreFrom,
           allowFrom: this.dragAllowFrom
-        };
+        }, this.dragOption);
+
         this.interactObj.draggable(opts);
         /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
 
@@ -11909,8 +12379,7 @@ _interactjs_interact.use(dev_tools_plugin);
         var minimum = this.calcPosition(0, 0, this.minW, this.minH); // console.log("### MAX " + JSON.stringify(maximum));
         // console.log("### MIN " + JSON.stringify(minimum));
 
-        var opts = {
-          preserveAspectRatio: true,
+        var opts = _objectSpread({
           // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
           edges: {
             left: false,
@@ -11929,7 +12398,14 @@ _interactjs_interact.use(dev_tools_plugin);
               width: maximum.width * this.transformScale
             }
           }
-        };
+        }, this.resizeOption);
+
+        if (this.preserveAspectRatio) {
+          opts.modifiers = [_interactjs_interact.modifiers.aspectRatio({
+            ratio: 'preserve'
+          })];
+        }
+
         this.interactObj.resizable(opts);
 
         if (!this.resizeEventSet) {
@@ -11949,7 +12425,7 @@ _interactjs_interact.use(dev_tools_plugin);
       this.previousW = this.innerW;
       this.previousH = this.innerH;
       var newSize = this.$slots.default[0].elm.getBoundingClientRect();
-      var pos = this.calcWH(newSize.height, newSize.width);
+      var pos = this.calcWH(newSize.height, newSize.width, true);
 
       if (pos.w < this.minW) {
         pos.w = this.minW;
@@ -12501,7 +12977,8 @@ module.exports = function(options) {
 
         function isDetached(element) {
             function isInDocument(element) {
-                return element === element.ownerDocument.body || element.ownerDocument.body.contains(element);
+                var isInShadowRoot = element.getRootNode && element.getRootNode().contains(element);
+                return element === element.ownerDocument.body || element.ownerDocument.body.contains(element) || isInShadowRoot;
             }
 
             if (!isInDocument(element)) {
@@ -12733,11 +13210,21 @@ module.exports = function(options) {
             rootContainer.appendChild(containerContainer);
 
             function onExpandScroll() {
-                getState(element).onExpand && getState(element).onExpand();
+                var state = getState(element);
+                if (state && state.onExpand) {
+                    state.onExpand();
+                } else {
+                    debug("Aborting expand scroll handler: element has been uninstalled");
+                }
             }
 
             function onShrinkScroll() {
-                getState(element).onShrink && getState(element).onShrink();
+                var state = getState(element);
+                if (state && state.onShrink) {
+                    state.onShrink();
+                } else {
+                    debug("Aborting shrink scroll handler: element has been uninstalled");
+                }
             }
 
             addEvent(expand, "scroll", onExpandScroll);
@@ -13555,6 +14042,17 @@ module.exports = function (object, index, value) {
     });
   }
 })(document);
+
+
+/***/ }),
+
+/***/ "f751":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__("5ca1");
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__("7333") });
 
 
 /***/ }),
