@@ -90,18 +90,20 @@ export default {
 
 .grid::before {
     content: '';
-    background-size: calc(calc(100% - 10px) / 12) 40px;
-    margin: 6px;
+    background-size: calc(calc(100% - 5px) / 12) 40px;
     background-image: linear-gradient(
         to right,
         lightgrey 1px,
         transparent 1px
     ),
     linear-gradient(to bottom, lightgrey 1px, transparent 1px);
-    height: 100%;
-    width: 100%;
+    height: calc(100% - 5px);
+    width: calc(100% - 5px);
+    /*height: 100%;*/
+    /*width: 100%;*/
     position: absolute;
     background-repeat: repeat;
+    margin:5px;
 }
 
 .vue-grid-layout {
