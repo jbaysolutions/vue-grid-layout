@@ -426,7 +426,7 @@
                     //this.$broadcast("updateWidth", this.width);
                     this.eventBus.$emit("updateWidth", this.width);
 
-                } else {
+                } else if (eventName === "resizeend") {
                     this.$nextTick(function() {
                         this.isDragging = false;
                     });
