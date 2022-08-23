@@ -186,7 +186,10 @@
 * type: `Number`
 * required: `true`
 
-标识栅格元素的初始高度，值为`rowHeight`的倍数。
+标识栅格元素的初始高度，值为`rowHeight`的自然倍数。
+不要使用小数，能正常初始化但同列的其它元素会在拖动时因垂直位移计算不准确而产生错位。
+实际显示高度(showHeight)和`h`、`rowHeight`、`margin`的关系表现为：
+showHeight = (margin[1] + rowHeight) * h - margin[1]; (margin[1] 表示垂直位移)
 
 ### minW
     
