@@ -117,12 +117,12 @@ export default {
                 mouseInGrid = true;
             }
             if (mouseInGrid === true) {
-                alert(`Dropped element props:\n${JSON.stringify(DragPos, ['x', 'y', 'w', 'h'], 2)}`);
+                // alert(`Dropped element props:\n${JSON.stringify(DragPos, ['x', 'y', 'w', 'h'], 2)}`);
                 this.$refs.gridlayout.dragEvent('dragend', 'drop', DragPos.x, DragPos.y, 1, 1);
                 this.layout = this.layout.filter(obj => obj.i !== 'drop');
 
                 // UNCOMMENT below if you want to add a grid-item
-                /*
+                
                 this.layout.push({
                     x: DragPos.x,
                     y: DragPos.y,
@@ -135,7 +135,6 @@ export default {
                     this.$refs.gridLayout.$children[this.layout.length].$refs.item.style.display="block";
                 } catch {
                 }
-                */
             }
         },
     }
