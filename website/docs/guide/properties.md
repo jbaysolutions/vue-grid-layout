@@ -68,6 +68,33 @@ The value must be a two-element `Array` of `Number`. Each value is expressed in 
 
 Says if the grids items are draggable.
 
+### isDroppable
+    
+* type: `Boolean`
+* required: `false`
+* default: `false`
+
+Says if draggable elements can be dropped into the grid from outside.
+
+### beforeDropOver
+
+* type: `Function`
+* required: `false`
+* default: `null`
+
+Callback called when an element is being dragged over the grid from outside.
+This callback can return the size of the dropping item, or `false` to abort the dragover.
+
+```javascript
+beforeDropOver: function(event) {
+    if (event.dataTransfer.getData('text/plain') === 'my-drop-element') {
+        return { w: 2, h: 1 };
+    }
+
+    return false;
+}
+``` 
+
 ### isResizable
     
 * type: `Boolean`

@@ -89,6 +89,7 @@
     import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '@/helpers/utils';
     import {getControlPosition, createCoreData} from '@/helpers/draggableUtils';
     import {getColsFromBreakpoint} from '@/helpers/responsiveUtils';
+    import {calcGridColWidth,calcXY} from '@/helpers/calculateUtils';
     import {getDocumentDir} from "@/helpers/DOM";
     //    var eventBus = require('./eventBus');
 
@@ -478,6 +479,15 @@
                 } else {
                     return 'vue-resizable-handle';
                 }
+            },
+            positionParams() {
+                return {
+                    cols: this.cols,
+                    containerWidth: this.containerWidth,
+                    margin: this.margin,
+                    maxRows: this.maxRows,
+                    rowHeight: this.rowHeight
+                };
             }
         },
         methods: {
@@ -762,29 +772,11 @@
              */
             // TODO check if this function needs change in order to support rtl.
             calcXY(top, left) {
-                const colWidth = this.calcColWidth();
-
-                // left = colWidth * x + margin * (x + 1)
-                // l = cx + m(x+1)
-                // l = cx + mx + m
-                // l - m = cx + mx
-                // l - m = x(c + m)
-                // (l - m) / (c + m) = x
-                // x = (left - margin) / (coldWidth + margin)
-                let x = Math.round((left - this.margin[0]) / (colWidth + this.margin[0]));
-                let y = Math.round((top - this.margin[1]) / (this.rowHeight + this.margin[1]));
-
-                // Capping
-                x = Math.max(Math.min(x, this.cols - this.innerW), 0);
-                y = Math.max(Math.min(y, this.maxRows - this.innerH), 0);
-
-                return {x, y};
+                return calcXY(this.positionParams, top, left, this.innerW, this.innerH);
             },
             // Helper for generating column width
             calcColWidth() {
-                const colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
-               // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
-                return colWidth;
+                return calcGridColWidth(this.positionParams);
             },
             // This can either be called:
             // calcGridItemWHPx(w, colWidth, margin[0])
