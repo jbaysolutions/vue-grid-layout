@@ -1,15 +1,6 @@
-/*! vue-grid-layout - 2.4.0 | (c) 2015, 2022  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("vue"));
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["VueGridLayout"] = factory(require("vue"));
-	else
-		root["VueGridLayout"] = factory(root["Vue"]);
-})((typeof self !== 'undefined' ? self : this), function(__WEBPACK_EXTERNAL_MODULE__8bbf__) {
-return /******/ (function(modules) { // webpackBootstrap
+/*! @energiency/vue-grid-layout - 2.5.0-beta.1 | (c) 2015, 2022  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -1340,7 +1331,7 @@ module.exports = __webpack_require__("8e60") ? function (object, key, value) {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"18dc9dfc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=1e356aa3&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f538ffc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=bb25f12c&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',_vm._g({ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},_vm.isDroppable ? {
         dragenter: _vm.onDragEnter,
         dragover: _vm.onDragOver,
@@ -1350,7 +1341,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=1e356aa3&
+// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=bb25f12c&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
@@ -1758,6 +1749,12 @@ var DROPPING_ID = '__dropping-elem__';
       };
     },
     onWindowResize: function onWindowResize() {
+      if (this.isDragging) {
+        // We're dragging an item, so we consider that the layout
+        // is already being updated by drag events
+        return;
+      }
+
       if (this.$refs !== null && this.$refs.item !== null && this.$refs.item !== undefined) {
         this.width = this.$refs.item.offsetWidth;
       }
@@ -2026,11 +2023,18 @@ var DROPPING_ID = '__dropping-elem__';
       this.dragEnterCounter = 0;
       this.$emit('drop', this.droppingPlaceholder);
       this.removeDroppingPlaceholder();
+      delete this.positionsBeforeDrag;
+      this.$emit('layout-updated', this.layout);
     },
     removeDroppingPlaceholder: function removeDroppingPlaceholder() {
       this.isDragging = false;
       this.droppingPlaceholder = null;
-      Object(utils["c" /* compact */])(this.layout, this.verticalCompact);
+
+      if (this.restoreOnDrag) {
+        Object(utils["c" /* compact */])(this.layout, this.verticalCompact, this.positionsBeforeDrag);
+      } else {
+        Object(utils["c" /* compact */])(this.layout, this.verticalCompact);
+      }
     },
     // find difference in layouts
     findDifference: function findDifference(layout, originalLayout) {
@@ -3412,7 +3416,7 @@ module.exports = {
 /***/ "8bbf":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__8bbf__;
+module.exports = require("vue");
 
 /***/ }),
 
@@ -3483,9 +3487,12 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("ac6a");
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("456d");
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("a2b6");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("cadf");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("456d");
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("a2b6");
+
 
 
 
@@ -3579,7 +3586,7 @@ function findOrGenerateResponsiveLayout(orgLayout
 /*: Layout*/
 {
   // If it already exists, just return it.
-  if (layouts[breakpoint]) return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* cloneLayout */ "b"])(layouts[breakpoint]); // Find or generate the next layout
+  if (layouts[breakpoint]) return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* cloneLayout */ "b"])(layouts[breakpoint]); // Find or generate the next layout
 
   var layout = orgLayout;
   var breakpointsSorted = sortBreakpoints(breakpoints);
@@ -3594,9 +3601,9 @@ function findOrGenerateResponsiveLayout(orgLayout
     }
   }
 
-  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
+  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
 
-  return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* correctBounds */ "d"])(layout, {
+  return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* correctBounds */ "d"])(layout, {
     cols: cols
   }), verticalCompact);
 }
@@ -3630,9 +3637,9 @@ function generateResponsiveLayout(layout
     break;
   }
   }*/
-  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
+  layout = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* cloneLayout */ "b"])(layout || []); // clone layout so we don't modify existing items
 
-  return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* correctBounds */ "d"])(layout, {
+  return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* compact */ "c"])(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* correctBounds */ "d"])(layout, {
     cols: cols
   }), verticalCompact);
 }
@@ -4899,7 +4906,7 @@ __webpack_require__.d(all_namespaceObject, "edgeTarget", function() { return edg
 __webpack_require__.d(all_namespaceObject, "elements", function() { return snappers_elements; });
 __webpack_require__.d(all_namespaceObject, "grid", function() { return grid; });
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"18dc9dfc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=d1637810&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f538ffc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=d1637810&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-item",class:_vm.classObj,style:(_vm.style)},[_vm._t("default"),(_vm.resizableAndNotStatic)?_c('span',{ref:"handle",class:_vm.resizableHandleClass}):_vm._e()],2)}
 var staticRenderFns = []
 
@@ -14631,5 +14638,4 @@ module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u20
 /***/ })
 
 /******/ })["default"];
-});
-//# sourceMappingURL=vue-grid-layout.umd.js.map
+//# sourceMappingURL=vue-grid-layout.common.js.map
