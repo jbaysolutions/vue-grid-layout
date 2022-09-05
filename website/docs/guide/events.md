@@ -131,7 +131,7 @@ Drop event
 Emitted when a draggable element has been dropped into the grid from outside
 
 ```javascript
-    dropEvent: function(droppedItem){
+    dropEvent: function(event, droppedItem){
         console.log("DROP item=", JSON.stringify(droppedItem, ['x', 'y', 'w', 'h'], 2) );
     },
 ``` 

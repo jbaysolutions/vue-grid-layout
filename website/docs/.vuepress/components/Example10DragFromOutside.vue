@@ -64,7 +64,7 @@ export default {
         }
     },
     methods: {
-        onDrop(droppedItem) {
+        onDrop(event, droppedItem) {
             alert(`Dropped element props:\n${JSON.stringify(droppedItem, ['x', 'y', 'w', 'h'], 2)}`);
         }
     }

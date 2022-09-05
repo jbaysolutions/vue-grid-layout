@@ -598,7 +598,7 @@
                 event.stopPropagation();
 
                 this.dragEnterCounter = 0;
-                this.$emit('drop', this.droppingPlaceholder);
+                this.$emit('drop', event, this.droppingPlaceholder);
                 this.removeDroppingPlaceholder();
                 delete this.positionsBeforeDrag;
                 this.$emit('layout-updated', this.layout);
