@@ -337,6 +337,11 @@
                 };
             },
             onWindowResize: function () {
+                if (this.isDragging) {
+                    // We're dragging an item, so we consider that the layout
+                    // is already being updated by drag events
+                    return;
+                }
                 if (this.$refs !== null && this.$refs.item !== null && this.$refs.item !== undefined) {
                     this.width = this.$refs.item.offsetWidth;
                 }
@@ -595,13 +600,19 @@
                 this.dragEnterCounter = 0;
                 this.$emit('drop', this.droppingPlaceholder);
                 this.removeDroppingPlaceholder();
+                delete this.positionsBeforeDrag;
+                this.$emit('layout-updated', this.layout);
             },
 
             removeDroppingPlaceholder() {
                 this.isDragging = false;
                 this.droppingPlaceholder = null;
 
-                compact(this.layout, this.verticalCompact);
+                if (this.restoreOnDrag) {
+                    compact(this.layout, this.verticalCompact, this.positionsBeforeDrag);
+                } else {
+                    compact(this.layout, this.verticalCompact);
+                }
             },
 
             // find difference in layouts
