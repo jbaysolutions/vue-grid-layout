@@ -103,7 +103,7 @@
 * required: `false`
 * default: `false`
 
-防止碰撞属性，值设置为`ture`时，栅格只能拖动至空白处。
+防止碰撞属性，值设置为`true`时，栅格只能拖动至空白处。
 
 ### useCssTransforms
     
