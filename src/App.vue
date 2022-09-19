@@ -294,14 +294,13 @@
                 console.log("breakpoint changed breakpoint=", newBreakpoint, ", layout: ", newLayout );
             },
             onDroppableDragStart: function(event) {
-                event.dataTransfer.setData('text/plain', 'my-drop-element');
+                event.dataTransfer.setData('my-drop-element', 'element');
             },
             beforeDropOver: function(event) {
-                if (event.dataTransfer.getData('text/plain') !== 'my-drop-element') {
-                    return false;
+                if (event.dataTransfer.items.length === 1 && event.dataTransfer.items[0].type === 'my-drop-element') {
+                    return { w: 2, h: 1 };
                 }
-
-                return { w: 2, h: 1 };
+                return false;
             }
         },
     }

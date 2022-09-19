@@ -31,7 +31,7 @@
 
     import {bottom, compact, getLayoutItem, moveElement, validateLayout, cloneLayout, getAllCollisions} from '@/helpers/utils';
     import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout} from "@/helpers/responsiveUtils";
-    import {calcXY} from '@/helpers/calculateUtils';
+    import {calcXY, calcItemSize} from '@/helpers/calculateUtils';
 
     //var eventBus = require('./eventBus');
 
@@ -570,9 +570,18 @@
                     containerWidth: this.width !== null ? this.width : 100,
                 };
 
-                if (!this.droppingPlaceholder) {
-                    const {x, y} = calcXY(positionParams, droppingPosition.top, droppingPosition.left, w, h);
+                const { width, height } = calcItemSize(positionParams, w, h);
+                const offset = {
+                    left: width / 2,
+                    top: height / 2,
+                };
+                 const pos = {
+                    top: droppingPosition.top - offset.top,
+                    left: droppingPosition.left - offset.left
+                };
 
+                if (!this.droppingPlaceholder) {
+                    const {x, y} = calcXY(positionParams, pos.top, pos.left, w, h);
                     this.droppingPlaceholder = {
                         x,
                         y,
@@ -583,7 +592,7 @@
                     
                     this.dragEvent('dragstart', DROPPING_ID, x, y, h, w);
                 } else {
-                    const {x, y} = calcXY(positionParams, droppingPosition.top, droppingPosition.left, w, h);
+                    const {x, y} = calcXY(positionParams, pos.top, pos.left, w, h);
 
                     if (x !== this.droppingPlaceholder.x || y !== this.droppingPlaceholder.y) {
                         this.droppingPlaceholder.x = x;

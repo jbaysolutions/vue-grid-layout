@@ -89,7 +89,7 @@
     import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '@/helpers/utils';
     import {getControlPosition, createCoreData} from '@/helpers/draggableUtils';
     import {getColsFromBreakpoint} from '@/helpers/responsiveUtils';
-    import {calcGridColWidth,calcXY} from '@/helpers/calculateUtils';
+    import {calcGridColWidth,calcXY,calcItemSize} from '@/helpers/calculateUtils';
     import {getDocumentDir} from "@/helpers/DOM";
     //    var eventBus = require('./eventBus');
 
@@ -738,31 +738,13 @@
             calcPosition: function (x, y, w, h) {
                 const colWidth = this.calcColWidth();
                 // add rtl support
-                let out;
-                if (this.renderRtl) {
-                    out = {
-                        right: Math.round(colWidth * x + (x + 1) * this.margin[0]),
-                        top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
-                        // 0 * Infinity === NaN, which causes problems with resize constriants;
-                        // Fix this if it occurs.
-                        // Note we do it here rather than later because Math.round(Infinity) causes deopt
-                        width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
-                        height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
-                    };
-                } else {
-                    out = {
-                        left: Math.round(colWidth * x + (x + 1) * this.margin[0]),
-                        top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
-                        // 0 * Infinity === NaN, which causes problems with resize constriants;
-                        // Fix this if it occurs.
-                        // Note we do it here rather than later because Math.round(Infinity) causes deopt
-                        width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
-                        height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
-                    };
-                }
-
-
-                return out;
+                const { width, height } = calcItemSize(this.positionParams, w, h);
+                return {
+                    width,
+                    height,
+                    top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
+                    [this.renderRtl ? 'right': 'left']:  Math.round(colWidth * x + (x + 1) * this.margin[0]),
+                };
             },
             /**
              * Translate x and y coordinates from pixels to grid units.

@@ -10,6 +10,24 @@ export function calcGridColWidth(positionParams) {
 }
 
 /**
+ * Compute an item width and height.
+ *
+ * @param  {Object} positionParams Parameters of grid needed for coordinates calculations.
+ * @param  {Number} w              W coordinate in grid units.
+ * @param  {Number} h              H coordinate in grid units.
+ * @return {Object}                width and height (in pixels).
+ */
+export function calcItemSize(positionParams, w, h) {
+    return {
+        // 0 * Infinity === NaN, which causes problems with resize constriants;
+        // Fix this if it occurs.
+        // Note we do it here rather than later because Math.round(Infinity) causes deopt
+        width: w === Infinity ? w : Math.round(calcGridColWidth(positionParams) * w + Math.max(0, w - 1) * positionParams.margin[0]),
+        height: h === Infinity ? h : Math.round(positionParams.rowHeight * h + Math.max(0, h - 1) * positionParams.margin[1])
+    }
+}
+
+/**
  * Translate x and y coordinates from pixels to grid units.
  * 
  * @param  {Object} positionParams  Parameters of grid needed for coordinates calculations.
