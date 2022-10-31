@@ -12,11 +12,13 @@
         <input type="checkbox" v-model="draggable"/> Draggable
         <input type="checkbox" v-model="resizable"/> Resizable
         <input type="checkbox" v-model="responsive"/> Responsive
+        <span @click="changeMargin">change Margin</span> 
         <br/>
         <div style="width:100%;margin-top: 10px;height:100%;">
             <grid-layout :layout.sync="layout"
                          :col-num="12"
                          :row-height="30"
+                         :margin="margin"
                          :is-draggable="draggable"
                          :is-resizable="resizable"
                          :responsive="responsive"
@@ -73,10 +75,14 @@ export default {
             draggable: true,
             resizable: true,
             responsive: true,
-            index: 0
+            index: 0,
+            margin: [10,10]
         }
     },
     methods: {
+        changeMargin() {
+            this.margin = [12,21]
+        }
     }
 }
 </script>
