@@ -323,8 +323,9 @@
                 if (!this.autoSize) return;
                 // console.log("bottom: " + bottom(this.layout))
                 // console.log("rowHeight + margins: " + (this.rowHeight + this.margin[1]) + this.margin[1])
-                const containerHeight =  bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
-                return containerHeight;
+                // const containerHeight =  bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
+		const containerHeight = bottom(this.layout) * (parseInt(this.rowHeight) + parseInt(this.margin[1])) + parseInt(this.margin[1]);
+                return containerHeight + 'px';
             },
             dragEvent: function (eventName, id, x, y, h, w) {
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
