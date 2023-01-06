@@ -42,7 +42,7 @@
     "@vue/cli-plugin-babel": "^3.4.1",
     "@vue/cli-plugin-eslint": "^3.4.1",
     "@vue/cli-plugin-unit-jest": "^4.5.10",
-    "@vue/cli-service": "^3.4.1",
+    "@vue/cli-service": "^5.0.8",
     "@vue/eslint-config-standard": "^3.0.5",
     "@vue/test-utils": "^1.1.2",
     "babel-core": "7.0.0-bridge.0",
