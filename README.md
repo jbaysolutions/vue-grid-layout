@@ -49,7 +49,6 @@ Chinese documentation: [简体中文](./README-zh_CN.md)
 
 #### Projects using vue-grid-layout
 
-- [Transcrev](https://www.transcrev.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 - [Draxed](https://www.draxed.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 - [cryptotiles](https://www.cryptotiles.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 - [Data Providers](https://www.dataproviders.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
