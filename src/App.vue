@@ -23,6 +23,9 @@
         <div id="content">
             <button @click="decreaseWidth">Decrease Width</button>
             <button @click="increaseWidth">Increase Width</button>
+            <button @click="scaleHalf">Scale x0.5</button>
+            <button @click="scaleThreeQuarters">Scale x0.75</button>
+            <button @click="scaleIdentity">Scale x1.0</button>
             <button @click="addItem">Add an item</button>
             <button @click="addItemDynamically">Add an item dynamically</button>
             <!-- Add to show rtl support -->
@@ -30,8 +33,10 @@
             <input type="checkbox" v-model="draggable"/> Draggable
             <input type="checkbox" v-model="resizable"/> Resizable
             <input type="checkbox" v-model="mirrored"/> Mirrored
+            <input type="checkbox" v-model="bounded"/> Bounded
             <input type="checkbox" v-model="responsive"/> Responsive
             <input type="checkbox" v-model="preventCollision"/> Prevent Collision
+            <input type="checkbox" v-model="compact"/> Vertical Compact
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
                 Margin x: <input type="number" v-model="marginX"/> Margin y: <input type="number" v-model="marginY"/>
@@ -145,7 +150,7 @@
         {"x":0,"y":0,"w":2,"h":2,"i":"0", resizable: true, draggable: true, static: false, minY: 0, maxY: 2},
         {"x":2,"y":0,"w":2,"h":4,"i":"1", resizable: null, draggable: null, static: true},
         {"x":4,"y":0,"w":2,"h":5,"i":"2", resizable: false, draggable: false, static: false, minX: 4, maxX: 4, minW: 2, maxW: 2, preserveAspectRatio: true},
-        {"x":6,"y":0,"w":2,"h":3,"i":"3", resizable: false, draggable: false, static: false},
+        {"x":6,"y":0,"w":2,"h":3,"i":"3", resizable: false, draggable: false, static: false, preserveAspectRatio: true},
         {"x":8,"y":0,"w":2,"h":3,"i":"4", resizable: false, draggable: false, static: false},
         {"x":10,"y":0,"w":2,"h":3,"i":"5", resizable: false, draggable: false, static: false},
         {"x":0,"y":5,"w":2,"h":5,"i":"6", resizable: false, draggable: false, static: false},
@@ -182,8 +187,11 @@
                 resizable: true,
                 mirrored: false,
                 responsive: true,
+                bounded: false,
+                transformScale: 1,
                 preventCollision: false,
                 compact: true,
+                restoreOnDrag: true,
                 rowHeight: 30,
                 colNum: 12,
                 index: 0,
@@ -207,6 +215,18 @@
                 let width = document.getElementById("content").offsetWidth;
                 width -= 20;
                 document.getElementById("content").style.width = width+"px";
+            },
+            scaleHalf: function() {
+                this.transformScale = 0.5
+                document.getElementById("grid-layout").style.transform = "scale(0.5)";
+            },
+            scaleThreeQuarters: function() {
+                this.transformScale = 0.75
+                document.getElementById("grid-layout").style.transform = "scale(0.75)";
+            },
+            scaleIdentity: function() {
+                this.transformScale = 1
+                document.getElementById("grid-layout").style.transform = "scale(1)";
             },
             removeItem: function(i) {
                 console.log("### REMOVE " + i);
@@ -318,7 +338,7 @@
         }*/
 </style>
 
-<style lang="scss">
+<style lang="css">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

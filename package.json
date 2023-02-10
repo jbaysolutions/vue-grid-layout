@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@interactjs/actions": "^1.10.2",
+    "@interactjs/auto-scroll": "^1.10.2",
     "@interactjs/auto-start": "^1.10.2",
     "@interactjs/dev-tools": "^1.10.2",
     "@interactjs/interactjs": "^1.10.2",

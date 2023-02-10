@@ -1,4 +1,4 @@
-/*! vue-grid-layout - 3.0.0-beta1 | (c) 2015, 2021  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
+/*! vue-grid-layout - 3.0.0-beta1 | (c) 2015, 2023  Gustavo Santos (JBay Solutions) <gustavo.santos@jbaysolutions.com> (http://www.jbaysolutions.com) | https://github.com/jbaysolutions/vue-grid-layout */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("vue"));
@@ -214,13 +214,13 @@ module.exports = function (S, index, unicode) {
 
 /***/ }),
 
-/***/ "083e":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "07e3":
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridItem_vue_vue_type_style_index_0_id_46ff2fc8_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c541");
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridItem_vue_vue_type_style_index_0_id_46ff2fc8_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridItem_vue_vue_type_style_index_0_id_46ff2fc8_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
 
 
 /***/ }),
@@ -605,6 +605,50 @@ detector.isLegacyOpera = function() {
 
 /***/ }),
 
+/***/ "1a31":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridLayout_vue_vue_type_style_index_0_id_47b36cea_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9f07");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridLayout_vue_vue_type_style_index_0_id_47b36cea_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridLayout_vue_vue_type_style_index_0_id_47b36cea_lang_css__WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+
+
+/***/ }),
+
+/***/ "1bc3":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__("f772");
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+
+/***/ "1ec9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("f772");
+var document = __webpack_require__("e53d").document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
+
+/***/ }),
+
 /***/ "214f":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -862,6 +906,20 @@ exports.f = Object.getOwnPropertySymbols;
 
 /***/ }),
 
+/***/ "294c":
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+
 /***/ "2aba":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1044,6 +1102,21 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 
 /***/ }),
 
+/***/ "35e8":
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__("d9f6");
+var createDesc = __webpack_require__("aebd");
+module.exports = __webpack_require__("8e60") ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+
 /***/ "38fd":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1080,6 +1153,18 @@ __webpack_require__("32e9")(IteratorPrototype, __webpack_require__("2b4c")('iter
 module.exports = function (Constructor, NAME, next) {
   Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
   setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+
+/***/ }),
+
+/***/ "454f":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("46a7");
+var $Object = __webpack_require__("584a").Object;
+module.exports = function defineProperty(it, key, desc) {
+  return $Object.defineProperty(it, key, desc);
 };
 
 
@@ -1129,6 +1214,16 @@ module.exports = function (bitmap, value) {
 
 /***/ }),
 
+/***/ "46a7":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__("63b6");
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__("8e60"), 'Object', { defineProperty: __webpack_require__("d9f6").f });
+
+
+/***/ }),
+
 /***/ "4917":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1173,20 +1268,6 @@ __webpack_require__("214f")('match', 1, function (defined, MATCH, $match, maybeC
     }
   ];
 });
-
-
-/***/ }),
-
-/***/ "493e":
-/***/ (function(module, exports, __webpack_require__) {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__("24fb");
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.i, ".vue-grid-item{-webkit-transition:all .2s ease;transition:all .2s ease;-webkit-transition-property:left,top,right;transition-property:left,top,right}.vue-grid-item,.vue-grid-item.no-touch{-ms-touch-action:none;touch-action:none}.vue-grid-item.cssTransforms{-webkit-transition-property:-webkit-transform;transition-property:-webkit-transform;transition-property:transform;transition-property:transform,-webkit-transform;left:0;right:auto}.vue-grid-item.cssTransforms.render-rtl{left:auto;right:0}.vue-grid-item.resizing{opacity:.6;z-index:3}.vue-grid-item.vue-draggable-dragging{-webkit-transition:none;transition:none;z-index:3}.vue-grid-item.vue-grid-placeholder{background:red;opacity:.2;-webkit-transition-duration:.1s;transition-duration:.1s;z-index:2;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none}.vue-grid-item>.vue-resizable-handle{position:absolute;width:20px;height:20px;bottom:0;right:0;background:url(\"data:image/svg+xml;base64,PHN2ZyBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjYiIGhlaWdodD0iNiI+PHBhdGggZD0iTTYgNkgwVjQuMmg0LjJWMEg2djZ6IiBvcGFjaXR5PSIuMzAyIi8+PC9zdmc+\");background-position:100% 100%;padding:0 3px 3px 0;background-repeat:no-repeat;background-origin:content-box;-webkit-box-sizing:border-box;box-sizing:border-box;cursor:se-resize}.vue-grid-item>.vue-rtl-resizable-handle{bottom:0;left:0;background:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTS0xLTFoMTJ2MTJILTF6Ii8+PGc+PHBhdGggc3Ryb2tlLWxpbmVjYXA9InVuZGVmaW5lZCIgc3Ryb2tlLWxpbmVqb2luPSJ1bmRlZmluZWQiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2U9IiMwMDAiIGZpbGw9Im5vbmUiIGQ9Ik0xNDQuODIxLTM4LjM5M2wtMjAuMzU3LTMxLjc4NSIvPjxwYXRoIHN0cm9rZT0iIzY2NiIgc3Ryb2tlLWxpbmVjYXA9InVuZGVmaW5lZCIgc3Ryb2tlLWxpbmVqb2luPSJ1bmRlZmluZWQiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIgZD0iTS45NDctLjAxOHY5LjEyNU0tLjY1NiA5aDEwLjczIi8+PC9nPjwvc3ZnPg==);background-position:0 100%;padding-left:3px;background-repeat:no-repeat;background-origin:content-box;cursor:sw-resize;right:auto}.vue-grid-item.disable-userselect{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}", ""]);
-// Exports
-module.exports = exports;
 
 
 /***/ }),
@@ -1739,6 +1820,26 @@ $export($export.P + $export.F * (fails(function () {
 
 /***/ }),
 
+/***/ "584a":
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.6.12' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "5a38":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridItem_vue_vue_type_style_index_0_id_df2ed708_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("e051");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridItem_vue_vue_type_style_index_0_id_df2ed708_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridItem_vue_vue_type_style_index_0_id_df2ed708_lang_css__WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+
+
+/***/ }),
+
 /***/ "5be5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1849,6 +1950,20 @@ module.exports = $export;
 
 /***/ }),
 
+/***/ "5d01":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__("24fb");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".vue-grid-item{-webkit-transition:all .2s ease;transition:all .2s ease;-webkit-transition-property:left,top,right;transition-property:left,top,right}.vue-grid-item,.vue-grid-item.no-touch{-ms-touch-action:none;touch-action:none}.vue-grid-item.cssTransforms{-webkit-transition-property:-webkit-transform;transition-property:-webkit-transform;transition-property:transform;transition-property:transform,-webkit-transform;left:0;right:auto}.vue-grid-item.cssTransforms.render-rtl{left:auto;right:0}.vue-grid-item.resizing{opacity:.6;z-index:3}.vue-grid-item.vue-draggable-dragging{-webkit-transition:none;transition:none;z-index:3}.vue-grid-item.vue-grid-placeholder{background:red;opacity:.2;-webkit-transition-duration:.1s;transition-duration:.1s;z-index:2;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none}.vue-grid-item>.vue-resizable-handle{position:absolute;width:20px;height:20px;bottom:0;right:0;background:url(\"data:image/svg+xml;base64,PHN2ZyBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjYiIGhlaWdodD0iNiI+PHBhdGggZD0iTTYgNkgwVjQuMmg0LjJWMEg2djZ6IiBvcGFjaXR5PSIuMzAyIi8+PC9zdmc+\");background-position:100% 100%;padding:0 3px 3px 0;background-repeat:no-repeat;background-origin:content-box;-webkit-box-sizing:border-box;box-sizing:border-box;cursor:se-resize}.vue-grid-item>.vue-rtl-resizable-handle{bottom:0;left:0;background:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTS0xLTFoMTJ2MTJILTF6Ii8+PGc+PHBhdGggc3Ryb2tlLWxpbmVjYXA9InVuZGVmaW5lZCIgc3Ryb2tlLWxpbmVqb2luPSJ1bmRlZmluZWQiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2U9IiMwMDAiIGZpbGw9Im5vbmUiIGQ9Ik0xNDQuODIxLTM4LjM5M2wtMjAuMzU3LTMxLjc4NSIvPjxwYXRoIHN0cm9rZT0iIzY2NiIgc3Ryb2tlLWxpbmVjYXA9InVuZGVmaW5lZCIgc3Ryb2tlLWxpbmVqb2luPSJ1bmRlZmluZWQiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIgZD0iTS45NDctLjAxOHY5LjEyNU0tLjY1NiA5aDEwLjczIi8+PC9nPjwvc3ZnPg==);background-position:0 100%;padding-left:3px;background-repeat:no-repeat;background-origin:content-box;cursor:sw-resize;right:auto}.vue-grid-item.disable-userselect{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "5dbc":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1936,13 +2051,71 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 /***/ }),
 
-/***/ "6521":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "63b6":
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridLayout_vue_vue_type_style_index_0_id_fc5948f6_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("92bf");
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridLayout_vue_vue_type_style_index_0_id_fc5948f6_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_v16_dist_index_js_ref_0_1_GridLayout_vue_vue_type_style_index_0_id_fc5948f6_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
+var global = __webpack_require__("e53d");
+var core = __webpack_require__("584a");
+var ctx = __webpack_require__("d864");
+var hide = __webpack_require__("35e8");
+var has = __webpack_require__("07e3");
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var IS_WRAP = type & $export.W;
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE];
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+  var key, own, out;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    if (own && has(exports, key)) continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    // bind timers to global for call from export context
+    : IS_BIND && own ? ctx(out, global)
+    // wrap global constructors for prevent change them in library
+    : IS_WRAP && target[key] == out ? (function (C) {
+      var F = function (a, b, c) {
+        if (this instanceof C) {
+          switch (arguments.length) {
+            case 0: return new C();
+            case 1: return new C(a);
+            case 2: return new C(a, b);
+          } return new C(a, b, c);
+        } return C.apply(this, arguments);
+      };
+      F[PROTOTYPE] = C[PROTOTYPE];
+      return F;
+    // make static versions for prototype methods
+    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+    if (IS_PROTO) {
+      (exports.virtual || (exports.virtual = {}))[key] = out;
+      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
+    }
+  }
+};
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
 
 
 /***/ }),
@@ -1990,48 +2163,21 @@ module.exports = function (it, S) {
 
 /***/ }),
 
-/***/ "7333":
+/***/ "6b0d":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-// 19.1.2.1 Object.assign(target, source, ...)
-var DESCRIPTORS = __webpack_require__("9e1e");
-var getKeys = __webpack_require__("0d58");
-var gOPS = __webpack_require__("2621");
-var pIE = __webpack_require__("52a7");
-var toObject = __webpack_require__("4bf8");
-var IObject = __webpack_require__("626a");
-var $assign = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__("79e5")(function () {
-  var A = {};
-  var B = {};
-  // eslint-disable-next-line no-undef
-  var S = Symbol();
-  var K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function (k) { B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = toObject(target);
-  var aLen = arguments.length;
-  var index = 1;
-  var getSymbols = gOPS.f;
-  var isEnum = pIE.f;
-  while (aLen > index) {
-    var S = IObject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-    while (length > j) {
-      key = keys[j++];
-      if (!DESCRIPTORS || isEnum.call(S, key)) T[key] = S[key];
+Object.defineProperty(exports, "__esModule", { value: true });
+// runtime helper for setting properties on components
+// in a tree-shakable way
+exports.default = (sfc, props) => {
+    const target = sfc.__vccOpts || sfc;
+    for (const [key, val] of props) {
+        target[key] = val;
     }
-  } return T;
-} : $assign;
+    return target;
+};
 
 
 /***/ }),
@@ -2058,6 +2204,27 @@ var min = Math.min;
 module.exports = function (index, length) {
   index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+
+/***/ }),
+
+/***/ "794b":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__("8e60") && !__webpack_require__("294c")(function () {
+  return Object.defineProperty(__webpack_require__("1ec9")('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "79aa":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
 };
 
 
@@ -2100,25 +2267,18 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 /***/ }),
 
-/***/ "848e":
-/***/ (function(module, exports, __webpack_require__) {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__("24fb");
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.i, ".vue-grid-layout{position:relative;-webkit-transition:height .2s ease;transition:height .2s ease}", ""]);
-// Exports
-module.exports = exports;
-
-
-/***/ }),
-
 /***/ "84f2":
 /***/ (function(module, exports) {
 
 module.exports = {};
 
+
+/***/ }),
+
+/***/ "85f2":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("454f");
 
 /***/ }),
 
@@ -2269,6 +2429,17 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__8bbf__;
 
 /***/ }),
 
+/***/ "8e60":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__("294c")(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
 /***/ "8e6e":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2309,21 +2480,6 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
 };
 
-
-/***/ }),
-
-/***/ "92bf":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("848e");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__("499e").default
-var update = add("ff1827d0", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -2406,6 +2562,21 @@ module.exports = !__webpack_require__("79e5")(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
 
+
+/***/ }),
+
+/***/ "9f07":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("d3bc");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__("499e").default
+var update = add("b617d2a0", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -2687,6 +2858,21 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 
 /***/ }),
 
+/***/ "aebd":
+/***/ (function(module, exports) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+
+/***/ }),
+
 /***/ "b0c5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2916,21 +3102,6 @@ module.exports = function (IS_INCLUDES) {
   };
 };
 
-
-/***/ }),
-
-/***/ "c541":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("493e");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__("499e").default
-var update = add("40158674", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -3780,6 +3951,20 @@ module.exports = function (object, names) {
 
 /***/ }),
 
+/***/ "d3bc":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__("24fb");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".vue-grid-layout{position:relative;-webkit-transition:height .2s ease;transition:height .2s ease}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "d3f4":
 /***/ (function(module, exports) {
 
@@ -3830,6 +4015,33 @@ module.exports = {
 
 /***/ }),
 
+/***/ "d864":
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__("79aa");
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+
 /***/ "d8e8":
 /***/ (function(module, exports) {
 
@@ -3841,6 +4053,44 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "d9f6":
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__("e4ae");
+var IE8_DOM_DEFINE = __webpack_require__("794b");
+var toPrimitive = __webpack_require__("1bc3");
+var dP = Object.defineProperty;
+
+exports.f = __webpack_require__("8e60") ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+
+/***/ }),
+
+/***/ "e051":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("5d01");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__("499e").default
+var update = add("2f1e0f2f", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
 /***/ "e11e":
 /***/ (function(module, exports) {
 
@@ -3848,6 +4098,31 @@ module.exports = function (it) {
 module.exports = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
+
+
+/***/ }),
+
+/***/ "e4ae":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("f772");
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "e53d":
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ }),
@@ -4204,13 +4479,12 @@ module.exports = function (object, index, value) {
 
 /***/ }),
 
-/***/ "f751":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "f772":
+/***/ (function(module, exports) {
 
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__("5ca1");
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__("7333") });
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
 
 
 /***/ }),
@@ -4277,7 +4551,7 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/GridItem.vue?vue&type=template&id=46ff2fc8
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/GridItem.vue?vue&type=template&id=df2ed708
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("div", {
@@ -4290,10 +4564,42 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     class: $options.resizableHandleClass
   }, null, 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)], 6);
 }
-// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=46ff2fc8
+// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=df2ed708
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
+var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
+var web_dom_iterable = __webpack_require__("ac6a");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
+var es6_object_keys = __webpack_require__("456d");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js
+var define_property = __webpack_require__("85f2");
+var define_property_default = /*#__PURE__*/__webpack_require__.n(define_property);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    define_property_default()(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-finite.js
+var es6_number_is_finite = __webpack_require__("fca0");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
 var es6_regexp_match = __webpack_require__("4917");
@@ -4301,20 +4607,10 @@ var es6_regexp_match = __webpack_require__("4917");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
-var es6_array_iterator = __webpack_require__("cadf");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
-var es6_object_keys = __webpack_require__("456d");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
-var web_dom_iterable = __webpack_require__("ac6a");
-
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.sort.js
 var es6_array_sort = __webpack_require__("55dd");
 
 // CONCATENATED MODULE: ./src/helpers/utils.js
-
 
 
 
@@ -4354,7 +4650,7 @@ export type DragCallbackData = {
 
 /*:: export type Size = {width: number, height: number};*/
 
-function bottom(layout
+function utils_bottom(layout
 /*: Layout*/
 )
 /*: number*/
@@ -4429,6 +4725,7 @@ function collides(l1
  * @param  {Array} layout Layout.
  * @param  {Boolean} verticalCompact Whether or not to compact the layout
  *   vertically.
+ * @param {Object} minPositions
  * @return {Array}       Compacted Layout.
  */
 
@@ -4436,7 +4733,7 @@ function compact(layout
 /*: Layout*/
 , verticalCompact
 /*: Boolean*/
-)
+, minPositions)
 /*: Layout*/
 {
   // Statics go in the compareWith array right away so items flow around them.
@@ -4450,7 +4747,7 @@ function compact(layout
     var l = sorted[i]; // Don't move static elements
 
     if (!l.static) {
-      l = compactItem(compareWith, l, verticalCompact); // Add to comparison array. We only collide with items before this one.
+      l = compactItem(compareWith, l, verticalCompact, minPositions); // Add to comparison array. We only collide with items before this one.
       // Statics are already in this array.
 
       compareWith.push(l);
@@ -4474,12 +4771,18 @@ function compactItem(compareWith
 /*: LayoutItem*/
 , verticalCompact
 /*: boolean*/
-)
+, minPositions)
 /*: LayoutItem*/
 {
   if (verticalCompact) {
     // Move the element up as far as it can go without colliding.
     while (l.y > 0 && !getFirstCollision(compareWith, l)) {
+      l.y--;
+    }
+  } else if (minPositions) {
+    var minY = minPositions[l.i].y;
+
+    while (l.y > minY && !getFirstCollision(compareWith, l)) {
       l.y--;
     }
   } // Move it down, and keep moving it down if it's colliding.
@@ -5095,7 +5398,6 @@ function isNum(num) {
   return typeof num === 'number' && !isNaN(num);
 }
 // CONCATENATED MODULE: ./src/helpers/responsiveUtils.js
-
 
 
 
@@ -9662,11 +9964,272 @@ if (typeof window === 'object' && !!window) {
 
 _interactjs_interact.use(auto_start_plugin);
 //# sourceMappingURL=index.js.map
-// CONCATENATED MODULE: ./node_modules/@interactjs/actions/drag/plugin.js
+// CONCATENATED MODULE: ./node_modules/@interactjs/auto-scroll/plugin.js
+
+
+
+
 
 
 
 function plugin_install(scope) {
+  const {
+    defaults,
+    actions
+  } = scope;
+  scope.autoScroll = autoScroll;
+
+  autoScroll.now = () => scope.now();
+
+  actions.phaselessTypes.autoscroll = true;
+  defaults.perAction.autoScroll = autoScroll.defaults;
+}
+
+const autoScroll = {
+  defaults: {
+    enabled: false,
+    margin: 60,
+    // the item that is scrolled (Window or HTMLElement)
+    container: null,
+    // the scroll speed in pixels per second
+    speed: 300
+  },
+  now: Date.now,
+  interaction: null,
+  i: 0,
+  // the handle returned by window.setInterval
+  // Direction each pulse is to scroll in
+  x: 0,
+  y: 0,
+  isScrolling: false,
+  prevTime: 0,
+  margin: 0,
+  speed: 0,
+
+  start(interaction) {
+    autoScroll.isScrolling = true;
+    raf.cancel(autoScroll.i);
+    interaction.autoScroll = autoScroll;
+    autoScroll.interaction = interaction;
+    autoScroll.prevTime = autoScroll.now();
+    autoScroll.i = raf.request(autoScroll.scroll);
+  },
+
+  stop() {
+    autoScroll.isScrolling = false;
+
+    if (autoScroll.interaction) {
+      autoScroll.interaction.autoScroll = null;
+    }
+
+    raf.cancel(autoScroll.i);
+  },
+
+  // scroll the window by the values in scroll.x/y
+  scroll() {
+    const {
+      interaction
+    } = autoScroll;
+    const {
+      interactable,
+      element
+    } = interaction;
+    const actionName = interaction.prepared.name;
+    const options = interactable.options[actionName].autoScroll;
+    const container = getContainer(options.container, interactable, element);
+    const now = autoScroll.now(); // change in time in seconds
+
+    const dt = (now - autoScroll.prevTime) / 1000; // displacement
+
+    const s = options.speed * dt;
+
+    if (s >= 1) {
+      const scrollBy = {
+        x: autoScroll.x * s,
+        y: autoScroll.y * s
+      };
+
+      if (scrollBy.x || scrollBy.y) {
+        const prevScroll = getScroll(container);
+
+        if (is.window(container)) {
+          container.scrollBy(scrollBy.x, scrollBy.y);
+        } else if (container) {
+          container.scrollLeft += scrollBy.x;
+          container.scrollTop += scrollBy.y;
+        }
+
+        const curScroll = getScroll(container);
+        const delta = {
+          x: curScroll.x - prevScroll.x,
+          y: curScroll.y - prevScroll.y
+        };
+
+        if (delta.x || delta.y) {
+          interactable.fire({
+            type: 'autoscroll',
+            target: element,
+            interactable,
+            delta,
+            interaction,
+            container
+          });
+        }
+      }
+
+      autoScroll.prevTime = now;
+    }
+
+    if (autoScroll.isScrolling) {
+      raf.cancel(autoScroll.i);
+      autoScroll.i = raf.request(autoScroll.scroll);
+    }
+  },
+
+  check(interactable, actionName) {
+    var _options$actionName$a;
+
+    const options = interactable.options;
+    return (_options$actionName$a = options[actionName].autoScroll) == null ? void 0 : _options$actionName$a.enabled;
+  },
+
+  onInteractionMove({
+    interaction,
+    pointer
+  }) {
+    if (!(interaction.interacting() && autoScroll.check(interaction.interactable, interaction.prepared.name))) {
+      return;
+    }
+
+    if (interaction.simulation) {
+      autoScroll.x = autoScroll.y = 0;
+      return;
+    }
+
+    let top;
+    let right;
+    let bottom;
+    let left;
+    const {
+      interactable,
+      element
+    } = interaction;
+    const actionName = interaction.prepared.name;
+    const options = interactable.options[actionName].autoScroll;
+    const container = getContainer(options.container, interactable, element);
+
+    if (is.window(container)) {
+      left = pointer.clientX < autoScroll.margin;
+      top = pointer.clientY < autoScroll.margin;
+      right = pointer.clientX > container.innerWidth - autoScroll.margin;
+      bottom = pointer.clientY > container.innerHeight - autoScroll.margin;
+    } else {
+      const rect = getElementClientRect(container);
+      left = pointer.clientX < rect.left + autoScroll.margin;
+      top = pointer.clientY < rect.top + autoScroll.margin;
+      right = pointer.clientX > rect.right - autoScroll.margin;
+      bottom = pointer.clientY > rect.bottom - autoScroll.margin;
+    }
+
+    autoScroll.x = right ? 1 : left ? -1 : 0;
+    autoScroll.y = bottom ? 1 : top ? -1 : 0;
+
+    if (!autoScroll.isScrolling) {
+      // set the autoScroll properties to those of the target
+      autoScroll.margin = options.margin;
+      autoScroll.speed = options.speed;
+      autoScroll.start(interaction);
+    }
+  }
+
+};
+function getContainer(value, interactable, element) {
+  return (is.string(value) ? getStringOptionResult(value, interactable, element) : value) || getWindow(element);
+}
+function getScroll(container) {
+  if (is.window(container)) {
+    container = window.document.body;
+  }
+
+  return {
+    x: container.scrollLeft,
+    y: container.scrollTop
+  };
+}
+function getScrollSize(container) {
+  if (is.window(container)) {
+    container = window.document.body;
+  }
+
+  return {
+    x: container.scrollWidth,
+    y: container.scrollHeight
+  };
+}
+function getScrollSizeDelta({
+  interaction,
+  element
+}, func) {
+  const scrollOptions = interaction && interaction.interactable.options[interaction.prepared.name].autoScroll;
+
+  if (!scrollOptions || !scrollOptions.enabled) {
+    func();
+    return {
+      x: 0,
+      y: 0
+    };
+  }
+
+  const scrollContainer = getContainer(scrollOptions.container, interaction.interactable, element);
+  const prevSize = getScroll(scrollContainer);
+  func();
+  const curSize = getScroll(scrollContainer);
+  return {
+    x: curSize.x - prevSize.x,
+    y: curSize.y - prevSize.y
+  };
+}
+const autoScrollPlugin = {
+  id: 'auto-scroll',
+  install: plugin_install,
+  listeners: {
+    'interactions:new': ({
+      interaction
+    }) => {
+      interaction.autoScroll = null;
+    },
+    'interactions:destroy': ({
+      interaction
+    }) => {
+      interaction.autoScroll = null;
+      autoScroll.stop();
+
+      if (autoScroll.interaction) {
+        autoScroll.interaction = null;
+      }
+    },
+    'interactions:stop': autoScroll.stop,
+    'interactions:action-move': arg => autoScroll.onInteractionMove(arg)
+  }
+};
+/* harmony default export */ var auto_scroll_plugin = (autoScrollPlugin);
+//# sourceMappingURL=plugin.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/auto-scroll/index.js
+/* eslint-disable import/order, no-console, eol-last */
+
+
+
+if (typeof window === 'object' && !!window) {
+  interact_init(window);
+}
+
+_interactjs_interact.use(auto_scroll_plugin);
+//# sourceMappingURL=index.js.map
+// CONCATENATED MODULE: ./node_modules/@interactjs/actions/drag/plugin.js
+
+
+
+function drag_plugin_install(scope) {
   const {
     actions,
     Interactable,
@@ -9785,7 +10348,7 @@ const plugin_draggable = function draggable(options) {
 
 const drag = {
   id: 'actions/drag',
-  install: plugin_install,
+  install: drag_plugin_install,
   listeners: {
     'interactions:before-action-move': beforeMove,
     'interactions:action-resume': beforeMove,
@@ -11893,7 +12456,18 @@ _interactjs_interact.use(dev_tools_plugin);
 
 
 
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
+
+
  //    var eventBus = require('./eventBus');
+
 
 
 
@@ -11912,7 +12486,7 @@ _interactjs_interact.use(dev_tools_plugin);
     /*containerWidth: {
      type: Number,
      required: true
-       },
+      },
      rowHeight: {
      type: Number,
      required: true
@@ -11931,6 +12505,11 @@ _interactjs_interact.use(dev_tools_plugin);
       default: null
     },
     isResizable: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    isBounded: {
       type: Boolean,
       required: false,
       default: null
@@ -12004,6 +12583,20 @@ _interactjs_interact.use(dev_tools_plugin);
       type: Boolean,
       required: false,
       default: false
+    },
+    dragOption: {
+      type: Object,
+      required: false,
+      default: function _default() {
+        return {};
+      }
+    },
+    resizeOption: {
+      type: Object,
+      required: false,
+      default: function _default() {
+        return {};
+      }
     }
   },
   inject: ["eventBus", "layout"],
@@ -12016,6 +12609,7 @@ _interactjs_interact.use(dev_tools_plugin);
       maxRows: Infinity,
       draggable: null,
       resizable: null,
+      transformScale: 1,
       useCssTransforms: true,
       useStyleCursor: true,
       isDragging: false,
@@ -12065,6 +12659,16 @@ _interactjs_interact.use(dev_tools_plugin);
       }
     };
 
+    self.setBoundedHandler = function (isBounded) {
+      if (self.isBounded === null) {
+        self.bounded = isBounded;
+      }
+    };
+
+    self.setTransformScaleHandler = function (transformScale) {
+      self.transformScale = transformScale;
+    };
+
     self.setRowHeightHandler = function (rowHeight) {
       self.rowHeight = rowHeight;
     };
@@ -12087,6 +12691,8 @@ _interactjs_interact.use(dev_tools_plugin);
     this.eventBus.on('compact', self.compactHandler);
     this.eventBus.on('setDraggable', self.setDraggableHandler);
     this.eventBus.on('setResizable', self.setResizableHandler);
+    this.eventBus.on('setBounded', self.setBoundedHandler);
+    this.eventBus.on('setTransformScale', self.setTransformScaleHandler);
     this.eventBus.on('setRowHeight', self.setRowHeightHandler);
     this.eventBus.on('setMaxRows', self.setMaxRowsHandler);
     this.eventBus.on('directionchange', self.directionchangeHandler);
@@ -12100,6 +12706,8 @@ _interactjs_interact.use(dev_tools_plugin);
     this.eventBus.off('compact', self.compactHandler);
     this.eventBus.off('setDraggable', self.setDraggableHandler);
     this.eventBus.off('setResizable', self.setResizableHandler);
+    this.eventBus.off('setBounded', self.setBoundedHandler);
+    this.eventBus.off('setTransformScale', self.setTransformScaleHandler);
     this.eventBus.off('setRowHeight', self.setRowHeightHandler);
     this.eventBus.off('setMaxRows', self.setMaxRowsHandler);
     this.eventBus.off('directionchange', self.directionchangeHandler);
@@ -12133,6 +12741,13 @@ _interactjs_interact.use(dev_tools_plugin);
       this.resizable = this.isResizable;
     }
 
+    if (this.isBounded === null) {
+      this.bounded = this.layout.isBounded;
+    } else {
+      this.bounded = this.isBounded;
+    }
+
+    this.transformScale = this.layout.transformScale;
     this.useCssTransforms = this.layout.useCssTransforms;
     this.useStyleCursor = this.layout.useStyleCursor;
     this.createStyle();
@@ -12150,6 +12765,9 @@ _interactjs_interact.use(dev_tools_plugin);
     },
     isResizable: function isResizable() {
       this.resizable = this.isResizable;
+    },
+    isBounded: function isBounded() {
+      this.bounded = this.isBounded;
     },
     resizable: function resizable() {
       this.tryMakeResizable();
@@ -12326,6 +12944,7 @@ _interactjs_interact.use(dev_tools_plugin);
       switch (event.type) {
         case "resizestart":
           {
+            this.tryMakeResizable();
             this.previousW = this.innerW;
             this.previousH = this.innerH;
             pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
@@ -12342,12 +12961,12 @@ _interactjs_interact.use(dev_tools_plugin);
             var coreEvent = createCoreData(this.lastW, this.lastH, x, y);
 
             if (this.renderRtl) {
-              newSize.width = this.resizing.width - coreEvent.deltaX;
+              newSize.width = this.resizing.width - coreEvent.deltaX / this.transformScale;
             } else {
-              newSize.width = this.resizing.width + coreEvent.deltaX;
+              newSize.width = this.resizing.width + coreEvent.deltaX / this.transformScale;
             }
 
-            newSize.height = this.resizing.height + coreEvent.deltaY; ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
+            newSize.height = this.resizing.height + coreEvent.deltaY / this.transformScale; ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
 
             this.resizing = newSize;
             break;
@@ -12435,14 +13054,20 @@ _interactjs_interact.use(dev_tools_plugin);
             this.previousY = this.innerY;
             var parentRect = event.target.offsetParent.getBoundingClientRect();
             var clientRect = event.target.getBoundingClientRect();
+            var cLeft = clientRect.left / this.transformScale;
+            var pLeft = parentRect.left / this.transformScale;
+            var cRight = clientRect.right / this.transformScale;
+            var pRight = parentRect.right / this.transformScale;
+            var cTop = clientRect.top / this.transformScale;
+            var pTop = parentRect.top / this.transformScale;
 
             if (this.renderRtl) {
-              newPosition.left = (clientRect.right - parentRect.right) * -1;
+              newPosition.left = (cRight - pRight) * -1;
             } else {
-              newPosition.left = clientRect.left - parentRect.left;
+              newPosition.left = cLeft - pLeft;
             }
 
-            newPosition.top = clientRect.top - parentRect.top;
+            newPosition.top = cTop - pTop;
             this.dragging = newPosition;
             this.isDragging = true;
             break;
@@ -12454,16 +13079,28 @@ _interactjs_interact.use(dev_tools_plugin);
 
             var _parentRect = event.target.offsetParent.getBoundingClientRect();
 
-            var _clientRect = event.target.getBoundingClientRect(); //                        Add rtl support
+            var _clientRect = event.target.getBoundingClientRect();
+
+            var _cLeft = _clientRect.left / this.transformScale;
+
+            var _pLeft = _parentRect.left / this.transformScale;
+
+            var _cRight = _clientRect.right / this.transformScale;
+
+            var _pRight = _parentRect.right / this.transformScale;
+
+            var _cTop = _clientRect.top / this.transformScale;
+
+            var _pTop = _parentRect.top / this.transformScale; //                        Add rtl support
 
 
             if (this.renderRtl) {
-              newPosition.left = (_clientRect.right - _parentRect.right) * -1;
+              newPosition.left = (_cRight - _pRight) * -1;
             } else {
-              newPosition.left = _clientRect.left - _parentRect.left;
+              newPosition.left = _cLeft - _pLeft;
             }
 
-            newPosition.top = _clientRect.top - _parentRect.top; //                        console.log("### drag end => " + JSON.stringify(newPosition));
+            newPosition.top = _cTop - _pTop; //                        console.log("### drag end => " + JSON.stringify(newPosition));
             //                        console.log("### DROP: " + JSON.stringify(newPosition));
 
             this.dragging = null;
@@ -12477,14 +13114,23 @@ _interactjs_interact.use(dev_tools_plugin);
             var coreEvent = createCoreData(this.lastX, this.lastY, x, y); //                        Add rtl support
 
             if (this.renderRtl) {
-              newPosition.left = this.dragging.left - coreEvent.deltaX;
+              newPosition.left = this.dragging.left - coreEvent.deltaX / this.transformScale;
             } else {
-              newPosition.left = this.dragging.left + coreEvent.deltaX;
+              newPosition.left = this.dragging.left + coreEvent.deltaX / this.transformScale;
             }
 
-            newPosition.top = this.dragging.top + coreEvent.deltaY; //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
+            newPosition.top = this.dragging.top + coreEvent.deltaY / this.transformScale;
+
+            if (this.bounded) {
+              var bottomBoundary = event.target.offsetParent.clientHeight - this.calcGridItemWHPx(this.h, this.rowHeight, this.margin[1]);
+              newPosition.top = this.clamp(newPosition.top, 0, bottomBoundary);
+              var colWidth = this.calcColWidth();
+              var rightBoundary = this.containerWidth - this.calcGridItemWHPx(this.w, colWidth, this.margin[0]);
+              newPosition.left = this.clamp(newPosition.left, 0, rightBoundary);
+            } //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
             //                        console.log("### drag => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
             //                        console.log("### drag end => " + JSON.stringify(newPosition));
+
 
             this.dragging = newPosition;
             break;
@@ -12582,6 +13228,19 @@ _interactjs_interact.use(dev_tools_plugin);
 
       return colWidth;
     },
+    // This can either be called:
+    // calcGridItemWHPx(w, colWidth, margin[0])
+    // or
+    // calcGridItemWHPx(h, rowHeight, margin[1])
+    calcGridItemWHPx: function calcGridItemWHPx(gridUnits, colOrRowSize, marginPx) {
+      // 0 * Infinity === NaN, which causes problems with resize contraints
+      if (!Number.isFinite(gridUnits)) return gridUnits;
+      return Math.round(colOrRowSize * gridUnits + Math.max(0, gridUnits - 1) * marginPx);
+    },
+    // Similar to _.clamp
+    clamp: function clamp(num, lowerBound, upperBound) {
+      return Math.max(Math.min(num, upperBound), lowerBound);
+    },
 
     /**
      * Given a height and width in pixel values, calculate grid units.
@@ -12635,10 +13294,11 @@ _interactjs_interact.use(dev_tools_plugin);
       }
 
       if (this.draggable && !this.static) {
-        var opts = {
+        var opts = _objectSpread({
           ignoreFrom: this.dragIgnoreFrom,
           allowFrom: this.dragAllowFrom
-        };
+        }, this.dragOption);
+
         this.interactObj.draggable(opts);
         /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
 
@@ -12670,7 +13330,7 @@ _interactjs_interact.use(dev_tools_plugin);
         var minimum = this.calcPosition(0, 0, this.minW, this.minH); // console.log("### MAX " + JSON.stringify(maximum));
         // console.log("### MIN " + JSON.stringify(minimum));
 
-        var opts = {
+        var opts = _objectSpread({
           // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
           edges: {
             left: false,
@@ -12681,15 +13341,15 @@ _interactjs_interact.use(dev_tools_plugin);
           ignoreFrom: this.resizeIgnoreFrom,
           restrictSize: {
             min: {
-              height: minimum.height,
-              width: minimum.width
+              height: minimum.height * this.transformScale,
+              width: minimum.width * this.transformScale
             },
             max: {
-              height: maximum.height,
-              width: maximum.width
+              height: maximum.height * this.transformScale,
+              width: maximum.width * this.transformScale
             }
           }
-        };
+        }, this.resizeOption);
 
         if (this.preserveAspectRatio) {
           opts.modifiers = [_interactjs_interact.modifiers.aspectRatio({
@@ -12764,8 +13424,12 @@ _interactjs_interact.use(dev_tools_plugin);
 });
 // CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=script&lang=js
  
-// EXTERNAL MODULE: ./src/components/GridItem.vue?vue&type=style&index=0&id=46ff2fc8&lang=css
-var GridItemvue_type_style_index_0_id_46ff2fc8_lang_css = __webpack_require__("083e");
+// EXTERNAL MODULE: ./src/components/GridItem.vue?vue&type=style&index=0&id=df2ed708&lang=css
+var GridItemvue_type_style_index_0_id_df2ed708_lang_css = __webpack_require__("5a38");
+
+// EXTERNAL MODULE: ./node_modules/vue-loader-v16/dist/exportHelper.js
+var exportHelper = __webpack_require__("6b0d");
+var exportHelper_default = /*#__PURE__*/__webpack_require__.n(exportHelper);
 
 // CONCATENATED MODULE: ./src/components/GridItem.vue
 
@@ -12773,12 +13437,14 @@ var GridItemvue_type_style_index_0_id_46ff2fc8_lang_css = __webpack_require__("0
 
 
 
-GridItemvue_type_script_lang_js.render = render
 
-/* harmony default export */ var GridItem = (GridItemvue_type_script_lang_js);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/GridLayout.vue?vue&type=template&id=fc5948f6
 
-function GridLayoutvue_type_template_id_fc5948f6_render(_ctx, _cache, $props, $setup, $data, $options) {
+const __exports__ = /*#__PURE__*/exportHelper_default()(GridItemvue_type_script_lang_js, [['render',render]])
+
+/* harmony default export */ var GridItem = (__exports__);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/GridLayout.vue?vue&type=template&id=47b36cea
+
+function GridLayoutvue_type_template_id_47b36cea_render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_grid_item = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["resolveComponent"])("grid-item");
 
   return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])("div", {
@@ -12794,32 +13460,8 @@ function GridLayoutvue_type_template_id_fc5948f6_render(_ctx, _cache, $props, $s
     i: _ctx.placeholder.i
   }, null, 8, ["x", "y", "w", "h", "i"]), [[external_commonjs_vue_commonjs2_vue_root_Vue_["vShow"], _ctx.isDragging]])], 4);
 }
-// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=fc5948f6
+// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=47b36cea
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
-var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
-var es6_object_assign = __webpack_require__("f751");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-finite.js
-var es6_number_is_finite = __webpack_require__("fca0");
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
 // CONCATENATED MODULE: ./node_modules/mitt/dist/mitt.es.js
 /* harmony default export */ var mitt_es = (function(n){return{all:n=n||new Map,on:function(t,e){var i=n.get(t);i&&i.push(e)||n.set(t,[e])},off:function(t,e){var i=n.get(t);i&&i.splice(i.indexOf(e)>>>0,1)},emit:function(t,e){(n.get(t)||[]).slice().map(function(n){n(e)}),(n.get("*")||[]).slice().map(function(n){n(t,e)})}}});
 //# sourceMappingURL=mitt.es.js.map
@@ -12832,11 +13474,9 @@ function _defineProperty(obj, key, value) {
 
 
 
+function GridLayoutvue_type_script_lang_js_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function GridLayoutvue_type_script_lang_js_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { GridLayoutvue_type_script_lang_js_ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { GridLayoutvue_type_script_lang_js_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -12894,6 +13534,10 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       type: Boolean,
       default: false
     },
+    isBounded: {
+      type: Boolean,
+      default: false
+    },
     useCssTransforms: {
       type: Boolean,
       default: true
@@ -12901,6 +13545,10 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
     verticalCompact: {
       type: Boolean,
       default: true
+    },
+    restoreOnDrag: {
+      type: Boolean,
+      default: false
     },
     layout: {
       type: Array,
@@ -12915,6 +13563,10 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       default: function _default() {
         return {};
       }
+    },
+    transformScale: {
+      type: Number,
+      default: 1
     },
     breakpoints: {
       type: Object,
@@ -13019,8 +13671,8 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       this.originalLayout = this.layout;
       var self = this;
       this.$nextTick(function () {
-        self.onWindowResize();
-        self.initResponsiveFeatures(); //self.width = self.$el.offsetWidth;
+        self.initResponsiveFeatures();
+        self.onWindowResize(); //self.width = self.$el.offsetWidth;
 
         addWindowEventListener('resize', self.onWindowResize);
         compact(self.layout, self.verticalCompact);
@@ -13058,14 +13710,14 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
               got set to null in the constructor. It is now time
               to issue layout-ready events as the GridItems have
               their sizes configured properly.
-                The reason for emitting the layout-ready events on
+               The reason for emitting the layout-ready events on
               the next tick is to allow for the newly-emitted
               updateWidth event (above) to have reached the
               children GridItem-s and had their effect, so we're
               sure that they have the final size before we emit
               layout-ready (for this GridLayout) and
               item-layout-ready (for the GridItem-s).
-                This way any client event handlers can reliably
+               This way any client event handlers can reliably
               invistigate stable sizes of GridItem-s.
           */
           this.$nextTick(function () {
@@ -13090,6 +13742,12 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
     },
     isResizable: function isResizable() {
       this.eventBus.emit("setResizable", this.isResizable);
+    },
+    isBounded: function isBounded() {
+      this.eventBus.emit("setBounded", this.isBounded);
+    },
+    transformScale: function transformScale() {
+      this.eventBus.emit("setTransformScale", this.transformScale);
     },
     responsive: function responsive() {
       if (!this.responsive) {
@@ -13152,7 +13810,7 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       if (!this.autoSize) return; // console.log("bottom: " + bottom(this.layout))
       // console.log("rowHeight + margins: " + (this.rowHeight + this.margin[1]) + this.margin[1])
 
-      var containerHeight = bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
+      var containerHeight = utils_bottom(this.layout) * (this.rowHeight + this.margin[1]) + this.margin[1] + 'px';
       return containerHeight;
     },
     dragEvent: function dragEvent(eventName, id, x, y, h, w) {
@@ -13164,6 +13822,18 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
           x: 0,
           y: 0
         };
+      }
+
+      if (eventName === "dragstart" && !this.verticalCompact) {
+        this.positionsBeforeDrag = this.layout.reduce(function (result, _ref3) {
+          var i = _ref3.i,
+              x = _ref3.x,
+              y = _ref3.y;
+          return GridLayoutvue_type_script_lang_js_objectSpread(GridLayoutvue_type_script_lang_js_objectSpread({}, result), {}, _defineProperty({}, i, {
+            x: x,
+            y: y
+          }));
+        }, {});
       }
 
       if (eventName === "dragmove" || eventName === "dragstart") {
@@ -13185,11 +13855,25 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
 
 
       this.$emit("update:layout", moveElement(this.layout, l, x, y, true, this.preventCollision));
-      compact(this.layout, this.verticalCompact); // needed because vue can't detect changes on array element properties
+
+      if (this.restoreOnDrag) {
+        // Do not compact items more than in layout before drag
+        // Set moved item as static to avoid to compact it
+        l.static = true;
+        compact(this.layout, this.verticalCompact, this.positionsBeforeDrag);
+        l.static = false;
+      } else {
+        compact(this.layout, this.verticalCompact);
+      } // needed because vue can't detect changes on array element properties
+
 
       this.eventBus.emit("compact");
       this.updateHeight();
-      if (eventName === 'dragend') this.$emit('layout-updated', this.layout);
+
+      if (eventName === 'dragend') {
+        delete this.positionsBeforeDrag;
+        this.$emit('layout-updated', this.layout);
+      }
     },
     resizeEvent: function resizeEvent(eventName, id, x, y, h, w) {
       var l = getLayoutItem(this.layout, id); //GetLayoutItem sometimes return null object
@@ -13204,7 +13888,7 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       var hasCollisions;
 
       if (this.preventCollision) {
-        var collisions = getAllCollisions(this.layout, _objectSpread(_objectSpread({}, l), {}, {
+        var collisions = getAllCollisions(this.layout, GridLayoutvue_type_script_lang_js_objectSpread(GridLayoutvue_type_script_lang_js_objectSpread({}, l), {}, {
           w: w,
           h: h
         })).filter(function (layoutItem) {
@@ -13300,8 +13984,8 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
 });
 // CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=script&lang=js
  
-// EXTERNAL MODULE: ./src/components/GridLayout.vue?vue&type=style&index=0&id=fc5948f6&lang=css
-var GridLayoutvue_type_style_index_0_id_fc5948f6_lang_css = __webpack_require__("6521");
+// EXTERNAL MODULE: ./src/components/GridLayout.vue?vue&type=style&index=0&id=47b36cea&lang=css
+var GridLayoutvue_type_style_index_0_id_47b36cea_lang_css = __webpack_require__("1a31");
 
 // CONCATENATED MODULE: ./src/components/GridLayout.vue
 
@@ -13309,9 +13993,11 @@ var GridLayoutvue_type_style_index_0_id_fc5948f6_lang_css = __webpack_require__(
 
 
 
-GridLayoutvue_type_script_lang_js.render = GridLayoutvue_type_template_id_fc5948f6_render
 
-/* harmony default export */ var GridLayout = (GridLayoutvue_type_script_lang_js);
+
+const GridLayout_exports_ = /*#__PURE__*/exportHelper_default()(GridLayoutvue_type_script_lang_js, [['render',GridLayoutvue_type_template_id_47b36cea_render]])
+
+/* harmony default export */ var GridLayout = (GridLayout_exports_);
 // CONCATENATED MODULE: ./src/components/index.js
 
 

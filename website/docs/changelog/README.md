@@ -3,6 +3,17 @@ sidebar: auto
 ---
 # Changelog
 
+## 2.4.0 (Aug 3, 2022)
+
+* GridLayout transformScale prop, to allow proper dragging and resizing when scaled (#430) (thanks [adt-hgkim](https://github.com/adt-hgkim)  
+* GridLayout and GridItem isBounded prop, to prevent draging outside of the parent element (#523) (thanks [rin4ik](https://github.com/rin4ik)  
+* Added GridItem passthrough options for interact resizable and draggable (#181) (thanks [llezenelrahc](https://github.com/llezenelrahc)  
+* Change function call order for responsive features (thanks [william8012](https://github.com/william8012)  
+* Added GridLayout restoreOnDrag prop, to generate less gaps on drag when verticalCompact is false (thanks [jledentu](https://github.com/jledentu)  
+* added unit tests (thanks [ygj6](https://github.com/ygj6)  
+* layout key extra validations (thanks [ygj6](https://github.com/ygj6)  
+* Fix grid items overlapping when using autoSize() (thanks [ygj6](https://github.com/ygj6) and [savandriy](https://github.com/savandriy))
+
 ## 2.3.12 (Jan 15, 2020)
 
 * Bumped interact.js to 1.10.2

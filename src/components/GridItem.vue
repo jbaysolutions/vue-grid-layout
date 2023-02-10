@@ -94,6 +94,7 @@
     //    var eventBus = require('./eventBus');
 
     import '@interactjs/auto-start'
+    import '@interactjs/auto-scroll'
     import '@interactjs/actions/drag'
     import '@interactjs/actions/resize'
     import '@interactjs/modifiers'
@@ -130,6 +131,11 @@
                 default: null
             },
             isResizable: {
+                type: Boolean,
+                required: false,
+                default: null
+            },
+            isBounded: {
                 type: Boolean,
                 required: false,
                 default: null
@@ -202,6 +208,16 @@
                 type: Boolean,
                 required: false,
                 default: false,
+            },
+            dragOption:{
+                type:Object,
+                required: false,
+                default: ()=>({}),
+            },
+            resizeOption:{
+                type:Object,
+                required: false,
+                default: ()=>({}),
             }
         },
         inject: ["eventBus", "layout"],
@@ -214,6 +230,7 @@
                 maxRows: Infinity,
                 draggable: null,
                 resizable: null,
+                transformScale: 1,
                 useCssTransforms: true,
                 useStyleCursor: true,
 
@@ -265,6 +282,16 @@
                 }
             };
 
+            self.setBoundedHandler = function (isBounded) {
+                if (self.isBounded === null) {
+                    self.bounded = isBounded;
+                }
+            };
+
+            self.setTransformScaleHandler = function (transformScale) {
+                self.transformScale = transformScale
+            };
+
             self.setRowHeightHandler = function (rowHeight) {
                 self.rowHeight = rowHeight;
             };
@@ -286,6 +313,8 @@
             this.eventBus.on('compact', self.compactHandler);
             this.eventBus.on('setDraggable', self.setDraggableHandler);
             this.eventBus.on('setResizable', self.setResizableHandler);
+            this.eventBus.on('setBounded', self.setBoundedHandler);
+            this.eventBus.on('setTransformScale', self.setTransformScaleHandler)
             this.eventBus.on('setRowHeight', self.setRowHeightHandler);
             this.eventBus.on('setMaxRows', self.setMaxRowsHandler);
             this.eventBus.on('directionchange', self.directionchangeHandler);
@@ -300,6 +329,8 @@
             this.eventBus.off('compact', self.compactHandler);
             this.eventBus.off('setDraggable', self.setDraggableHandler);
             this.eventBus.off('setResizable', self.setResizableHandler);
+            this.eventBus.off('setBounded', self.setBoundedHandler);
+            this.eventBus.off('setTransformScale', self.setTransformScaleHandler)
             this.eventBus.off('setRowHeight', self.setRowHeightHandler);
             this.eventBus.off('setMaxRows', self.setMaxRowsHandler);
             this.eventBus.off('directionchange', self.directionchangeHandler);
@@ -329,6 +360,12 @@
             } else {
                 this.resizable = this.isResizable;
             }
+            if (this.isBounded === null) {
+                this.bounded = this.layout.isBounded;
+            } else {
+                this.bounded = this.isBounded;
+            }
+            this.transformScale = this.layout.transformScale
             this.useCssTransforms = this.layout.useCssTransforms;
             this.useStyleCursor = this.layout.useStyleCursor;
             this.createStyle();
@@ -346,6 +383,9 @@
             },
             isResizable: function () {
                 this.resizable = this.isResizable;
+            },
+            isBounded: function () {
+                this.bounded = this.isBounded;
             },
             resizable: function () {
                 this.tryMakeResizable();
@@ -511,6 +551,7 @@
                 let pos;
                 switch (event.type) {
                     case "resizestart": {
+                        this.tryMakeResizable()
                         this.previousW = this.innerW;
                         this.previousH = this.innerH;
                         pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
@@ -524,11 +565,11 @@
 //                        console.log("### resize => " + event.type + ", lastW=" + this.lastW + ", lastH=" + this.lastH);
                         const coreEvent = createCoreData(this.lastW, this.lastH, x, y);
                         if (this.renderRtl) {
-                            newSize.width = this.resizing.width - coreEvent.deltaX;
+                            newSize.width = this.resizing.width - coreEvent.deltaX / this.transformScale;
                         } else {
-                            newSize.width = this.resizing.width + coreEvent.deltaX;
+                            newSize.width = this.resizing.width + coreEvent.deltaX / this.transformScale;
                         }
-                        newSize.height = this.resizing.height + coreEvent.deltaY;
+                        newSize.height = this.resizing.height + coreEvent.deltaY / this.transformScale;
 
                         ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
                         this.resizing = newSize;
@@ -598,12 +639,20 @@
 
                         let parentRect = event.target.offsetParent.getBoundingClientRect();
                         let clientRect = event.target.getBoundingClientRect();
+
+                        const cLeft = clientRect.left / this.transformScale;
+                        const pLeft = parentRect.left / this.transformScale;
+                        const cRight = clientRect.right / this.transformScale;
+                        const pRight = parentRect.right / this.transformScale;
+                        const cTop = clientRect.top / this.transformScale;
+                        const pTop = parentRect.top / this.transformScale;
+
                         if (this.renderRtl) {
-                            newPosition.left = (clientRect.right - parentRect.right) * -1;
+                          newPosition.left = (cRight - pRight) * -1;
                         } else {
-                            newPosition.left = clientRect.left - parentRect.left;
+                          newPosition.left = cLeft - pLeft;
                         }
-                        newPosition.top = clientRect.top - parentRect.top;
+                        newPosition.top = cTop - pTop;
                         this.dragging = newPosition;
                         this.isDragging = true;
                         break;
@@ -612,13 +661,21 @@
                         if (!this.isDragging) return;
                         let parentRect = event.target.offsetParent.getBoundingClientRect();
                         let clientRect = event.target.getBoundingClientRect();
+
+                        const cLeft = clientRect.left / this.transformScale;
+                        const pLeft = parentRect.left / this.transformScale;
+                        const cRight = clientRect.right / this.transformScale;
+                        const pRight = parentRect.right / this.transformScale;
+                        const cTop = clientRect.top / this.transformScale;
+                        const pTop = parentRect.top / this.transformScale;
+
 //                        Add rtl support
                         if (this.renderRtl) {
-                            newPosition.left = (clientRect.right - parentRect.right) * -1;
+                            newPosition.left = (cRight - pRight) * -1;
                         } else {
-                            newPosition.left = clientRect.left - parentRect.left;
+                            newPosition.left = cLeft - pLeft;
                         }
-                        newPosition.top = clientRect.top - parentRect.top;
+                        newPosition.top = cTop - pTop;
 //                        console.log("### drag end => " + JSON.stringify(newPosition));
 //                        console.log("### DROP: " + JSON.stringify(newPosition));
                         this.dragging = null;
@@ -630,11 +687,18 @@
                         const coreEvent = createCoreData(this.lastX, this.lastY, x, y);
 //                        Add rtl support
                         if (this.renderRtl) {
-                            newPosition.left = this.dragging.left - coreEvent.deltaX;
+                            newPosition.left = this.dragging.left - coreEvent.deltaX / this.transformScale;
                         } else {
-                            newPosition.left = this.dragging.left + coreEvent.deltaX;
+                            newPosition.left = this.dragging.left + coreEvent.deltaX / this.transformScale;
                         }
-                        newPosition.top = this.dragging.top + coreEvent.deltaY;
+                        newPosition.top = this.dragging.top + coreEvent.deltaY / this.transformScale;
+                        if(this.bounded){
+                            const bottomBoundary = event.target.offsetParent.clientHeight - this.calcGridItemWHPx(this.h, this.rowHeight, this.margin[1]);
+                            newPosition.top = this.clamp(newPosition.top, 0, bottomBoundary);
+                            const colWidth = this.calcColWidth();
+                            const rightBoundary = this.containerWidth - this.calcGridItemWHPx(this.w, colWidth, this.margin[0]);
+                            newPosition.left = this.clamp(newPosition.left, 0, rightBoundary);
+                        }
 //                        console.log("### drag => " + event.type + ", x=" + x + ", y=" + y);
 //                        console.log("### drag => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
 //                        console.log("### drag end => " + JSON.stringify(newPosition));
@@ -723,6 +787,22 @@
                // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
                 return colWidth;
             },
+            // This can either be called:
+            // calcGridItemWHPx(w, colWidth, margin[0])
+            // or
+            // calcGridItemWHPx(h, rowHeight, margin[1])
+            calcGridItemWHPx(gridUnits,colOrRowSize,marginPx) {
+                // 0 * Infinity === NaN, which causes problems with resize contraints
+                if (!Number.isFinite(gridUnits)) return gridUnits;
+                return Math.round(
+                    colOrRowSize * gridUnits + Math.max(0, gridUnits - 1) * marginPx
+                );
+            },
+
+            // Similar to _.clamp
+            clamp(num, lowerBound, upperBound) {
+                return Math.max(Math.min(num, upperBound), lowerBound);
+            },
 
             /**
              * Given a height and width in pixel values, calculate grid units.
@@ -770,7 +850,8 @@
                 if (this.draggable && !this.static) {
                     const opts = {
                         ignoreFrom: this.dragIgnoreFrom,
-                        allowFrom: this.dragAllowFrom
+                        allowFrom: this.dragAllowFrom,
+                        ...this.dragOption
                     };
                     this.interactObj.draggable(opts);
                     /*this.interactObj.draggable({allowFrom: '.vue-draggable-handle'});*/
@@ -795,7 +876,7 @@
                     }
                 }
                 if (this.resizable && !this.static) {
-                    let maximum = this.calcPosition(0,0,this.maxW, this.maxH);
+                    let maximum = this.calcPosition(0,0, this.maxW, this.maxH);
                     let minimum = this.calcPosition(0,0, this.minW, this.minH);
 
                     // console.log("### MAX " + JSON.stringify(maximum));
@@ -812,14 +893,15 @@
                         ignoreFrom: this.resizeIgnoreFrom,
                         restrictSize: {
                             min: {
-                                height: minimum.height,
-                                width: minimum.width
+                                height: minimum.height * this.transformScale,
+                                width: minimum.width * this.transformScale
                             },
                             max: {
-                                height: maximum.height,
-                                width: maximum.width
+                                height: maximum.height * this.transformScale,
+                                width: maximum.width * this.transformScale
                             }
-                        }
+                        },
+                        ...this.resizeOption,
                     };
 
                     if (this.preserveAspectRatio) {
