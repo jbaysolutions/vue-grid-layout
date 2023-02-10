@@ -21,7 +21,6 @@ yarn-error.log*
 *.sln
 *.sw*
 
-yarn.lock
 yarn-error.log
 
 website/docs/dist

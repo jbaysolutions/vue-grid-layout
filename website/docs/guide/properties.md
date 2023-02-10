@@ -84,6 +84,14 @@ Says if the grids items are resizable.
 
 Says if the RTL/LTR should be reversed.
 
+### isBounded
+    
+* type: `Boolean`
+* required: `false`
+* default: `false`
+
+Says if the grid items are bounded to the container when dragging
+
 ### autoSize
     
 * type: `Boolean`
@@ -99,6 +107,14 @@ Says if the container height should swells and contracts to fit contents.
 * default: `true`
 
 Says if the layout should be compact vertically.
+
+### restoreOnDrag
+    
+* type: `Boolean`
+* required: `false`
+* default: `false`
+
+Says if the moved grid items should be restored after an item has been dragged over.
 
 ### preventCollision
     
@@ -153,6 +169,15 @@ Defines number of columns for each breakpoint
 
 Says if set the `styleCursor` option to true. When dragging freezes, setting this value to `false` may alleviate problems. 
 **This property is not reactive**
+           
+
+### transformScale
+
+* type: `Number`
+* required: `false`
+* default: 1
+
+Sets a scaling factor to the size of the grid items, 1 is 100%
 
 ## GridItem
 
@@ -259,6 +284,16 @@ Says if item is resizable.
 
 If default value is `null` then it's inherited from parent.
 
+### isBounded
+
+* type: `Boolean`
+* required: `false`
+* default: `null`
+
+Says if the item is bounded to the container when dragging.
+
+If default value is `null` then it's inherited from parent.
+
 ### static
     
 * type: `Boolean`
@@ -314,3 +349,21 @@ For more info please refer to `ignoreFrom` in [interact.js docs](http://interact
 * default: `false`
 
 If 'true', forces the GridItem to preserve its aspect ratio when resizing. 
+         
+
+### dragOption
+
+* type: `Object`
+* required: `false`
+* default: `{}`
+
+Passthrough object for the grid item [interact.js draggable configuration](https://interactjs.io/docs/draggable/)   
+         
+### resizeOption
+
+* type: `Object`
+* required: `false`
+* default: `{}`
+
+Passthrough object for the grid item [interact.js resizable configuration](https://interactjs.io/docs/resizable/)   
+         

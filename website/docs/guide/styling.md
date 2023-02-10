@@ -45,4 +45,41 @@ In this example we change the placeholder background color to green:
 </ClientOnly>
 
 
+## Grid lines
+     
+To add grid lines to the layout, add the ``grid`` class to the grid-layout element and use the css:
+
+````css
+.grid::before {
+    content: '';
+    background-size: calc(calc(100% - 5px) / 12) 40px;
+    background-image: linear-gradient(
+            to right,
+            lightgrey 1px,
+            transparent 1px
+    ),
+    linear-gradient(to bottom, lightgrey 1px, transparent 1px);
+    height: calc(100% - 5px);
+    width: calc(100% - 5px);
+    position: absolute;
+    background-repeat: repeat;
+    margin:5px;
+}
+````
+
+CSS calculations for grid lines: 
+
+* background size = calc(calc(100% - (margin/2)) / colNum) rowHeight + margin;
+* height: calc(100% - (margin/2))
+* width: calc(100% - (margin/2))
+* margin: margin / 2
+
+[View source](https://github.com/jbaysolutions/vue-grid-layout/blob/master/website/docs/.vuepress/components/ExampleStylingGridLines.vue)
+
+<ClientOnly>
+<ExampleStylingGridLines></ExampleStylingGridLines>
+</ClientOnly>
+
+
+
 Work in progress...
