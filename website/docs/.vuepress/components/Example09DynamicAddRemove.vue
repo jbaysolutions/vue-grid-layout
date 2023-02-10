@@ -26,6 +26,7 @@
                        :w="item.w"
                        :h="item.h"
                        :i="item.i"
+                       :key="item.i"
             >
                 <span class="text">{{item.i}}</span>
                 <span class="remove" @click="removeItem(item.i)">x</span>

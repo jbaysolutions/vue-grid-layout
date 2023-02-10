@@ -64,6 +64,7 @@ module.exports = {
 								'08-responsive-predefined-layouts',
 								'09-dynamic-add-remove',
 								'10-drag-from-outside',
+								'11-bounded',
 							]
 						}
 					]
@@ -108,6 +109,7 @@ module.exports = {
 								'08-responsive-predefined-layouts',
 								'09-dynamic-add-remove',
 								'10-drag-from-outside',
+								'11-bounded',
 							]
 						}
 					]
