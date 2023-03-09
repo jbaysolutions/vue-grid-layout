@@ -15,7 +15,11 @@
                    :h="item.h"
                    :i="item.i"
         >
-            <span class="text">{{itemTitle(item)}}</span>
+            <div v-if="item.i === '2'" style="width: 90%;margin-left: auto;margin-right: auto;margin-top: 5px;height: 90%;">
+                <iframe src="https://github.com/sponsors/jbaysolutions/card" title="Sponsor jbaysolutions" height="100%" width="100%" style="border: 0;"></iframe>
+<!--                <iframe src="https://github.com/sponsors/jbaysolutions/button" title="Sponsor jbaysolutions" height="35" width="100%" style="border: 0; margin-left:auto;margin-right: auto;"></iframe>-->
+            </div>
+            <span v-else class="text">{{itemTitle(item)}}</span>
         </grid-item>
     </grid-layout>
 </template>
@@ -33,25 +37,25 @@ export default {
         return {
             layout: [
                 {"x":0,"y":0,"w":2,"h":2,"i":"0", static: false},
-                {"x":2,"y":0,"w":2,"h":4,"i":"1", static: true},
-                {"x":4,"y":0,"w":2,"h":5,"i":"2", static: false},
-                {"x":6,"y":0,"w":2,"h":3,"i":"3", static: false},
-                {"x":8,"y":0,"w":2,"h":3,"i":"4", static: false},
-                {"x":10,"y":0,"w":2,"h":3,"i":"5", static: false},
-                {"x":0,"y":5,"w":2,"h":5,"i":"6", static: false},
-                {"x":2,"y":5,"w":2,"h":5,"i":"7", static: false},
-                {"x":4,"y":5,"w":2,"h":5,"i":"8", static: false},
-                {"x":6,"y":3,"w":2,"h":4,"i":"9", static: true},
-                {"x":8,"y":4,"w":2,"h":4,"i":"10", static: false},
-                {"x":10,"y":4,"w":2,"h":4,"i":"11", static: false},
+                {"x":10,"y":0,"w":2,"h":4,"i":"1", static: true},
+                {"x":2,"y":0,"w":8,"h":4,"i":"2", static: false},
+                {"x":6,"y":4,"w":2,"h":3,"i":"3", static: false},
+                {"x":8,"y":4,"w":2,"h":3,"i":"4", static: false},
+                {"x":10,"y":4,"w":2,"h":3,"i":"5", static: false},
+                {"x":0,"y":2,"w":2,"h":5,"i":"6", static: false},
+                {"x":2,"y":4,"w":2,"h":5,"i":"7", static: false},
+                {"x":4,"y":4,"w":2,"h":5,"i":"8", static: false},
+                {"x":6,"y":7,"w":2,"h":4,"i":"9", static: true},
+                {"x":8,"y":7,"w":2,"h":4,"i":"10", static: false},
+                {"x":10,"y":7,"w":2,"h":4,"i":"11", static: false},
                 {"x":0,"y":10,"w":2,"h":5,"i":"12", static: false},
-                {"x":2,"y":10,"w":2,"h":5,"i":"13", static: false},
-                {"x":4,"y":8,"w":2,"h":4,"i":"14", static: false},
-                {"x":6,"y":8,"w":2,"h":4,"i":"15", static: false},
-                {"x":8,"y":10,"w":2,"h":5,"i":"16", static: false},
-                {"x":10,"y":4,"w":2,"h":2,"i":"17", static: false},
-                {"x":0,"y":9,"w":2,"h":3,"i":"18", static: false},
-                {"x":2,"y":6,"w":2,"h":2,"i":"19", static: false}
+                {"x":2,"y":11,"w":2,"h":5,"i":"13", static: false},
+                {"x":4,"y":9,"w":2,"h":4,"i":"14", static: false},
+                {"x":6,"y":11,"w":2,"h":4,"i":"15", static: false},
+                {"x":8,"y":11,"w":2,"h":5,"i":"16", static: false},
+                {"x":10,"y":11,"w":2,"h":2,"i":"17", static: false},
+                {"x":0,"y":7,"w":2,"h":3,"i":"18", static: false},
+                {"x":2,"y":9,"w":2,"h":2,"i":"19", static: false}
             ],
             draggable: true,
             resizable: true,

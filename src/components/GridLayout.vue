@@ -77,6 +77,10 @@
                 type: Boolean,
                 default: false
             },
+            isBounded: {
+                type: Boolean,
+                default: false
+            },
             useCssTransforms: {
                 type: Boolean,
                 default: true
@@ -84,6 +88,10 @@
             verticalCompact: {
                 type: Boolean,
                 default: true
+            },
+            restoreOnDrag: {
+                type: Boolean,
+                default: false
             },
             layout: {
                 type: Array,
@@ -98,6 +106,10 @@
                 default: function() {
                     return {};
                 }
+            },
+            transformScale: {
+                type: Number,
+                default: 1
             },
             breakpoints:{
                 type: Object,
@@ -181,9 +193,10 @@
                 this.originalLayout = this.layout;
                 const self = this;
                 this.$nextTick(function() {
+                    self.initResponsiveFeatures();
+
                     self.onWindowResize();
 
-                    self.initResponsiveFeatures();
 
                     //self.width = self.$el.offsetWidth;
                     addWindowEventListener('resize', self.onWindowResize);
@@ -254,6 +267,12 @@
             },
             isResizable: function() {
                 this.eventBus.$emit("setResizable", this.isResizable);
+            },
+            isBounded: function() {
+                this.eventBus.$emit("setBounded", this.isBounded);
+            },
+            transformScale: function() {
+                this.eventBus.$emit("setTransformScale", this.transformScale);
             },
             responsive() {
                 if (!this.responsive) {
@@ -326,6 +345,13 @@
                     l = {x:0, y:0}
                 }
 
+                if (eventName === "dragstart" && !this.verticalCompact) {
+                    this.positionsBeforeDrag = this.layout.reduce((result, {i, x, y}) => ({
+                        ...result,
+                        [i]: {x, y}
+                    }), {});
+                }
+
                 if (eventName === "dragmove" || eventName === "dragstart") {
                     this.placeholder.i = id;
                     this.placeholder.x = l.x;
@@ -345,11 +371,24 @@
 
                 // Move the element to the dragged location.
                 this.layout = moveElement(this.layout, l, x, y, true, this.preventCollision);
-                compact(this.layout, this.verticalCompact);
+
+                if (this.restoreOnDrag) {
+                    // Do not compact items more than in layout before drag
+                    // Set moved item as static to avoid to compact it
+                    l.static = true;
+                    compact(this.layout, this.verticalCompact, this.positionsBeforeDrag);
+                    l.static = false;
+                } else {
+                    compact(this.layout, this.verticalCompact);
+                }
+
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.$emit("compact");
                 this.updateHeight();
-                if (eventName === 'dragend') this.$emit('layout-updated', this.layout);
+                if (eventName === 'dragend') {
+                    delete this.positionsBeforeDrag;
+                    this.$emit('layout-updated', this.layout);
+                }
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
                 let l = getLayoutItem(this.layout, id);
