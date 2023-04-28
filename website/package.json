@@ -6,19 +6,20 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "vuepress dev docs",
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider vuepress dev docs",
     "build": "vuepress build docs",
-    "serve": "vuepress serve docs"
+    "serve": "cross-env NODE_OPTIONS=--openssl-legacy-provider vuepress serve docs"
   },
   "dependencies": {
   },
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.6.0",
-    "@vuepress/plugin-google-analytics": "^1.6.0",
+    "cross-env": "^7.0.3",
+    "@vuepress/plugin-back-to-top": "^1.9.9",
+    "@vuepress/plugin-google-analytics": "^1.9.9",
     "vue-grid-layout": "^2.4.0",
     "vuepress-plugin-seo": "^0.1.4",
     "vuepress-plugin-sitemap": "^2.3.1",
-    "vuepress": "^1.7.1",
+    "vuepress": "^1.9.9",
     "vuepress-plugin-serve": "^2.0.4"
   },
   "resolutions": {
