@@ -51,7 +51,7 @@ Chinese documentation: [简体中文](./README-zh_CN.md)
 
 - [DocsFold](https://www.docsfold.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 - [Draxed](https://www.draxed.com/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
-- [cryptotiles](https://www.cryptotiles.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
+- [cryptotiles](https://web.archive.org/web/20210128120115/https://www.cryptotiles.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout) (original site is redirecting to phishing/malware - this is a snapshot)
 - [Data Providers](https://www.dataproviders.io/?utm_source=github&utm_medium=web&utm_campaign=vue-grid-layout)
 - [Cataholic](https://cataholic.glitch.me/)
 
