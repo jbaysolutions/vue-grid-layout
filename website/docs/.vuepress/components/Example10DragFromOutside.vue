@@ -88,21 +88,20 @@ export default {
                     i: 'drop',
                 });
             }
-            let index = this.layout.findIndex(item => item.i === 'drop');
-            if (index !== -1) {
+            if (this.$refs.gridlayout?.$children.some(el => el.i === 'drop' && !el.$el.classList.contains('vue-grid-placeholder'))) {
+                let el = this.$refs.gridlayout.$children.find(el => el.i === 'drop' && !el.$el.classList.contains('vue-grid-placeholder'))
                 try {
-                    this.$refs.gridlayout.$children[this.layout.length].$refs.item.style.display = "none";
+                    el.$refs.item.style.display = "none";
                 } catch {
                 }
-                let el = this.$refs.gridlayout.$children[index];
                 el.dragging = {"top": mouseXY.y - parentRect.top, "left": mouseXY.x - parentRect.left};
                 let new_pos = el.calcXY(mouseXY.y - parentRect.top, mouseXY.x - parentRect.left);
 
                 if (mouseInGrid === true) {
                     this.$refs.gridlayout.dragEvent('dragstart', 'drop', new_pos.x, new_pos.y, 1, 1);
-                    DragPos.i = String(index);
-                    DragPos.x = this.layout[index].x;
-                    DragPos.y = this.layout[index].y;
+                    DragPos.i = String(this.layout.length - 1);
+                    DragPos.x = new_pos.x;
+                    DragPos.y = new_pos.y;
                 }
                 if (mouseInGrid === false) {
                     this.$refs.gridlayout.dragEvent('dragend', 'drop', new_pos.x, new_pos.y, 1, 1);
