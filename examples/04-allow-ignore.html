@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Vue Grid Layout Example 4 - Drag allow/ignore elements</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--<link rel="stylesheet" href="../dist/vue-grid-layout.css">-->
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<h1>Vue Grid Layout Example 4 - Drag allow/ignore elements</h1>
+
+<a href="https://github.com/jbaysolutions/vue-grid-layout">View project on Github</a>
+<br/>
+<a href="03-multiple-grids.html">Previous example: Multiple grids</a>
+<br/>
+<a href="05-mirrored.html">Next example: Mirrored grid layout</a>
+
+
+<div id="app" style="width: 100%;">
+    <!--<pre>{{ $data | json }}</pre>-->
+    <div>
+        <br/>
+        Ignore drag on certain elements and allow on on others.
+        <br/>
+        Click and drag the dots on the corner of each item to reposition
+        <div class="layoutJSON">
+            Displayed as <code>[x, y, w, h]</code>:
+            <div class="columns">
+                <div class="layoutItem" v-for="item in layout">
+                    <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <!--<button @click="addItem">Add an item</button>-->
+        <grid-layout :layout="layout"
+                     :col-num="12"
+                     :row-height="30"
+                     :is-draggable="true"
+                     :is-resizable="true"
+                     :vertical-compact="true"
+                     :use-css-transforms="true"
+        >
+            <grid-item v-for="item in layout"
+                       :x="item.x"
+                       :y="item.y"
+                       :w="item.w"
+                       :h="item.h"
+                       :i="item.i"
+                       drag-allow-from=".vue-draggable-handle"
+                       drag-ignore-from=".no-drag"
+            >
+                <div class="text">
+                    <div class="vue-draggable-handle"></div>
+                    <div class="no-drag">
+                        <span>{{item.i}}</span>
+                        <br/>
+                        <button>test</button>
+                    </div>
+                </div>
+            </grid-item>
+        </grid-layout>
+    </div>
+
+</div>
+
+<script src="vue.min.js"></script>
+<script src="../dist/vue-grid-layout.umd.min.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            layout: [
+                {"x":0,"y":0,"w":2,"h":2,"i":"0"},
+                {"x":2,"y":0,"w":2,"h":4,"i":"1"},
+                {"x":4,"y":0,"w":2,"h":5,"i":"2"},
+                {"x":6,"y":0,"w":2,"h":3,"i":"3"},
+                {"x":8,"y":0,"w":2,"h":3,"i":"4"},
+                {"x":10,"y":0,"w":2,"h":3,"i":"5"},
+                {"x":0,"y":5,"w":2,"h":5,"i":"6"},
+                {"x":2,"y":5,"w":2,"h":5,"i":"7"},
+                {"x":4,"y":5,"w":2,"h":5,"i":"8"},
+                {"x":6,"y":4,"w":2,"h":4,"i":"9"},
+                {"x":8,"y":4,"w":2,"h":4,"i":"10"},
+                {"x":10,"y":4,"w":2,"h":4,"i":"11"},
+                {"x":0,"y":10,"w":2,"h":5,"i":"12"},
+                {"x":2,"y":10,"w":2,"h":5,"i":"13"},
+                {"x":4,"y":8,"w":2,"h":4,"i":"14"},
+                {"x":6,"y":8,"w":2,"h":4,"i":"15"},
+                {"x":8,"y":10,"w":2,"h":5,"i":"16"},
+                {"x":10,"y":4,"w":2,"h":2,"i":"17"},
+                {"x":0,"y":9,"w":2,"h":3,"i":"18"},
+                {"x":2,"y":6,"w":2,"h":2,"i":"19"}
+            ],
+            index: 0
+        },
+    });
+
+
+
+</script>
+</body>
+</html>

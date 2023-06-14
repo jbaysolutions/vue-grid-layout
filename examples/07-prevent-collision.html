@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Vue Grid Layout Example 7 - Prevent Collision</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="app.css">
+  <!--<link rel="stylesheet" href="../dist/vue-grid-layout.css">-->
+</head>
+
+<body>
+  <div id="app" style="width: 100%;">
+    <!--<pre>{{ $data | json }}</pre>-->
+    <div>
+      <div class="layoutJSON">
+        Displayed as <code>[x, y, w, h]</code>:
+        <div class="columns">
+          <div class="layoutItem" v-for="item in layout">
+            <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="content">
+      <!--<button @click="decreaseWidth">Decrease Width</button>
+            <button @click="increaseWidth">Increase Width</button>
+            <button @click="addItem">Add an item</button>-->
+      <br />
+      <grid-layout :layout.sync="layout"
+                   :col-num="12"
+                   :row-height="30"
+                   :is-draggable="draggable"
+                   :is-resizable="resizable"
+                   :vertical-compact="false"
+                   :prevent-collision="true"
+                   :use-css-transforms="true"
+                   :responsive="false">
+        <grid-item v-for="item in layout"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
+                   :i="item.i"
+        >
+          <span class="text">{{item.i}}</span>
+        </grid-item>
+      </grid-layout>
+    </div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-grid-layout@2.3.11/dist/vue-grid-layout.umd.min.js"></script>
+  <script src="07-prevent-collision.js"></script>
+</body>
+
+</html>

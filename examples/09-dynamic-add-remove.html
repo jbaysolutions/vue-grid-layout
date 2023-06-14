@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Vue Grid Layout Example 9 - Dynamic Add/Remove</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+
+<style>
+  .remove {
+    position: absolute;
+    right: 2px;
+    top: 0;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <!--<a href="https://github.com/jbaysolutions/vue-grid-layout">View project on Github</a>
+  <br />
+  <a href="08-responsive-predefined-layouts.html">Previous example: Responsive - predefined layouts</a>
+  <br />
+  <a href="10-drag-from-outside.html">Next example: Drag from outside</a>-->
+
+  <div id="app" style="width: 100%;">
+    <!--<pre>{{ $data | json }}</pre>-->
+    <div>
+      <div class="layoutJSON">
+        Displayed as <code>[x, y, w, h]</code>:
+        <div class="columns">
+          <div class="layoutItem" v-for="item in layout">
+            <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}},
+            {{item.h}}]
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="content">
+      <button @click="addItem">Add an item dynamically</button>
+      <input type="checkbox" v-model="draggable" /> Draggable
+      <input type="checkbox" v-model="resizable" /> Resizable
+      <br />
+      <grid-layout :layout="layout"
+                   :col-num="colNum"
+                   :row-height="30"
+                   :is-draggable="draggable"
+                   :is-resizable="resizable"
+                   :vertical-compact="true"
+                   :use-css-transforms="true"
+      >
+        <grid-item v-for="item in layout"
+                   :static="item.static"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
+                   :i="item.i"
+        >
+          <span class="text">{{item.i}}</span>
+          <span class="remove" @click="removeItem(item.i)">x</span>
+        </grid-item>
+      </grid-layout>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-grid-layout@2.3.11/dist/vue-grid-layout.umd.min.js"></script>
+  <script src="09-dynamic-add-remove.js"></script>
+</body>
+
+</html>
