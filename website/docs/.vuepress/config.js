@@ -19,6 +19,20 @@ module.exports = {
 		['link', { rel: 'icon', href: `/favicon.ico` }],
 		['link', { rel: "apple-touch-icon", sizes: "180x180", href: "https://jbaysolutions.github.io/vue-grid-layout/assets/favicon/apple-touch-icon.png"}],
 		// ['script', { src: 'https://cdn.jsdelivr.net/npm/vue-grid-layout@2.3.9/dist/vue-grid-layout.umd.min.js' }]
+		[
+			'script',
+			{
+				async: true,
+				src: 'https://www.googletagmanager.com/gtag/js?id=G-9JZJJHRV8R',
+			},
+		],
+		[
+			'script',
+			{},
+			[
+				"window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-9JZJJHRV8R');",
+			],
+		],
 	],
 	port: 8081,
 	theme: '@vuepress/vue',
@@ -127,9 +141,9 @@ module.exports = {
 	},
 	plugins: [
 		'@vuepress/back-to-top',
-		['@vuepress/google-analytics', {
+		/*['@vuepress/google-analytics', {
 			ga: 'UA-37288388-24' // UA-00000000-0
-		}],
+		}],*/
 		['seo', {
 			title: $page => `${$page.title} — Vue Grid Layout`,
 			// image: () => 'https://jbaysolutions.github.io/vue-grid-layout/assets/img/og.jpg',
