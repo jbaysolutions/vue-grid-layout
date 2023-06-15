@@ -7,7 +7,10 @@
                    :y="placeholder.y"
                    :w="placeholder.w"
                    :h="placeholder.h"
-                   :i="placeholder.i"></grid-item>
+                   :i="placeholder.i"
+                   :is-horizontal-resize="isHorizontalResize"
+                   :is-vertical-resize="isVerticalResize"
+                   ></grid-item>
     </div>
 </template>
 <style>
@@ -123,7 +126,15 @@
             useStyleCursor: {
                 type: Boolean,
                 default: true
-            }
+            },
+            isVerticalResize: {
+                type: Boolean,
+                default: false
+            },
+            isHorizontalResize: {
+                type: Boolean,
+                default: false
+            },
         },
         data: function () {
             return {

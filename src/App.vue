@@ -36,6 +36,8 @@
             <input type="checkbox" v-model="bounded"/> Bounded
             <input type="checkbox" v-model="responsive"/> Responsive
             <input type="checkbox" v-model="preventCollision"/> Prevent Collision
+            <input type="checkbox" v-model="isVerticalResize"/> isVerticalResize
+            <input type="checkbox" v-model="isHorizontalResize"/> isHorizontalResize
             <input type="checkbox" v-model="compact"/> Vertical Compact
             <div style="margin-top: 10px;margin-bottom: 10px;">
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
@@ -78,6 +80,8 @@
                            :min-y="item.minY"
                            :max-y="item.maxY"
                            :preserve-aspect-ratio="item.preserveAspectRatio"
+                           :is-horizontal-resize="isHorizontalResize"
+                           :is-vertical-resize="isVerticalResize"
                            @resize="resize"
                            @move="move"
                            @resized="resized"
@@ -177,6 +181,9 @@
                 transformScale: 1,
                 preventCollision: false,
                 compact: true,
+                restoreOnDrag: true,
+                isHorizontalResize: true,
+                isVerticalResize: true,
                 restoreOnDrag: true,
                 rowHeight: 30,
                 colNum: 12,

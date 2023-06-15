@@ -5,7 +5,9 @@
          :style="style"
     >
         <slot></slot>
-        <span v-if="resizableAndNotStatic" ref="handle" :class="resizableHandleClass"></span>
+        <span @mouseenter="mouseenter($event, 'rightBottom')"  v-if="resizableAndNotStatic" ref="handle" :class="resizableHandleClass"></span>
+        <span @mouseenter="mouseenter($event, 'right')" v-if="resizableAndNotStatic && isHorizontalResize" ref="handleRight" class="vue-resizable-handle  vue-resizable-handle-right"></span>
+        <span @mouseenter="mouseenter($event, 'bottom')" v-if="resizableAndNotStatic && isVerticalResize" ref="handleBottom" class="vue-resizable-handle vue-resizable-handle-bottom"></span>
         <!--<span v-if="draggable" ref="dragHandle" class="vue-draggable-handle"></span>-->
     </div>
 </template>
@@ -79,6 +81,23 @@
         background-origin: content-box;
         cursor: sw-resize;
         right: auto;
+    }
+
+    .vue-grid-item > .vue-resizable-handle-bottom {
+      bottom: 0;
+      right: 50%;
+      transform: translate(50%, 0);
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjUzNzA3NTUxMzE5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjQwNzUiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+QGZvbnQtZmFjZSB7IGZvbnQtZmFtaWx5OiBmZWVkYmFjay1pY29uZm9udDsgc3JjOiB1cmwoIi8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LndvZmYyP3Q9MTYzMDAzMzc1OTk0NCIpIGZvcm1hdCgid29mZjIiKSwgdXJsKCIvL2F0LmFsaWNkbi5jb20vdC9mb250XzEwMzExNThfdTY5dzh5aHhkdS53b2ZmP3Q9MTYzMDAzMzc1OTk0NCIpIGZvcm1hdCgid29mZiIpLCB1cmwoIi8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LnR0Zj90PTE2MzAwMzM3NTk5NDQiKSBmb3JtYXQoInRydWV0eXBlIik7IH0KPC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTUxMiA2MjRhMTEyIDExMiAwIDEgMCAwLTIyNCAxMTIgMTEyIDAgMCAwIDAgMjI0eiIgcC1pZD0iNDA3NiIgZmlsbD0iIzhlOGU4ZSI+PC9wYXRoPjwvc3ZnPg==);
+      background-position: center 4px;
+      cursor: ns-resize;
+    }
+    .vue-grid-item > .vue-resizable-handle-right {
+      bottom: 50%;
+      right: 0;
+      transform: translate(0, 50%);
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjUzNzA3NTUxMzE5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjQwNzUiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+QGZvbnQtZmFjZSB7IGZvbnQtZmFtaWx5OiBmZWVkYmFjay1pY29uZm9udDsgc3JjOiB1cmwoIi8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LndvZmYyP3Q9MTYzMDAzMzc1OTk0NCIpIGZvcm1hdCgid29mZjIiKSwgdXJsKCIvL2F0LmFsaWNkbi5jb20vdC9mb250XzEwMzExNThfdTY5dzh5aHhkdS53b2ZmP3Q9MTYzMDAzMzc1OTk0NCIpIGZvcm1hdCgid29mZiIpLCB1cmwoIi8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LnR0Zj90PTE2MzAwMzM3NTk5NDQiKSBmb3JtYXQoInRydWV0eXBlIik7IH0KPC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTUxMiA2MjRhMTEyIDExMiAwIDEgMCAwLTIyNCAxMTIgMTEyIDAgMCAwIDAgMjI0eiIgcC1pZD0iNDA3NiIgZmlsbD0iIzhlOGU4ZSI+PC9wYXRoPjwvc3ZnPg==);
+      background-position: 4px center;
+      cursor: ew-resize;
     }
 
     .vue-grid-item.disable-userselect {
@@ -208,6 +227,14 @@
                 required: false,
                 default: false,
             },
+             isVerticalResize: {
+                type: Boolean,
+                default: false
+            },
+            isHorizontalResize: {
+                type: Boolean,
+                default: false
+            },
             dragOption:{
                 type:Object,
                 required: false,
@@ -254,7 +281,8 @@
                 innerX: this.x,
                 innerY: this.y,
                 innerW: this.w,
-                innerH: this.h
+                innerH: this.h,
+                cursorType: 'rightBottom'
             }
         },
         created () {
@@ -481,6 +509,9 @@
             }
         },
         methods: {
+            mouseenter(e, type) {
+               this.cursorType = type;
+            },
             createStyle: function () {
                 if (this.x + this.w > this.cols) {
                     this.innerX = 0;
@@ -513,7 +544,14 @@
                     if (this.renderRtl) {
                         style = setTransformRtl(pos.top, pos.right, pos.width, pos.height);
                     } else {
-                        style = setTransform(pos.top, pos.left, pos.width, pos.height);
+                        // style = setTransform(pos.top, pos.left, pos.width, pos.height);
+                        if (this.cursorType === "rightBottom") {
+                            style = setTransform(pos.top, pos.left, pos.width, pos.height);
+                        } else if(this.cursorType === "right") {
+                            style = setTransform(pos.top, pos.left, pos.width, this.style.height);
+                        } else if(this.cursorType === "bottom") {
+                            style = setTransform(pos.top, pos.left,  this.style.width, pos.height);
+                        }
                     }
 
                 } else { // top,left (slow)
@@ -554,8 +592,14 @@
                         this.previousW = this.innerW;
                         this.previousH = this.innerH;
                         pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
-                        newSize.width = pos.width;
-                        newSize.height = pos.height;
+                        if(this.cursorType === "rightBottom") {
+                            newSize.width = pos.width;
+                            newSize.height = pos.height;
+                        } else if(this.cursorType === "right"){
+                            newSize.width = pos.width;
+                        } else if(this.cursorType === "bottom") {
+                            newSize.height = pos.height;
+                        }
                         this.resizing = newSize;
                         this.isResizing = true;
                         break;
@@ -564,12 +608,19 @@
 //                        console.log("### resize => " + event.type + ", lastW=" + this.lastW + ", lastH=" + this.lastH);
                         const coreEvent = createCoreData(this.lastW, this.lastH, x, y);
                         if (this.renderRtl) {
-                            newSize.width = this.resizing.width - coreEvent.deltaX / this.transformScale;
+                            newSize.width = this.resizing.width - coreEvent.deltaX / this.transformScal;
+                            newSize.height = this.resizing.height + coreEvent.deltaY / this.transformScal;
                         } else {
-                            newSize.width = this.resizing.width + coreEvent.deltaX / this.transformScale;
+                            if(this.cursorType === "rightBottom") {
+                                newSize.width = this.resizing.width + coreEvent.deltaX / this.transformScal;
+                                newSize.height = this.resizing.height + coreEvent.deltaY / this.transformScal;
+                            } else if(this.cursorType === "right"){
+                                newSize.width = this.resizing.width + coreEvent.deltaX / this.transformScal;
+                            } else if(this.cursorType === "bottom") {
+                                newSize.height = this.resizing.height + coreEvent.deltaY / this.transformScal;
+                            }
+                            
                         }
-                        newSize.height = this.resizing.height + coreEvent.deltaY / this.transformScale;
-
                         ///console.log("### resize => " + event.type + ", deltaX=" + coreEvent.deltaX + ", deltaY=" + coreEvent.deltaY);
                         this.resizing = newSize;
                         break;
@@ -577,8 +628,14 @@
                     case "resizeend": {
                         //console.log("### resize end => x=" +this.innerX + " y=" + this.innerY + " w=" + this.innerW + " h=" + this.innerH);
                         pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
-                        newSize.width = pos.width;
-                        newSize.height = pos.height;
+                        if(this.cursorType === "rightBottom") {
+                            newSize.width = pos.width;
+                            newSize.height = pos.height;
+                        } else if(this.cursorType === "right"){
+                            newSize.width = pos.width;
+                        } else if(this.cursorType === "bottom") {
+                            newSize.height = pos.height;
+                        }
 //                        console.log("### resize end => " + JSON.stringify(newSize));
                         this.resizing = null;
                         this.isResizing = false;
@@ -617,7 +674,14 @@
                 if (event.type === "resizeend" && (this.previousW !== this.innerW || this.previousH !== this.innerH)) {
                     this.$emit("resized", this.i, pos.h, pos.w, newSize.height, newSize.width);
                 }
-                this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
+                // this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
+                if (this.cursorType === "rightBottom") {
+                    this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, pos.w);
+                } else if(this.cursorType === "right") {
+                    this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, this.innerH, pos.w);
+                } else if(this.cursorType === "bottom") {
+                    this.eventBus.$emit("resizeEvent", event.type, this.i, this.innerX, this.innerY, pos.h, this.innerW);
+                }
             },
             handleDrag(event) {
                 if (this.static) return;
