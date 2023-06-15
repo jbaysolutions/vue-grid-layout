@@ -31,6 +31,7 @@
             <!-- Add to show rtl support -->
             <button @click="changeDirection">Change Direction</button>
             <input type="checkbox" v-model="draggable"/> Draggable
+            <input type="checkbox" v-model="droppable"/> Droppable
             <input type="checkbox" v-model="resizable"/> Resizable
             <input type="checkbox" v-model="mirrored"/> Mirrored
             <input type="checkbox" v-model="bounded"/> Bounded
@@ -41,6 +42,7 @@
                 Row Height: <input type="number" v-model="rowHeight"/> Col nums: <input type="number" v-model="colNum"/>
                 Margin x: <input type="number" v-model="marginX"/> Margin y: <input type="number" v-model="marginY"/>
             </div>
+            <div class="droppable-element" draggable="true" unselectable="on" @dragstart="onDroppableDragStart">Droppable Element (Drag me!)</div>
             <grid-layout
                     id="grid-layout"
                     :margin="[parseInt(marginX), parseInt(marginY)]"
@@ -48,6 +50,7 @@
                     :col-num="parseInt(colNum)"
                     :row-height="rowHeight"
                     :is-draggable="draggable"
+                    :is-droppable="droppable"
                     :is-resizable="resizable"
                     :is-mirrored="mirrored"
                     :is-bounded="bounded"
@@ -57,6 +60,7 @@
                     :use-css-transforms="true"
                     :responsive="responsive"
                     :transformScale="transformScale"
+                    :before-drop-over="beforeDropOver"
                     @layout-created="layoutCreatedEvent"
                     @layout-before-mount="layoutBeforeMountEvent"
                     @layout-mounted="layoutMountedEvent"
@@ -170,6 +174,7 @@
                 layout: JSON.parse(JSON.stringify(testLayout)),
                 layout2: JSON.parse(JSON.stringify(testLayout)),
                 draggable: true,
+                droppable: true,
                 resizable: true,
                 mirrored: false,
                 responsive: true,
@@ -177,7 +182,7 @@
                 transformScale: 1,
                 preventCollision: false,
                 compact: true,
-                restoreOnDrag: true,
+                restoreOnDrag: false,
                 rowHeight: 30,
                 colNum: 12,
                 index: 0,
@@ -287,8 +292,16 @@
             },
             breakpointChangedEvent: function(newBreakpoint, newLayout){
                 console.log("breakpoint changed breakpoint=", newBreakpoint, ", layout: ", newLayout );
+            },
+            onDroppableDragStart: function(event) {
+                event.dataTransfer.setData('my-drop-element', 'element');
+            },
+            beforeDropOver: function(event) {
+                if (event.dataTransfer.items.length === 1 && event.dataTransfer.items[0].type === 'my-drop-element') {
+                    return { w: 2, h: 1 };
+                }
+                return false;
             }
-
         },
     }
 </script>
@@ -330,5 +343,14 @@
   /*text-align: center;*/
   color: #2c3e50;
   /*margin-top: 60px;*/
+}
+
+.droppable-element {
+    width: 150px;
+    text-align: center;
+    background: #fdd;
+    border: 1px solid black;
+    margin: 10px 0;
+    padding: 10px;
 }
 </style>

@@ -214,6 +214,17 @@ module.exports = function (S, index, unicode) {
 
 /***/ }),
 
+/***/ "07e3":
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+
 /***/ "0bfb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -609,6 +620,25 @@ detector.isLegacyOpera = function() {
 
 /***/ }),
 
+/***/ "1bc3":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__("f772");
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+
 /***/ "1ca7":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -672,6 +702,20 @@ function removeWindowEventListener(event
 
   window.removeEventListener(event, callback);
 }
+
+/***/ }),
+
+/***/ "1ec9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("f772");
+var document = __webpack_require__("e53d").document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
 
 /***/ }),
 
@@ -1021,6 +1065,20 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ "294c":
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+
 /***/ "2aba":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1262,17 +1320,37 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 
 /***/ }),
 
+/***/ "35e8":
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__("d9f6");
+var createDesc = __webpack_require__("aebd");
+module.exports = __webpack_require__("8e60") ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+
 /***/ "37c8":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1705dc22-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=361da5e4&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1705dc22-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridLayout.vue?vue&type=template&id=4add634d&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',_vm._g({ref:"item",staticClass:"vue-grid-layout",style:(_vm.mergedStyle)},_vm.isDroppable ? {
+        dragenter: _vm.onDragEnter,
+        dragover: _vm.onDragOver,
+        dragleave: _vm.onDragLeave,
+        drop: _vm.onDrop
+    } : {}),[_vm._t("default"),_c('grid-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDragging),expression:"isDragging"}],staticClass:"vue-grid-placeholder",attrs:{"x":_vm.placeholder.x,"y":_vm.placeholder.y,"w":_vm.placeholder.w,"h":_vm.placeholder.h,"i":_vm.placeholder.i}})],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=361da5e4&
+// CONCATENATED MODULE: ./src/components/GridLayout.vue?vue&type=template&id=4add634d&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
@@ -1292,8 +1370,8 @@ var es6_number_is_finite = __webpack_require__("fca0");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
-var defineProperty = __webpack_require__("ade3");
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
+var defineProperty = __webpack_require__("bd86");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
@@ -1307,6 +1385,9 @@ var utils = __webpack_require__("a2b6");
 
 // EXTERNAL MODULE: ./src/helpers/responsiveUtils.js
 var responsiveUtils = __webpack_require__("97a7");
+
+// EXTERNAL MODULE: ./src/helpers/calculateUtils.js
+var calculateUtils = __webpack_require__("6947");
 
 // EXTERNAL MODULE: ./src/components/GridItem.vue + 71 modules
 var GridItem = __webpack_require__("bc21");
@@ -1346,15 +1427,26 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var elementResizeDetectorMaker = __webpack_require__("eec4");
+
 
 
  //var eventBus = require('./eventBus');
 
 
 
+var DROPPING_ID = '__dropping-elem__';
 /* harmony default export */ var GridLayoutvue_type_script_lang_js_ = ({
   name: "GridLayout",
   provide: function provide() {
@@ -1405,6 +1497,14 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
     isBounded: {
       type: Boolean,
       default: false
+    },
+    isDroppable: {
+      type: Boolean,
+      default: false
+    },
+    beforeDropOver: {
+      type: Function,
+      default: null
     },
     useCssTransforms: {
       type: Boolean,
@@ -1506,6 +1606,7 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
     self.eventBus.$on('resizeEvent', self.resizeEventHandler);
     self.eventBus.$on('dragEvent', self.dragEventHandler);
     self.$emit('layout-created', self.layout);
+    this.dragEnterCounter = 0;
   },
   beforeDestroy: function beforeDestroy() {
     //Remove listeners
@@ -1567,14 +1668,14 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
               got set to null in the constructor. It is now time
               to issue layout-ready events as the GridItems have
               their sizes configured properly.
-                The reason for emitting the layout-ready events on
+               The reason for emitting the layout-ready events on
               the next tick is to allow for the newly-emitted
               updateWidth event (above) to have reached the
               children GridItem-s and had their effect, so we're
               sure that they have the final size before we emit
               layout-ready (for this GridLayout) and
               item-layout-ready (for the GridItem-s).
-                This way any client event handlers can reliably
+               This way any client event handlers can reliably
               invistigate stable sizes of GridItem-s.
           */
           this.$nextTick(function () {
@@ -1657,6 +1758,12 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       };
     },
     onWindowResize: function onWindowResize() {
+      if (this.isDragging) {
+        // We're dragging an item, so we consider that the layout
+        // is already being updated by drag events
+        return;
+      }
+
       if (this.$refs !== null && this.$refs.item !== null && this.$refs.item !== undefined) {
         this.width = this.$refs.item.offsetWidth;
       }
@@ -1671,8 +1778,20 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       return containerHeight;
     },
     dragEvent: function dragEvent(eventName, id, x, y, h, w) {
-      //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
-      var l = Object(utils["f" /* getLayoutItem */])(this.layout, id); //GetLayoutItem sometimes returns null object
+      var layout = this.layout.slice();
+
+      if (this.droppingPlaceholder && id === this.droppingPlaceholder.i) {
+        // Take the dropping element into account in layout computing
+        layout.push(this.droppingPlaceholder);
+      } //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
+
+
+      var l = Object(utils["f" /* getLayoutItem */])(layout, id);
+
+      if (!l) {
+        return;
+      } //GetLayoutItem sometimes returns null object
+
 
       if (l === undefined || l === null) {
         l = {
@@ -1682,7 +1801,7 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       }
 
       if (eventName === "dragstart" && !this.verticalCompact) {
-        this.positionsBeforeDrag = this.layout.reduce(function (result, _ref) {
+        this.positionsBeforeDrag = layout.reduce(function (result, _ref) {
           var i = _ref.i,
               x = _ref.x,
               y = _ref.y;
@@ -1694,11 +1813,6 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       }
 
       if (eventName === "dragmove" || eventName === "dragstart") {
-        this.placeholder.i = id;
-        this.placeholder.x = l.x;
-        this.placeholder.y = l.y;
-        this.placeholder.w = w;
-        this.placeholder.h = h;
         this.$nextTick(function () {
           this.isDragging = true;
         }); //this.$broadcast("updateWidth", this.width);
@@ -1711,16 +1825,24 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       } // Move the element to the dragged location.
 
 
-      this.layout = Object(utils["g" /* moveElement */])(this.layout, l, x, y, true, this.preventCollision);
+      Object(utils["g" /* moveElement */])(layout, l, x, y, true, this.preventCollision);
 
       if (this.restoreOnDrag) {
         // Do not compact items more than in layout before drag
         // Set moved item as static to avoid to compact it
         l.static = true;
-        Object(utils["c" /* compact */])(this.layout, this.verticalCompact, this.positionsBeforeDrag);
+        Object(utils["c" /* compact */])(layout, this.verticalCompact, this.positionsBeforeDrag);
         l.static = false;
       } else {
-        Object(utils["c" /* compact */])(this.layout, this.verticalCompact);
+        Object(utils["c" /* compact */])(layout, this.verticalCompact);
+      }
+
+      if (eventName === "dragmove" || eventName === "dragstart") {
+        this.placeholder.i = id;
+        this.placeholder.x = l.x;
+        this.placeholder.y = l.y;
+        this.placeholder.w = w;
+        this.placeholder.h = h;
       } // needed because vue can't detect changes on array element properties
 
 
@@ -1820,6 +1942,122 @@ var elementResizeDetectorMaker = __webpack_require__("eec4");
       // clear layouts
       this.layouts = Object.assign({}, this.responsiveLayouts);
     },
+    onDragEnter: function onDragEnter(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.dragEnterCounter++;
+    },
+    onDragLeave: function onDragLeave(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.dragEnterCounter--; // dragleave events can be triggered on children
+      // So we count enter/leave events to know when
+      // the cursor actually leaves the layout container
+
+      if (this.dragEnterCounter === 0) {
+        this.removeDroppingPlaceholder();
+      }
+    },
+    onDragOver: function onDragOver(event) {
+      var _this$beforeDropOver;
+
+      event.preventDefault();
+      event.stopPropagation();
+      var beforeDropOverResult = (_this$beforeDropOver = this.beforeDropOver) === null || _this$beforeDropOver === void 0 ? void 0 : _this$beforeDropOver.call(this, event);
+
+      if (beforeDropOverResult === false) {
+        if (this.droppingPlaceholder) {
+          this.removeDroppingPlaceholder();
+        }
+
+        return;
+      }
+
+      var _w$h$beforeDropOverRe = _objectSpread({
+        w: 1,
+        h: 1
+      }, beforeDropOverResult),
+          w = _w$h$beforeDropOverRe.w,
+          h = _w$h$beforeDropOverRe.h;
+
+      var clientX = event.clientX,
+          clientY = event.clientY;
+      var dropTarget = this.$refs.item.getBoundingClientRect() || {
+        left: 0,
+        top: 0
+      };
+      var offsetX = (clientX - dropTarget.left) / this.transformScale;
+      var offsetY = (clientY - dropTarget.top) / this.transformScale;
+      var droppingPosition = {
+        left: offsetX,
+        top: offsetY,
+        event: event
+      };
+      var positionParams = {
+        cols: this.colNum,
+        margin: this.margin,
+        maxRows: this.maxRows,
+        rowHeight: this.rowHeight,
+        containerWidth: this.width !== null ? this.width : 100
+      };
+
+      var _calcItemSize = Object(calculateUtils["b" /* calcItemSize */])(positionParams, w, h),
+          width = _calcItemSize.width,
+          height = _calcItemSize.height;
+
+      var offset = {
+        left: width / 2,
+        top: height / 2
+      };
+      var pos = {
+        top: droppingPosition.top - offset.top,
+        left: droppingPosition.left - offset.left
+      };
+
+      if (!this.droppingPlaceholder) {
+        var _calcXY = Object(calculateUtils["c" /* calcXY */])(positionParams, pos.top, pos.left, w, h),
+            x = _calcXY.x,
+            y = _calcXY.y;
+
+        this.droppingPlaceholder = {
+          x: x,
+          y: y,
+          w: w,
+          h: h,
+          i: DROPPING_ID
+        };
+        this.dragEvent('dragstart', DROPPING_ID, x, y, h, w);
+      } else {
+        var _calcXY2 = Object(calculateUtils["c" /* calcXY */])(positionParams, pos.top, pos.left, w, h),
+            _x = _calcXY2.x,
+            _y = _calcXY2.y;
+
+        if (_x !== this.droppingPlaceholder.x || _y !== this.droppingPlaceholder.y) {
+          this.droppingPlaceholder.x = _x;
+          this.droppingPlaceholder.y = _y;
+          this.dragEvent('dragmove', DROPPING_ID, _x, _y, h, w);
+        }
+      }
+    },
+    onDrop: function onDrop(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.dragEnterCounter = 0;
+      this.$emit('drop', event, this.droppingPlaceholder);
+      this.removeDroppingPlaceholder();
+      delete this.positionsBeforeDrag;
+      this.$emit('layout-updated', this.layout);
+    },
+    removeDroppingPlaceholder: function removeDroppingPlaceholder() {
+      this.isDragging = false;
+      this.droppingPlaceholder = null;
+
+      if (this.restoreOnDrag) {
+        Object(utils["c" /* compact */])(this.layout, this.verticalCompact, this.positionsBeforeDrag);
+      } else {
+        Object(utils["c" /* compact */])(this.layout, this.verticalCompact);
+      }
+    },
     // find difference in layouts
     findDifference: function findDifference(layout, originalLayout) {
       //Find values that are in result1 but not in result2
@@ -1912,6 +2150,18 @@ module.exports = function (Constructor, NAME, next) {
 
 /***/ }),
 
+/***/ "454f":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("46a7");
+var $Object = __webpack_require__("584a").Object;
+module.exports = function defineProperty(it, key, desc) {
+  return $Object.defineProperty(it, key, desc);
+};
+
+
+/***/ }),
+
 /***/ "456d":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1952,6 +2202,16 @@ module.exports = function (bitmap, value) {
     value: value
   };
 };
+
+
+/***/ }),
+
+/***/ "46a7":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__("63b6");
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__("8e60"), 'Object', { defineProperty: __webpack_require__("d9f6").f });
 
 
 /***/ }),
@@ -2552,6 +2812,15 @@ $export($export.P + $export.F * (fails(function () {
 
 /***/ }),
 
+/***/ "584a":
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.6.12' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+
 /***/ "5be5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2760,6 +3029,75 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 /***/ }),
 
+/***/ "63b6":
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__("e53d");
+var core = __webpack_require__("584a");
+var ctx = __webpack_require__("d864");
+var hide = __webpack_require__("35e8");
+var has = __webpack_require__("07e3");
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var IS_WRAP = type & $export.W;
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE];
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+  var key, own, out;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    if (own && has(exports, key)) continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    // bind timers to global for call from export context
+    : IS_BIND && own ? ctx(out, global)
+    // wrap global constructors for prevent change them in library
+    : IS_WRAP && target[key] == out ? (function (C) {
+      var F = function (a, b, c) {
+        if (this instanceof C) {
+          switch (arguments.length) {
+            case 0: return new C();
+            case 1: return new C(a);
+            case 2: return new C(a, b);
+          } return new C(a, b, c);
+        } return C.apply(this, arguments);
+      };
+      F[PROTOTYPE] = C[PROTOTYPE];
+      return F;
+    // make static versions for prototype methods
+    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+    if (IS_PROTO) {
+      (exports.virtual || (exports.virtual = {}))[key] = out;
+      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
+    }
+  }
+};
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+
 /***/ "6821":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2770,6 +3108,80 @@ module.exports = function (it) {
   return IObject(defined(it));
 };
 
+
+/***/ }),
+
+/***/ "6947":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calcGridColWidth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return calcItemSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return calcXY; });
+/**
+ * Compute the column width.
+ *
+ * @param  {Object} positionParams Parameters of grid needed for coordinates calculations.
+ * @return {Number}                Column width (in pixels).
+ */
+function calcGridColWidth(positionParams) {
+  var margin = positionParams.margin,
+      containerWidth = positionParams.containerWidth,
+      cols = positionParams.cols;
+  return (containerWidth - margin[0] * (cols + 1)) / cols;
+}
+/**
+ * Compute an item width and height.
+ *
+ * @param  {Object} positionParams Parameters of grid needed for coordinates calculations.
+ * @param  {Number} w              W coordinate in grid units.
+ * @param  {Number} h              H coordinate in grid units.
+ * @return {Object}                width and height (in pixels).
+ */
+
+function calcItemSize(positionParams, w, h) {
+  return {
+    // 0 * Infinity === NaN, which causes problems with resize constriants;
+    // Fix this if it occurs.
+    // Note we do it here rather than later because Math.round(Infinity) causes deopt
+    width: w === Infinity ? w : Math.round(calcGridColWidth(positionParams) * w + Math.max(0, w - 1) * positionParams.margin[0]),
+    height: h === Infinity ? h : Math.round(positionParams.rowHeight * h + Math.max(0, h - 1) * positionParams.margin[1])
+  };
+}
+/**
+ * Translate x and y coordinates from pixels to grid units.
+ * 
+ * @param  {Object} positionParams  Parameters of grid needed for coordinates calculations.
+ * @param  {Number} top             Top position (relative to parent) in pixels.
+ * @param  {Number} left            Left position (relative to parent) in pixels.
+ * @param  {Number} w               W coordinate in grid units.
+ * @param  {Number} h               H coordinate in grid units.
+ * @return {Object}                 x and y in grid units.
+ */
+
+function calcXY(positionParams, top, left, w, h) {
+  var margin = positionParams.margin,
+      cols = positionParams.cols,
+      rowHeight = positionParams.rowHeight,
+      maxRows = positionParams.maxRows;
+  var colWidth = calcGridColWidth(positionParams); // left = colWidth * x + margin * (x + 1)
+  // l = cx + m(x+1)
+  // l = cx + mx + m
+  // l - m = cx + mx
+  // l - m = x(c + m)
+  // (l - m) / (c + m) = x
+  // x = (left - margin) / (coldWidth + margin)
+
+  var x = Math.round((left - margin[0]) / (colWidth + margin[0]));
+  var y = Math.round((top - margin[1]) / (rowHeight + margin[1])); // Capping
+
+  x = Math.max(Math.min(x, cols - w), 0);
+  y = Math.max(Math.min(y, maxRows - h), 0);
+  return {
+    x: x,
+    y: y
+  };
+}
 
 /***/ }),
 
@@ -2891,6 +3303,27 @@ module.exports = function (index, length) {
 
 /***/ }),
 
+/***/ "794b":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__("8e60") && !__webpack_require__("294c")(function () {
+  return Object.defineProperty(__webpack_require__("1ec9")('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "79aa":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+
 /***/ "79e5":
 /***/ (function(module, exports) {
 
@@ -2959,6 +3392,13 @@ module.exports = {};
 
 /***/ }),
 
+/***/ "85f2":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("454f");
+
+/***/ }),
+
 /***/ "86cc":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3018,6 +3458,17 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__8bbf__;
+
+/***/ }),
+
+/***/ "8e60":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__("294c")(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
 
 /***/ }),
 
@@ -4425,25 +4876,18 @@ exports.push([module.i, ".vue-grid-layout{position:relative;-webkit-transition:h
 
 /***/ }),
 
-/***/ "ade3":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "aebd":
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _defineProperty; });
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
 
-  return obj;
-}
 
 /***/ }),
 
@@ -4503,12 +4947,12 @@ __webpack_require__.d(all_namespaceObject, "edgeTarget", function() { return edg
 __webpack_require__.d(all_namespaceObject, "elements", function() { return snappers_elements; });
 __webpack_require__.d(all_namespaceObject, "grid", function() { return grid; });
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1705dc22-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=e7489122&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1705dc22-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/GridItem.vue?vue&type=template&id=171db91e&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"item",staticClass:"vue-grid-item",class:_vm.classObj,style:(_vm.style)},[_vm._t("default"),(_vm.resizableAndNotStatic)?_c('span',{ref:"handle",class:_vm.resizableHandleClass}):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=e7489122&
+// CONCATENATED MODULE: ./src/components/GridItem.vue?vue&type=template&id=171db91e&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
@@ -4525,11 +4969,11 @@ var es6_object_keys = __webpack_require__("456d");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
-var defineProperty = __webpack_require__("ade3");
-
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-finite.js
 var es6_number_is_finite = __webpack_require__("fca0");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
+var defineProperty = __webpack_require__("bd86");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
 var es6_regexp_match = __webpack_require__("4917");
@@ -4595,6 +5039,9 @@ function isNum(num) {
 }
 // EXTERNAL MODULE: ./src/helpers/responsiveUtils.js
 var responsiveUtils = __webpack_require__("97a7");
+
+// EXTERNAL MODULE: ./src/helpers/calculateUtils.js
+var calculateUtils = __webpack_require__("6947");
 
 // EXTERNAL MODULE: ./src/helpers/DOM.js
 var DOM = __webpack_require__("1ca7");
@@ -11529,6 +11976,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
+
  //    var eventBus = require('./eventBus');
 
 
@@ -11549,7 +11997,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
     /*containerWidth: {
      type: Number,
      required: true
-       },
+      },
      rowHeight: {
      type: Number,
      required: true
@@ -11925,6 +12373,15 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
       } else {
         return 'vue-resizable-handle';
       }
+    },
+    positionParams: function positionParams() {
+      return {
+        cols: this.cols,
+        containerWidth: this.containerWidth,
+        margin: this.margin,
+        maxRows: this.maxRows,
+        rowHeight: this.rowHeight
+      };
     }
   },
   methods: {
@@ -12218,29 +12675,20 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
     calcPosition: function calcPosition(x, y, w, h) {
       var colWidth = this.calcColWidth(); // add rtl support
 
-      var out;
+      var _calcItemSize = Object(calculateUtils["b" /* calcItemSize */])(this.positionParams, w, h),
+          width = _calcItemSize.width,
+          height = _calcItemSize.height;
 
-      if (this.renderRtl) {
-        out = {
-          right: Math.round(colWidth * x + (x + 1) * this.margin[0]),
-          top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
-          // 0 * Infinity === NaN, which causes problems with resize constriants;
-          // Fix this if it occurs.
-          // Note we do it here rather than later because Math.round(Infinity) causes deopt
-          width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
-          height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
-        };
-      } else {
-        out = {
-          left: Math.round(colWidth * x + (x + 1) * this.margin[0]),
-          top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
-          // 0 * Infinity === NaN, which causes problems with resize constriants;
-          // Fix this if it occurs.
-          // Note we do it here rather than later because Math.round(Infinity) causes deopt
-          width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
-          height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
-        };
-      }
+      var out = Object(defineProperty["a" /* default */])({
+        width: width,
+        height: height,
+        top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1])
+      }, this.renderRtl ? 'right' : 'left', Math.round(colWidth * x + (x + 1) * this.margin[0])); // if (this.renderRtl) {
+      //     out.right = Math.round(colWidth * x + (x + 1) * this.margin[0]);
+      // } else {
+      //     out.left = Math.round(colWidth * x + (x + 1) * this.margin[0]);
+      // }
+
 
       return out;
     },
@@ -12253,29 +12701,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
      */
     // TODO check if this function needs change in order to support rtl.
     calcXY: function calcXY(top, left) {
-      var colWidth = this.calcColWidth(); // left = colWidth * x + margin * (x + 1)
-      // l = cx + m(x+1)
-      // l = cx + mx + m
-      // l - m = cx + mx
-      // l - m = x(c + m)
-      // (l - m) / (c + m) = x
-      // x = (left - margin) / (coldWidth + margin)
-
-      var x = Math.round((left - this.margin[0]) / (colWidth + this.margin[0]));
-      var y = Math.round((top - this.margin[1]) / (this.rowHeight + this.margin[1])); // Capping
-
-      x = Math.max(Math.min(x, this.cols - this.innerW), 0);
-      y = Math.max(Math.min(y, this.maxRows - this.innerH), 0);
-      return {
-        x: x,
-        y: y
-      };
+      return Object(calculateUtils["c" /* calcXY */])(this.positionParams, top, left, this.innerW, this.innerH);
     },
     // Helper for generating column width
     calcColWidth: function calcColWidth() {
-      var colWidth = (this.containerWidth - this.margin[0] * (this.cols + 1)) / this.cols; // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
-
-      return colWidth;
+      return Object(calculateUtils["a" /* calcGridColWidth */])(this.positionParams);
     },
     // This can either be called:
     // calcGridItemWHPx(w, colWidth, margin[0])
@@ -12493,6 +12923,31 @@ var component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var GridItem = __webpack_exports__["a"] = (component.exports);
+
+/***/ }),
+
+/***/ "bd86":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _defineProperty; });
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("85f2");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
 
 /***/ }),
 
@@ -13618,12 +14073,62 @@ module.exports = {
 
 /***/ }),
 
+/***/ "d864":
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__("79aa");
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+
 /***/ "d8e8":
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
   if (typeof it != 'function') throw TypeError(it + ' is not a function!');
   return it;
+};
+
+
+/***/ }),
+
+/***/ "d9f6":
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__("e4ae");
+var IE8_DOM_DEFINE = __webpack_require__("794b");
+var toPrimitive = __webpack_require__("1bc3");
+var dP = Object.defineProperty;
+
+exports.f = __webpack_require__("8e60") ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
 };
 
 
@@ -13647,6 +14152,31 @@ module.exports = (
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GridLayout_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("1156");
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GridLayout_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GridLayout_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
+
+
+/***/ }),
+
+/***/ "e4ae":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("f772");
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "e53d":
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ }),
@@ -14053,6 +14583,16 @@ module.exports = function (object, index, value) {
 var $export = __webpack_require__("5ca1");
 
 $export($export.S + $export.F, 'Object', { assign: __webpack_require__("7333") });
+
+
+/***/ }),
+
+/***/ "f772":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
 
 
 /***/ }),

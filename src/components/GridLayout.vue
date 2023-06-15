@@ -1,13 +1,22 @@
 <template>
-    <div ref="item" class="vue-grid-layout" :style="mergedStyle">
+    <div
+        ref="item"
+        class="vue-grid-layout" 
+        :style="mergedStyle"
+        v-on="isDroppable ? {
+            dragenter: onDragEnter,
+            dragover: onDragOver,
+            dragleave: onDragLeave,
+            drop: onDrop
+        } : {}">
         <slot></slot>
         <grid-item class="vue-grid-placeholder"
-                   v-show="isDragging"
-                   :x="placeholder.x"
-                   :y="placeholder.y"
-                   :w="placeholder.w"
-                   :h="placeholder.h"
-                   :i="placeholder.i"></grid-item>
+            v-show="isDragging"
+            :x="placeholder.x"
+            :y="placeholder.y"
+            :w="placeholder.w"
+            :h="placeholder.h"
+            :i="placeholder.i"></grid-item>
     </div>
 </template>
 <style>
@@ -22,10 +31,14 @@
 
     import {bottom, compact, getLayoutItem, moveElement, validateLayout, cloneLayout, getAllCollisions} from '@/helpers/utils';
     import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout} from "@/helpers/responsiveUtils";
+    import {calcXY, calcItemSize} from '@/helpers/calculateUtils';
+
     //var eventBus = require('./eventBus');
 
     import GridItem from './GridItem.vue'
     import {addWindowEventListener, removeWindowEventListener} from "@/helpers/DOM";
+
+    const DROPPING_ID = '__dropping-elem__';
 
     export default {
         name: "GridLayout",
@@ -77,6 +90,14 @@
             isBounded: {
                 type: Boolean,
                 default: false
+            },
+            isDroppable: {
+                type: Boolean,
+                default: false
+            },
+            beforeDropOver: {
+                type: Function,
+                default: null
             },
             useCssTransforms: {
                 type: Boolean,
@@ -160,6 +181,8 @@
             self.eventBus.$on('resizeEvent', self.resizeEventHandler);
             self.eventBus.$on('dragEvent', self.dragEventHandler);
             self.$emit('layout-created', self.layout);
+
+            this.dragEnterCounter = 0;
         },
         beforeDestroy: function(){
             //Remove listeners
@@ -314,6 +337,11 @@
                 };
             },
             onWindowResize: function () {
+                if (this.isDragging) {
+                    // We're dragging an item, so we consider that the layout
+                    // is already being updated by drag events
+                    return;
+                }
                 if (this.$refs !== null && this.$refs.item !== null && this.$refs.item !== undefined) {
                     this.width = this.$refs.item.offsetWidth;
                 }
@@ -327,26 +355,31 @@
                 return containerHeight;
             },
             dragEvent: function (eventName, id, x, y, h, w) {
+                const layout = this.layout.slice();
+
+                if (this.droppingPlaceholder && id === this.droppingPlaceholder.i) {
+                    // Take the dropping element into account in layout computing
+                    layout.push(this.droppingPlaceholder);
+                }
+
                 //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
-                let l = getLayoutItem(this.layout, id);
+                let l = getLayoutItem(layout, id);
+                if (!l) {
+                    return;
+                }
                 //GetLayoutItem sometimes returns null object
                 if (l === undefined || l === null){
                     l = {x:0, y:0}
                 }
 
                 if (eventName === "dragstart" && !this.verticalCompact) {
-                    this.positionsBeforeDrag = this.layout.reduce((result, {i, x, y}) => ({
+                    this.positionsBeforeDrag = layout.reduce((result, {i, x, y}) => ({
                         ...result,
                         [i]: {x, y}
                     }), {});
                 }
 
                 if (eventName === "dragmove" || eventName === "dragstart") {
-                    this.placeholder.i = id;
-                    this.placeholder.x = l.x;
-                    this.placeholder.y = l.y;
-                    this.placeholder.w = w;
-                    this.placeholder.h = h;
                     this.$nextTick(function() {
                         this.isDragging = true;
                     });
@@ -359,16 +392,24 @@
                 }
 
                 // Move the element to the dragged location.
-                this.layout = moveElement(this.layout, l, x, y, true, this.preventCollision);
+                moveElement(layout, l, x, y, true, this.preventCollision);
 
                 if (this.restoreOnDrag) {
                     // Do not compact items more than in layout before drag
                     // Set moved item as static to avoid to compact it
                     l.static = true;
-                    compact(this.layout, this.verticalCompact, this.positionsBeforeDrag);
+                    compact(layout, this.verticalCompact, this.positionsBeforeDrag);
                     l.static = false;
                 } else {
-                    compact(this.layout, this.verticalCompact);
+                    compact(layout, this.verticalCompact);
+                }
+
+                if (eventName === "dragmove" || eventName === "dragstart") {
+                    this.placeholder.i = id;
+                    this.placeholder.x = l.x;
+                    this.placeholder.y = l.y;
+                    this.placeholder.w = w;
+                    this.placeholder.h = h;
                 }
 
                 // needed because vue can't detect changes on array element properties
@@ -479,6 +520,108 @@
             initResponsiveFeatures(){
                 // clear layouts
                 this.layouts = Object.assign({}, this.responsiveLayouts);
+            },
+
+            onDragEnter(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                this.dragEnterCounter++;
+            },
+
+            onDragLeave(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                this.dragEnterCounter--;
+
+                // dragleave events can be triggered on children
+                // So we count enter/leave events to know when
+                // the cursor actually leaves the layout container
+                if (this.dragEnterCounter === 0) {
+                    this.removeDroppingPlaceholder();
+                }
+            },
+
+            onDragOver(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const beforeDropOverResult = this.beforeDropOver?.(event);
+                if (beforeDropOverResult === false) {
+                    if (this.droppingPlaceholder) {
+                        this.removeDroppingPlaceholder();
+                    }
+                    return;
+                }
+
+                const {w, h} = { w: 1, h: 1, ...beforeDropOverResult };
+
+                const { clientX, clientY } = event;
+                const dropTarget = this.$refs.item.getBoundingClientRect() || {left:0, top:0};
+                const offsetX = (clientX - dropTarget.left) / this.transformScale;
+                const offsetY = (clientY - dropTarget.top) / this.transformScale;
+
+                const droppingPosition = { left: offsetX, top: offsetY, event };
+
+                const positionParams = {
+                    cols: this.colNum,
+                    margin: this.margin,
+                    maxRows: this.maxRows,
+                    rowHeight: this.rowHeight,
+                    containerWidth: this.width !== null ? this.width : 100,
+                };
+
+                const { width, height } = calcItemSize(positionParams, w, h);
+                const offset = {
+                    left: width / 2,
+                    top: height / 2,
+                };
+                 const pos = {
+                    top: droppingPosition.top - offset.top,
+                    left: droppingPosition.left - offset.left
+                };
+
+                if (!this.droppingPlaceholder) {
+                    const {x, y} = calcXY(positionParams, pos.top, pos.left, w, h);
+                    this.droppingPlaceholder = {
+                        x,
+                        y,
+                        w,
+                        h,
+                        i: DROPPING_ID,
+                    };
+                    
+                    this.dragEvent('dragstart', DROPPING_ID, x, y, h, w);
+                } else {
+                    const {x, y} = calcXY(positionParams, pos.top, pos.left, w, h);
+
+                    if (x !== this.droppingPlaceholder.x || y !== this.droppingPlaceholder.y) {
+                        this.droppingPlaceholder.x = x;
+                        this.droppingPlaceholder.y = y;
+                        this.dragEvent('dragmove', DROPPING_ID, x, y, h, w);
+                    }
+                }
+            },
+
+            onDrop(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                this.dragEnterCounter = 0;
+                this.$emit('drop', event, this.droppingPlaceholder);
+                this.removeDroppingPlaceholder();
+                delete this.positionsBeforeDrag;
+                this.$emit('layout-updated', this.layout);
+            },
+
+            removeDroppingPlaceholder() {
+                this.isDragging = false;
+                this.droppingPlaceholder = null;
+
+                if (this.restoreOnDrag) {
+                    compact(this.layout, this.verticalCompact, this.positionsBeforeDrag);
+                } else {
+                    compact(this.layout, this.verticalCompact);
+                }
             },
 
             // find difference in layouts

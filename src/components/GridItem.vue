@@ -89,6 +89,7 @@
     import {setTopLeft, setTopRight, setTransformRtl, setTransform} from '@/helpers/utils';
     import {getControlPosition, createCoreData} from '@/helpers/draggableUtils';
     import {getColsFromBreakpoint} from '@/helpers/responsiveUtils';
+    import {calcGridColWidth,calcXY,calcItemSize} from '@/helpers/calculateUtils';
     import {getDocumentDir} from "@/helpers/DOM";
     //    var eventBus = require('./eventBus');
 
@@ -478,6 +479,15 @@
                 } else {
                     return 'vue-resizable-handle';
                 }
+            },
+            positionParams() {
+                return {
+                    cols: this.cols,
+                    containerWidth: this.containerWidth,
+                    margin: this.margin,
+                    maxRows: this.maxRows,
+                    rowHeight: this.rowHeight
+                };
             }
         },
         methods: {
@@ -728,31 +738,13 @@
             calcPosition: function (x, y, w, h) {
                 const colWidth = this.calcColWidth();
                 // add rtl support
-                let out;
-                if (this.renderRtl) {
-                    out = {
-                        right: Math.round(colWidth * x + (x + 1) * this.margin[0]),
-                        top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
-                        // 0 * Infinity === NaN, which causes problems with resize constriants;
-                        // Fix this if it occurs.
-                        // Note we do it here rather than later because Math.round(Infinity) causes deopt
-                        width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
-                        height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
-                    };
-                } else {
-                    out = {
-                        left: Math.round(colWidth * x + (x + 1) * this.margin[0]),
-                        top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
-                        // 0 * Infinity === NaN, which causes problems with resize constriants;
-                        // Fix this if it occurs.
-                        // Note we do it here rather than later because Math.round(Infinity) causes deopt
-                        width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
-                        height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
-                    };
-                }
-
-
-                return out;
+                const { width, height } = calcItemSize(this.positionParams, w, h);
+                return {
+                    width,
+                    height,
+                    top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
+                    [this.renderRtl ? 'right': 'left']:  Math.round(colWidth * x + (x + 1) * this.margin[0]),
+                };
             },
             /**
              * Translate x and y coordinates from pixels to grid units.
@@ -762,29 +754,11 @@
              */
             // TODO check if this function needs change in order to support rtl.
             calcXY(top, left) {
-                const colWidth = this.calcColWidth();
-
-                // left = colWidth * x + margin * (x + 1)
-                // l = cx + m(x+1)
-                // l = cx + mx + m
-                // l - m = cx + mx
-                // l - m = x(c + m)
-                // (l - m) / (c + m) = x
-                // x = (left - margin) / (coldWidth + margin)
-                let x = Math.round((left - this.margin[0]) / (colWidth + this.margin[0]));
-                let y = Math.round((top - this.margin[1]) / (this.rowHeight + this.margin[1]));
-
-                // Capping
-                x = Math.max(Math.min(x, this.cols - this.innerW), 0);
-                y = Math.max(Math.min(y, this.maxRows - this.innerH), 0);
-
-                return {x, y};
+                return calcXY(this.positionParams, top, left, this.innerW, this.innerH);
             },
             // Helper for generating column width
             calcColWidth() {
-                const colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
-               // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
-                return colWidth;
+                return calcGridColWidth(this.positionParams);
             },
             // This can either be called:
             // calcGridItemWHPx(w, colWidth, margin[0])

@@ -12,6 +12,7 @@ Working example [here](../guide/02-events.md)
             :col-num="12"
             :row-height="30"
             :is-draggable="true"
+            :is-droppable="true"
             :is-resizable="true"
             :vertical-compact="true"
             :margin="[10, 10]"
@@ -22,6 +23,7 @@ Working example [here](../guide/02-events.md)
             @layout-ready="layoutReadyEvent"
             @layout-updated="layoutUpdatedEvent"
             @breakpoint-changed="breakpointChangedEvent"
+            @drop="dropEvent"
     >
 
         <grid-item v-for="item in layout"
@@ -122,6 +124,17 @@ Every time the breakpoint value changes due to window resize
     },
 ``` 
 
+### dropEvent
+
+Drop event
+
+Emitted when a draggable element has been dropped into the grid from outside
+
+```javascript
+    dropEvent: function(event, droppedItem){
+        console.log("DROP item=", JSON.stringify(droppedItem, ['x', 'y', 'w', 'h'], 2) );
+    },
+``` 
 
 ## GridItem
 

@@ -48,12 +48,13 @@
             </div>
         </div>
         <br/>
-        <div @drag="drag" @dragend="dragend" class="droppable-element" draggable="true" unselectable="on">Droppable Element (Drag me!)</div>
+        <div class="droppable-element" draggable="true" unselectable="on">Droppable Element (Drag me!)</div>
         <div id="content">
             <grid-layout  ref="gridLayout" :layout.sync="layout"
                          :col-num="12"
                          :row-height="30"
                          :is-draggable="true"
+                         :is-droppable="true"
                          :is-resizable="true"
                          :vertical-compact="true"
                          :use-css-transforms="true"
