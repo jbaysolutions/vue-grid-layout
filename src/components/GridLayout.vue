@@ -141,6 +141,7 @@
                 layouts: {}, // array to store all layouts from different breakpoints
                 lastBreakpoint: null, // store last active breakpoint
                 originalLayout: null, // store original Layout
+                layoutsCache: this.responsiveLayouts
             };
         },
         created () {
@@ -298,6 +299,9 @@
                         }
 
                         this.lastLayoutLength = this.layout.length;
+                        this.layoutsCache = {
+                            [this.lastBreakpoint]: this.layout
+                        }
                         this.initResponsiveFeatures();
                     }
 
@@ -478,7 +482,7 @@
             // clear all responsive layouts
             initResponsiveFeatures(){
                 // clear layouts
-                this.layouts = Object.assign({}, this.responsiveLayouts);
+                this.layouts = Object.assign({}, this.layoutsCache);
             },
 
             // find difference in layouts
