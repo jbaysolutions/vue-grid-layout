@@ -479,7 +479,10 @@ import { getDocumentDir } from "../helpers/DOM"
             emitContainerResized() {
                 // this.style has width and height with trailing 'px'. The
                 // resized event is without them
-                let styleProps: {height: number, width: number} = {};
+                let styleProps: {height: number, width: number} = {
+                    height: 0,
+                    width: 0
+                };
                 for (let prop of ['width', 'height']) {
                     let val = this.style[prop];
                     let matches = val.match(/^(\d+)px$/);
@@ -585,7 +588,7 @@ import { getDocumentDir } from "../helpers/DOM"
                         this.previousX = this.innerX;
                         this.previousY = this.innerY;
 
-                        let parentRect = (event.target as HTMLElement).offsetParent.getBoundingClientRect();
+                        let parentRect = (event.target as HTMLElement).offsetParent!.getBoundingClientRect();
                         let clientRect = (event.target as HTMLElement).getBoundingClientRect();
                         if (this.renderRtl) {
                             newPosition.left = (clientRect.right - parentRect.right) * -1;
@@ -599,7 +602,7 @@ import { getDocumentDir } from "../helpers/DOM"
                     }
                     case "dragend": {
                         if (!this.isDragging) return;
-                        let parentRect = (event.target as HTMLElement).offsetParent.getBoundingClientRect();
+                        let parentRect = (event.target as HTMLElement).offsetParent!.getBoundingClientRect();
                         let clientRect = (event.target as HTMLElement).getBoundingClientRect();
 //                        Add rtl support
                         if (this.renderRtl) {

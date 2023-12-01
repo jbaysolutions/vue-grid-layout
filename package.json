@@ -20,9 +20,10 @@
   "homepage": "https://github.com/jbaysolutions/vue-grid-layout",
   "main": "dist/vue-grid-layout.common.js",
   "unpkg": "dist/vue-grid-layout.umd.min.js",
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rollup -c"
+    "build": "vite build"
   },
   "dependencies": {
     "element-resize-detector": "^1.2.1",
@@ -31,16 +32,14 @@
   },
   "devDependencies": {
     "@types/element-resize-detector": "^1.1.2",
-    "@vue/compiler-sfc": "3.0.0",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "@vue/compiler-sfc": "3.3.9",
     "autoprefixer": "^9.0.0",
-    "rollup-plugin-postcss": "^3.1.8",
-    "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-vue": "^6.0.0-beta.10",
     "tslib": "^2.0.2",
     "typescript": "^4.0.3",
-    "vite": "^1.0.0-rc.4"
+    "vite": "^5.0.4"
   },
   "peerDependencies": {
-    "vue": "3.0.0"
+    "vue": "^3.0.0"
   }
 }
