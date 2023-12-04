@@ -28,6 +28,7 @@
             <!-- Add to show rtl support -->
             <button @click="changeDirection">Change Direction</button>
             <input type="checkbox" v-model="draggable"/> Draggable
+            <input type="checkbox" v-model="bounded"/> Bounded
             <input type="checkbox" v-model="resizable"/> Resizable
             <input type="checkbox" v-model="mirrored"/> Mirrored
             <input type="checkbox" v-model="responsive"/> Responsive
@@ -45,6 +46,7 @@
                 :is-draggable="draggable"
                 :is-resizable="resizable"
                 :is-mirrored="mirrored"
+                :is-bounded="bounded"
                 :prevent-collision="preventCollision"
                 :vertical-compact="compact"
                 :use-css-transforms="true"
@@ -181,6 +183,7 @@
                 draggable: true,
                 resizable: true,
                 mirrored: false,
+                bounded: false,
                 responsive: true,
                 preventCollision: false,
                 compact: true,
