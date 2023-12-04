@@ -78,6 +78,10 @@
                 type: Boolean,
                 default: true
             },
+            isBounded: {
+                type: Boolean,
+                default: false
+            },
             verticalCompact: {
                 type: Boolean,
                 default: true
@@ -239,6 +243,9 @@
             },
             isDraggable: function() {
                 this.eventBus.emit("setDraggable", this.isDraggable);
+            },
+            isBounded: function() {
+                this.eventBus.emit("setBounded", this.isBounded);
             },
             isResizable: function() {
                 this.eventBus.emit("setResizable", this.isResizable);
