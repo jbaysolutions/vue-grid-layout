@@ -62,15 +62,21 @@ export default {
                 {"x": 4, "y": 5, "w": 2, "h": 5, "i": "8"},
                 {"x": 5, "y": 10, "w": 4, "h": 3, "i": "9"},
             ],
-        }
+
+            controller: new window.AbortController()
+        };
     },
     mounted() {
         document.addEventListener("dragover", function (e) {
             mouseXY.x = e.clientX;
             mouseXY.y = e.clientY;
-        }, false);
+        }, {
+            capture: false,
+            signal: this.controller?.signal
+        });
     },
     beforeDestroy() {
+        this.controller.abort();
     },
     methods: {
         drag: function (e) {
